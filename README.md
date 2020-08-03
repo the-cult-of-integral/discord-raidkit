@@ -13,7 +13,7 @@ Over the years, there have been many people taking this fact as an oppertunity t
 
 **Anubis** is a discord nuker, designed specifically to have many helpful features. It also contains various social engineering resources to aid the user in convincing their target to invite the bot to their server. This tool can be used on unsuspecting predator servers to quickly allow you to take control of the server - all you need to do is convince someone to invite the bot (most child predators aren't renowned for their knowledge of code, so convincing them *with* resources should be pretty easy).
 
-**Osiris** is a redesign of the JAJAJA Token Hacker created by @coats1337 (Permission given). It contains a fresh new look and also removes a few commands that, after testing, were found to not work. However, it should be noted that Osiris will be recieving updates in the future adding brand-new features (Unlike Anubis, which is pretty much complete). Osiris can be used to destroy a targets account, gain information on them (email + phone number (if connected)) or directly log into their account and take full control.
+**Osiris** is a redesign of the JAJAJA Token Hacker created by [@coats1337](https://github.com/coats1337) (Permission given). It contains a fresh new look and also removes a few commands that, after testing, were found to not work. However, it should be noted that Osiris will be recieving updates in the future adding brand-new features (Unlike Anubis, which is pretty much complete). Osiris can be used to destroy a targets account, gain information on them (email + phone number (if connected)) or directly log into their account and take full control.
 
 Both of these tool's full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work, and tips for getting the best results.
 
@@ -32,6 +32,7 @@ In order to make the most of this installation guide, please follow the instruct
 ---
 ### Anubis Guide
 [Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Osiris Guide](#osiris-guide)
+
 To first use Anubis, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are three settings that you must determine before using Anubis (Open the JSON file with notepad if you have no default program):
 1. Replace the default password text with your PostreSQL master password.
 2. You must set a bot prefix. Any prefix will do, but try to avoid exceptionally common prefixes, such as !
@@ -74,11 +75,11 @@ To use Osiris, run the `main.py` file (not to be confused with Anubis' file). Th
 - Logging into their account will, guess what, log into their account. Just remember to give the selenium browser some time - don't just close it because it didn't login one second to reaching the login page.
 
 ##### Token-Gaining Resources:
-@iklevente's [AnarchyGrabber](https://github.com/iklevente/AnarchyGrabber): Requires Microsoft Visual Studio.
-@bdunlap9's [Discord-Token-Stealer](https://github.com/bdunlap9/Discord-Token-Stealer): Requires Microsoft Visual Studio.
-@notkohlrexo's [Discord-Token-Stealer](https://github.com/notkohlrexo/Discord-Token-Stealer): Requires Microsoft Visual Studio.
+[@iklevente's](https://github.com/iklevente) [AnarchyGrabber](https://github.com/iklevente/AnarchyGrabber): Requires Microsoft Visual Studio.
+[@bdunlap9's](https://github.com/bdunlap9) [Discord-Token-Stealer](https://github.com/bdunlap9/Discord-Token-Stealer): Requires Microsoft Visual Studio.
+[@notkohlrexo's](https://github.com/notkohlrexo) [Discord-Token-Stealer](https://github.com/notkohlrexo/Discord-Token-Stealer): Requires Microsoft Visual Studio.
 
-It's up to you which token stealer you use. I'm sure there are some, somewhere, that do not require Visual Studio, but the popular ones do (You can use the community edition). Personally I like @notkohlrexo's the best for this task, as it displays information such as a general IP, OS, etc. This can give you some, even if limitted, knowledge on the target and remember - knowledge is power.
+It's up to you which token stealer you use. I'm sure there are some, somewhere, that do not require Visual Studio, but the popular ones do (You can use the community edition). Personally I like [@notkohlrexo's](https://github.com/notkohlrexo) the best for this task, as it displays information such as a general IP, OS, etc. This can give you some, even if limitted, knowledge on the target and remember - knowledge is power.
 
 **Disclaimer: I am not responsible for anyone's actions in regards to the Osiris Tool. If people use it on innocents, I'm not to blame.**
 
