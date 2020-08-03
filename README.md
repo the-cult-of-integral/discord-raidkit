@@ -9,7 +9,7 @@ These tools are made for combatting predators. However, it is innevitable that p
 ![anubis and osiris](https://user-images.githubusercontent.com/66549839/89144600-1b42a180-d546-11ea-9ff9-d23bf3414127.png)
 Discord is a popular social media application used for both messaging and voice chat. It has many unique features such as its iconic "servers". However, due to many variables, discord is also quite popular with child predators and various other degenerates.
 
-Over the years, there have been many people taking this fact as an oppertunity to expose those people, with some earning thousands of views. However, there have never really been any tools created to directly combat these individuals... until now.
+Over the years, there have been many people taking this fact as an opportunity to expose those people, with some earning thousands of views. However, there have never really been any tools created to directly combat these individuals... until now.
 
 **Anubis** is a discord nuker, designed specifically to have many helpful features. It also contains various social engineering resources to aid the user in convincing their target to invite the bot to their server. This tool can be used on unsuspecting predator servers to quickly allow you to take control of the server - all you need to do is convince someone to invite the bot (most child predators aren't renowned for their knowledge of code, so convincing them *with* resources should be pretty easy).
 
