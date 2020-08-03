@@ -86,5 +86,6 @@ It's up to you which token stealer you use. I'm sure there are some, somewhere, 
 ---
 ## 🌟 I need your help! 🌠
 In order to help my existential crisis, you can **star** this github repository to make me feel better (also, I *think* it helps the search results).
-CONTENT
+
+[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide)
 
