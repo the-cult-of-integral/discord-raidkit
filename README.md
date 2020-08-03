@@ -1,4 +1,4 @@
-**⚠️ Vital Warning Disclaimer⚠️** 
+**⚠️ Vital Warning/Disclaimer⚠️** 
 
 These tools are made for combatting predators. However, it is innevitable that people will use these tools on random people for their own gain. **I am not responsible for how anyone uses these tools, and the consequences of their actions. By using these tools, you accept full responsibility for your actions.**
 
