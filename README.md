@@ -21,6 +21,9 @@ Both of these tool's full potential will be discussed in seperate guides further
 ### Installation Guide
 [Introduction](#discord-pedo-hunting-tools) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
 
+Before we begin, here are some known, unresolved issues. If you encounter these issues, contact Manu Dei#8780 on discord:
+- When using the third option of Osiris, an error regarding `chrome.dll` is shown and the program crashes.
+
 In order to make the most of this installation guide, please follow the instructions *exactly* as they say.
 1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-385/) When installing python, remember to check, "Add Python to PATH" - this is **vital**. After the installation, open the terminal and enter the following command: `pip install asyncpg bs4 colorama discord requests selenium`. These are the dependancies for Anubis and Osiris (They used to be included with the download, but the virtual environment has been quite buggy as of late, for me anyway).
 
