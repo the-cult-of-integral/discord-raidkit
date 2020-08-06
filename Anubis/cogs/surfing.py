@@ -1,4 +1,5 @@
-# Scripted by K. Catterall.
+# Scripted by Catterall (https://github.com/Catterall).
+# Bot under the GNU General Public Liscense v2 (1991).
 
 # Modules
 import discord
@@ -47,4 +48,5 @@ def setup(bot):
     bot.add_cog(Surfing(bot))
 
 
-# Scripted by K. Catterall.
+# Scripted by Catterall (https://github.com/Catterall).
+# Bot under the GNU General Public Liscense v2 (1991).

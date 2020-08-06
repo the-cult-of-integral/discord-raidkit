@@ -1,4 +1,5 @@
-# Scripted by K. Catterall.
+# Scripted by Catterall (https://github.com/Catterall).
+# Bot under the GNU General Public Liscense v2 (1991).
 
 # Modules
 from discord.ext import commands
@@ -94,4 +95,5 @@ def setup(bot):
     bot.add_cog(Levels(bot))
 
 
-# Scripted by K. Catterall.
+# Scripted by Catterall (https://github.com/Catterall).
+# Bot under the GNU General Public Liscense v2 (1991).

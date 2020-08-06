@@ -1,5 +1,5 @@
 """
-CREDITS:
+EXTRA CREDITS:
 This code is a rewrite of the following repository:
 https://github.com/coats1337/Jajaja-Account-Nuker
 
@@ -10,6 +10,9 @@ I believe this rewrite is necessary as:
 2. Includes required files such as a specific version of chrome and chromewebdriver.exe in the repository all ready.
 3. Includes a virtual environment so the users do not need to install any requirements.
 """
+
+# Scripted by Catterall (https://github.com/Catterall).
+# Osiris Tool under the GNU General Public Liscense v2 (1991).
 
 
 from itertools import cycle
@@ -136,6 +139,8 @@ def getBanner():
 {Fore.YELLOW}[2] {Fore.LIGHTBLUE_EX}Get information from a targetted account.
 {Fore.YELLOW}[3] {Fore.LIGHTBLUE_EX}Log into an account.
 {Fore.YELLOW}[4] {Fore.LIGHTBLUE_EX}Exit.{Style.RESET_ALL}
+
+{Fore.GREEN}Osiris created by Catterall (View for full guide): https://www.github.com/Catterall
 '''
     return banner
 
@@ -193,3 +198,6 @@ def startMenu():
 
 if __name__ == "__main__":
     startMenu()
+
+# Scripted by Catterall (https://github.com/Catterall).
+# Osiris Tool under the GNU General Public Liscense v2 (1991).

@@ -1,4 +1,5 @@
-# Scripted by K. Catterall.
+# Scripted by Catterall (https://github.com/Catterall).
+# Bot under the GNU General Public Liscense v2 (1991).
 
 # Modules
 import discord
@@ -6,6 +7,8 @@ from discord.ext import commands
 from colorama import *
 import requests
 import random
+import json
+import os
 init()  # Used by colorama.
 
 
@@ -210,6 +213,114 @@ class Moderation(commands.Cog):
                 name="No nickname provided.", value="You must provide a nickname: `nick_all <nickname>`.", inline=False)
             await ctx.author.send(embed=embed)
 
+    # Leave the server.
+    
+    @commands.command(hidden=True)
+    async def leave(self, ctx, leave_code=None, *, guild_name=None):
+        await ctx.message.delete()      
+        if not os.path.isfile('cogs/temp.txt'):
+            embed = discord.Embed(color=discord.Colour.red())
+            embed.add_field(
+                name="Crucial Error.", value="`temp.txt` is missing. Please restart the bot.", inline=False)
+            await ctx.author.send(embed=embed)
+            return
+        else:
+            with open('cogs/temp.txt', 'r') as f:
+                leave = f.read().strip().replace(' ', '')
+                f.close()
+            
+            if not leave_code:
+                embed = discord.Embed(color=discord.Colour.red())
+                embed.add_field(
+                    name="No leave-code provided.", value="You must provide a leave-code: `leave <leave-code> <server>`.", inline=False)
+                await ctx.author.send(embed=embed)
+                return
+            
+            if not guild_name:
+                embed = discord.Embed(color=discord.Colour.red())
+                embed.add_field(
+                    name="No server provided.", value="You must provide a server: `leave <leave-code> <server>`.", inline=False)
+                await ctx.author.send(embed=embed)
+                return
+            
+            if leave_code != leave:
+                embed = discord.Embed(color=discord.Colour.red())
+                embed.add_field(
+                    name="Incorrect leave-code.", value=f"The leave-code you provided ({leave_code}) was incorrect.", inline=False)
+                await ctx.author.send(embed=embed)
+                return
+            else:    
+                guild = discord.utils.get(self.bot.guilds, name=guild_name)    
+                try:
+                    await guild.leave()
+                except:
+                    embed = discord.Embed(color=discord.Colour.blue())
+                    embed.add_field(
+                        name="Anubis not present.", value=f"The Anubis bot is not currently present in the server: {guild_name}", inline=False)
+                    await ctx.author.send(embed=embed)
+                    return
+                try:
+                    embed = discord.Embed(color=discord.Colour.green())
+                    embed.add_field(
+                        name="Anubis left successfully.", value=f"The Anubis bot has successfully left the server: {guild_name}.", inline=False)
+                    await ctx.author.send(embed=embed)
+                except:
+                    print(f"{Fore.GREEN}\nAnubis left successfully: The Anubis bot has succesfully left the server: {Fore.WHITE}{guild_name}{Fore.GREEN}.")
+                    return
+
+    # Refresh the window.
+
+    @commands.command(hidden=True)
+    async def refresh(self, ctx):
+        try:
+            with open('run_settings.json', 'r') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            embed = discord.Embed(color=discord.Colour.red())
+            embed.add_field(
+                name="Crucial Error.", value="`run_settings.json` is missing. Please restart the bot.", inline=False)
+            await ctx.author.send(embed=embed)
+            return
+        
+        with open('run_settings.json', 'w') as file:
+            json.dump(data, file, indent=4)
+            if not os.path.isfile('cogs/temp.txt'):
+                print(f"{Fore.LIGHTRED_EX}[critical] temp.txt mising - please restart the bot.")
+                return
+
+        with open('cogs/temp.txt', 'r') as f:
+            leave_code = f.read().strip().replace(' ', '')
+        await ctx.message.delete()
+        os.system('cls')
+        print(Fore.BLUE + f'''
+     
+                                    █████╗ ███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
+                                    ██╔══██╗████╗  ██║██║   ██║██╔══██╗██║██╔════╝
+                                    ███████║██╔██╗ ██║██║   ██║██████╔╝██║███████╗
+                                    ██╔══██║██║╚██╗██║██║   ██║██╔══██╗██║╚════██║
+                                    ██║  ██║██║ ╚████║╚██████╔╝██████╔╝██║███████║
+                                    ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝╚══════╝
+
+{Fore.WHITE}{Back.BLUE}The following commands can be used in any text channel within the target server - permissions are not needed:
+{Back.RESET}{Fore.RED}{data.get("prefix")}leave <leave-code> <server>: Makes the bot leave a server (Your current leave code is {Fore.WHITE}{leave_code}{Fore.RED}).
+{Back.RESET}{Fore.LIGHTRED_EX}{data.get("prefix")}nick_all <nickname>: Change the nickname of all members on a server.
+{Fore.YELLOW}{data.get("prefix")}mass_dm <message>: Message all of the members on a server with a custom message.
+{Fore.GREEN}{data.get("prefix")}spam <message>: Repeatedly spam all text channels on a server with a custom message.
+{Fore.BLUE}{data.get("prefix")}cpurge: Delete all channels on a server.
+{Style.DIM}{Fore.MAGENTA}{data.get("prefix")}admin <role_name>: Gain administrator privileges on a server via an admin role created by the bot.
+{Style.BRIGHT}{Fore.LIGHTMAGENTA_EX}{data.get("prefix")}nuke: Ban all members, then delete all roles, then delete all channels, then delete all custom emojis on a server.
+
+
+{Style.DIM}{Fore.GREEN}Additional notes:
+{Style.BRIGHT}{Back.RESET}{Fore.WHITE}Before running the nuke command, make sure the role created by the bot upon its invite is above the roles of the
+members you wish to ban (i.e. move the role as high as possible).
+
+{Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{data.get("prefix")}refresh
+
+
+{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): https://www.github.com/Catterall'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
+        return
+    
     # Kick a member.
 
     @commands.command()
@@ -316,4 +427,5 @@ def setup(bot):
     bot.add_cog(Moderation(bot))
 
 
-# Scripted by K. Catterall.
+# Scripted by Catterall (https://github.com/Catterall).
+# Bot under the GNU General Public Liscense v2 (1991).
