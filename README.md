@@ -90,6 +90,8 @@ To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth'
 [@bdunlap9's](https://github.com/bdunlap9) [Discord-Token-Stealer](https://github.com/bdunlap9/Discord-Token-Stealer): Requires Microsoft Visual Studio.
 [@notkohlrexo's](https://github.com/notkohlrexo) [Discord-Token-Stealer](https://github.com/notkohlrexo/Discord-Token-Stealer): Requires Microsoft Visual Studio.
 
+**Notice: These token stealers will be detected by anti-viruses: The question is not how to break into the anti-virus, but how to break into the user's mind; be creative.**
+
 It's up to you which token stealer you use. I'm sure there are some, somewhere, that do not require Visual Studio, but the popular ones do (You can use the community edition). Personally I like [@notkohlrexo's](https://github.com/notkohlrexo) the best for this task, as it displays information such as a general IP, OS, etc. This can give you some, even if limitted, knowledge on the target and remember - knowledge is power.
 
 **Disclaimer: I am not responsible for anyone's actions in regards to the Osiris Tool. If people use it on innocents, I'm not to blame.**
