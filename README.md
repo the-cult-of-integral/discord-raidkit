@@ -1,5 +1,5 @@
 **Known issues:**
-- The refresh command causes the colours on the screen to alter slightly (Purely visual). Will be fixed soon.
+- Issue #2: The refresh command causes the colours on the screen to alter slightly (Purely visual). Will be fixed soon.
 
 ---
 **⚠️ Vital Warning/Disclaimer⚠️** 
