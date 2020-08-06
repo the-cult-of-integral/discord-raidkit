@@ -85,10 +85,10 @@ To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth'
 - Finding information on the target will display a few things, but the two most important things are the email and phone number (they may not have a phone number connected).
 - Logging into their account will, guess what, log into their account. Just remember to give the selenium browser some time - don't just close it because it didn't login one second to reaching the login page.
 
-##### Token-Gaining Resources:
-[@iklevente's](https://github.com/iklevente) [AnarchyGrabber](https://github.com/iklevente/AnarchyGrabber): Requires Microsoft Visual Studio.
-[@bdunlap9's](https://github.com/bdunlap9) [Discord-Token-Stealer](https://github.com/bdunlap9/Discord-Token-Stealer): Requires Microsoft Visual Studio.
-[@notkohlrexo's](https://github.com/notkohlrexo) [Discord-Token-Stealer](https://github.com/notkohlrexo/Discord-Token-Stealer): Requires Microsoft Visual Studio.
+#### Token-Gaining Resources:
+- [@iklevente's](https://github.com/iklevente) [AnarchyGrabber](https://github.com/iklevente/AnarchyGrabber): Requires Microsoft Visual Studio.
+- [@bdunlap9's](https://github.com/bdunlap9) [Discord-Token-Stealer](https://github.com/bdunlap9/Discord-Token-Stealer): Requires Microsoft Visual Studio.
+- [@notkohlrexo's](https://github.com/notkohlrexo) [Discord-Token-Stealer](https://github.com/notkohlrexo/Discord-Token-Stealer): Requires Microsoft Visual Studio.
 
 **Notice: These token stealers will be detected by anti-viruses: The question is not how to break into the anti-virus, but how to break into the user's mind; be creative.**
 
