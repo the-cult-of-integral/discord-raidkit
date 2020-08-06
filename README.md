@@ -1,3 +1,7 @@
+**Known issues:**
+- The refresh command causes the colours on the screen to alter slightly (Purely visual). Will be fixed soon.
+
+---
 **⚠️ Vital Warning/Disclaimer⚠️** 
 
 These tools are made for combatting predators. However, it is innevitable that people will use these tools on random people for their own gain. **I am not responsible for how anyone uses these tools, and the consequences of their actions. By using these tools, you accept full responsibility for your actions.**
