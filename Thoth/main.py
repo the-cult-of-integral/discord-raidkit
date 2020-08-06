@@ -68,7 +68,7 @@ def add_account():
             token = input(
                 f"{Fore.LIGHTMAGENTA_EX}Please enter your target's token ({Fore.LIGHTCYAN_EX}If you do not know this, "
                 f"enter nothing{Fore.LIGHTMAGENTA_EX}): {Fore.BLUE}")
-            for char in token:
+            for char in token.lower():
                 if char not in valid_token_chars:
                     failure = True
             if len(token) != 59 and token:
@@ -345,7 +345,7 @@ def edit_account():
                             new_token = input(
                                 f"{Fore.LIGHTMAGENTA_EX}Please enter your target's token ({Fore.LIGHTCYAN_EX}If you do not know this, "
                                 f"enter nothing{Fore.LIGHTMAGENTA_EX}): {Fore.BLUE}")
-                            for char in new_token:
+                            for char in new_token.lower():
                                 if char not in valid_token_chars:
                                     failure = True
                             if len(new_token) != 59 and new_token:
