@@ -1,3 +1,9 @@
+**Notice on custom version:**
+
+I am currently writing a custom version of this tool, that I will primarily use to target predators for YouTube. For anyone wondering, this tool **will** be of private use. I'm afraid I can't give people too much power.
+
+---
+
 **Known issues:**
 - Issue #3: The refresh command causes the colours on the screen to alter slightly (Purely visual). Will be fixed soon.
 
