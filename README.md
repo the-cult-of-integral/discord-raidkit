@@ -4,8 +4,7 @@ I am currently writing a custom version of this tool, that I will primarily use 
 
 ---
 
-**Known issues:**
-- Issue #3: The refresh command causes the colours on the screen to alter slightly (Purely visual). Will be fixed soon.
+**There are currently no known issues. Please report any issues you encounter [here.](https://github.com/Catterall/discord-pedo-hunting-tools/issues)**
 
 ---
 **⚠️ Vital Warning/Disclaimer⚠️** 
