@@ -1,9 +1,3 @@
-**Notice on custom version:**
-
-I am currently writing a custom version of this tool, that I will primarily use to target predators for YouTube. For anyone wondering, this tool **will** be of private use. I'm afraid I can't give people too much power.
-
----
-
 **There are currently no known issues. Please report any issues you encounter [here.](https://github.com/Catterall/discord-pedo-hunting-tools/issues)**
 
 ---
