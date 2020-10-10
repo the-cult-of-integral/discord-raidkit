@@ -113,8 +113,6 @@ When exiting the different options, you may be confused (and agitated) at the ra
 
 Codes are used as reference points, as stated earlier. For example, when running the remove account option, it will prompt you to enter the code of the account you want to remove. A code can be set as anything, although it would be wise to not attempt to replicate the exit-codes to avoid collision.
 
-**Disclaimer: I am not responsible for anyone's actions in regards to the Thoth Tool. If people use it on innocents, I'm not to blame.**
-
 ---
 ## 🌟 Remember to star this repository if it has helped you! 🌠
 
