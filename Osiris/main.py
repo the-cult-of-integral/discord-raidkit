@@ -1,31 +1,38 @@
 """
-EXTRA CREDITS:
+Extra Credit:
+
 This code is a rewrite of the following repository:
 https://github.com/coats1337/Jajaja-Account-Nuker
 
 
-I believe this rewrite is necessary as:
+The following changes have been made to improve the usablity of this code:
 
-1. This rewrite removes features that do not work as of now, such as the disable account feature.
-2. Includes required files such as a specific version of chrome and chromewebdriver.exe in the repository all ready.
-3. Includes a virtual environment so the users do not need to install any requirements.
+- The disable command has been removed, as it was patched shortly after the release of the Jajaja account nuker.
+- Important files (required for the code to run properly) have been included in the repository as an external download.
+- An install_requirements.cmd file has been introduced.
+
+Permission Notice:
+The creator of the Jajaja account nuker, @coats1337, has given me full permission to include the code into the tool repository I have created.
 """
 
-# Scripted by Catterall (https://github.com/Catterall).
+
+
+
+# Scripted by Catterall/coats1337 (https://github.com/Catterall) (https://github.com/coats1337).
 # Osiris Tool under the GNU General Public Liscense v2 (1991).
 
 
-from itertools import cycle
-from datetime import datetime
-from selenium import webdriver
-from time import sleep
+# Modules
+
 import threading
 import requests
 import discord
 import random
-import time
 import os
-
+from time import sleep
+from itertools import cycle
+from datetime import datetime
+from selenium import webdriver
 from colorama import Fore, Style, init
 init(convert=True)
 
@@ -58,6 +65,8 @@ class Login(discord.Client):
             sleep(3)
 
 
+# Log into an account via a token.
+
 def login(token):
     webdriver.ChromeOptions.binary_location = r"browser\chrome.exe"
     opts = webdriver.ChromeOptions()
@@ -76,6 +85,8 @@ def login(token):
     driver.get("https://discord.com/login")
     driver.execute_script(script + f'\nlogin("{token}")')
 
+
+# Gather an account's information via a token.
 
 def spy(token):
     headers = {'Authorization': token, 'Content-Type': 'application/json'}  
@@ -100,6 +111,8 @@ def spy(token):
         print(f'\n{Fore.RED}Invalid Token.')
         sleep(3)
 
+
+# Nuke an account via a token.
 
 def accountNuke(token):
     headers = {'Authorization': token}
@@ -199,5 +212,5 @@ def startMenu():
 if __name__ == "__main__":
     startMenu()
 
-# Scripted by Catterall (https://github.com/Catterall).
+# Scripted by Catterall/coats1337 (https://github.com/Catterall) (https://github.com/coats1337).
 # Osiris Tool under the GNU General Public Liscense v2 (1991).

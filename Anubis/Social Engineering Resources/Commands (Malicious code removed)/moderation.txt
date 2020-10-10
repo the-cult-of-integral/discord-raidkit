@@ -1,17 +1,19 @@
 # Modules
+
 import discord
 from discord.ext import commands
-from colorama import *
+from colorama import Style, Back, Fore, init
 import requests
 import random
 import json
 import os
-init()  # Used by colorama.
+init()
 
 
 class Moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
 
     # Clear messages.
 
@@ -33,7 +35,8 @@ class Moderation(commands.Cog):
                 embed = discord.Embed(
                     title="Issue", description=f"You must specify a real amount.", color=discord.Colour.orange())
                 await ctx.send(embed=embed)
-    
+
+
     # Kick a member.
 
     @commands.command()
@@ -44,6 +47,7 @@ class Moderation(commands.Cog):
             title="Member kicked", description=f"{member.mention} has been kicked.", color=discord.Colour.blue())
         await ctx.send(embed=embed)
 
+
     # Ban a member.
 
     @commands.command()
@@ -53,6 +57,7 @@ class Moderation(commands.Cog):
         embed = discord.Embed(
             title="Member banned", description=f"{member.mention} has been banned.", color=discord.Colour.blue())
         await ctx.send(embed=embed)
+
 
     # Unban a member.
 
@@ -70,6 +75,7 @@ class Moderation(commands.Cog):
                     title="Member unbanned", description=f"{user.mention} has been unbanned.", color=discord.Colour.blue())
                 await ctx.send(embed=embed)
                 return
+
 
     # Mute a member.
 
@@ -105,6 +111,7 @@ class Moderation(commands.Cog):
                 embed = discord.Embed(
                     title="Member muted", description=f"{member.mention} has been muted.", color=discord.Colour.blue())
                 await ctx.send(embed=embed)
+
 
     # Unmute a member.
 

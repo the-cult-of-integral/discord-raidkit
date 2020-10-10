@@ -1,7 +1,9 @@
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).
 
+
 # Modules
+
 from discord.ext import commands
 import discord
 import random
@@ -12,6 +14,7 @@ class Levels(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+
     # Level up system.
 
     async def lvl_up(self, user):
@@ -19,11 +22,13 @@ class Levels(commands.Cog):
         cur_lvl = user['lvl']
 
         # Checks a users experience and current level to see if they should level up.
+
         if cur_xp >= round((3 * (cur_lvl ** 7)) / 10):
             await self.bot.pg_con.execute("UPDATE users SET lvl = $1 WHERE user_id = $2 AND guild_id = $3", cur_lvl + 1, user['user_id'], user['guild_id'])
             return True
         else:
             return False
+
 
     # Gain xp every message.
 
@@ -51,6 +56,7 @@ class Levels(commands.Cog):
         if await self.lvl_up(user):
             await message.channel.send(f"{message.author.mention} just reached level {user['lvl'] + 1}, Well done!")
 
+
     # Display the user's level.
 
     @commands.command()
@@ -73,6 +79,7 @@ class Levels(commands.Cog):
             lvl.add_field(name="Level", value=user[0]['lvl'])
             lvl.add_field(name="XP", value=user[0]['xp'])
             await ctx.send(embed=lvl)
+
 
     # Recieve daily XP.
 

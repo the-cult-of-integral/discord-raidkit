@@ -1,47 +1,48 @@
-**There are currently no known issues. Please report any issues you encounter [here.](https://github.com/Catterall/discord-pedo-hunting-tools/issues)**
+**There are currently no known issues. Please report any issues you encounter [here.](https://github.com/Catterall/discord-raidkit/issues)**
 
 ---
 **⚠️ Vital Warning/Disclaimer⚠️** 
 
-These tools are made for combatting predators. However, it is innevitable that people will use these tools on random people for their own gain. **I am not responsible for how anyone uses these tools, and the consequences of their actions. By using these tools, you accept full responsibility for your actions.**
+These tools are made for educational purposes. **By using these tools, you agree that you hold responsibility and accountability of any consequences caused by your actions.**
 
 ---
-# Discord Pedo-Hunting Tools
+# Discord Raidkit
 
 [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 ![all three tools](https://user-images.githubusercontent.com/66549839/89476108-b8d5e500-d781-11ea-8534-3c298a073d2a.png)
-Discord is a popular social media application used for both messaging and voice chat. It has many unique features such as its iconic "servers". However, due to many variables, discord is also quite popular with child predators and various other degenerates.
+Discord Raidkit is a free collection of programs designed to help you raid servers as effectively as possible. The following is a list of all the programs currently included:
 
-Over the years, there have been many people taking this fact as an opportunity to expose those people, with some earning thousands of views. However, there have never really been any tools created to directly combat these individuals... until now.
+- **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
 
-**Anubis** is a discord nuker, designed specifically to have many helpful features. It also contains various social engineering resources to aid the user in convincing their target to invite the bot to their server. This tool can be used on unsuspecting predator servers to quickly allow you to take control of the server - all you need to do is convince someone to invite the bot (most child predators aren't renowned for their knowledge of code, so convincing them *with* resources should be pretty easy).
+- **Osiris** is a redesign of the "Jajaja Account Nuker" created by [@coats1337](https://github.com/coats1337) (Permission granted). It contains a fresh new look and provides a few usability improvements.
 
-**Osiris** is a redesign of the JAJAJA Token Hacker created by [@coats1337](https://github.com/coats1337) (Permission given). It contains a fresh new look and also removes a few commands that, after testing, were found to not work. However, it should be noted that Osiris will be recieving updates in the future adding brand-new features (Unlike Anubis, which is pretty much complete). Osiris can be used to terminate, at least temporarily, a targets account, gain information on them (email + phone number (if connected)) or directly log into their account and take full control. This way, you can swifly remove any problems which the predator is causing in any servers and gain information on them (knowledge is always power).
+- **Thoth** is a tool designed to keep track of accounts you are targetting - an advanced hitlist, if you will. You can add accounts, remove accounts, display accounts, edit accounts and do pretty much anything else you'd need to do with items on a hitlist. You can even view the JSON containing the accounts in fancy colours.
 
-**Thoth** is a tool designed to keep track of accounts you are targetting - an advanced hitlist, if you will. You can add accounts, remove accounts, display accounts, edit accounts and do pretty much anything else you'd need to do with items on a hitlist. You can even view the JSON containing the accounts in fancy colours (however, it is read only).
-
-These tool's full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work, and tips for getting the best results.
+These tool's full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work and tips for getting the best results.
 
 
 ---
 ### Installation Guide
-[Introduction](#discord-pedo-hunting-tools) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
 
 In order to make the most of this installation guide, please follow the instructions *exactly* as they say.
-1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-385/) When installing python, remember to check, "Add Python to PATH" - this is **vital**. After the installation, open the terminal and enter the following command: `pip install asyncpg bs4 colorama discord requests selenium`. These are the dependancies for Anubis and Osiris (They used to be included with the download, but the virtual environment has been quite buggy as of late, for me anyway).
+1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-385/) When installing python, remember to check, "Add Python to PATH" - this is **vital**.
 
 2. **Anubis** requires PostreSQL, which can be downloaded [here.](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) When installing PostreSQL, do not uncheck any of the checkboxes except the checkbox asking to install Stack Builder. Furthermore, when installing PostreSQL, it will ask you to create a master password. **This password is important, remember it.** If you have no plans on using the Anubis tool, then you can skip to step four. Step three will cover how to set up PostreSQL for Anubis after installed.
 
 3. Search for **pgAdmin 4** in the windows search and run it. Enter the master password whenever it prompts you to enter it. Right click 'databases' at the side and create a new database named `levels_db`. **It must be named levels_db or it fails.** Within the side-explorer for the new, levels_db database, right click 'tables' and create a new table. Name the table `users`. **Again, all naming in this guide must be exact.** Then, move to the columns section. Here, you want to create four new columns; `user_id` should be set to the 'character_varying' datatype and 'Not NULL?'' should be set to yes; `guild_id` should be set to the 'character_varying' datatype as well - you must leave 'Not NULL?' alone for this column and the next two; `lvl` should be set to the 'integer' datatype; `xp` should be set to the 'integer' datatype as well. After these four columns are created, you can click 'save' to save the table, then exit pgAdmin 4.
 
 4. To download the tools, visit the [releases page.](https://github.com/Catterall/discord-pedo-hunting-tools/releases)
-5. **If you wish to use Osiris, you must follow this extra step:** 
+
+5. After downloading the tools, remember to run `install_requirements.cmd` - it'll install all Python requirements needed to use the tools without errors.
+
+6. **If you wish to use Osiris, you must follow this extra step:** 
  Download this specific chrome browser version [here.](https://drive.google.com/file/d/1XfzcEnm9f3yWt9E-V7ZrF_PRvZGjoNka/view?usp=sharing) After downloading the zip file, place it inside the Osiris folder and extract it. There should now be a browser folder within the Osiris folder, which will be used by Osiris. At this point, you can delete the zip file. If you've been following this guide correctly, you should now be ready to use the tools (For those of you wondering, I no longer use LFS/Cloning because 10GB of free broadband transfer a month is nothing). 
 
 ---
 ### Anubis Guide
-[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
 To first use Anubis, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are three settings that you must determine before using Anubis (Open the JSON file with notepad if you have no default program):
 1. Replace the default password text with your PostreSQL master password.
@@ -55,14 +56,21 @@ Head to the discord developers page [here](https://www.discord.com/developers) a
 ##### **Using Anubis:**
 Anubis has the following commands (the commands will be represented here with a prefix of 'a!'):
 - `a!nick_all <nickname>`: This command will change the nickname of every member in a given server.
+
 - `a!mass_dm <message>`: This command will message every member in a given server with a custom message.
+
 - `a!spam <message>`: This command will spam every text channel in a given server with a custom message.
+
 - `a!cpurge`: This command will delete every communication channel in a given server.
+
 - `a!admin <role_name>`: This command will give you a role named <role_name> in a given server; it has admin permissions.
+
 - `a!nuke`: This command will ban all members, delete all roles, delete all channels and delete all emojis of a given server.
 
-All of these commands are usable without permissions, as long as the bot is in the server. However, there are some important considerations to take note of:
-- When the bot is invited, it will create its own role. In order for the bot to directly affect a member (nuke, nick_all) its role must be above the member's role. **TL;DR, move the bots role as high as possible by utilising the admin command to give you the permissions to do so.**
+- `a!raid <role_name> <nickname> <channel_name> <channel_num> <message>`: This command will ban all members, delete all roles, create a new role and assign all members to it, nickname all members, create x amount channels, message all members with a message then spam all channels with said message.
+
+All of these commands are usable without permissions, as long as the bot is in the server. However, there are some important rules to take note of:
+- When the bot is invited, it will create its own role. In order for the bot to directly affect a member (nuke, raid, nick_all) its role must be above the member's role. **TL;DR, move the bots role as high as possible by utilising the admin command to give you the permissions to do so.**
 
 - Commands must be used like regular commands - in other words, in a text channel. Pretty much every server has a text channel, although it is best to find one that your sure no one is currently watching. Commands will delete themselves after being entered to help you go further undetected. 
 
@@ -72,11 +80,9 @@ However, there *are* a few resources I haved provided in a Social Engineering fo
 - Multiple .txt files containing all the bots code without the malicious functions.
 - A random image of a database screenshot. This is in-case the question the somewhat lack-luster 'add_db' fake command; show them this and they might believe it *more* (Personally, I've never had this occur to me, but I guess it's there if it does).
 
-**Disclaimer: I am not responsible for anyone's actions in regards to the Anubis Tool. If people use it on innocents, I'm not to blame.**
-
 ---
 ### Osiris Guide
-[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Thoth Guide](#thoth-guide)
 
 To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth's main.py file). The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
 - Nuking the targets account will remove their friends, servers, change their language to symbols and, whilst active at least, flick between dark and light mode (although this stops when Osiris is exited). When Osiris asks you for the number of threads, just put **10** or something.
@@ -86,18 +92,14 @@ To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth'
 
 #### Token-Gaining Resources:
 - [@iklevente's](https://github.com/iklevente) [AnarchyGrabber](https://github.com/iklevente/AnarchyGrabber): Requires Microsoft Visual Studio.
-- [@bdunlap9's](https://github.com/bdunlap9) [Discord-Token-Stealer](https://github.com/bdunlap9/Discord-Token-Stealer): Requires Microsoft Visual Studio.
-- [@notkohlrexo's](https://github.com/notkohlrexo) [Discord-Token-Stealer](https://github.com/notkohlrexo/Discord-Token-Stealer): Requires Microsoft Visual Studio.
+- [@bdunlap9's](https://github.com/bdunlap9) [bdunlap9's Discord-Token-Stealer](https://github.com/bdunlap9/Discord-Token-Stealer): Requires Microsoft Visual Studio.
+- [@notkohlrexo's](https://github.com/notkohlrexo) [notkohlrexo's Discord-Token-Stealer](https://github.com/notkohlrexo/Discord-Token-Stealer): Requires Microsoft Visual Studio.
 
-**Notice: These token stealers will be detected by anti-viruses: The question is not how to break into the anti-virus, but how to break into the user's mind; be creative.**
-
-It's up to you which token stealer you use. I'm sure there are some, somewhere, that do not require Visual Studio, but the popular ones do (You can use the community edition). Personally I like [@notkohlrexo's](https://github.com/notkohlrexo) the best for this task, as it displays information such as a general IP, OS, etc. This can give you some, even if limitted, knowledge on the target and remember - knowledge is power.
-
-**Disclaimer: I am not responsible for anyone's actions in regards to the Osiris Tool. If people use it on innocents, I'm not to blame.**
+**Notice: These token stealers will be detected by anti-viruses.**
 
 ---
 ### Thoth Guide
-[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
 To use Thoth, run the `main.py` file (not to be confused with Anubis' or Osiris' main.py file). The usage of Thoth, like Osiris, is straight-forwardm so I'll quickly cover it:
 - Adding an account will add an account to a JSON file (`accounts.json`). An account contains a code, name, discriminator and (optional) token. The code is anything you like; it is used a reference point for the other commands.
 
@@ -114,8 +116,6 @@ Codes are used as reference points, as stated earlier. For example, when running
 **Disclaimer: I am not responsible for anyone's actions in regards to the Thoth Tool. If people use it on innocents, I'm not to blame.**
 
 ---
-## 🌟 I need your help! 🌠
-In order to help my existential crisis, you can **star** this github repository to make me feel better (also, I *think* it helps the search results).
+## 🌟 Remember to star this repository if it has helped you! 🌠
 
-[Introduction](#discord-pedo-hunting-tools) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
-
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)

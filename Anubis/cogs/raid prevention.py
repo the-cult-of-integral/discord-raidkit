@@ -1,7 +1,9 @@
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).
 
+
 # Modules
+
 import discord
 from discord.ext import commands
 
@@ -9,6 +11,7 @@ from discord.ext import commands
 class RaidPrevention(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
 
     # Add a member from an "anti-raid database".
 
@@ -24,6 +27,7 @@ class RaidPrevention(commands.Cog):
                 title="Issue", description=f"{member} is not currently on this server.", color=discord.Color.orange())
             await ctx.send(embed=embed)
 
+
     # Remove a member from an "anti-raid database".
 
     @commands.command()
@@ -37,6 +41,7 @@ class RaidPrevention(commands.Cog):
             embed = discord.Embed(
                 title="Issue", description=f"{member} is not currently on this server.", color=discord.Color.orange())
             await ctx.send(embed=embed)
+
 
     # Lock a channel.
 
@@ -61,6 +66,7 @@ class RaidPrevention(commands.Cog):
             embed = discord.Embed(
                 title="Channel locked", description=f"{channel.name} has been locked down.", color=discord.Color.blue())
             await ctx.send(embed=embed)
+
 
     # Unlock a channel.
 

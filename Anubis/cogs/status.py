@@ -1,7 +1,9 @@
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).
 
+
 # Modules
+
 import discord
 from discord.ext import commands
 
@@ -9,6 +11,7 @@ from discord.ext import commands
 class Status(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
 
     # Display latency.
 

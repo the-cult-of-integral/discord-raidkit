@@ -1,20 +1,27 @@
 # Scripted by Catterall (https://github.com/Catterall).
 # Thoth under the GNU General Public Liscense v2 (1991).
 
+
+# Modules
+
 import json
 import os
 import random as r
 from time import sleep
 from colorama import Fore, Style, init
 init(convert=True)
-exit_num = r.randint(1,9999)
+exit_num = r.randint(1, 9999)
+
 
 def clear():
     os.system('cls')
 
 
+# Add an account to the hitlist.
+
 def add_account():
     clear()
+
     def get_information_AT(new=True, existing=False):
         global exit_num
         name = ""
@@ -25,7 +32,7 @@ def add_account():
         valid_token_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
                              's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                              '.', '-']
-        
+
         while not name:
             print(f"{Fore.LIGHTMAGENTA_EX}Please enter your target's discord name ({Fore.LIGHTRED_EX}do not include the "
                   f"#XXXX{Fore.LIGHTMAGENTA_EX}).")
@@ -43,7 +50,7 @@ def add_account():
             else:
                 clear()
                 break
-        
+
         while not discriminator:
             discriminator = input(
                 f"{Fore.LIGHTMAGENTA_EX}Please enter your target's discriminator ({Fore.LIGHTCYAN_EX}the four-digit "
@@ -62,7 +69,7 @@ def add_account():
             else:
                 clear()
                 break
-        
+
         while True:
             failure = False
             token = input(
@@ -82,10 +89,11 @@ def add_account():
                 break
             else:
                 clear()
-                print(f"{Fore.LIGHTRED_EX}You must provide either a valid token, or nothing if you do not know it.")
+                print(
+                    f"{Fore.LIGHTRED_EX}You must provide either a valid token, or nothing if you do not know it.")
                 sleep(3)
                 clear()
-        
+
         while not code:
             code = input(
                 f"{Fore.LIGHTMAGENTA_EX}Finally, please enter a code. This code will be used to display the "
@@ -93,7 +101,8 @@ def add_account():
                 f" {Fore.BLUE}")
             if not code:
                 clear()
-                print(f"{Fore.RED}You must provide a code to be used as a reference point in the future.")
+                print(
+                    f"{Fore.RED}You must provide a code to be used as a reference point in the future.")
                 sleep(3)
                 clear()
             else:
@@ -102,19 +111,21 @@ def add_account():
                     f"{Fore.LIGHTRED_EX}Notice: {Fore.LIGHTGREEN_EX}\nIf you lose this code, or can not remember which "
                     f"account the code is linked too,\nyou can read the json file to find out with option [6].\n\n")
                 sleep(2)
-                end = input(f"{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
+                end = input(
+                    f"{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
                 break
         if new:
-            target = {"targets": [{"code": code, "name": name, "discriminator": discriminator, "token": token}]}
+            target = {"targets": [
+                {"code": code, "name": name, "discriminator": discriminator, "token": token}]}
             json.dump(target, f, indent=4)
-        
+
         if existing:
-            target = {"code": code, "name": name, "discriminator": discriminator, "token": token}
-        
+            target = {"code": code, "name": name,
+                      "discriminator": discriminator, "token": token}
+
             def write_json(data):
                 with open('accounts.json', 'w') as f:
                     json.dump(data, f, indent=4)
-            
 
             with open('accounts.json') as json_file:
                 data = json.load(json_file)
@@ -133,6 +144,8 @@ def add_account():
         get_information_AT(new=False, existing=True)
 
 
+# Remove an account from the hitlist.
+
 def del_account():
     clear()
     if not os.path.isfile('accounts.json'):
@@ -143,10 +156,10 @@ def del_account():
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
         sleep(3)
         main()
-    
+
     code = ""
     global exit_num
-    
+
     while not code:
         print(f"{Fore.LIGHTMAGENTA_EX}Please enter the reference code of your target.")
         code = input(
@@ -180,22 +193,27 @@ def del_account():
                 target = {"targets": accounts}
                 with open('accounts.json', 'w') as f:
                     json.dump(target, f, indent=4)
-                print(f"{Fore.LIGHTMAGENTA_EX}The target has been removed successfully.")
+                print(
+                    f"{Fore.LIGHTMAGENTA_EX}The target has been removed successfully.")
                 sleep(2)
             else:
-                print(f"{Fore.LIGHTRED_EX}The specified target was not found in accounts.json.")
+                print(
+                    f"{Fore.LIGHTRED_EX}The specified target was not found in accounts.json.")
                 sleep(2)
                 del_account()
 
-    end = input(f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
+    end = input(
+        f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
     main()
 
+
+# Edit an account's details in the histlist.
 
 def edit_account():
     str_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     valid_token_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-                        's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                        '.']
+                         's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                         '.']
     clear()
     if not os.path.isfile('accounts.json'):
         with open('accounts.json', 'w') as f:
@@ -205,7 +223,7 @@ def edit_account():
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
         sleep(3)
         main()
-    
+
     code = ""
     old_code = ""
     old_name = ""
@@ -216,7 +234,7 @@ def edit_account():
     new_discriminator = ""
     new_token = ""
     global exit_num
-    
+
     while not code:
         print(f"{Fore.LIGHTMAGENTA_EX}Please enter the reference code of your target.")
         code = input(
@@ -249,9 +267,10 @@ def edit_account():
                 old_name = accounts[i]["name"]
                 old_discriminator = accounts[i]["discriminator"]
                 old_token = accounts[i]["token"]
-                
+
                 while True:
-                    option = input(f"{Fore.LIGHTMAGENTA_EX}Do you want to change your target's code? [Y/N]: {Fore.BLUE}").lower()
+                    option = input(
+                        f"{Fore.LIGHTMAGENTA_EX}Do you want to change your target's code? [Y/N]: {Fore.BLUE}").lower()
                     if option == 'y':
                         clear()
                         while not new_code:
@@ -259,40 +278,15 @@ def edit_account():
                                 f"{Fore.LIGHTMAGENTA_EX}Please enter a new code: {Fore.BLUE}")
                             if not new_code:
                                 clear()
-                                print(f"{Fore.RED}You must provide a code to be used as a reference point in the future.")
+                                print(
+                                    f"{Fore.RED}You must provide a code to be used as a reference point in the future.")
                                 sleep(3)
                                 clear()
                             else:
                                 clear()
                                 break
                         break
-                    
-                    elif option == 'n':
-                        clear()
-                        break
-                    else:
-                        clear()
-                        print(f"{Fore.LIGHTRED_EX}Enter either Y or N.")
-                        sleep(2)
-                        clear()
-                
-                while True:
-                    option = input(f"{Fore.LIGHTMAGENTA_EX}Do you want to change your target's discord name? [Y/N]: {Fore.BLUE}").lower()
-                    if option == 'y':
-                        clear()
-                        while not new_name:
-                            new_name = input(f"{Fore.LIGHTMAGENTA_EX}Please enter your target's discord name ({Fore.LIGHTRED_EX}do not include the "
-                                f"#XXXX{Fore.LIGHTMAGENTA_EX}):")
-                            if not new_name:
-                                clear()
-                                print(f"{Fore.LIGHTRED_EX}You must provide a name.")
-                                sleep(2)
-                                clear()
-                            else:
-                                clear()
-                                break
-                        break
-                    
+
                     elif option == 'n':
                         clear()
                         break
@@ -303,7 +297,36 @@ def edit_account():
                         clear()
 
                 while True:
-                    option = input(f"{Fore.LIGHTMAGENTA_EX}Do you want to change your target's discord discriminator? [Y/N]: {Fore.BLUE}").lower()
+                    option = input(
+                        f"{Fore.LIGHTMAGENTA_EX}Do you want to change your target's discord name? [Y/N]: {Fore.BLUE}").lower()
+                    if option == 'y':
+                        clear()
+                        while not new_name:
+                            new_name = input(f"{Fore.LIGHTMAGENTA_EX}Please enter your target's discord name ({Fore.LIGHTRED_EX}do not include the "
+                                             f"#XXXX{Fore.LIGHTMAGENTA_EX}):")
+                            if not new_name:
+                                clear()
+                                print(
+                                    f"{Fore.LIGHTRED_EX}You must provide a name.")
+                                sleep(2)
+                                clear()
+                            else:
+                                clear()
+                                break
+                        break
+
+                    elif option == 'n':
+                        clear()
+                        break
+                    else:
+                        clear()
+                        print(f"{Fore.LIGHTRED_EX}Enter either Y or N.")
+                        sleep(2)
+                        clear()
+
+                while True:
+                    option = input(
+                        f"{Fore.LIGHTMAGENTA_EX}Do you want to change your target's discord discriminator? [Y/N]: {Fore.BLUE}").lower()
                     if option == 'y':
                         clear()
                         while not new_discriminator:
@@ -318,14 +341,15 @@ def edit_account():
                                     break
                             if not new_discriminator:
                                 clear()
-                                print(f"{Fore.LIGHTRED_EX}You must provide a valid discriminator.")
+                                print(
+                                    f"{Fore.LIGHTRED_EX}You must provide a valid discriminator.")
                                 sleep(2)
                                 clear()
                             else:
                                 clear()
                                 break
                         break
-                    
+
                     elif option == 'n':
                         clear()
                         break
@@ -335,9 +359,9 @@ def edit_account():
                         sleep(2)
                         clear()
 
-                
                 while True:
-                    option = input(f"{Fore.LIGHTMAGENTA_EX}Do you want to change your target's token? [Y/N]: {Fore.BLUE}").lower()
+                    option = input(
+                        f"{Fore.LIGHTMAGENTA_EX}Do you want to change your target's token? [Y/N]: {Fore.BLUE}").lower()
                     if option == 'y':
                         clear()
                         while True:
@@ -359,11 +383,12 @@ def edit_account():
                                 break
                             else:
                                 clear()
-                                print(f"{Fore.LIGHTRED_EX}You must provide either a valid token, or nothing if you do not know it.")
+                                print(
+                                    f"{Fore.LIGHTRED_EX}You must provide either a valid token, or nothing if you do not know it.")
                                 sleep(3)
                                 clear()
                         break
-                    
+
                     elif option == 'n':
                         clear()
                         break
@@ -372,14 +397,13 @@ def edit_account():
                         print(f"{Fore.LIGHTRED_EX}Enter either Y or N.")
                         sleep(2)
                         clear()
-                
 
                 new_account = {}
                 if new_code:
                     new_account["code"] = new_code
                 else:
                     new_account["code"] = old_code
-                
+
                 if new_name:
                     new_account["name"] = new_name
                 else:
@@ -389,12 +413,11 @@ def edit_account():
                     new_account["discriminator"] = new_discriminator
                 else:
                     new_account["discriminator"] = old_discriminator
-                
+
                 if new_token:
                     new_account["token"] = new_token
                 else:
                     new_account["token"] = old_token
-
 
                 del accounts[i]
 
@@ -403,16 +426,21 @@ def edit_account():
                 target = {"targets": accounts}
                 with open('accounts.json', 'w') as f:
                     json.dump(target, f, indent=4)
-                print(f"{Fore.LIGHTMAGENTA_EX}The target has been edited successfully.")
+                print(
+                    f"{Fore.LIGHTMAGENTA_EX}The target has been edited successfully.")
                 sleep(2)
             else:
-                print(f"{Fore.LIGHTRED_EX}The specified target was not found in accounts.json.")
+                print(
+                    f"{Fore.LIGHTRED_EX}The specified target was not found in accounts.json.")
                 sleep(2)
                 edit_account()
 
-    end = input(f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
+    end = input(
+        f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
     main()
 
+
+# Display an account from the hitlist.
 
 def display_account():
     clear()
@@ -424,10 +452,10 @@ def display_account():
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
         sleep(3)
         main()
-    
+
     code = ""
     global exit_num
-    
+
     while not code:
         print(f"{Fore.LIGHTMAGENTA_EX}Please enter the reference code of your target.")
         code = input(
@@ -463,16 +491,21 @@ def display_account():
                 print(f"{Fore.LIGHTMAGENTA_EX}Account \"{code}\":\n")
                 print(f"{Fore.LIGHTMAGENTA_EX}Code: {Fore.BLUE}{code}")
                 print(f"{Fore.LIGHTMAGENTA_EX}Name: {Fore.BLUE}{name}")
-                print(f"{Fore.LIGHTMAGENTA_EX}Discriminator: {Fore.BLUE}{discriminator}")
+                print(
+                    f"{Fore.LIGHTMAGENTA_EX}Discriminator: {Fore.BLUE}{discriminator}")
                 print(f"{Fore.LIGHTMAGENTA_EX}Token: {Fore.BLUE}{token}")
             else:
-                print(f"{Fore.LIGHTRED_EX}The specified target was not found in accounts.json.")
+                print(
+                    f"{Fore.LIGHTRED_EX}The specified target was not found in accounts.json.")
                 sleep(2)
                 display_account()
 
-    end = input(f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
+    end = input(
+        f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
     main()
 
+
+# Check if an account is in the hitlist.
 
 def check_account():
     clear()
@@ -484,10 +517,10 @@ def check_account():
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
         sleep(3)
         main()
-    
+
     code = ""
     global exit_num
-    
+
     while not code:
         print(f"{Fore.LIGHTMAGENTA_EX}Please enter the reference code of your target.")
         code = input(
@@ -516,16 +549,20 @@ def check_account():
                     else:
                         i += 1
             if found:
-                print(f"{Fore.LIGHTGREEN_EX}The specified target was found in accounts.json.")
+                print(
+                    f"{Fore.LIGHTGREEN_EX}The specified target was found in accounts.json.")
                 sleep(1)
             else:
-                print(f"{Fore.LIGHTRED_EX}The specified target was not found in accounts.json.")
+                print(
+                    f"{Fore.LIGHTRED_EX}The specified target was not found in accounts.json.")
                 sleep(1)
-                
 
-    end = input(f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
+    end = input(
+        f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
     main()
 
+
+# View the JSON file containing accounts in a custom JSON viewer.
 
 def view_json():
     clear()
@@ -537,14 +574,16 @@ def view_json():
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
         sleep(3)
         main()
-    
+
     with open('accounts.json', 'r') as f:
         data = json.load(f)
         print(f"{Fore.LIGHTMAGENTA_EX}Viewing accounts.json file.\n\n")
         test = str(json.dumps(data, indent=4, sort_keys=True))
-        print(test.replace("{", Fore.YELLOW+"{"+Fore.RESET).replace("}", Fore.YELLOW+"}"+Fore.RESET).replace("[", Fore.LIGHTMAGENTA_EX+"["+Fore.RESET).replace("]", Fore.LIGHTMAGENTA_EX+"]"+Fore.RESET).replace(",", Fore.BLUE+","+Fore.RESET).replace(":", Fore.LIGHTCYAN_EX+":"+Fore.RESET).replace('"', Fore.LIGHTGREEN_EX+'"'))
-    
-    end = input(f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
+        print(test.replace("{", Fore.YELLOW+"{"+Fore.RESET).replace("}", Fore.YELLOW+"}"+Fore.RESET).replace("[", Fore.LIGHTMAGENTA_EX+"["+Fore.RESET).replace(
+            "]", Fore.LIGHTMAGENTA_EX+"]"+Fore.RESET).replace(",", Fore.BLUE+","+Fore.RESET).replace(":", Fore.LIGHTCYAN_EX+":"+Fore.RESET).replace('"', Fore.LIGHTGREEN_EX+'"'))
+
+    end = input(
+        f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
     main()
 
 
@@ -577,7 +616,6 @@ def getBanner():
 
 
 def main():
-    global contents
     while True:
         clear()
         print(getBanner())
@@ -597,7 +635,7 @@ def main():
             view_json()
         elif choice == '7':
             choice = str(input(
-            f'{Fore.LIGHTBLUE_EX}[{Fore.LIGHTCYAN_EX}>>>{Fore.LIGHTBLUE_EX}] {Fore.MAGENTA}Are you sure you want to exit? (Y to confirm): {Fore.BLUE}'))
+                f'{Fore.LIGHTBLUE_EX}[{Fore.LIGHTCYAN_EX}>>>{Fore.LIGHTBLUE_EX}] {Fore.MAGENTA}Are you sure you want to exit? (Y to confirm): {Fore.BLUE}'))
             if choice.upper() == 'Y':
                 exit(0)
             else:

@@ -1,0 +1,5 @@
+{
+    "postgresql_password": "Replace this text with the postgresql password you set",
+    "prefix": "a!",
+    "token": "Replace this text with your bot token"
+}
