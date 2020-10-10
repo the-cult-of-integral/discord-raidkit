@@ -180,7 +180,7 @@ class Moderation(commands.Cog):
         if message != None:
             embed = discord.Embed(
                 title="Info", description=f"Type `stop` in a text channel to stop spamming.", color=discord.Colour.orange())
-            await ctx.send(embed=embed)
+            await ctx.author.send(embed=embed)
 
             def check_reply(message):
                 return message.content == 'stop' and message.author == ctx.author
@@ -193,7 +193,9 @@ class Moderation(commands.Cog):
             spam_task = self.bot.loop.create_task(spam_text())
             await self.bot.wait_for('message', check=check_reply)
             spam_task.cancel()
-            await ctx.author.send('Spamming stopped.')
+            embed = discord.Embed(
+                title="Spamming completed successfully!", description=f"Spamming has been completed successfully.", color=discord.Colour.green())
+            await ctx.author.send(embed=embed)
         else:
             embed = discord.Embed(color=discord.Colour.red())
             embed.add_field(
@@ -337,8 +339,8 @@ class Moderation(commands.Cog):
         # Raid all text channels.
 
         embed = discord.Embed(
-            title="Info", description=f"Type `stop` in a text channel to stop raiding.", color=discord.Colour.orange())
-        await ctx.send(embed=embed)
+            title="Info", description=f"Type `stop` in a text channel to stop the raid.", color=discord.Colour.orange())
+        await ctx.author.send(embed=embed)
 
         def check_reply(message):
             return message.content == 'stop' and message.author == ctx.author
@@ -351,11 +353,9 @@ class Moderation(commands.Cog):
         spam_task = self.bot.loop.create_task(spam_text())
         await self.bot.wait_for('message', check=check_reply)
         spam_task.cancel()
-        embed = discord.Embed(color=discord.Colour.green())
-        embed.add_field(
-            name="Raid finished successfully.", value=f"The raid has finished successfully.", inline=False)
+        embed = discord.Embed(
+           title="Raid completed successfully!", description=f"The raid has been completed successfully.", color=discord.Colour.green())
         await ctx.author.send(embed=embed)
-
 
     # Leave the server.
 
