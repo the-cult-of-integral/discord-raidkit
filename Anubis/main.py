@@ -17,53 +17,6 @@ from itertools import cycle
 from colorama import Style, Back, Fore, init
 init()
 
-def find_updates():
-    THIS_VERSION = "1.3.0"
-
-    header = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36", 
-    "X-Requested-With": "XMLHttpRequest"}
-    url = f"https://github.com/Catterall/discord-raidkit/releases/latest"
-
-    os.system('cls')
-    print("Searching for updates.")
-    r = requests.get(url, headers=header)
-    os.system('cls')
-    soup = str(BeautifulSoup(r.text, 'html.parser'))
-    s1 = re.search('<title>', soup)
-    s2 = re.search('·', soup)
-    result_string = soup[s1.end():s2.start()]
-    if THIS_VERSION not in result_string:
-        s3 = re.search('originating_url":"', soup)
-        s4 = re.search('","user_id":null', soup)
-        update_link = soup[s3.end():s4.start()]
-        print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + f'''
-
-
-
-
-
-
-                   ███╗   ██╗███████╗██╗    ██╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██╗
-                   ████╗  ██║██╔════╝██║    ██║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
-                   ██╔██╗ ██║█████╗  ██║ █╗ ██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██║
-                   ██║╚██╗██║██╔══╝  ██║███╗██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚═╝
-                   ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
-                   ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
-                                                                                     
-
-              {Fore.LIGHTRED_EX}Human. There has been a brand new update to the discord raidkit. You can find the update here:
-    
-                             {Fore.LIGHTBLUE_EX}{update_link}
-                            
-                                             {Fore.WHITE}(Enter anything to continue) '''.replace('█', f'{Fore.YELLOW}█{Fore.LIGHTGREEN_EX}'), end=f"\n\n{' '*59}")
-    input()
-    
-    return
-
-
-find_updates()
-
-
 # Message to be displayed if an error is encountered when starting the bot.
 
 def startError():
@@ -332,6 +285,46 @@ async def help(ctx):
             text="Notice: You are missing permissions to view certain commands.")
 
     await author.send(embed=embed)
+
+# Search for updates.
+
+THIS_VERSION = "1.3.0"
+
+header = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36", 
+"X-Requested-With": "XMLHttpRequest"}
+url = f"https://github.com/Catterall/discord-raidkit/releases/latest"
+
+os.system('cls')
+print("Searching for updates.")
+r = requests.get(url, headers=header)
+os.system('cls')
+soup = str(BeautifulSoup(r.text, 'html.parser'))
+s1 = re.search('<title>', soup)
+s2 = re.search('·', soup)
+result_string = soup[s1.end():s2.start()]
+if THIS_VERSION not in result_string:
+    s3 = re.search('originating_url":"', soup)
+    s4 = re.search('","user_id":null', soup)
+    update_link = soup[s3.end():s4.start()]
+    print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + f'''
+
+
+
+                   ███╗   ██╗███████╗██╗    ██╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██╗
+                   ████╗  ██║██╔════╝██║    ██║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
+                   ██╔██╗ ██║█████╗  ██║ █╗ ██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██║
+                   ██║╚██╗██║██╔══╝  ██║███╗██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚═╝
+                   ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
+                   ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
+                                                                                     
+
+              {Fore.LIGHTRED_EX}Human. There has been a brand new update to the discord raidkit. You can find the update here:
+    
+                             {Fore.LIGHTBLUE_EX}{update_link}
+                            
+                                             {Fore.WHITE}(Enter anything to continue) '''.replace('█', f'{Fore.YELLOW}█{Fore.LIGHTGREEN_EX}'), end=f"\n\n{' '*59}")
+    input()
+
 
 
 # Cycle through status every ten seconds.
