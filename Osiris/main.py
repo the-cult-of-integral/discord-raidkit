@@ -137,12 +137,12 @@ def getBanner():
     banner = Style.BRIGHT + f'''
 
 
-                                         ██████╗ ███████╗██╗██████╗ ██╗███████╗
+                                          ██████╗ ███████╗██╗██████╗ ██╗███████╗
                                          ██╔═══██╗██╔════╝██║██╔══██╗██║██╔════╝
                                          ██║   ██║███████╗██║██████╔╝██║███████╗
                                          ██║   ██║╚════██║██║██╔══██╗██║╚════██║
                                          ╚██████╔╝███████║██║██║  ██║██║███████║
-                                         ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝╚═╝╚══════╝'''.replace('█', f'{Fore.WHITE}█{Fore.LIGHTGREEN_EX}')+f'''
+                                          ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝╚═╝╚══════╝'''.replace('█', f'{Fore.WHITE}█{Fore.LIGHTGREEN_EX}')+f'''
 
 
 
@@ -153,7 +153,7 @@ def getBanner():
 {Fore.YELLOW}[3] {Fore.LIGHTBLUE_EX}Log into an account.
 {Fore.YELLOW}[4] {Fore.LIGHTBLUE_EX}Exit.{Style.RESET_ALL}
 
-{Fore.GREEN}Osiris created by Catterall (View for full guide): https://www.github.com/Catterall
+{Fore.GREEN}Osiris created by Catterall (View for full guide): https://www.github.com/Catterall/discord-raidkit
 '''
     return banner
 

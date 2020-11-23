@@ -610,7 +610,7 @@ def getBanner():
 {Fore.BLUE}[6] {Fore.LIGHTMAGENTA_EX}View the list of targets.
 {Fore.BLUE}[7] {Fore.LIGHTMAGENTA_EX}Exit.
 
-{Fore.LIGHTBLUE_EX}Thoth created by Catterall (View for full guide): https://www.github.com/Catterall{Style.RESET_ALL}
+{Fore.LIGHTBLUE_EX}Thoth created by Catterall (View for full guide): https://www.github.com/Catterall/discord-raidkit{Style.RESET_ALL}
 '''
     return banner
 

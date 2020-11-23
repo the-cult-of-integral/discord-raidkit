@@ -23,7 +23,8 @@ class Surfing(commands.Cog):
         if word.strip().replace(" ", "") != "":
             try:
                 header = {
-                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36", "X-Requested-With": "XMLHttpRequest"}
+                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36", 
+                    "X-Requested-With": "XMLHttpRequest"}
                 url = f"https://www.dictionary.com/browse/{word}?s=t"
                 r = requests.get(url, headers=header)
                 soup = str(BeautifulSoup(r.text, 'html.parser'))
