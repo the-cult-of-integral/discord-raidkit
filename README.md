@@ -9,7 +9,7 @@ These tools are made for educational purposes. **By using these tools, you agree
 # Discord Raidkit
 
 [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
-![Discord Raidkit v1.3 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
+![Discord Raidkit v1.3.1 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
 Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
 
 - **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
@@ -65,7 +65,7 @@ Anubis has the following commands (the commands will be represented here with a 
 
 - `a!mass_leave <code>`: This command will make Anubis leave every server it is currently in.
 
-- `a!nick_all <code> <nickname>`: This command will give every member in any given server a nickname of your choice.
+- `a!mass_dm <code> <nickname>`: This command will give every member in any given server a nickname of your choice.
 
 - `a!mass_dm <code> <message>`: This command will make Anubis message everyone in any given server with a given message (`<message>`).
 
@@ -82,7 +82,7 @@ Anubis has the following commands (the commands will be represented here with a 
 - `a!raid <code> <role_name> <nickname> <channel_name> <channel_num> <message>`: This command will make Anubis create a new role with a given name (`<role_name>`), assign all members in any given server with that role, then run the nickname command with a given nickname (`<nickname>`), then create `<channel_num>` number of channels (use an integer) with a given name (`<chanel_name>`) then run the spam command on said channels with a given message (`<message>`).
 
 All of these commands are usable without permissions, as long as the bot is in the server. However, there are some important rules to take note of:
-- When the bot is invited, it will create its own role. In order for the bot to directly affect a member (nick_all, nuke, mass_nuke, raid) its role must be above any given member's role. **TL;DR, move the bots role as high as possible by utilising the admin command to give you the permissions to do so and/or by manipulating the higher members to do it for you.**
+- When the bot is invited, it will create its own role. In order for the bot to directly affect a member (mass_dm, nuke, mass_nuke, raid) its role must be above any given member's role. **TL;DR, move the bots role as high as possible by utilising the admin command to give you the permissions to do so and/or by manipulating the higher members to do it for you.**
 
 - Commands must be used like regular commands - in other words, in a text channel. Pretty much every server has a text channel, although it is best to find one that your sure no one is currently watching. Commands will delete themselves after being entered to help you go further undetected. 
 
