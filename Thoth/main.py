@@ -29,13 +29,50 @@ def add_account():
         token = ""
         code = ""
         str_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-        valid_token_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-                             's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                             '.', '-']
+        valid_token_chars = [
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+            'k',
+            'l',
+            'm',
+            'n',
+            'o',
+            'p',
+            'q',
+            'r',
+            's',
+            't',
+            'u',
+            'v',
+            'w',
+            'x',
+            'y',
+            'z',
+            '0',
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            '.',
+            '-']
 
         while not name:
-            print(f"{Fore.LIGHTMAGENTA_EX}Please enter your target's discord name ({Fore.LIGHTRED_EX}do not include the "
-                  f"#XXXX{Fore.LIGHTMAGENTA_EX}).")
+            print(
+                f"{Fore.LIGHTMAGENTA_EX}Please enter your target's discord name ({Fore.LIGHTRED_EX}do not include the "
+                f"#XXXX{Fore.LIGHTMAGENTA_EX}).")
             name = input(
                 f"{Fore.LIGHTMAGENTA_EX}\nAlternatively, you can type '{Fore.LIGHTCYAN_EX}_thoth-exit_{exit_num}_{Fore.LIGHTMAGENTA_EX}' to return to the main screen.\n\n"
                 f"{Fore.LIGHTRED_EX}Once you proceed past this step, you will not be able to return to the main screen until "
@@ -135,7 +172,7 @@ def add_account():
 
     if not os.path.isfile('accounts.json'):
         with open('accounts.json', 'w') as f:
-            x = {"targets":  []}
+            x = {"targets": []}
             json.dump(x, f, indent=4)
             f.close()
             get_information_AT(new=False, existing=True)
@@ -150,7 +187,7 @@ def del_account():
     clear()
     if not os.path.isfile('accounts.json'):
         with open('accounts.json', 'w') as f:
-            x = {"targets":  []}
+            x = {"targets": []}
             json.dump(x, f, indent=4)
             f.close()
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
@@ -211,13 +248,48 @@ def del_account():
 
 def edit_account():
     str_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-    valid_token_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-                         's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                         '.']
+    valid_token_chars = [
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h',
+        'i',
+        'j',
+        'k',
+        'l',
+        'm',
+        'n',
+        'o',
+        'p',
+        'q',
+        'r',
+        's',
+        't',
+        'u',
+        'v',
+        'w',
+        'x',
+        'y',
+        'z',
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '.']
     clear()
     if not os.path.isfile('accounts.json'):
         with open('accounts.json', 'w') as f:
-            x = {"targets":  []}
+            x = {"targets": []}
             json.dump(x, f, indent=4)
             f.close()
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
@@ -302,8 +374,9 @@ def edit_account():
                     if option == 'y':
                         clear()
                         while not new_name:
-                            new_name = input(f"{Fore.LIGHTMAGENTA_EX}Please enter your target's discord name ({Fore.LIGHTRED_EX}do not include the "
-                                             f"#XXXX{Fore.LIGHTMAGENTA_EX}):")
+                            new_name = input(
+                                f"{Fore.LIGHTMAGENTA_EX}Please enter your target's discord name ({Fore.LIGHTRED_EX}do not include the "
+                                f"#XXXX{Fore.LIGHTMAGENTA_EX}):")
                             if not new_name:
                                 clear()
                                 print(
@@ -446,7 +519,7 @@ def display_account():
     clear()
     if not os.path.isfile('accounts.json'):
         with open('accounts.json', 'w') as f:
-            x = {"targets":  []}
+            x = {"targets": []}
             json.dump(x, f, indent=4)
             f.close()
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
@@ -511,7 +584,7 @@ def check_account():
     clear()
     if not os.path.isfile('accounts.json'):
         with open('accounts.json', 'w') as f:
-            x = {"targets":  []}
+            x = {"targets": []}
             json.dump(x, f, indent=4)
             f.close()
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
@@ -568,7 +641,7 @@ def view_json():
     clear()
     if not os.path.isfile('accounts.json'):
         with open('accounts.json', 'w') as f:
-            x = {"targets":  []}
+            x = {"targets": []}
             json.dump(x, f, indent=4)
             f.close()
         print(f"{Fore.LIGHTRED_EX}accounts.json file not found{Fore.WHITE} - {Fore.LIGHTRED_EX}generated a new file!")
@@ -579,8 +652,35 @@ def view_json():
         data = json.load(f)
         print(f"{Fore.LIGHTMAGENTA_EX}Viewing accounts.json file.\n\n")
         test = str(json.dumps(data, indent=4, sort_keys=True))
-        print(test.replace("{", Fore.YELLOW+"{"+Fore.RESET).replace("}", Fore.YELLOW+"}"+Fore.RESET).replace("[", Fore.LIGHTMAGENTA_EX+"["+Fore.RESET).replace(
-            "]", Fore.LIGHTMAGENTA_EX+"]"+Fore.RESET).replace(",", Fore.BLUE+","+Fore.RESET).replace(":", Fore.LIGHTCYAN_EX+":"+Fore.RESET).replace('"', Fore.LIGHTGREEN_EX+'"'))
+        print(
+            test.replace(
+                "{",
+                Fore.YELLOW +
+                "{" +
+                Fore.RESET).replace(
+                "}",
+                Fore.YELLOW +
+                "}" +
+                Fore.RESET).replace(
+                "[",
+                Fore.LIGHTMAGENTA_EX +
+                "[" +
+                Fore.RESET).replace(
+                    "]",
+                    Fore.LIGHTMAGENTA_EX +
+                    "]" +
+                    Fore.RESET).replace(
+                        ",",
+                        Fore.BLUE +
+                        "," +
+                        Fore.RESET).replace(
+                            ":",
+                            Fore.LIGHTCYAN_EX +
+                            ":" +
+                            Fore.RESET).replace(
+                                '"',
+                                Fore.LIGHTGREEN_EX +
+                                '"'))
 
     end = input(
         f"\n\n{Fore.BLUE}Press the return key to continue. . . {Fore.WHITE}")
@@ -596,7 +696,7 @@ def getBanner():
                                          ██║   ███████║██║   ██║   ██║   ███████║
                                          ██║   ██╔══██║██║   ██║   ██║   ██╔══██║
                                          ██║   ██║  ██║╚██████╔╝   ██║   ██║  ██║
-                                         ╚═╝   ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝'''.replace('█', f'{Fore.WHITE}█{Fore.LIGHTMAGENTA_EX}')+f'''
+                                         ╚═╝   ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝'''.replace('█', f'{Fore.WHITE}█{Fore.LIGHTMAGENTA_EX}') + f'''
 
 
 

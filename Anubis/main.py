@@ -40,17 +40,19 @@ else:
 status = cycle(['against raiders!', f'{DATA.get("prefix")}help for commands!'])
 
 
-# Removes the default help command (Help command is replaced by an embed further down in the code).
+# Removes the default help command (Help command is replaced by an embed
+# further down in the code).
 
 bot.remove_command('help')
 
 
-# Creates the database pool from the postresql database "levels_db" set up in the installation (See README.md).
+# Creates the database pool from the postresql database "levels_db" set up
+# in the installation (See README.md).
 
 async def create_db_pool():
     try:
         bot.pg_con = await asyncpg.create_pool(database="levels_db", user="postgres", password=DATA.get("postgresql_password"))
-    except:
+    except BaseException:
         display_start_error()
 
 
@@ -59,16 +61,20 @@ async def create_db_pool():
 @bot.command()
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
-    embed = discord.Embed(title="Extension loaded",
-                          description=f"{extension} has been loaded.", color=discord.Colour.green())
+    embed = discord.Embed(
+        title="Extension loaded",
+        description=f"{extension} has been loaded.",
+        color=discord.Colour.green())
     await ctx.send(embed=embed)
 
 
 @bot.command()
 async def unload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
-    embed = discord.Embed(title="Extension unloaded",
-                          description=f"{extension} has been unloaded.", color=discord.Colour.green())
+    embed = discord.Embed(
+        title="Extension unloaded",
+        description=f"{extension} has been unloaded.",
+        color=discord.Colour.green())
     await ctx.send(embed=embed)
 
 
@@ -76,8 +82,10 @@ async def unload(ctx, extension):
 async def reload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
     bot.load_extension(f'cogs.{extension}')
-    embed = discord.Embed(title="Extension reloaded",
-                          description=f"{extension} has been reloaded.", color=discord.Colour.green())
+    embed = discord.Embed(
+        title="Extension reloaded",
+        description=f"{extension} has been reloaded.",
+        color=discord.Colour.green())
     await ctx.send(embed=embed)
 
 
@@ -94,7 +102,7 @@ async def on_ready():
 @bot.event
 async def on_guild_join(guild):
     with open('cogs/servers.txt', 'a') as f:
-        f.write(str(guild.id)+"\n")
+        f.write(str(guild.id) + "\n")
         f.close()
 
 
@@ -104,15 +112,21 @@ async def on_guild_join(guild):
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
         embed = discord.Embed(
-            title="Error", description=f"**Permission denied.**", color=discord.Colour.red())
+            title="Error",
+            description=f"**Permission denied.**",
+            color=discord.Colour.red())
         await ctx.send(embed=embed)
     if isinstance(error, commands.NotOwner):
         embed = discord.Embed(
-            title="Error", description=f"**You must be the owner to use this command.**", color=discord.Colour.red())
+            title="Error",
+            description=f"**You must be the owner to use this command.**",
+            color=discord.Colour.red())
         await ctx.send(embed=embed)
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(
-            title="Error", description=f"**Access denied.**", color=discord.Colour.red())
+            title="Error",
+            description=f"**Access denied.**",
+            color=discord.Colour.red())
         await ctx.send(embed=embed)
     else:
         print(error)
@@ -128,59 +142,83 @@ async def help(ctx):
     embed.set_author(name=f"Here's a list of my commands!")
 
     if not author.guild_permissions.manage_messages and not author.guild_permissions.kick_members and not author.guild_permissions.ban_members and not author.guild_permissions.administrator and not author.guild_permissions.mute_members:
-        embed.add_field(name="**No permissions for moderator commands!**",
-                        value="You lack every permission used by the moderator commands.", inline=False)
+        embed.add_field(
+            name="**No permissions for moderator commands!**",
+            value="You lack every permission used by the moderator commands.",
+            inline=False)
         missing_perms = True
     else:
         embed.add_field(name="**Moderation:**",
                         value="My moderation commands are:", inline=False)
         if author.guild_permissions.manage_messages:
             embed.add_field(
-                name=f"{DATA.get('prefix')}clear [1-1000]", value="Clears messages from a channel.", inline=False)
+                name=f"{DATA.get('prefix')}clear [1-1000]",
+                value="Clears messages from a channel.",
+                inline=False)
         else:
             missing_perms = True
         if author.guild_permissions.kick_members:
             embed.add_field(
-                name=f"{DATA.get('prefix')}kick <member> [reason]", value="Kicks a member from the server.", inline=False)
+                name=f"{DATA.get('prefix')}kick <member> [reason]",
+                value="Kicks a member from the server.",
+                inline=False)
         else:
             missing_perms = True
         if author.guild_permissions.ban_members:
             embed.add_field(
-                name=f"{DATA.get('prefix')}ban <member> [reason]", value="Bans a member from the server.", inline=False)
+                name=f"{DATA.get('prefix')}ban <member> [reason]",
+                value="Bans a member from the server.",
+                inline=False)
         else:
             missing_perms = True
         if author.guild_permissions.administrator:
-            embed.add_field(name=f"{DATA.get('prefix')}unban <member>",
-                            value="Unbans a member from the server.", inline=False)
+            embed.add_field(
+                name=f"{DATA.get('prefix')}unban <member>",
+                value="Unbans a member from the server.",
+                inline=False)
         else:
             missing_perms = True
         if author.guild_permissions.mute_members:
             embed.add_field(
-                name=f"{DATA.get('prefix')}mute <member> [reason]", value="Mutes a member on the server.", inline=False)
-            embed.add_field(name=f"{DATA.get('prefix')}unmute <member>",
-                            value="Unmutes a member on the server.", inline=False)
+                name=f"{DATA.get('prefix')}mute <member> [reason]",
+                value="Mutes a member on the server.",
+                inline=False)
+            embed.add_field(
+                name=f"{DATA.get('prefix')}unmute <member>",
+                value="Unmutes a member on the server.",
+                inline=False)
         else:
             missing_perms = True
 
     if not author.guild_permissions.mute_members and not author.guild_permissions.administrator:
-        embed.add_field(name="**No permissions for anti-raid commands!**",
-                        value="You lack every permission used by the anti-raid commands.", inline=False)
+        embed.add_field(
+            name="**No permissions for anti-raid commands!**",
+            value="You lack every permission used by the anti-raid commands.",
+            inline=False)
         missing_perms = True
     else:
         embed.add_field(name="**Anti-Raid:**",
                         value="My anti-raid commands are:", inline=False)
         if author.guild_permissions.administrator:
-            embed.add_field(name=f"{DATA.get('prefix')}db_add_member <member>",
-                            value="Adds a member to my raider database.", inline=False)
-            embed.add_field(name=f"{DATA.get('prefix')}db_del_member <member>",
-                            value="Removes a member from my raider database.", inline=False)
+            embed.add_field(
+                name=f"{DATA.get('prefix')}db_add_member <member>",
+                value="Adds a member to my raider database.",
+                inline=False)
+            embed.add_field(
+                name=f"{DATA.get('prefix')}db_del_member <member>",
+                value="Removes a member from my raider database.",
+                inline=False)
         else:
             missing_perms = True
         if author.guild_permissions.mute_members:
-            embed.add_field(name=f"{DATA.get('prefix')}lock",
-                            value="Locks down current text channel during a raid.", inline=False)
-            embed.add_field(name=f"{DATA.get('prefix')}unlock",
-                            value="Unlocks current text channel after a raid.", inline=False)
+            embed.add_field(
+                name=f"{DATA.get('prefix')}lock",
+                value="Locks down current text channel during a raid.",
+                inline=False)
+            embed.add_field(
+                name=f"{DATA.get('prefix')}unlock",
+                value="Unlocks current text channel after a raid.",
+                inline=False)
         else:
             missing_perms = True
 
@@ -192,12 +230,16 @@ async def help(ctx):
                     value="Gives you your daily XP.", inline=False)
     embed.add_field(name="**Status:**",
                     value="My status commands are:", inline=False)
-    embed.add_field(name=f"{DATA.get('prefix')}latency",
-                    value="Shows you my latency in milliseconds (ms).", inline=False)
+    embed.add_field(
+        name=f"{DATA.get('prefix')}latency",
+        value="Shows you my latency in milliseconds (ms).",
+        inline=False)
     embed.add_field(name="**Surfing:**",
                     value="My surfing commands are:", inline=False)
-    embed.add_field(name=f"{DATA.get('prefix')}define <word>",
-                    value="Shows you the definition of any word.", inline=False)
+    embed.add_field(
+        name=f"{DATA.get('prefix')}define <word>",
+        value="Shows you the definition of any word.",
+        inline=False)
 
     if missing_perms:
         embed.set_footer(
@@ -214,6 +256,7 @@ print(f"{Fore.LIGHTGREEN_EX}Loading Anubis - please wait.{Fore.RESET}")
 
 # Cycle through status every ten seconds.
 # Change this value to however long you want each status to last (integer).
+
 
 @tasks.loop(seconds=10)
 async def change_status():
@@ -237,7 +280,7 @@ bot.loop.run_until_complete(create_db_pool())
 
 try:
     bot.run(DATA.get("token"))
-except:
+except BaseException:
     display_start_error()
 
 # Scripted by Catterall (https://github.com/Catterall).

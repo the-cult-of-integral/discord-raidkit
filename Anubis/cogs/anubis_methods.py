@@ -72,7 +72,8 @@ def check_for_servers():
     return
 
 
-# Display an error screen if an error is encountered whilst starting the program.
+# Display an error screen if an error is encountered whilst starting the
+# program.
 
 def display_start_error():
     os.system('cls')
@@ -111,7 +112,7 @@ def display_start_error():
 
 def display_title_screen():
     os.system('cls')
-    print(Fore.BLUE + f'''     
+    print(Fore.BLUE + f'''
                                      ███████╗███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
                                      ██╔══██║████╗  ██║██║   ██║██╔══██╗██║██╔════╝
                                      ███████║██╔██╗ ██║██║   ██║██████╔╝██║███████╗
@@ -139,7 +140,7 @@ members you wish to ban (i.e. move the role as high as possible).
 
 {Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{DATA.get('prefix')}refresh {CODE}
 
-{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
+{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall/discord-raidkit{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
     return
 
 
@@ -187,8 +188,9 @@ def command_error(cmd):
 def search_for_updates():
     THIS_VERSION = "1.3.1"
 
-    header = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36", 
-    "X-Requested-With": "XMLHttpRequest"}
+    header = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
+        "X-Requested-With": "XMLHttpRequest"}
     url = f"https://github.com/Catterall/discord-raidkit/releases/latest"
 
     os.system('cls')
@@ -213,12 +215,12 @@ def search_for_updates():
                    ██║╚██╗██║██╔══╝  ██║███╗██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚═╝
                    ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
                    ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
-                                                                                        
+
 
               {Fore.LIGHTRED_EX}Human. There has been a brand new update to the discord raidkit. You can find the update here:
-        
+
                               {Fore.LIGHTBLUE_EX}{update_link}
-                                
+
                                               {Fore.WHITE}(Enter anything to continue) '''.replace('█', f'{Fore.YELLOW}█{Fore.LIGHTGREEN_EX}'), end=f"\n\n{' '*59}")
         input()
         return
