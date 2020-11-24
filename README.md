@@ -38,7 +38,7 @@ In order to make the most of this installation guide, please follow the instruct
 5. After downloading the tools, remember to run `install_requirements.cmd` - it'll install all Python requirements needed to use the tools without errors.
 
 6. **If you wish to use Osiris, you must follow this extra step:** 
- Download this specific chrome browser version [here.](https://drive.google.com/file/d/1XfzcEnm9f3yWt9E-V7ZrF_PRvZGjoNka/view?usp=sharing) After downloading the zip file, place it inside the Osiris folder and extract it. There should now be a browser folder within the Osiris folder, which will be used by Osiris. At this point, you can delete the zip file. If you've been following this guide correctly, you should now be ready to use the tools (For those of you wondering, I no longer use LFS/Cloning because 10GB of free broadband transfer a month is nothing). 
+ Download this specific chrome browser version [here.](https://drive.google.com/file/d/1qg-cjHqEoUODARL6hL9-IT7OrjsSq-wZ/view?usp=sharing) After downloading the zip file, place it inside the Osiris folder and extract it. There should now be a browser folder within the Osiris folder, which will be used by Osiris. At this point, you can delete the zip file. If you've been following this guide correctly, you should now be ready to use the tools (For those of you wondering, I no longer use LFS/Cloning because 10GB of free broadband transfer a month is nothing). 
 
 ---
 ### Anubis Guide
