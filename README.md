@@ -27,7 +27,7 @@ These tool's full potential will be discussed in seperate guides further down th
 
 
 In order to make the most of this installation guide, please follow the instructions *exactly* as they say.
-1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-385/) When installing python, remember to check, "Add Python to PATH" - **this is vital**.
+1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-390/) When installing python, remember to check, "Add Python to PATH" - **this is vital**.
 
 2. **Anubis** requires PostreSQL, which can be downloaded [here.](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) When installing PostreSQL, do not uncheck any of the checkboxes except the checkbox asking to install Stack Builder. Furthermore, when installing PostreSQL, it will ask you to create a master password. **This password is important, remember it.** If you have no plans on using the Anubis tool, then you can skip to step four. Step three will cover how to set up PostreSQL for Anubis after installed.
 
