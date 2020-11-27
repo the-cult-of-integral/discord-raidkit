@@ -31,7 +31,9 @@ check_for_servers()
 if DATA.get("prefix").strip().replace(" ", "") == "":
     display_start_error()
 else:
-    bot = commands.Bot(command_prefix=DATA.get("prefix"))
+    intents = discord.Intents.default()
+    intents.members = True
+    bot = commands.Bot(command_prefix=DATA.get("prefix"), intents=intents)
 
 
 # Status' to be cycled continously as the bot runs.
@@ -110,19 +112,25 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_command_error(ctx, error):
-    if isinstance(error, commands.MissingPermissions):
+    if isinstance(error, commands.CommandNotFound):
+        embed = discord.Embed(
+            title="Error",
+            description=f"**Command does not exist.**",
+            color=discord.Colour.red())
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingPermissions):
         embed = discord.Embed(
             title="Error",
             description=f"**Permission denied.**",
             color=discord.Colour.red())
         await ctx.send(embed=embed)
-    if isinstance(error, commands.NotOwner):
+    elif isinstance(error, commands.NotOwner):
         embed = discord.Embed(
             title="Error",
-            description=f"**You must be the owner to use this command.**",
+            description=f"**You must be the owner of the bot to use this command.**",
             color=discord.Colour.red())
         await ctx.send(embed=embed)
-    if isinstance(error, commands.CheckFailure):
+    elif isinstance(error, commands.CheckFailure):
         embed = discord.Embed(
             title="Error",
             description=f"**Access denied.**",
