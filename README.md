@@ -1,4 +1,4 @@
-**There are currently no known issues. Please report any issues you encounter [here.](https://github.com/Catterall/discord-raidkit/issues)**
+**There is currently one issue (awaiting a response from the raiser); you can view it [here.](https://github.com/Catterall/discord-raidkit/issues)**
 
 ---
 **⚠️ Warning ⚠️** 
