@@ -1,4 +1,4 @@
-**There is currently one issue (awaiting a response from the raiser); you can view it [here.](https://github.com/Catterall/discord-raidkit/issues)**
+**There is currently zero issues. You can make one [here.](https://github.com/Catterall/discord-raidkit/issues)**
 
 ---
 **⚠️ Warning ⚠️** 
