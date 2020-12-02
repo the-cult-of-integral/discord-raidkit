@@ -119,6 +119,7 @@ To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth'
 ---
 ### Thoth Guide
 [Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
+
 To use Thoth, run the `main.py` file (not to be confused with Anubis' or Osiris' main.py file). The usage of Thoth, like Osiris, is straight-forwardm so I'll quickly cover it:
 - Adding an account will add an account to a JSON file (`accounts.json`). An account contains a code, name, discriminator and (optional) token. The code is anything you like; it is used a reference point for the other commands.
 
