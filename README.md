@@ -9,7 +9,7 @@ These tools are made for educational purposes. **By using these tools, you agree
 
 ---
 # Discord Raidkit
-**You can view the capabilities of this bot [HERE](https://www.youtube.com/watch?v=zOiVO30QRms)!**
+**You can view the capabilities of this raidkit [HERE](https://www.youtube.com/watch?v=zOiVO30QRms)!**
 
 [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 ![Discord Raidkit v1.3.2 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
