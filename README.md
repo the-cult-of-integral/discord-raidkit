@@ -1,6 +1,4 @@
-**There is currently one issue. You can view it [here.](https://github.com/Catterall/discord-raidkit/issues/5)**
-
-Issue Topic: "Start Error displaying on Mac OS"
+**There are currently no issues. If you have an issue, you can request help [here](https://github.com/Catterall/discord-raidkit/issues).**
 
 ---
 **⚠️ Warning ⚠️** 
