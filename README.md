@@ -14,7 +14,7 @@ Discord Raidkit is a free collection of programs designed raid servers and accou
 
 - **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
 
-- **Osiris** is a redesign of the "Jajaja Account Nuker" created by [@coats1337](https://github.com/coats1337) (Permission granted). It contains a fresh new look and provides a few usability improvements.
+- **Osiris** is a redesign of the "Jajaja Account Nuker" created by [@azaelgg](https://github.com/azaelgg) (Permission granted). It contains a fresh new look and provides a few usability improvements.
 
 - **Thoth** is a tool designed to keep track of accounts you are targetting - an advanced hitlist, if you will. You can add accounts, remove accounts, display accounts, edit accounts and do pretty much anything else you'd need to do with items on a hitlist. You can even view the JSON containing the accounts in fancy colours.
 
