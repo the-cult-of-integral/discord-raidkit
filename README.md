@@ -1,4 +1,4 @@
-**There are currently no known issues. Please report any issues you encounter [here.](https://github.com/Catterall/discord-raidkit/issues)**
+**There are currently no issues. If you have an issue, you can request help [here](https://github.com/Catterall/discord-raidkit/issues).**
 
 ---
 **⚠️ Warning ⚠️** 
@@ -7,6 +7,7 @@ These tools are made for educational purposes. **By using these tools, you agree
 
 ---
 # Discord Raidkit
+**You can view the capabilities of this raidkit [HERE](https://www.youtube.com/watch?v=zOiVO30QRms)!**
 
 [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 ![Discord Raidkit v1.3.2 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
@@ -27,7 +28,7 @@ These tool's full potential will be discussed in seperate guides further down th
 
 
 In order to make the most of this installation guide, please follow the instructions *exactly* as they say.
-1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-385/) When installing python, remember to check, "Add Python to PATH" - **this is vital**.
+1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-390/) When installing python, remember to check, "Add Python to PATH" - **this is vital**.
 
 2. **Anubis** requires PostreSQL, which can be downloaded [here.](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) When installing PostreSQL, do not uncheck any of the checkboxes except the checkbox asking to install Stack Builder. Furthermore, when installing PostreSQL, it will ask you to create a master password. **This password is important, remember it.** If you have no plans on using the Anubis tool, then you can skip to step four. Step three will cover how to set up PostreSQL for Anubis after installed.
 
@@ -116,6 +117,7 @@ To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth'
 ---
 ### Thoth Guide
 [Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide)
+
 To use Thoth, run the `main.py` file (not to be confused with Anubis' or Osiris' main.py file). The usage of Thoth, like Osiris, is straight-forwardm so I'll quickly cover it:
 - Adding an account will add an account to a JSON file (`accounts.json`). An account contains a code, name, discriminator and (optional) token. The code is anything you like; it is used a reference point for the other commands.
 
