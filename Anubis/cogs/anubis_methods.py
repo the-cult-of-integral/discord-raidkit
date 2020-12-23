@@ -88,7 +88,7 @@ def display_start_error():
                                      ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝╚══════╝
 
 
-      {Fore.WHITE}Human. The settings, defined in {Fore.RED}run_settings.json{Fore.WHITE}, are invalid. The following measures may solve the issue:
+      {Fore.WHITE}Human. There has been an error attempting to run anubis. The following measures may solve the issue:
 
 
 
@@ -96,6 +96,7 @@ def display_start_error():
 {Fore.GREEN}-{Fore.WHITE}The bot prefix specified may be invalid - a prefix must be provided in order to use the bot's commands.
 {Fore.GREEN}-{Fore.WHITE}The bot token specified may be incorrect - try regenerating a new bot token and use that token instead.
 {Fore.GREEN}-{Fore.WHITE}If the settings file is missing, try running the program again. If the issue persists, view the GitHub page.
+{Fore.GREEN}-{Fore.WHITE}If the settings file is perfect, check whether you have enabled Privallged Gateway Intents on your bot's page.
 
 
 {Style.DIM}{Fore.GREEN}If the issue persists after all the above measures are taken, you can create an issue here:
@@ -186,7 +187,7 @@ def command_error(cmd):
 # Search the GitHub repository for the latest release.
 
 def search_for_updates():
-    THIS_VERSION = "1.3.3"
+    THIS_VERSION = "1.3.4"
 
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",

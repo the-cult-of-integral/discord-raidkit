@@ -27,10 +27,13 @@ import requests
 import discord
 import random
 import os
+import re
 from time import sleep
 from itertools import cycle
 from datetime import datetime
 from selenium import webdriver
+from bs4 import BeautifulSoup
+import requests
 from colorama import Fore, Style, init
 init(convert=True)
 guildsIds = []
@@ -42,6 +45,47 @@ threads = 0
 def clear():
     os.system('cls')
     return
+
+
+def search_for_updates():
+    THIS_VERSION = "1.3.4"
+
+    header = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
+        "X-Requested-With": "XMLHttpRequest"}
+    url = f"https://github.com/Catterall/discord-raidkit/releases/latest"
+
+    os.system('cls')
+    print("Searching for updates.")
+    r = requests.get(url, headers=header)
+    os.system('cls')
+    soup = str(BeautifulSoup(r.text, 'html.parser'))
+    s1 = re.search('<title>', soup)
+    s2 = re.search('·', soup)
+    result_string = soup[s1.end():s2.start()]
+    if THIS_VERSION not in result_string:
+        s3 = re.search('originating_url":"', soup)
+        s4 = re.search('","user_id":null', soup)
+        update_link = soup[s3.end():s4.start()]
+        print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + f'''
+
+
+
+                   ███╗   ██╗███████╗██╗    ██╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██╗
+                   ████╗  ██║██╔════╝██║    ██║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██║
+                   ██╔██╗ ██║█████╗  ██║ █╗ ██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██║
+                   ██║╚██╗██║██╔══╝  ██║███╗██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚═╝
+                   ██║ ╚████║███████╗╚███╔███╔╝    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██╗
+                   ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝      ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝
+
+
+              {Fore.LIGHTRED_EX}Human. There has been a brand new update to the discord raidkit. You can find the update here:
+
+                              {Fore.LIGHTBLUE_EX}{update_link}
+
+                                              {Fore.WHITE}(Enter anything to continue) '''.replace('█', f'{Fore.YELLOW}█{Fore.LIGHTGREEN_EX}'), end=f"\n\n{' '*59}")
+        input()
+        return
 
 
 class Login(discord.Client):
@@ -252,7 +296,10 @@ def main():
         choice = str(input(
             f'{Fore.GREEN}[{Fore.YELLOW}>>>{Fore.GREEN}] {Fore.RESET}Are you sure you want to exit? (Y to confirm): {Fore.LIGHTRED_EX}'))
         if choice.upper() == 'Y':
-            exit(0)
+            clear()
+            Style.RESET_ALL
+            Fore.RESET
+            os._exit(0)
         else:
             main()
     else:
@@ -261,6 +308,7 @@ def main():
 
 
 if __name__ == "__main__":
+    search_for_updates()
     main()
 
 # Scripted by Catterall/azaelgg (https://github.com/Catterall) (https://github.com/azaelgg).
