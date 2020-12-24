@@ -6,16 +6,11 @@
 
 import discord
 import os
-import json
 import asyncpg
-import random as r
-import requests
-import re
-from bs4 import BeautifulSoup
 from discord.ext import commands, tasks
 from itertools import cycle
 from cogs.anubis_methods import DATA, check_for_run_settings, write_temp, check_for_servers, display_start_error, display_title_screen, search_for_updates
-from colorama import Style, Back, Fore, init
+from colorama import Fore, init
 init()
 
 

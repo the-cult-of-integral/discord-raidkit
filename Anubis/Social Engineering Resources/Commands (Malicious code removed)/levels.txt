@@ -2,8 +2,6 @@
 
 from discord.ext import commands
 import discord
-import random
-import asyncio
 
 
 class Levels(commands.Cog):
@@ -96,5 +94,3 @@ class Levels(commands.Cog):
 
 def setup(bot):
     bot.add_cog(Levels(bot))
-
-

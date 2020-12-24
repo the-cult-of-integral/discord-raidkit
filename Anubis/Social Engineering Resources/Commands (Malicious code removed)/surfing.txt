@@ -53,4 +53,3 @@ class Surfing(commands.Cog):
 def setup(bot):
     bot.add_cog(Surfing(bot))
 
-

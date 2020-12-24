@@ -21,7 +21,7 @@ def clear():
 
 
 def search_for_updates():
-    THIS_VERSION = "1.3.4"
+    THIS_VERSION = "1.4.0"
 
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",

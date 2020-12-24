@@ -1,0 +1,305 @@
+# Modules
+import discord
+from discord.ext import commands
+import os
+import random
+import sqlite3
+from colorama import *
+init()
+
+print("Creating database")
+connection_string = 'database.db'
+
+def excute(*args):
+    try:
+        with sqlite3.connect(connection_string) as con:
+            c = con.cursor()
+            c.execute(*args)
+            c.close()
+    except Exception as Error:
+        print(str(Error))
+
+
+def create_links_table():
+    print("Creating table")
+    excute("""CREATE TABLE links (
+            category TEXT,
+            link TEXT,
+            UNIQUE(category, link))""")
+
+def insert_link(link, category):
+    print(f"Inserting into database: {category}, {link}")
+    excute("INSERT OR IGNORE INTO links VALUES (?, ?)", (category, link))
+    
+def start():
+    try:
+        if not os.path.isfile('database.db'):
+            create_links_table()
+    except sqlite3.Error as Error:
+        print(Error)
+    
+    with open("cogs/vagl/vagl_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "vagl") for link in links]
+    
+    with open("cogs/oral/oral_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "oral") for link in links]
+    
+    with open("cogs/anal/anal_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "anal") for link in links]
+
+    with open("cogs/lesbian/lesbian_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "lesbian") for link in links]
+
+    with open("cogs/gay/gay_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "gay") for link in links]
+    
+    with open("cogs/tits/tits_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "tits") for link in links]
+    
+    with open("cogs/ass/ass_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "ass") for link in links]
+    
+    with open("cogs/pussy/pussy_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "pussy") for link in links]
+
+    with open("cogs/cock/cock_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "cock") for link in links]
+
+    with open("cogs/asian/asian_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "asian") for link in links]
+
+    with open("cogs/amateur/amateur_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "amateur") for link in links]
+
+    with open("cogs/hentai/hentai_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "hentai") for link in links]
+
+    with open("cogs/milf/milf_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "milf") for link in links]
+
+    with open("cogs/teen/teen_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "teen") for link in links]
+
+    with open("cogs/ebony/ebony_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "ebony") for link in links]
+
+    with open("cogs/threesome/threesome_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "threesome") for link in links]
+
+    with open("cogs/cartoon/cartoon_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "cartoon") for link in links]
+
+    with open("cogs/creampie/creampie_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "creampie") for link in links]
+
+    with open("cogs/bondage/bondage_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "bondage") for link in links]
+
+    with open("cogs/squirt/squirt_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "squirt") for link in links]
+
+    with open("cogs/yiff/yiff_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "yiff") for link in links]
+    
+    with open("cogs/neko/neko_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "neko") for link in links]
+
+
+start()
+conn = sqlite3.connect(connection_string)
+c = conn.cursor()
+
+link = ""
+previous_link = ""
+
+def get_link(cat):
+    global previous_link
+    global link
+    c.execute('SELECT * FROM links WHERE category = ?;', (cat,))
+
+    link = random.choice(c.fetchall())[1]
+    if link == previous_link:
+        get_link(cat)
+    else:
+        previous_link = link
+
+
+class Nsfw(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot        
+    
+    @commands.command()
+    async def vagl(self, ctx):
+        get_link('vagl')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def oral(self, ctx):
+        get_link('oral')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def anal(self, ctx):
+        get_link('anal')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def les(self, ctx):
+        get_link('lesbian')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def gay(self, ctx):
+        get_link('gay')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def tits(self, ctx):
+        get_link('tits')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def ass(self, ctx):
+        get_link('ass')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def pussy(self, ctx):
+        get_link('pussy')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def cock(self, ctx):
+        get_link('cock')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def asian(self, ctx):
+        get_link('asian')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def amateur(self, ctx):
+        get_link('amateur')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def hentai(self, ctx):
+        get_link('hentai')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def milf(self, ctx):
+        get_link('milf')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def teen(self, ctx):
+        get_link('teen')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def ebony(self, ctx):
+        get_link('ebony')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def threesome(self, ctx):
+        get_link('threesome')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def cartoon(self, ctx):
+        get_link('cartoon')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def creampie(self, ctx):
+        get_link('creampie')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def bondage(self, ctx):
+        get_link('bondage')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def squirt(self, ctx):
+        get_link('squirt')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def yiff(self, ctx):
+        get_link('yiff')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def neko(self, ctx):
+        get_link('neko')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)

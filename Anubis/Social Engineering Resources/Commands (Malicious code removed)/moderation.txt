@@ -1,13 +1,11 @@
 # Modules.
 
 import discord
-import requests
 import random
-import json
 import os
-from cogs.methods import check_for_servers, refresh, command_error
+from cogs.methods import CODE, check_for_servers, refresh, command_error
 from discord.ext import commands
-from colorama import Style, Back, Fore, init
+from colorama import Fore, init
 init()
 
 
@@ -174,5 +172,3 @@ class Moderation(commands.Cog):
 
 def setup(bot):
     bot.add_cog(Moderation(bot))
-
-

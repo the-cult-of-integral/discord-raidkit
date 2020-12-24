@@ -8,7 +8,7 @@ class RaidPrevention(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    # Add a member from an "anti-raid database".
+    # Add a member from an anti-raid database.
 
     @commands.command()
     @commands.has_guild_permissions(administrator=True)
@@ -26,7 +26,7 @@ class RaidPrevention(commands.Cog):
                 color=discord.Color.orange())
             await ctx.send(embed=embed)
 
-    # Remove a member from an "anti-raid database".
+    # Remove a member from an anti-raid database.
 
     @commands.command()
     @commands.has_guild_permissions(administrator=True)
@@ -104,5 +104,3 @@ class RaidPrevention(commands.Cog):
 
 def setup(bot):
     bot.add_cog(RaidPrevention(bot))
-
-

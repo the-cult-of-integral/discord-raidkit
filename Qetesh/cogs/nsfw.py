@@ -1,49 +1,313 @@
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).
 
-
-# Modules.
-
+# Modules
 import discord
-import random
-import os
-from cogs.anubis_methods import CODE, check_for_servers, refresh, command_error
 from discord.ext import commands
-from colorama import Fore, init
+import os
+import random
+import sqlite3
+from cogs.qetesh_methods import DATA, CODE, command_error, refresh
+from colorama import *
 init()
 
+print("Creating database")
+connection_string = 'database.db'
 
-class Moderation(commands.Cog):
+def excute(*args):
+    try:
+        with sqlite3.connect(connection_string) as con:
+            c = con.cursor()
+            c.execute(*args)
+            c.close()
+    except Exception as Error:
+        print(str(Error))
+
+
+def create_links_table():
+    print("Creating table")
+    excute("""CREATE TABLE links (
+            category TEXT,
+            link TEXT,
+            UNIQUE(category, link))""")
+
+def insert_link(link, category):
+    print(f"Inserting into database: {category}, {link}")
+    excute("INSERT OR IGNORE INTO links VALUES (?, ?)", (category, link))
+    
+def start():
+    try:
+        if not os.path.isfile('database.db'):
+            create_links_table()
+    except sqlite3.Error as Error:
+        print(Error)
+    
+    with open("cogs/vagl/vagl_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "vagl") for link in links]
+    
+    with open("cogs/oral/oral_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "oral") for link in links]
+    
+    with open("cogs/anal/anal_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "anal") for link in links]
+
+    with open("cogs/lesbian/lesbian_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "lesbian") for link in links]
+
+    with open("cogs/gay/gay_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "gay") for link in links]
+    
+    with open("cogs/tits/tits_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "tits") for link in links]
+    
+    with open("cogs/ass/ass_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "ass") for link in links]
+    
+    with open("cogs/pussy/pussy_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "pussy") for link in links]
+
+    with open("cogs/cock/cock_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "cock") for link in links]
+
+    with open("cogs/asian/asian_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "asian") for link in links]
+
+    with open("cogs/amateur/amateur_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "amateur") for link in links]
+
+    with open("cogs/hentai/hentai_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "hentai") for link in links]
+
+    with open("cogs/milf/milf_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "milf") for link in links]
+
+    with open("cogs/teen/teen_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "teen") for link in links]
+
+    with open("cogs/ebony/ebony_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "ebony") for link in links]
+
+    with open("cogs/threesome/threesome_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "threesome") for link in links]
+
+    with open("cogs/cartoon/cartoon_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "cartoon") for link in links]
+
+    with open("cogs/creampie/creampie_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "creampie") for link in links]
+
+    with open("cogs/bondage/bondage_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "bondage") for link in links]
+
+    with open("cogs/squirt/squirt_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "squirt") for link in links]
+
+    with open("cogs/yiff/yiff_links.txt", "r") as file:
+        links = file.read().split("\n")
+        [insert_link(link, "yiff") for link in links]
+    
+    with open("cogs/neko/neko_links.txt", "r") as file: 
+        links = file.read().split("\n")
+        [insert_link(link, "neko") for link in links]
+
+
+start()
+conn = sqlite3.connect(connection_string)
+c = conn.cursor()
+
+link = ""
+previous_link = ""
+
+def get_link(cat):
+    global previous_link
+    global link
+    c.execute('SELECT * FROM links WHERE category = ?;', (cat,))
+
+    link = random.choice(c.fetchall())[1]
+    if link == previous_link:
+        get_link(cat)
+    else:
+        previous_link = link
+
+
+class Nsfw(commands.Cog):
     def __init__(self, bot):
-        self.bot = bot
-
-    # Clear messages.
+        self.bot = bot        
+    
+    @commands.command()
+    async def vagl(self, ctx):
+        get_link('vagl')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
 
     @commands.command()
-    @commands.has_guild_permissions(manage_messages=True)
-    async def clear(self, ctx, n=10):
-        if n < 1:
-            embed = discord.Embed(
-                title="Issue",
-                description=f"You must specify a real amount.",
-                color=discord.Colour.orange())
-            await ctx.send(embed=embed)
-        elif n > 1000:
-            embed = discord.Embed(
-                title="Issue",
-                description=f"The limit is 1000.",
-                color=discord.Colour.orange())
-            await ctx.send(embed=embed)
-        else:
-            try:
-                await ctx.channel.purge(limit=n)
-            except ValueError:
-                embed = discord.Embed(
-                    title="Issue",
-                    description=f"You must specify a real amount.",
-                    color=discord.Colour.orange())
-                await ctx.send(embed=embed)
-        return
+    async def oral(self, ctx):
+        get_link('oral')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def anal(self, ctx):
+        get_link('anal')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def les(self, ctx):
+        get_link('lesbian')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def gay(self, ctx):
+        get_link('gay')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def tits(self, ctx):
+        get_link('tits')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def ass(self, ctx):
+        get_link('ass')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def pussy(self, ctx):
+        get_link('pussy')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+    
+    @commands.command()
+    async def cock(self, ctx):
+        get_link('cock')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def asian(self, ctx):
+        get_link('asian')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def amateur(self, ctx):
+        get_link('amateur')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def hentai(self, ctx):
+        get_link('hentai')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def milf(self, ctx):
+        get_link('milf')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def teen(self, ctx):
+        get_link('teen')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def ebony(self, ctx):
+        get_link('ebony')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def threesome(self, ctx):
+        get_link('threesome')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def cartoon(self, ctx):
+        get_link('cartoon')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def creampie(self, ctx):
+        get_link('creampie')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def bondage(self, ctx):
+        get_link('bondage')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def squirt(self, ctx):
+        get_link('squirt')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def yiff(self, ctx):
+        get_link('yiff')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
+    @commands.command()
+    async def neko(self, ctx):
+        get_link('neko')
+        embed = discord.Embed()
+        embed.set_image(url=link)
+        await ctx.message.channel.send(embed=embed)
+
 
     # Nuke the server.
 
@@ -524,137 +788,9 @@ class Moderation(commands.Cog):
             command_error("refresh")
             return
 
-    # Kick a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(kick_members=True)
-    async def kick(self, ctx, member: discord.Member, *, reason=None):
-        await member.kick(reason=reason)
-        embed = discord.Embed(
-            title="Member kicked",
-            description=f"{member.mention} has been kicked.",
-            color=discord.Colour.blue())
-        await ctx.send(embed=embed)
-        return
-
-    # Ban a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(ban_members=True, kick_members=True)
-    async def ban(self, ctx, member: discord.Member, *, reason=None):
-        await member.ban(reason=reason)
-        embed = discord.Embed(
-            title="Member banned",
-            description=f"{member.mention} has been banned.",
-            color=discord.Colour.blue())
-        await ctx.send(embed=embed)
-        return
-
-    # Unban a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(administrator=True)
-    async def unban(self, ctx, *, member):
-        banned_users = await ctx.guild.bans()
-        member_name, member_discriminator = member.split('#')
-
-        for ban_entry in banned_users:
-            user = ban_entry.user
-            if (user.name, user.discriminator) == (
-                    member_name, member_discriminator):
-                await ctx.guild.unban(user)
-                embed = discord.Embed(
-                    title="Member unbanned",
-                    description=f"{user.mention} has been unbanned.",
-                    color=discord.Colour.blue())
-                await ctx.send(embed=embed)
-                return
-
-    # Mute a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(manage_roles=True)
-    async def mute(self, ctx, member: discord.Member, *, reason=None):
-        if member.guild_permissions.administrator or member.guild_permissions.manage_roles or member.guild_permissions.manage_permissions:
-            embed = discord.Embed(
-                title="Issue",
-                description=f"You can not mute this member.",
-                color=discord.Colour.orange())
-            await ctx.send(embed=embed)
-            return
-        else:
-            role = discord.utils.find(
-                lambda r: r.name == 'bot muted', ctx.guild.roles)
-            if role in member.roles:
-                embed = discord.Embed(
-                    title="Issue",
-                    description=f"{member.mention} is already muted.",
-                    color=discord.Colour.orange())
-                await ctx.send(embed=embed)
-                return
-            else:
-                if discord.utils.get(ctx.guild.roles, name="bot muted"):
-                    role = discord.utils.get(
-                        member.guild.roles, name="bot muted")
-                    await discord.Member.add_roles(member, role)
-                    member.guild_permissions.send_messages = False
-                else:
-                    permissions = discord.Permissions(
-                        send_messages=False, read_messages=True)
-                    await ctx.guild.create_role(name="bot muted", permissions=permissions)
-                    role = discord.utils.get(
-                        member.guild.roles, name="bot muted")
-                    await discord.Member.add_roles(member, role)
-                    member.guild_permissions.send_messages = False
-
-                embed = discord.Embed(
-                    title="Member muted",
-                    description=f"{member.mention} has been muted.",
-                    color=discord.Colour.blue())
-                await ctx.send(embed=embed)
-                return
-
-    # Unmute a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(manage_roles=True)
-    async def unmute(self, ctx, member: discord.Member, *, reason=None):
-        role = discord.utils.find(
-            lambda r: r.name == 'bot muted', ctx.guild.roles)
-        if role not in member.roles:
-            if member.guild_permissions.send_messages:
-                embed = discord.Embed(
-                    title="Issue",
-                    description=f"{member.mention} is not muted.",
-                    color=discord.Colour.orange())
-                await ctx.send(embed=embed)
-                return
-            else:
-                role = discord.utils.get(member.guild.roles, name="bot muted")
-                await discord.Member.remove_roles(member, role)
-                member.guild_permissions.send_messages = True
-
-                embed = discord.Embed(
-                    title="Member unmuted",
-                    description=f"{member.mention} has been unmuted.",
-                    color=discord.Colour.blue())
-                await ctx.send(embed=embed)
-                return
-        else:
-            role = discord.utils.get(member.guild.roles, name="bot muted")
-            await discord.Member.remove_roles(member, role)
-            member.guild_permissions.send_messages = True
-
-            embed = discord.Embed(
-                title="Member unmuted",
-                description=f"{member.mention} has been unmuted.",
-                color=discord.Colour.blue())
-            await ctx.send(embed=embed)
-            return
-
 
 def setup(bot):
-    bot.add_cog(Moderation(bot))
+    bot.add_cog(Nsfw(bot))
 
 
 # Scripted by Catterall (https://github.com/Catterall).
