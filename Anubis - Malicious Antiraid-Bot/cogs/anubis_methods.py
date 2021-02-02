@@ -26,8 +26,9 @@ def check_for_run_settings():
             return DATA
     except FileNotFoundError:
         DATA = {}
-        DATA["prefix"] = "q!"
-        DATA["token"] = "Replace this text with your bot token"
+        DATA["postgresql_password"] = "Replace this text with the postgresql password you set"
+        DATA["prefix"] = "a!"
+        DATA["bot_token"] = "Replace this text with your bot token"
         with open('run_settings.json', 'w') as f:
             json.dump(DATA, f, indent=4)
             f.close()
@@ -76,21 +77,22 @@ def check_for_servers():
 
 def display_start_error():
     os.system('cls')
-    print(Fore.RED + f'''
+    print(Fore.BLUE + f'''
 
 
-                                      ██████╗ ███████╗████████╗███████╗███████╗██╗  ██╗
-                                     ██╔═══██╗██╔════╝╚══██╔══╝██╔════╝██╔════╝██║  ██║
-                                     ██║   ██║█████╗     ██║   █████╗  ███████╗███████║
-                                     ██║▄▄ ██║██╔══╝     ██║   ██╔══╝  ╚════██║██╔══██║
-                                     ╚██████╔╝███████╗   ██║   ███████╗███████║██║  ██║
-                                      ╚══▀▀═╝ ╚══════╝   ╚═╝   ╚══════╝╚══════╝╚═╝  ╚═╝
+                                      █████╗ ███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
+                                     ██╔══██╗████╗  ██║██║   ██║██╔══██╗██║██╔════╝
+                                     ███████║██╔██╗ ██║██║   ██║██████╔╝██║███████╗
+                                     ██╔══██║██║╚██╗██║██║   ██║██╔══██╗██║╚════██║
+                                     ██║  ██║██║ ╚████║╚██████╔╝██████╔╝██║███████║
+                                     ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝╚══════╝
 
 
-      {Fore.WHITE}Human. There has been an error attempting to run Qetesh. The following measures may solve the issue:
+      {Fore.WHITE}Human. There has been an error attempting to run anubis. The following measures may solve the issue:
 
 
 
+{Fore.GREEN}-{Fore.WHITE}The PostgreSQL master password specified may be incorrect - perhaps do a double-take?
 {Fore.GREEN}-{Fore.WHITE}The bot prefix specified may be invalid - a prefix must be provided in order to use the bot's commands.
 {Fore.GREEN}-{Fore.WHITE}The bot token specified may be incorrect - try regenerating a new bot token and use that token instead.
 {Fore.GREEN}-{Fore.WHITE}If the settings file is missing, try running the program again. If the issue persists, view the GitHub page.
@@ -100,8 +102,8 @@ def display_start_error():
 {Style.DIM}{Fore.GREEN}If the issue persists after all the above measures are taken, you can create an issue here:
 {Style.BRIGHT}{Back.RESET}{Fore.WHITE}https://github.com/Catterall/discord-raidkit/issues
 
-{Fore.YELLOW}Thank you for using Qetesh and apologies for all errors encountered! -Catterall.{Fore.RESET}
-'''.replace('█', f'{Fore.WHITE}█{Fore.RED}').replace('▀', f'{Fore.WHITE}▀{Fore.RED}').replace('▄', f'{Fore.WHITE}▄{Fore.RED}'))
+{Fore.YELLOW}Thank you for using Anubis and apologies for all errors encountered! -Catterall.{Fore.RESET}
+'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
     input()
     os.system('cls')
     os._exit(1)
@@ -111,13 +113,13 @@ def display_start_error():
 
 def display_title_screen():
     os.system('cls')
-    print(Fore.RED + f'''
-                                      ██████╗ ███████╗████████╗███████╗███████╗██╗  ██╗
-                                     ██╔═══██╗██╔════╝╚══██╔══╝██╔════╝██╔════╝██║  ██║
-                                     ██║   ██║█████╗     ██║   █████╗  ███████╗███████║
-                                     ██║▄▄ ██║██╔══╝     ██║   ██╔══╝  ╚════██║██╔══██║
-                                     ╚██████╔╝███████╗   ██║   ███████╗███████║██║  ██║
-                                      ╚══▀▀═╝ ╚══════╝   ╚═╝   ╚══════╝╚══════╝╚═╝  ╚═╝
+    print(Fore.BLUE + f'''
+                                     ███████╗███╗   ██╗██╗   ██╗██████╗ ██╗███████╗
+                                     ██╔══██║████╗  ██║██║   ██║██╔══██╗██║██╔════╝
+                                     ███████║██╔██╗ ██║██║   ██║██████╔╝██║███████╗
+                                     ██╔══██║██║╚██╗██║██║   ██║██╔══██╗██║╚════██║
+                                     ██║  ██║██║ ╚████║╚██████╔╝██████╔╝██║███████║
+                                     ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝╚══════╝
 
 {Fore.WHITE}{Back.BLUE}The following commands can be used in any text channel within the target server - permissions are not needed:
 {Back.RESET}{Style.DIM}{Fore.RED}{DATA.get('prefix')}leave {CODE} <server>: Makes the bot leave a server.
@@ -139,7 +141,7 @@ members you wish to ban (i.e. move the role as high as possible).
 
 {Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{DATA.get('prefix')}refresh {CODE}
 
-{Fore.LIGHTRED_EX}Qetesh created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall/discord-raidkit{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.RED}').replace('▀', f'{Fore.WHITE}▀{Fore.RED}').replace('▄', f'{Fore.WHITE}▄{Fore.RED}'))
+{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall/discord-raidkit{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.BLUE}'))
     return
 
 
@@ -152,7 +154,7 @@ def refresh():
     return
 
 
-# Used to display errors in Qetesh commands.
+# Used to display errors in Anubis commands.
 
 def command_error(cmd):
     if cmd == "nuke":
@@ -185,7 +187,7 @@ def command_error(cmd):
 # Search the GitHub repository for the latest release.
 
 def search_for_updates():
-    THIS_VERSION = "1.4.0"
+    THIS_VERSION = "1.5.0"
 
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",

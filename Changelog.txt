@@ -1,0 +1,163 @@
+v1.5.0 (02/02/2021):
+
+Additions:
+- Added changelog.txt to discord raidkit.
+- Added short descriptions to each tool's folder.
+- Added Seth, a malicious selfbot.
+
+Changes:
+- Changed BaseExceptions to print exceptions to console rather than dispay a custom command_error message.
+- Changed `token` in run_settings.json to `bot_token` for Anubis and Qetesh.
+- Changed ctx.guild.X to g.X in various places.
+- Changed console output to be more consistent.
+- Changed readme.md to include a Seth guide and fix some errors.
+
+Reductions:
+- None.
+
+-----------------------------------------------------------------------------------------------------------
+
+v1.4.0 (24/12/2020):
+
+Additions:
+- Added Qetesh; a new, custom-built Anubis bot designed to act as a porn-bot trojan.
+
+Changes:
+- None.
+
+Reductions:
+- Removed unused import statements in Anubis code.
+
+-----------------------------------------------------------------------------------------------------------
+
+v1.3.4 (23/12/2020):
+
+Additions:
+- Added fixed update screen to both Osiris and Thoth.
+
+Changes:
+- Updated Anubis' error screen to account for new Privileged Gateway Intents error.
+- Updated Anubis' update screen to stop it from appearing even on the latest version.
+
+Reductions:
+- None.
+
+-----------------------------------------------------------------------------------------------------------
+
+v1.3.3 (10/12/2020):
+
+Additions:
+- None
+
+Changes:
+- Updated Osiris' account nuker: The command now does what was intended!
+
+- Updated credits/readme.md for new account name for JaJaJa developer.
+
+Reductions:
+- None.
+-----------------------------------------------------------------------------------------------------------
+
+v1.3.2 (27/11/2020):
+
+Additions:
+- Added member instances to the bot (Any broken commands in previous versions should now be working).
+
+- Added invulnerability to nuke launcher (Any member who launches a nuke will not be banned by it, regardless of any factors).
+
+- Added commands.CommandNotFound to the on_command_error function.
+
+Changes:
+- Updated bot to run correctly under discord.py==1.5 and above (hence the introduction of instances).
+
+- The displays for both nuke and mass_nuke have been slightly altered.
+
+Reductions:
+- The hidden .git file has been removed from downloads, resulting in a substantial reduction in storage space needed (40MB to 3.7MB).
+
+Additional Notices:
+- The readme.md has been updated to include how to set up the bot instances. You must perform this for any version of Anubis above 1.3.1 to work.
+
+-----------------------------------------------------------------------------------------------------------
+
+v1.3.1 (24/11/2020):
+
+Additions:
+- None.
+
+Changes:
+- Changed command nick_all to mass_nick.
+- Rewrote file structure to be more modular in nature - many functions moved to specific method files.
+- Rewrote code to follow PEP8 properly.
+
+Reductions:
+- Removed embeds of malicious commands to increase anonymity.
+
+-----------------------------------------------------------------------------------------------------------
+
+v1.3.0 (23/11/2020):
+
+Additions:
+- Added the mass_leave command to leave all servers.
+- Added the mass_nuke command to nuke all servers.
+- Added update searching.
+
+Changes:
+- Rewrote files to be more consistent.
+- Rewrote the leave code system to be more simple to follow.
+
+Reductions:
+- None.
+
+-----------------------------------------------------------------------------------------------------------
+
+v1.2.0 (10/10/2020):
+
+Additions:
+- Added the raid command.
+
+Changes:
+- Rewrote files to be more readable.
+- Branding changed from "discord-pedo-hunting-tools" to "discord-raidkit".
+
+Reductions:
+- None.
+
+Additional Notices:
+- Branding changed from "discord-pedo-hunting-tools" to "discord-raidkit" to target any server, after discord.
+
+-----------------------------------------------------------------------------------------------------------
+
+v1.1-b (19/09/2020):
+
+Additions:
+- None.
+
+Changes:
+- Fixed a bug causing colours to appear different after the refresh command.
+- Updated social engineering resources.
+
+Reductions:
+- None.
+
+-----------------------------------------------------------------------------------------------------------
+
+v1.1 (06/09/2020):
+
+Additions:
+- Added the Thoth tool.
+- Added the leave and refresh commands to Anubis.
+
+Changes:
+- Added GitHub links and improved consistency in Python code.
+- Updated credits in Python code.
+- Fixed typo in folder name.
+
+Reductions:
+- None.
+
+-----------------------------------------------------------------------------------------------------------
+
+
+v1.0 (04/09/2020):
+Original release.

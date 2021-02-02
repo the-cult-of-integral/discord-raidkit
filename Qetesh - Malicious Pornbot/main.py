@@ -182,7 +182,7 @@ for filename in os.listdir('./cogs'):
 # Run the bot using the token specified in the JSON file.
 
 try:
-    bot.run(DATA.get("token"))
+    bot.run(DATA.get("bot_token"))
 except BaseException:
     display_start_error()
 

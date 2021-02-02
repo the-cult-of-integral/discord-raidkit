@@ -282,7 +282,7 @@ bot.loop.run_until_complete(create_db_pool())
 # Run the bot using the token specified in the JSON file.
 
 try:
-    bot.run(DATA.get("token"))
+    bot.run(DATA.get("bot_token"))
 except BaseException:
     display_start_error()
 

