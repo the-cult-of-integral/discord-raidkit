@@ -155,6 +155,7 @@ class Nsfw(commands.Cog):
         self.bot = bot        
     
     @commands.command()
+    @commands.is_nsfw()
     async def vagl(self, ctx):
         get_link('vagl')
         embed = discord.Embed()
@@ -162,6 +163,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def oral(self, ctx):
         get_link('oral')
         embed = discord.Embed()
@@ -169,6 +171,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
     
     @commands.command()
+    @commands.is_nsfw()
     async def anal(self, ctx):
         get_link('anal')
         embed = discord.Embed()
@@ -176,6 +179,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def les(self, ctx):
         get_link('lesbian')
         embed = discord.Embed()
@@ -183,6 +187,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def gay(self, ctx):
         get_link('gay')
         embed = discord.Embed()
@@ -190,6 +195,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
     
     @commands.command()
+    @commands.is_nsfw()
     async def tits(self, ctx):
         get_link('tits')
         embed = discord.Embed()
@@ -197,6 +203,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
     
     @commands.command()
+    @commands.is_nsfw()
     async def ass(self, ctx):
         get_link('ass')
         embed = discord.Embed()
@@ -204,6 +211,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
     
     @commands.command()
+    @commands.is_nsfw()
     async def pussy(self, ctx):
         get_link('pussy')
         embed = discord.Embed()
@@ -211,6 +219,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
     
     @commands.command()
+    @commands.is_nsfw()
     async def cock(self, ctx):
         get_link('cock')
         embed = discord.Embed()
@@ -218,6 +227,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def asian(self, ctx):
         get_link('asian')
         embed = discord.Embed()
@@ -225,6 +235,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def amateur(self, ctx):
         get_link('amateur')
         embed = discord.Embed()
@@ -232,6 +243,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def hentai(self, ctx):
         get_link('hentai')
         embed = discord.Embed()
@@ -239,6 +251,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def milf(self, ctx):
         get_link('milf')
         embed = discord.Embed()
@@ -246,6 +259,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def teen(self, ctx):
         get_link('teen')
         embed = discord.Embed()
@@ -253,6 +267,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def ebony(self, ctx):
         get_link('ebony')
         embed = discord.Embed()
@@ -260,6 +275,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def threesome(self, ctx):
         get_link('threesome')
         embed = discord.Embed()
@@ -267,6 +283,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def cartoon(self, ctx):
         get_link('cartoon')
         embed = discord.Embed()
@@ -274,6 +291,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def creampie(self, ctx):
         get_link('creampie')
         embed = discord.Embed()
@@ -281,6 +299,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def bondage(self, ctx):
         get_link('bondage')
         embed = discord.Embed()
@@ -288,6 +307,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def squirt(self, ctx):
         get_link('squirt')
         embed = discord.Embed()
@@ -295,6 +315,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def yiff(self, ctx):
         get_link('yiff')
         embed = discord.Embed()
@@ -302,6 +323,7 @@ class Nsfw(commands.Cog):
         await ctx.message.channel.send(embed=embed)
 
     @commands.command()
+    @commands.is_nsfw()
     async def neko(self, ctx):
         get_link('neko')
         embed = discord.Embed()

@@ -114,6 +114,12 @@ async def on_command_error(ctx, error):
             description=f"**You must be the owner of the bot to use this command.**",
             color=discord.Colour.red())
         await ctx.send(embed=embed)
+    elif isinstance(error, commands.NSFWChannelRequired):
+        embed = discord.Embed(
+            title="Error",
+            description=f"**You must be in a NSFW channel to use this command.**",
+            color=discord.Colour.red())
+        await ctx.send(embed=embed)
     elif isinstance(error, commands.CheckFailure):
         embed = discord.Embed(
             title="Error",
@@ -127,6 +133,7 @@ async def on_command_error(ctx, error):
 # Help embed.
 
 @bot.command()
+@commands.is_nsfw()
 async def help(ctx):
     embed = discord.Embed(colour=discord.Color.gold())
     embed.set_author(name=f"Here's a list of my commands!")
