@@ -28,6 +28,8 @@ These tool's full potential will be discussed in seperate guides further down th
 ### Installation Guide
 [Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
+[*Click HERE for a video guide*](https://youtu.be/ahYtsKzKd8w)
+
 
 In order to make the most of this installation guide, please follow the instructions *exactly* as they say.
 1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-390/) When installing python, remember to check, "Add Python to PATH" - **this is vital**.
