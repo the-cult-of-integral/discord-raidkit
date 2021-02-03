@@ -5,6 +5,7 @@ Additions:
 
 Changes:
 - Qetesh's non-malicious commands now require their usage to be within a NSFW channel.
+- Updated every tool's search_for_updates to look for latest version (v1.5.1).
 
 Reductions:
 - None.
