@@ -156,7 +156,7 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 ---
 ### Seth Guide
-[Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
 To first use Seth, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are two settings that you must determine before using Seth (Open the JSON file with notepad if you have no default program):
 
