@@ -1,5 +1,3 @@
-**Notice: Whilst there are currently no issues posted; I've identified a strange issue regarding Seth and the nuke command for certain users. If anyone notices that Seth does not ban members, please open an issue, clearly stating that this is the issue!**
-
 **There are currently no issues. If you have an issue, you can request help [here](https://github.com/Catterall/discord-raidkit/issues).**
 
 ---
