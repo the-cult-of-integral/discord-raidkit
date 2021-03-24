@@ -24,7 +24,7 @@ check_for_servers()
 # Sets the bot prefix to the prefix specified in the JSON file.
 
 if DATA.get("prefix").strip().replace(" ", "") == "":
-    display_start_error()
+    display_start_error("No prefix!")
 else:
     intents = discord.Intents.default()
     intents.members = True
@@ -49,8 +49,8 @@ bot.remove_command('help')
 async def create_db_pool():
     try:
         bot.pg_con = await asyncpg.create_pool(database="levels_db", user="postgres", password=DATA.get("postgresql_password"))
-    except BaseException:
-        display_start_error()
+    except BaseException as e:
+        display_start_error(e)
 
 
 # Load/Unload/Reload: Used for messing with Cogs.
@@ -283,8 +283,8 @@ bot.loop.run_until_complete(create_db_pool())
 
 try:
     bot.run(DATA.get("bot_token"))
-except BaseException:
-    display_start_error()
+except BaseException as e:
+    display_start_error(e)
 
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).

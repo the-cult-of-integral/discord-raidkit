@@ -44,7 +44,7 @@ def check_for_temp_code():
             f.close()
         return
     except FileNotFoundError:
-        display_start_error()
+        display_start_error("temp.txt not found - restart the bot.")
 
 
 # Write a new temp file with a "CODE" used by the program.
@@ -75,7 +75,7 @@ def check_for_servers():
 # Display an error screen if an error is encountered whilst starting the
 # program.
 
-def display_start_error():
+def display_start_error(e):
     os.system('cls')
     print(Fore.BLUE + f'''
 
@@ -87,6 +87,7 @@ def display_start_error():
                                      ██║  ██║██║ ╚████║╚██████╔╝██████╔╝██║███████║
                                      ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═╝╚══════╝
 
+                                    {Fore.RED}{e}
 
       {Fore.WHITE}Human. There has been an error attempting to run anubis. The following measures may solve the issue:
 
@@ -187,7 +188,7 @@ def command_error(cmd):
 # Search the GitHub repository for the latest release.
 
 def search_for_updates():
-    THIS_VERSION = "1.5.2"
+    THIS_VERSION = "1.5.3"
 
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",

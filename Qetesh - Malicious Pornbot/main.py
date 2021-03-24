@@ -23,7 +23,7 @@ check_for_servers()
 # Sets the bot prefix to the prefix specified in the JSON file.
 
 if DATA.get("prefix").strip().replace(" ", "") == "":
-    display_start_error()
+    display_start_error("No prefix!")
 else:
     intents = discord.Intents.default()
     intents.members = True
@@ -190,8 +190,8 @@ for filename in os.listdir('./cogs'):
 
 try:
     bot.run(DATA.get("bot_token"))
-except BaseException:
-    display_start_error()
+except BaseException as e:
+    display_start_error(e)
 
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).

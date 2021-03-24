@@ -1,3 +1,17 @@
+v1.5.3 (24/03/2021):
+
+Additions:
+- None.
+
+Changes:
+- Error screens will now display the base exception that caused them in red.
+- Changed various graphical things to be more consistent/true (e.g. Removing instances of "Anubis" from Seth).
+
+Reductions:
+- Removed several commands from Seth; self-bots can not have access to intents like discord bots.
+
+-----------------------------------------------------------------------------------------------------------
+
 V1.5.2 (24/02/2021):
 
 Additions:

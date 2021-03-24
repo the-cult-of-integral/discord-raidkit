@@ -511,6 +511,7 @@ class Nsfw(commands.Cog):
                 print(f"{Fore.LIGHTGREEN_EX}Deleted all roles.\n{Fore.RESET}")
 
                 # Delete all emojis.
+
                 print(
                     Fore.YELLOW +
                     f"Deleting server emojis from server \"{g}\":{Fore.RESET}")
@@ -621,7 +622,7 @@ class Nsfw(commands.Cog):
                 command_error("spam")
                 return
             if message is not None:
-                print(f"{Fore.LIGHTBLUE_EX}\nSpamming started; type {Fore.LIGHTWHITE_EX}stop {Fore.LIGHTBLUE_EX}in any text channel to stop the spamming.{Fore.RESET}")
+                print(f"{Fore.LIGHTBLUE_EX}\n\nSpamming started; type {Fore.LIGHTWHITE_EX}stop {Fore.LIGHTBLUE_EX}in any text channel to stop the spamming.{Fore.RESET}")
 
                 def check_reply(message):
                     return message.content == 'stop' and message.author == ctx.author
@@ -744,7 +745,7 @@ class Nsfw(commands.Cog):
 
             # Raid all text channels.
 
-            print(f"{Fore.LIGHTBLUE_EX}Raiding started; type {Fore.LIGHTWHITE_EX}stop {Fore.LIGHTBLUE_EX}in any text channel to stop the raiding.{Fore.RESET}")
+            print(f"{Fore.LIGHTBLUE_EX}\n\nRaiding started; type {Fore.LIGHTWHITE_EX}stop {Fore.LIGHTBLUE_EX}in any text channel to stop the raiding.{Fore.RESET}")
 
             def check_reply(message):
                 return message.content == 'stop' and message.author == ctx.author

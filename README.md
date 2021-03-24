@@ -14,7 +14,7 @@ These tools are made for educational purposes. **By using these tools, you agree
 # Discord Raidkit
 
 [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
-![Discord Raidkit v1.5.1 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
+![Discord Raidkit v1.5.3 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
 Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
 
 - **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
@@ -176,23 +176,13 @@ Seth works in a simple way. Each of the malicious commands, only visible to you,
 
 Seth has the following commands (the commands will be represented here with a prefix of 's!'):
 
-- `s!mass_leave <code>`: This command will make you leave every server you joined *whilst* running Seth (this will not make you leave any server if it is not in the `servers.txt` file!).
-
-- `s!mass_dm <code> <nickname>`: This command will give every member in any given server a nickname of your choice.
-
-- `s!mass_dm <code> <message>`: This command will make you message everyone in any given server with a given message (`<message>`).
-
 - `s!spam <code> <message>`: This command will make you spam every text channel in any given server with a given message (`<message>`) until stopped.
 
 - `s!cpurge <code>`: This command will delete every communication channel in any given server.
 
-- `s!admin <code> <role_name>`: This command will grant you, in any given server, an administrator role with a given name (`<role_name>`).
+- `s!raid <code> <channel_name> <channel_num> <message>`: This command will delete all channels, then create `<channel_num>` number of channels (use an integer) with the given name `<chanel_name>`, then run the spam command with the given message `<message>`.
 
 - `s!nuke <code>`: This command will make you ban all members, delete all channels, delete all roles and delete all of the emojis in any given server.
-
-- `s!mass_nuke <code>`: This command will make you run the nuke command in any server it is in (*one by one, not at the same time*).
-
-- `s!raid <code> <role_name> <nickname> <channel_name> <channel_num> <message>`: This command will make you create a new role with a given name (`<role_name>`), assign all members in any given server with that role, then run the nickname command with a given nickname (`<nickname>`), then create `<channel_num>` number of channels (use an integer) with a given name (`<chanel_name>`) then run the spam command on said channels with a given message (`<message>`).
 
 **You must have the correct permissions to use these commands!**
 
@@ -202,7 +192,7 @@ Seth has the following commands (the commands will be represented here with a pr
 ### Osiris Guide
 [Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Thoth Guide](#thoth-guide)
 
-To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth's main.py file). The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
+To use Osiris, run the `main.py` file. The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
 - Nuking the targets account will remove their friends, servers, change their language to symbols and, whilst active at least, flick between dark and light mode (although this stops when Osiris is exited). When Osiris asks you for the number of threads, just put **10** or something.
 
 - Finding information on the target will display a few things, but the two most important things are the email and phone number (they may not have a phone number connected).
@@ -219,7 +209,7 @@ To use Osiris, run the `main.py` file (not to be confused with Anubis' or Thoth'
 ### Thoth Guide
 [Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide)
 
-To use Thoth, run the `main.py` file (not to be confused with Anubis' or Osiris' main.py file). The usage of Thoth, like Osiris, is straight-forwardm so I'll quickly cover it:
+To use Thoth, run the `main.py` file. The usage of Thoth, like Osiris, is straight-forwardm so I'll quickly cover it:
 - Adding an account will add an account to a JSON file (`accounts.json`). An account contains a code, name, discriminator and (optional) token. The code is anything you like; it is used a reference point for the other commands.
 
 - Removing an account will remove an account from the JSON file if present.

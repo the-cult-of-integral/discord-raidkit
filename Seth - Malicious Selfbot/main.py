@@ -8,7 +8,7 @@ import discord
 import os
 from discord.ext import commands, tasks
 from itertools import cycle
-from cogs.seth_methods import DATA, check_for_run_settings, write_temp, check_for_servers, display_start_error, display_title_screen, search_for_updates
+from cogs.seth_methods import DATA, check_for_run_settings, write_temp, display_start_error, display_title_screen, search_for_updates
 from colorama import Fore, init
 init()
 
@@ -17,13 +17,12 @@ init()
 
 DATA = check_for_run_settings()
 write_temp()
-check_for_servers()
 
 
 # Sets the bot prefix to the prefix specified in the JSON file.
 
 if DATA.get("prefix").strip().replace(" ", "") == "":
-    display_start_error()
+    display_start_error("No prefix!")
 else:
     intents = discord.Intents.default()
     intents.members = True
@@ -36,12 +35,14 @@ bot.remove_command('help')
 
 @bot.command()
 async def load(ctx, extension):
+    await ctx.message.delete()
     bot.load_extension(f'cogs.{extension}')
     print(f"{Fore.WHITE}{extension} {Fore.LIGHTGREEN_EX}has been loaded.")
     return
 
 
 @bot.command()
+await ctx.message.delete()
 async def unload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
     print(f"{Fore.WHITE}{extension} {Fore.LIGHTGREEN_EX}has been unloaded.")
@@ -49,6 +50,7 @@ async def unload(ctx, extension):
 
 
 @bot.command()
+await ctx.message.delete()
 async def reload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
     bot.load_extension(f'cogs.{extension}')
@@ -61,15 +63,6 @@ async def reload(ctx, extension):
 @bot.event
 async def on_ready():
     display_title_screen()
-
-
-# On joining a server.
-
-@bot.event
-async def on_guild_join(guild):
-    with open('cogs/servers.txt', 'a') as f:
-        f.write(str(guild.id) + "\n")
-        f.close()
 
 
 # On error (error handling).
@@ -114,8 +107,8 @@ for filename in os.listdir('./cogs'):
 
 try:
     bot.run(DATA.get("user_token"), bot=False)
-except BaseException:
-    display_start_error()
+except BaseException as e:
+    display_start_error(e)
 
 # Scripted by Catterall (https://github.com/Catterall).
 # Bot under the GNU General Public Liscense v2 (1991).
