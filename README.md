@@ -1,6 +1,9 @@
-**There are currently no issues. If you have an issue, you can request help [here](https://github.com/Catterall/discord-raidkit/issues).**
-
-**Please, read the README.md and follow everything carefully before making an issue; there are far too many closed issues that are just basic common sense, or with solutions found in the README.md**
+**Milestones:** 
+- 10 stars. ✅
+- 50 stars. ✅
+- 100 stars. ❌
+- 250 stars. ❌
+- 1000 stars. ❌
 
 ---
 **⚠️ Warning ⚠️** 
