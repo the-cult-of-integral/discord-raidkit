@@ -27,7 +27,7 @@ These tool's full potential will be discussed in seperate guides further down th
 
 ---
 ### Installation Guide
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
 [*Click HERE for a video guide*](https://youtu.be/ahYtsKzKd8w)
 
