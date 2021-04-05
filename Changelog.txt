@@ -1,3 +1,16 @@
+v1.5.4 (05/04/2021):
+
+Additions:
+- None.
+
+Changes:
+- None.
+
+Reductions:
+- After a long thought process, I've decided to remove Seth - it's not worth its own existence; discord intents have already neutered it and if you have admin powers, you can just add a bot in the first place.
+
+-----------------------------------------------------------------------------------------------------------
+
 v1.5.3 (24/03/2021):
 
 Additions:

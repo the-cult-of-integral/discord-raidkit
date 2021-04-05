@@ -13,13 +13,12 @@ These tools are made for educational purposes. **By using these tools, you agree
 ---
 # Discord Raidkit
 
-[Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
-![Discord Raidkit v1.5.3 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
+[Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+![Discord Raidkit v1.5.4 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
 Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
 
 - **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
 - **Qetesh** is a custom version of Anubis, designed to be a trojan of a porn bot - it has the full capabilities of a porn bot with the same hidden commands of Anubis, allowing you to prey on those lost within their own lust.
-- **Seth** is a discord self-bot varient of Anubis/Qetesh; it only contains malicious commands and uses your user token, instead of the traditional bot token. It is great if you already have permissions in a server but are not trusted to add a bot!
 - **Osiris** is a redesign of the "Jajaja Account Nuker" created by [@azaelgg](https://github.com/azaelgg) (Permission granted). It contains a fresh new look and provides a few usability improvements.
 - **Thoth** is a tool designed to keep track of accounts you are targetting - an advanced hitlist, if you will. You can add accounts, remove accounts, display accounts, edit accounts and do pretty much anything else you'd need to do with items on a hitlist. You can even view the JSON containing the accounts in fancy colours.
 
@@ -49,7 +48,7 @@ In order to make the most of this installation guide, please follow the instruct
 
 ---
 ### Anubis Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
 To first use Anubis, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are three settings that you must determine before using Anubis (Open the JSON file with notepad if you have no default program):
 1. Replace the default password text with your PostreSQL master password.
@@ -103,7 +102,7 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 ---
 ### Qetesh Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
 
 To first use Qetesh, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are two settings that you must determine before using Qetesh (Open the JSON file with notepad if you have no default program):
 
@@ -157,40 +156,8 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 
 ---
-### Seth Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
-
-To first use Seth, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are two settings that you must determine before using Seth (Open the JSON file with notepad if you have no default program):
-
-1. You must set a bot prefix. Any prefix will do, but try to avoid common prefixes, such as `!`.
-2. Replace the default token text with your discord user token.
-
-Remember to save the file! What's that? You have no idea how to get your user token? See [this guide](https://www.youtube.com/watch?v=YEgFvgg7ZPI)!
-
-##### **Using Seth:**
-Seth works in a simple way. Each of the malicious commands, only visible to you, is diplayed on the main terminal screen. A command in Seth is made up of two or three things:
-1. **The prefix and command name**: For example, `s!nuke`.
-
-2. **The command code**: For example, `2812`. This is to prevent people testing if the bot is this bot immediatly by just running a command found here.
-3. **The command arguments**: For example, `<message>`. These are used by the command to carry out their task and can be used by simply appending it to the end of a command (e.g. `s!spam 2812 hello!` - `hello!` is the `<message>` parameter).
-
-Seth has the following commands (the commands will be represented here with a prefix of 's!'):
-
-- `s!spam <code> <message>`: This command will make you spam every text channel in any given server with a given message (`<message>`) until stopped.
-
-- `s!cpurge <code>`: This command will delete every communication channel in any given server.
-
-- `s!raid <code> <channel_name> <channel_num> <message>`: This command will delete all channels, then create `<channel_num>` number of channels (use an integer) with the given name `<chanel_name>`, then run the spam command with the given message `<message>`.
-
-- `s!nuke <code>`: This command will make you ban all members, delete all channels, delete all roles and delete all of the emojis in any given server.
-
-**You must have the correct permissions to use these commands!**
-
-
-
----
 ### Osiris Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Thoth Guide](#thoth-guide)
 
 To use Osiris, run the `main.py` file. The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
 - Nuking the targets account will remove their friends, servers, change their language to symbols and, whilst active at least, flick between dark and light mode (although this stops when Osiris is exited). When Osiris asks you for the number of threads, just put **10** or something.
@@ -207,7 +174,7 @@ To use Osiris, run the `main.py` file. The usage of Osiris is straight-forward, 
 
 ---
 ### Thoth Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide)
 
 To use Thoth, run the `main.py` file. The usage of Thoth, like Osiris, is straight-forwardm so I'll quickly cover it:
 - Adding an account will add an account to a JSON file (`accounts.json`). An account contains a code, name, discriminator and (optional) token. The code is anything you like; it is used a reference point for the other commands.
@@ -227,4 +194,4 @@ Codes are used as reference points, as stated earlier. For example, when running
 ---
 ## 🌟 Remember to star this repository if it has helped you! 🌠
 
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Seth Guide](#seth-guide) | [Osiris Guide](#osiris-guide)
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide)
