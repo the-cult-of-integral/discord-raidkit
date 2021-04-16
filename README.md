@@ -4,6 +4,7 @@
 - 69 stars. ✅
 - 100 stars. ❌
 - 250 stars. ❌
+- 420 stars. ❌
 - 1000 stars. ❌
 
 ---
