@@ -15,7 +15,7 @@ These tools are made for educational purposes. **By using these tools, you agree
 ---
 # Discord Raidkit
 
-[Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 ![Discord Raidkit v1.5.4 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
 Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
 
@@ -31,7 +31,7 @@ These tool's full potential will be discussed in seperate guides further down th
 
 ---
 ### Installation Guide
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 [*Click HERE for a video guide*](https://youtu.be/ahYtsKzKd8w)
 
@@ -52,7 +52,7 @@ In order to make the most of this installation guide, please follow the instruct
 
 ---
 ### Anubis Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 To first use Anubis, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are three settings that you must determine before using Anubis (Open the JSON file with notepad if you have no default program):
 1. Replace the default password text with your PostreSQL master password.
@@ -106,7 +106,7 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 ---
 ### Qetesh Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 To first use Qetesh, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are two settings that you must determine before using Qetesh (Open the JSON file with notepad if you have no default program):
 
@@ -161,7 +161,7 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 ---
 ### Osiris Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 To use Osiris, run the `main.py` file. The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
 - Nuking the targets account will remove their friends, servers, change their language to symbols and, whilst active at least, flick between dark and light mode (although this stops when Osiris is exited). When Osiris asks you for the number of threads, just put **10** or something.
@@ -198,7 +198,7 @@ Codes are used as reference points, as stated earlier. For example, when running
 ---
 ---
 ### Ghost Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 **To use Ghost, Download The File Ghost.py in /Ghost - Stealth Logger or simply copy and paste the data**
 **After that, open the file in an ide or code editor then use one of the following options** <br>
@@ -223,4 +223,4 @@ $ Just ip, ; Results: same error as first or second
 ---
 ## 🌟 Remember to star this repository if it has helped you! 🌠
 
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
