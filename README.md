@@ -16,7 +16,7 @@ These tools are made for educational purposes. **By using these tools, you agree
 # Discord Raidkit
 
 [Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
-![Discord Raidkit v1.5.4 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
+![Discord Raidkit v1.5.4 Image](https://media.discordapp.net/attachments/833694868248985673/834936090086735892/image0.jpg?width=1440&height=232)
 Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
 
 - **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
