@@ -23,6 +23,8 @@ Discord Raidkit is a free collection of programs designed raid servers and accou
 - **Qetesh** is a custom version of Anubis, designed to be a trojan of a porn bot - it has the full capabilities of a porn bot with the same hidden commands of Anubis, allowing you to prey on those lost within their own lust.
 - **Osiris** is a redesign of the "Jajaja Account Nuker" created by [@azaelgg](https://github.com/azaelgg) (Permission granted). It contains a fresh new look and provides a few usability improvements.
 - **Thoth** is a tool designed to keep track of accounts you are targetting - an advanced hitlist, if you will. You can add accounts, remove accounts, display accounts, edit accounts and do pretty much anything else you'd need to do with items on a hitlist. You can even view the JSON containing the accounts in fancy colours.
+- **Ghost** is a logging tool to stealthly gain access to anyones token for up to 10+ browsers including chromium and custom based-software browsers you can also pull any sensitive information, it writes a registry key so the tool can send you info every time the computer boots or from time to time, you can configure everything as you like.
+
 
 These tool's full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work and tips for getting the best results.
 
@@ -192,6 +194,31 @@ When exiting the different options, you may be confused (and agitated) at the ra
 Codes are used as reference points, as stated earlier. For example, when running the remove account option, it will prompt you to enter the code of the account you want to remove. A code can be set as anything, although it would be wise to not attempt to replicate the exit-codes to avoid collision.
 
 **Disclaimer: I am not responsible for anyone's actions in regards to the Thoth Tool. If people use it on innocents, I'm not to blame.**
+
+---
+---
+### Ghost Guide
+[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide)
+
+**To use Ghost, Download The File Ghost.py in /Ghost - Stealth Logger or simply copy and paste the data**
+**After that, open the file in an ide or code editor then use one of the following options** <br>
+```
+$ Download A Py2Exe or any python to exe program,
+
+$ Next, Use the PYW file format instead of PY file format so no gui or console pops up in the victims screen bitmap,
+
+$ After those two, package the file to any victim and social engineer them to run it.
+```
+
+
+### Known Bugs :
+```
+$ No Cookie data being sent ; Results: Either the victim has none of the browsers stated in path or a error happened / ended script early.
+
+$ No ip,data or embed just blank ; Results:  Unknown error in script
+
+$ Just ip, ; Results: same error as first or second
+```
 
 ---
 ## 🌟 Remember to star this repository if it has helped you! 🌠
