@@ -1,5 +1,3 @@
-Catterall is a part of the Project Claw group (Not using that name for my discord though, obviously)!
-
 **Milestones:** 
 - 10 stars. ✅
 - 50 stars. ✅
