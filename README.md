@@ -2,7 +2,7 @@
 - 10 stars. ✅
 - 50 stars. ✅
 - 69 stars. ✅
-- 100 stars. ❌
+- 100 stars. ✅ ([ArchGryphon9362](https://github.com/ArchGryphon9362)).
 - 250 stars. ❌
 - 420 stars. ❌
 - 1000 stars. ❌
