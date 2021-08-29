@@ -32,7 +32,7 @@ def check_for_run_settings():
         with open('run_settings.json', 'w') as f:
             json.dump(DATA, f, indent=4)
             f.close()
-        display_start_error()
+        display_start_error("Generated run_settings.json - close this error window!")
 
 
 # Check for code in temp.txt.
