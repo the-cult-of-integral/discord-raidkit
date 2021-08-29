@@ -1,7 +1,7 @@
 v1.5.5 (04/05/2021):
 
 Additions:
-- Added Ghost, a discord token grabber made by contributer [@ytsix](https://github.com/ytsix).
+- Added Ghost, a discord token grabber made by contributer [@revenge8808](https://github.com/revenge8808).
 
 Changes:
 - Fixed various mistakes in `README.md`.
