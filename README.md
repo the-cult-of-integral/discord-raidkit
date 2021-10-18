@@ -1,4 +1,4 @@
-**As used by [Les Cachés (Yet another discord server for hunting paedophiles).](https://discord.com/invite/EWU2rDcTU6 )**
+**As used by Les Cachés (Server removed by discord, F).**
 
 ![Small Les Caches Regular Flag](https://user-images.githubusercontent.com/66549839/131261776-3d318313-6ea5-4e68-bf84-f587ac58dd54.png)
 ---
