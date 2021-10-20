@@ -1,6 +1,8 @@
-**As used by Les Cachés (Server removed by discord, F).**
+**As used to raid multiple furry servers.**
 
-![Small Les Caches Regular Flag](https://user-images.githubusercontent.com/66549839/131261776-3d318313-6ea5-4e68-bf84-f587ac58dd54.png)
+- [Raid #1 - Trojan mass raids.](https://www.youtube.com/watch?v=zOiVO30QRms&ab_channel=SCP079)
+- [Raid #2 - The Scalie Tavern.](https://www.youtube.com/watch?v=hwKbPklpxmA&ab_channel=SCP079)
+
 ---
 
 **Milestones:** 
