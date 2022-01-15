@@ -1,3 +1,16 @@
+v1.5.6.1 (15/01/2022):
+
+Additions:
+- None.
+
+Changes:
+- Renamed ghost.py to main.py - should fix a bug caused in v1.5.6.
+
+Reductions:
+- None.
+
+-----------------------------------------------------------------------------------------------------------
+
 v1.5.6 (12/01/2022):
 
 Additions:

