@@ -15,14 +15,9 @@
 - 1000 stars. ❌
 
 ---
-**⚠️ Warning ⚠️** 
+![Discord Raidkit v1 5 6 1 Image](https://user-images.githubusercontent.com/66549839/149622922-daf53eda-5f6d-4ffa-9993-e41ecf126cd7.png)
 
-These tools are made for educational purposes. **By using these tools, you agree that you hold responsibility and accountability of any consequences caused by your actions.**
-
----
-# Discord Raidkit
-
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
+[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
 
 Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
 
@@ -40,7 +35,7 @@ These tools' full potential will be discussed in seperate guides further down th
 
 ---
 ### Installation Guide
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
+[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
 
 [**Watch a video guide here!**](https://www.youtube.com/watch?v=EKxCOEI87bk&ab_channel=LesCachés)
 
@@ -61,7 +56,7 @@ In order to make the most of this installation guide, please follow the instruct
 
 ---
 ### Anubis Guide
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
+[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
 
 To first use Anubis, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are three settings that you must determine before using Anubis (Open the JSON file with notepad if you have no default program):
 1. Replace the default password text with your PostreSQL master password.
@@ -116,7 +111,7 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 ---
 ### Qetesh Guide
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
+[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
 
 To first use Qetesh, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are two settings that you must determine before using Qetesh (Open the JSON file with notepad if you have no default program):
 
@@ -172,7 +167,7 @@ If word ever gets out about this bot, note that you can always tweak the code it
 
 ---
 ### Osiris Guide
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
+[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
 
 To use Osiris, run the `main.py` file. The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
 - Nuking the targets account will remove their friends, servers, change their language to symbols and, whilst active at least, flick between dark and light mode (although this stops when Osiris is exited). When Osiris asks you for the number of threads, just put **10** or something.
@@ -182,9 +177,9 @@ To use Osiris, run the `main.py` file. The usage of Osiris is straight-forward, 
 
 ---
 ### Ghost Guide
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
+[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
 
-To use Ghost, edit the `main.pyw` file and place a webhook URL in Webhook class initalisation on line 40 (e.g. `hook = Webhook("https://xxx.xxx")`).
+To use Ghost, edit the `main.py` file and place a webhook URL in Webhook class initalisation on line 40 (e.g. `hook = Webhook("https://xxx.xxx")`). You may also want to rename  `main.py` to `main.pyw` to avoid users seeing a console, if you prefer.
 
 After doing this, there are several other things you can do:
 - You can use a Python to executable converter to allow the user to run the program without installing Python.
@@ -196,4 +191,4 @@ After doing this, there are several other things you can do:
 ---
 ## 🌟 Remember to star this repository if it has helped you! 🌠
 
-[Introduction](#discord-raidkit) | [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
+[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
