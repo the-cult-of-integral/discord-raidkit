@@ -47,7 +47,7 @@ In order to make the most of this installation guide, please follow the instruct
 
 3. Search for **pgAdmin 4** in the windows search and run it. If pgAdmin 4 does not show up, you can find the .exe at `C:\Program Files\PostgreSQL\14\pgAdmin 4\bin\pgAdmin4.exe`. Enter the master password whenever it prompts you to enter it. Right click 'databases' at the side and create a new database named `levels_db`. **It must be named levels_db or it fails.** Within the side-explorer for the new, levels_db database, right click 'tables' and create a new table, under `Schemas`. Name the table `users`. **Again, all naming in this guide must be exact.** Then, move to the columns section. Here, you want to create four new columns; `user_id` should be set to the 'character_varying' datatype and 'Not NULL?'' should be set to yes; `guild_id` should be set to the 'character_varying' datatype as well - you must leave 'Not NULL?' alone for this column and the next two; `lvl` should be set to the 'integer' datatype; `xp` should be set to the 'integer' datatype as well. After these four columns are created, you can click 'save' to save the table, then exit pgAdmin 4.
 
-4. To download the tools, visit the [releases page.](https://github.com/Catterall/discord-pedo-hunting-tools/releases)
+4. To download the tools, visit the [releases page.](https://github.com/xSerpentineX/discord-pedo-hunting-tools/releases)
 
 5. After downloading the tools, remember to run `install_requirements.cmd` - it will install all Python requirements needed to use the tools without errors.
 
