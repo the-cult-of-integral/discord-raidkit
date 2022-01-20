@@ -1,10 +1,3 @@
-**As used to raid multiple furry servers.**
-
-- [Raid #1 - Trojan mass raids.](https://www.youtube.com/watch?v=zOiVO30QRms&ab_channel=SCP079)
-- [Raid #2 - The Scalie Tavern.](https://www.youtube.com/watch?v=hwKbPklpxmA&ab_channel=SCP079)
-
----
-
 **Milestones:** 
 - 10 stars. ✅
 - 50 stars. ✅
