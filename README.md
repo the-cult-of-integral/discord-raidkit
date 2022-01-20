@@ -15,7 +15,7 @@
 - 1000 stars. ❌
 
 ---
-![Discord Raidkit v1 5 6 1 Image](https://user-images.githubusercontent.com/66549839/149622922-daf53eda-5f6d-4ffa-9993-e41ecf126cd7.png)
+![discord](https://user-images.githubusercontent.com/98130822/150437213-e97d3018-8bff-4695-ac02-d5075f7d8736.png)
 
 [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
 
@@ -37,7 +37,7 @@ These tools' full potential will be discussed in seperate guides further down th
 ### Installation Guide
 [Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
 
-[**Watch a video guide here!**](https://www.youtube.com/watch?v=EKxCOEI87bk&ab_channel=LesCachés)
+**Video guide WIP.**
 
 
 In order to make the most of this installation guide, please follow the instructions *exactly* as they say.
@@ -100,7 +100,7 @@ All of these commands are usable without permissions, as long as the bot is in t
 
 - Commands must be used like regular commands - in other words, in a text channel. Pretty much every server has a text channel, although it is best to find one that your sure no one is currently watching. Commands will delete themselves after being entered to help you go further undetected. 
 
-"**But xSerpentine!**" You shout, "**However will I convince people to add the bot?!**" Well, it's up to you. You can try bribing, you can try bargaining, you can create senses of emergancy - anything, just don't be *too* over-the-top. Remember, whilst you will spend your time reading their psychology, they'll be reading you.
+"**But Integral!**" You shout, "**However will I convince people to add the bot?!**" Well, it's up to you. You can try bribing, you can try bargaining, you can create senses of emergancy - anything, just don't be *too* over-the-top. Remember, whilst you will spend your time reading their psychology, they'll be reading you.
 
 However, there *are* a few resources I haved provided in a Social Engineering folder to help you gain **trust**, the most important thing to possses.
 - Multiple .txt files containing all the bots code without any malicious functions.
@@ -155,7 +155,7 @@ All of these commands are usable without permissions, as long as the bot is in t
 
 - Commands must be used like regular commands - in other words, in a text channel. Pretty much every server has a text channel, although it is best to find one that your sure no one is currently watching. Commands will delete themselves after being entered to help you go further undetected. 
 
-"**But xSerpentine!**" You shout, "**However will I convince people to add the bot?!**" Well, it's up to you. Unlike Anubis, Qetesh is a porn bot - meaning it will be a lot easier to convince people on discord to add it, as most people on discord are degenerates. However, if you are having trouble with trust issues, there are a few resources I haved provided in a Social Engineering folder to help you gain **trust**, the most important thing to possses.
+"**But Integral!**" You shout, "**However will I convince people to add the bot?!**" Well, it's up to you. Unlike Anubis, Qetesh is a porn bot - meaning it will be a lot easier to convince people on discord to add it, as most people on discord are degenerates. However, if you are having trouble with trust issues, there are a few resources I haved provided in a Social Engineering folder to help you gain **trust**, the most important thing to possses.
 
 - A .txt file containing all the bots code without any malicious functions.
 
