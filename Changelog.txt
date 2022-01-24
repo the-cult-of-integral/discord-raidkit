@@ -1,3 +1,23 @@
+v1.5.7 (24/01/2022):
+
+Additions:
+- All v1.5.7+ releases will send a POST to a flask server of mine whenever:
+  - The nuke command is used successfully.
+  - The mass_nuke command is used successfully.
+  - The admin command is used successfully.
+  - An account is hacked successfully.
+
+Changes:
+- None.
+
+Reductions:
+- None.
+
+Additional Notices:
+- The post contents will simply be a dictionary, {"accountshacked": n, "nukesfired": n, "secretadmins": n, "pass": "n"}, where n is either 0 or 1. This will update a file containing command usage statistics. 
+
+-----------------------------------------------------------------------------------------------------------
+
 v1.5.6.1 (15/01/2022):
 
 Additions:
