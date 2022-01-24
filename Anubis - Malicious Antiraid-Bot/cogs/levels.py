@@ -1,4 +1,4 @@
-# Scripted by Catterall (https://github.com/Catterall).
+# Scripted by the-cult-of-integral (https://github.com/the-cult-of-integral).
 # Bot under the GNU General Public Liscense v2 (1991).
 
 
@@ -100,5 +100,5 @@ def setup(bot):
     bot.add_cog(Levels(bot))
 
 
-# Scripted by Catterall (https://github.com/Catterall).
+# Scripted by the-cult-of-integral (https://github.com/the-cult-of-integral).
 # Bot under the GNU General Public Liscense v2 (1991).

@@ -1,4 +1,4 @@
-# By revenge8808; part of the Discord Raidkit (https://github.com/Catterall/discord-raidkit).
+# By revenge8808; part of the Discord Raidkit (https://github.com/the-cult-of-integral/discord-raidkit).
 
 
 import requests, os, re, sys, shutil, winreg

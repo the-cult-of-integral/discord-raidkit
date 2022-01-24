@@ -1,4 +1,4 @@
-# Scripted by Catterall (https://github.com/Catterall).
+# Scripted by the-cult-of-integral (https://github.com/the-cult-of-integral).
 # Bot under the GNU General Public Liscense v2 (1991).
 
 
@@ -193,5 +193,5 @@ try:
 except BaseException as e:
     display_start_error(e)
 
-# Scripted by Catterall (https://github.com/Catterall).
+# Scripted by the-cult-of-integral (https://github.com/the-cult-of-integral).
 # Bot under the GNU General Public Liscense v2 (1991).

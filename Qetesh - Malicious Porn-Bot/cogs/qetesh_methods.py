@@ -1,4 +1,4 @@
-# Scripted by Catterall (https://github.com/Catterall).
+# Scripted by the-cult-of-integral (https://github.com/the-cult-of-integral).
 # Bot under the GNU General Public Liscense v2 (1991).
 
 
@@ -99,9 +99,9 @@ def display_start_error(e):
 
 
 {Style.DIM}{Fore.GREEN}If the issue persists after all the above measures are taken, you can create an issue here:
-{Style.BRIGHT}{Back.RESET}{Fore.WHITE}https://github.com/Catterall/discord-raidkit/issues
+{Style.BRIGHT}{Back.RESET}{Fore.WHITE}https://github.com/the-cult-of-integral/discord-raidkit/issues
 
-{Fore.YELLOW}Thank you for using Qetesh and apologies for all errors encountered! -Catterall.{Fore.RESET}
+{Fore.YELLOW}Thank you for using Qetesh and apologies for all errors encountered! -the-cult-of-integral.{Fore.RESET}
 '''.replace('█', f'{Fore.WHITE}█{Fore.RED}').replace('▀', f'{Fore.WHITE}▀{Fore.RED}').replace('▄', f'{Fore.WHITE}▄{Fore.RED}'))
     input()
     os.system('cls')
@@ -140,7 +140,7 @@ members you wish to ban (i.e. move the role as high as possible).
 
 {Fore.LIGHTCYAN_EX}To refresh this window back to this page, use the command: {Fore.LIGHTGREEN_EX}{DATA.get('prefix')}refresh {CODE}
 
-{Fore.LIGHTRED_EX}Qetesh created by Catterall (View for full guide): {Fore.WHITE}https://www.github.com/Catterall/discord-raidkit{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.RED}').replace('▀', f'{Fore.WHITE}▀{Fore.RED}').replace('▄', f'{Fore.WHITE}▄{Fore.RED}'))
+{Fore.LIGHTRED_EX}Qetesh created by the-cult-of-integral (View for full guide): {Fore.WHITE}https://www.github.com/the-cult-of-integral/discord-raidkit{Style.DIM}{Fore.RED}'''.replace('█', f'{Fore.WHITE}█{Fore.RED}').replace('▀', f'{Fore.WHITE}▀{Fore.RED}').replace('▄', f'{Fore.WHITE}▄{Fore.RED}'))
     return
 
 
@@ -191,7 +191,7 @@ def search_for_updates():
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
         "X-Requested-With": "XMLHttpRequest"}
-    url = f"https://github.com/Catterall/discord-raidkit/releases/latest"
+    url = f"https://github.com/the-cult-of-integral/discord-raidkit/releases/latest"
 
     os.system('cls')
     print("Searching for updates.")
@@ -226,5 +226,5 @@ def search_for_updates():
         return
 
 
-# Scripted by Catterall (https://github.com/Catterall).
+# Scripted by the-cult-of-integral (https://github.com/the-cult-of-integral).
 # Bot under the GNU General Public Liscense v2 (1991).

