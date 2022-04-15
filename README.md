@@ -19,7 +19,7 @@ A collection of tools designed for raiding discord servers and accounts. The pro
 ### Installation
 ***Warning:** if cloning this repository, as opposed to using the releases page, there will be some files missing, as some files are big enough to immediately ruin the cloning limit placed on free GitHub accounts and are thus only included in the release file, not any branches. If you are cloning this repository, be sure to [download the browser folder here](https://drive.google.com/file/d/1gfym1W--XqBaZKHv5Bs0adK-aV5ekHLE/view?usp=sharing) and place the folder within the Discord Raidkit folder; this folder is not used for Anubis or Qetesh, but is essential for Osiris.*
 
-The installation of Discord Raidkit v2.0.0+ is easy compared to previous versions.
+The installation of Discord Raidkit v2.0.0+ is easy compared to previous versions. You can either follow these instructions or [see this video](https://www.youtube.com/watch?v=fKcJjfVGEnI&ab_channel=xSerpentine).
 1. Head over to the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest) and download the 7-zip file for the release you want to install.
 
 2. Extract the 7-zip file and enter the Discord Raidkit folder.
