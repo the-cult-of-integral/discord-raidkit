@@ -1,4 +1,5 @@
-# Discord Raidkit
+![Discord Raidkit v2.0.0](https://user-images.githubusercontent.com/98130822/163650953-13e2d31d-09ac-43b1-b3a5-b56dc90d6422.png)
+
 A collection of tools designed for raiding discord servers and accounts. The project has two main goals: to make these tools freely available and useable to anyone, regardless of technical prowess, and to make these tools as unassuming and trojan-like as possible.
 
 ---
