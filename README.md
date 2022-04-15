@@ -1,4 +1,74 @@
-**Milestones:** 
+# Discord Raidkit
+A collection of tools designed for raiding discord servers and accounts. The project has two main goals: to make these tools freely available and useable to anyone, regardless of technical prowess, and to make these tools as unassuming and trojan-like as possible.
+
+---
+
+### Features
+- A malicious bot designed to appear like a helpful moderation and anti-raiding bot.
+- A malicious bot designed to appear like an NSFW bot, complete with 1323 links to images.
+- Eight commands to manipulate servers, including an admin, nuke, and raid command.
+- A malicious tool designed to use an account's Auth Token to your advantage.
+- An information command that can display an accounts email, phone number, and 2FA status.
+- An account nuke command that can send a settings patch to mess with an account, such as changing the account language to japaneese, or the theme to light mode.
+- A login command that can allow you to log into an account easily, using a Selenium webdriver.
+- Completely, 100% open-source and free.
+
+---
+
+### Installation
+***Warning:** if cloning this repository, as opposed to using the releases page, there will be some files missing, as some files are big enough to immediately ruin the cloning limit placed on free GitHub accounts and are thus only included in the release file, not any branches. If you are cloning this repository, be sure to [download the browser folder here](https://drive.google.com/file/d/1gfym1W--XqBaZKHv5Bs0adK-aV5ekHLE/view?usp=sharing) and place the folder within the Discord Raidkit folder; this folder is not used for Anubis or Qetesh, but is essential for Osiris.*
+
+The installation of Discord Raidkit v2.0.0+ is easy compared to previous versions.
+1. Head over to the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest) and download the 7-zip file for the release you want to install.
+
+2. Extract the 7-zip file and enter the Discord Raidkit folder.
+
+
+3. Run the `install_requirements.bat` file to install the required dependencies. If you cannot run batch files, for any reason, run the following command in whichever console you use:
+  `pip install bs4 colorama discord dhooks PyQt6 qasync requests selenium`
+
+4. Finally, run the `Discord Raidkit.pyw` file. There may be a slight delay between running the file and you seeing the program.
+
+It should be mentioned that this project is built with, and thus requires, Python. To install Python, go the [python page](https://python.org) then download and install the latest version of Python. 
+
+**When installing Python, you must check the "Add to PATH" checkbox!**
+
+---
+
+### Usage
+After running the program, you may see a pop-up notifying you of a new update. If accpeted, this pop-up will take you to the latest release of this program which you can then download and run.
+
+The Discord Raidkit GUI has four main screens: the bot configuration screen, the Anubis screen, the Qetesh screen, and the Osiris screen.
+
+![Discord Raidkit v2 0 0 Screen](https://user-images.githubusercontent.com/98130822/163580370-8d389e60-d225-4aa1-be39-fa411121a80c.png)
+
+##### Bot Configuration
+The Bot Configuration screen allows users to set a bot token and prefix to be used when running Anubis or Qetesh. It is imporant to note that these settings are saved upon clicking the "Configure Bots" button; just entering values into the text inputs will not save the changes.
+
+There are also two other buttons on the Bot Configuration screen. The "View GitHub" button will take you to the main page of the Discord Raidkit repository, the same page you are more than likely reading this on. The "Clear Logs" button will clear any error logging files, and is especially useful when the errors.log file becomes filled with qasync errors, which can occasionally happen (these errors do not cause any visual effect to the program, they are just caught by the logger regardless).
+
+##### Anubis & Qetesh
+The Anubis and Qetesh screens start their own respective tools. It should be mentioned that, after clicking the start Anubis and Qetesh buttons, other buttons will immediately become enabled. However, you may notice that if you click them, nothing happens: this means that the bot is still starting behind the screens; the buttons will work once the bot is fully started. Furthermore, if starting Qetesh for the first time, the screen may become unresponsive for a short period of time: this is the Qetesh bot creating the `qetesh_db.db` file and inserting every link into the database — the process will finish after a few seconds.
+
+After starting Anubis or Qetesh, the only screens the user may see is the screen of the bot they started, and the Osiris screen. The Bot Configuration screen, and the other bot screen, will not be viewable until the bot started has been ended. Ending a bot can be done with the end button which is next to the start button.
+
+As a final note, when running the spam and raid commands, you may notice that the button to end the bot, not just the commands, is enabled as spamming starts. This is not done by the other commands. The reason for this little quirk is that any commands that involve spamming risk spamming indefinitely, including past the usage of the "Abort Cmds" button. This is rarely caused by an issue highlighted at the bottom of this README.md file. However, should such an issue occur, these buttons are enabled so that the bot can be ended, which will allow you to close the application as normal (if this quirk was not implemented, users would have to mess around in task manager to close the program, which completely goes against this project's first goal of making these tools freely available and useable to anyone, regardless of their technical prowess). I just thouoght I'd mention this quirk here before anyone gets confused as to why two out of eight commands randomly enable an unrelated button when the rest of the commands do not.
+
+---
+
+##### Osiris
+The Osiris screen has three buttons, where each button will prompt the user to enter an Auth Token — this Auth Token is a user token, not a bot token. The "Find Info" button will display information regarding the account to the five, read-only text boxes at the bottom of the screen (these text boxes are also used to inform the user that an invalid auth token has been passed). The "Nuke Account" button will nuke an account, which involves creating a number of servers and patching the account settings of the targeted account, which will, among other things, change the account language to japaneese, the theme to light mode, and disable embeds. The nuking may also involve making the member leave any server they do not own, depending on the contents of the request feedback received when making a GET request to the target account. Finally, the "Log Into Account" button will allow the user to log into and have full access to the target account, in a chrome browser window: the login script is executed by Selenium's webdriver.
+
+---
+
+### Known Issues
+
+- **Inconsistency:** for Anubis and Qetesh, sometimes commands will work perfectly fine, other times the entire thing will break. I'm going to assume that this is an issue with discord's API, as I see no other reason why the exact same code would perform well sometimes, and poorly othertimes. Unfortunately, I do not have the power to change discord's API. It may also be an issue caused by trying to control discord bots, which are asynchronous, within a PyQt6 GUI application, which runs its own event loop. This is counteracted by the use of qasync's asyncSlot decorator, but it might not be perfect; I suspect this as only Anubis and Qetesh are afflicted with this issue, whereas Osiris is fine. Then again, Osiris works using the requests module, where as Anubis and Qetesh work using the discord.py module, so perhaps that is the issue. In any case, this issue can usually be resolved just by closing and rerunning the application.
+
+---
+
+### Milestones
+
 - 10 stars. ✅
 - 50 stars. ✅
 - 69 stars. ✅
@@ -7,181 +77,4 @@
 - 420 stars. ❌
 - 1000 stars. ❌
 
----
-![discord](https://user-images.githubusercontent.com/98130822/150437213-e97d3018-8bff-4695-ac02-d5075f7d8736.png)
-
-[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
-
-Discord Raidkit is a free collection of programs designed raid servers and accounts as effectively as possible. The following is a list of all the programs currently included:
-
-- **Anubis** is a discord multi-purpose nuker bot. However, unlike several other nuker bots, Anubis is designed to resemble a trojan horse by including many helpful features, with malicious commands hidden inside.  
-
-- **Qetesh** is a custom version of Anubis, designed to be a trojan of a porn bot - it has the full capabilities of a porn bot with the same hidden commands of Anubis, allowing you to prey on those lost within their own lust (which is 99% of the discord community).
-
-- **Osiris** is a redesign of the "Jajaja Account Nuker" created by azaelgg (permission granted). It contains a fresh new look and provides a few usability improvements, as the original had some issues.
-
-- **Ghost** is a discord token grabber made by contributer [@revenge8808](https://github.com/revenge8808).
-
-
-These tools' full potential will be discussed in seperate guides further down the README.md file, along with an analysis on how they work and tips for getting the best results.
-
-
----
-### Installation Guide
-[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
-
-**Video guide WIP.**
-
-
-In order to make the most of this installation guide, please follow the instructions *exactly* as they say.
-1. These tools require Python, which can be downloaded [here.](https://www.python.org/downloads/release/python-390/) When installing python, remember to check, "Add Python to PATH" - **this is vital**.
-
-2. **Anubis** requires PostreSQL, which can be downloaded [here.](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) When installing PostreSQL, do not uncheck any of the checkboxes except the checkbox asking to install Stack Builder. Furthermore, when installing PostreSQL, it will ask you to create a master password. **This password is important, remember it.** **If you have no plans on using the Anubis tool, then you can skip step three.** Step three will cover how to set up PostreSQL for Anubis after installed.
-
-3. Search for **pgAdmin 4** in the windows search and run it. If pgAdmin 4 does not show up, you can find the .exe at `C:\Program Files\PostgreSQL\14\pgAdmin 4\bin\pgAdmin4.exe`. Enter the master password whenever it prompts you to enter it. Right click 'databases' at the side and create a new database named `levels_db`. **It must be named levels_db or it fails.** Within the side-explorer for the new, levels_db database, right click 'tables' and create a new table, under `Schemas`. Name the table `users`. **Again, all naming in this guide must be exact.** Then, move to the columns section. Here, you want to create four new columns; `user_id` should be set to the 'character_varying' datatype and 'Not NULL?'' should be set to yes; `guild_id` should be set to the 'character_varying' datatype as well - you must leave 'Not NULL?' alone for this column and the next two; `lvl` should be set to the 'integer' datatype; `xp` should be set to the 'integer' datatype as well. After these four columns are created, you can click 'save' to save the table, then exit pgAdmin 4.
-
-4. To download the tools, visit the [releases page.](https://github.com/xSerpentineX/discord-pedo-hunting-tools/releases)
-
-5. After downloading the tools, remember to run `install_requirements.cmd` - it will install all Python requirements needed to use the tools without errors.
-
-6. **If you wish to use Osiris, you must follow this extra step:** 
- Download this specific chrome browser version [here.](https://drive.google.com/file/d/1qg-cjHqEoUODARL6hL9-IT7OrjsSq-wZ/view?usp=sharing) After downloading the zip file, place it inside the Osiris folder and extract it. There should now be a browser folder within the Osiris folder, which will be used by Osiris. At this point, you can delete the zip file. If you've been following this guide correctly, you should now be ready to use the tools (for those of you wondering, I no longer use LFS/Cloning because 10GB of free broadband transfer a month is nothing). 
-
----
-### Anubis Guide
-[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
-
-To first use Anubis, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are three settings that you must determine before using Anubis (Open the JSON file with notepad if you have no default program):
-1. Replace the default password text with your PostreSQL master password.
-2. You must set a bot prefix. Any prefix will do, but try to avoid exceptionally common prefixes, such as !
-3. Replace the default token text with your discord bot's token.
-
-Remember to save the file! What's that? You don't currently have a discord bot? Well, luckily for you, setting one up is extremely easy and does not require any downloads. 
-
-Head to the discord developers page [here](https://www.discord.com/developers) and click, "New Application". Name the application with the same name that you will name your bot. After creating the application, look to the left side and click 'Bot'. From here, click 'Add Bot'. Before copying the token, first turn on both privileged gateway intents - you can now copy your bots token and place it in the run_settings.json file. To get the invite link, head to the OAuth2 section, scroll down and check the "Bot" checkbox, then check the "Administrator" checkbox underneath - the link generated will allow anyone to invite the bot and will give the bot administrator permissions.
-
-##### **Using Anubis:**
-Anubis works in a simple way. Each of the malicious commands, only visible to you, is diplayed on the main terminal screen. A command in Anubis is made up of two or three things:
-1. **The prefix and command name**: For example, `a!nuke`.
-
-2. **The command code**: For example, `2812`. This is to prevent people testing if the bot is this bot immediatly by just running a command found here.
-3. **The command arguments**: For example, `<message>`. These are used by the command to carry out their task and can be used by simply appending it to the end of a command (e.g. `a!spam 2812 hello!` - `hello!` is the `<message>` parameter).
-
-Anubis has the following commands (the commands will be represented here with a prefix of 'a!'):
-- `a!leave <code> <server>`: This command will make Anubis leave a given server (`<server>`).
-
-- `a!mass_leave <code>`: This command will make Anubis leave every server it is currently in.
-
-- `a!mass_nick <code> <nickname>`: This command will give every member in any given server a nickname of your choice.
-
-- `a!mass_dm <code> <message>`: This command will make Anubis message everyone in any given server with a given message (`<message>`).
-
-- `a!spam <code> <message>`: This command will make Anubis spam every text channel in any given server with a given message (`<message>`) until stopped.
-
-- `a!cpurge <code>`: This command will delete every communication channel in any given server.
-
-- `a!admin <code> <role_name>`: This command will grant you, in any given server, an administrator role with a given name (`<role_name>`).
-
-- `a!nuke <code>`: This command will make Anubis ban all members, delete all channels, delete all roles and delete all of the emojis in any given server.
-
-- `a!mass_nuke <code>`: This command will make Anubis run the nuke command in any server it is in (*one by one, not at the same time*).
-
-- `a!raid <code> <role_name> <nickname> <channel_name> <channel_num> <message>`: This command will make Anubis create a new role with a given name (`<role_name>`), assign all members in any given server with that role, then run the nickname command with a given nickname (`<nickname>`), then create `<channel_num>` number of channels (use an integer) with a given name (`<chanel_name>`) then run the spam command on said channels with a given message (`<message>`).
-
-All of these commands are usable without permissions, as long as the bot is in the server. However, there are some important rules to take note of:
-- When the bot is invited, it will create its own role. In order for the bot to directly affect a member (mass_dm, nuke, mass_nuke, raid) its role must be above any given member's role. **TL;DR, move the bots role as high as possible by utilising the admin command to give you the permissions to do so and/or by manipulating the higher members to do it for you.**
-
-- Commands must be used like regular commands - in other words, in a text channel. Pretty much every server has a text channel, although it is best to find one that your sure no one is currently watching. Commands will delete themselves after being entered to help you go further undetected. 
-
-"**But Integral!**" You shout, "**However will I convince people to add the bot?!**" Well, it's up to you. You can try bribing, you can try bargaining, you can create senses of emergancy - anything, just don't be *too* over-the-top. Remember, whilst you will spend your time reading their psychology, they'll be reading you.
-
-However, there *are* a few resources I haved provided in a Social Engineering folder to help you gain **trust**, the most important thing to possses.
-- Multiple .txt files containing all the bots code without any malicious functions.
-
-- A random image of a database screenshot. This is in-case the question the somewhat lack-luster 'add_db' fake command; show them this and they might believe it *more* (Personally, I've never had this occur to me, but I guess it's there if it does).
-
-If word ever gets out about this bot, note that you can always tweak the code itself to make it appear different - the only thing that is needed is some basic Python knowledge. However, if you are to release your own custom made version, please credit me.
-
----
-### Qetesh Guide
-[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
-
-To first use Qetesh, run the `main.py` file. You should be greeted with a warning screen - simply press the return (enter) key. You should now notice a new file, named `run_settings.json`. Within this file, there are two settings that you must determine before using Qetesh (Open the JSON file with notepad if you have no default program):
-
-1. You must set a bot prefix. Any prefix will do, but try to avoid common prefixes, such as `!`.
-2. Replace the default token text with your discord bot's token.
-
-Remember to save the file! What's that? You don't currently have a discord bot? Well, luckily for you, setting one up is extremely easy and does not require any downloads. 
-
-Head to the discord developers page [here](https://www.discord.com/developers) and click, "New Application". Name the application with the same name that you will name your bot. After creating the application, look to the left side and click 'Bot'. From here, click 'Add Bot'. Before copying the token, first turn on both privileged gateway intents - you can now copy your bots token and place it in the run_settings.json file. To get the invite link, head to the OAuth2 section, scroll down and check the "Bot" checkbox, then check the "Administrator" checkbox underneath - the link generated will allow anyone to invite the bot and will give the bot administrator permissions.
-
-##### **Using Qetesh:**
-Qetesh works in a simple way. Each of the malicious commands, only visible to you, is diplayed on the main terminal screen. A command in Qetesh is made up of two or three things:
-1. **The prefix and command name**: For example, `q!nuke`.
-
-2. **The command code**: For example, `2812`. This is to prevent people testing if the bot is this bot immediatly by just running a command found here.
-3. **The command arguments**: For example, `<message>`. These are used by the command to carry out their task and can be used by simply appending it to the end of a command (e.g. `q!spam 2812 hello!` - `hello!` is the `<message>` parameter).
-
-Qetesh has the following commands (the commands will be represented here with a prefix of 'q!'):
-- `q!leave <code> <server>`: This command will make Qetesh leave a given server (`<server>`).
-
-- `q!mass_leave <code>`: This command will make Qetesh leave every server it is currently in.
-
-- `q!mass_nick <code> <nickname>`: This command will give every member in any given server a nickname of your choice.
-
-- `q!mass_dm <code> <message>`: This command will make Qetesh message everyone in any given server with a given message (`<message>`).
-
-- `q!spam <code> <message>`: This command will make Qetesh spam every text channel in any given server with a given message (`<message>`) until stopped.
-
-- `q!cpurge <code>`: This command will delete every communication channel in any given server.
-
-- `q!admin <code> <role_name>`: This command will grant you, in any given server, an administrator role with a given name (`<role_name>`).
-
-- `q!nuke <code>`: This command will make Qetesh ban all members, delete all channels, delete all roles and delete all of the emojis in any given server.
-
-- `q!mass_nuke <code>`: This command will make Qetesh run the nuke command in any server it is in (*one by one, not at the same time*).
-
-- `q!raid <code> <role_name> <nickname> <channel_name> <channel_num> <message>`: This command will make Qetesh create a new role with a given name (`<role_name>`), assign all members in any given server with that role, then run the nickname command with a given nickname (`<nickname>`), then create `<channel_num>` number of channels (use an integer) with a given name (`<chanel_name>`) then run the spam command on said channels with a given message (`<message>`).
-
-All of these commands are usable without permissions, as long as the bot is in the server. However, there are some important rules to take note of:
-- When the bot is invited, it will create its own role. In order for the bot to directly affect a member (mass_dm, nuke, mass_nuke, raid) its role must be above any given member's role. **TL;DR, move the bots role as high as possible by utilising the admin command to give you the permissions to do so and/or by manipulating the higher members to do it for you.**
-
-- Commands must be used like regular commands - in other words, in a text channel. Pretty much every server has a text channel, although it is best to find one that your sure no one is currently watching. Commands will delete themselves after being entered to help you go further undetected. 
-
-"**But Integral!**" You shout, "**However will I convince people to add the bot?!**" Well, it's up to you. Unlike Anubis, Qetesh is a porn bot - meaning it will be a lot easier to convince people on discord to add it, as most people on discord are degenerates. However, if you are having trouble with trust issues, there are a few resources I haved provided in a Social Engineering folder to help you gain **trust**, the most important thing to possses.
-
-- A .txt file containing all the bots code without any malicious functions.
-
-- A list of every porn image's link.
-
-
-If word ever gets out about this bot, note that you can always tweak the code itself to make it appear different - the only thing that is needed is some basic Python knowledge. However, if you are to release your own custom made version, please credit me.
-
-
----
-### Osiris Guide
-[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
-
-To use Osiris, run the `main.py` file. The usage of Osiris is straight-forward, so I'll quickly cover it, then spend most of this guide linking various resources to gaining that crucial holy-grail; the targets Auth token.
-- Nuking the targets account will remove their friends, servers, change their language to symbols and, whilst active at least, flick between dark and light mode (although this stops when Osiris is exited). When Osiris asks you for the number of threads, just put **10** or something.
-
-- Finding information on the target will display a few things, but the two most important things are the email and phone number (they may not have a phone number connected). **This discord raidkit has taken the descision to NOT include banking information/home addresses of nitro users... mainly a legal decision rather than a moral deicision, but a decision nevertheless.**
-- Logging into their account will, guess what, log into their account. Just remember to give the selenium browser some time - don't just close it because it didn't login one second to reaching the login page.
-
----
-### Ghost Guide
-[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
-
-To use Ghost, edit the `main.py` file and place a webhook URL in Webhook class initalisation on line 40 (e.g. `hook = Webhook("https://xxx.xxx")`). You may also want to rename  `main.py` to `main.pyw` to avoid users seeing a console, if you prefer.
-
-After doing this, there are several other things you can do:
-- You can use a Python to executable converter to allow the user to run the program without installing Python.
-
-- You can edit the HEX of the executable to change its file size and change its signatures to evade certain anti-malware programs (or, if you have the money, use an premium encryptor).
-
-**As with most tools in this raidkit, it will require a little bit of social engineering!**
-
----
-## 🌟 Remember to star this repository if it has helped you! 🌠
-
-[Anubis Guide](#anubis-guide) | [Qetesh Guide](#qetesh-guide) | [Osiris Guide](#osiris-guide) | [Ghost Guide](#ghost-guide)
+A huge thank you to everyone who has been willing to support the metrics of this repository! ❤️
