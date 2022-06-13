@@ -41,7 +41,7 @@ from cogs.anubis.anubis_help import AnubisHelp
 from cogs.qetesh.images import Images
 from cogs.qetesh.qetesh_help import QeteshHelp
 
-VERSION = "2.0.0"
+VERSION = "2.0.1"
 launched = False
 launch_after_yes = False
 

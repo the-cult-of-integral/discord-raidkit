@@ -1,5 +1,11 @@
 # Discord Raidkit Changelog
 
+### v2.0.1 (13/06/2022)
+##### Changes:
+- Max length of bot token field set to seventy to match new discord bot token lengths.
+
+---
+
 ### v2.0.0 (12/04/2022)
 ##### Additions:
 - **Discord Raidkit now uses a brand-new GUI!**
