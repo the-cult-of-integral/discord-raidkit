@@ -1,5 +1,21 @@
 # Discord Raidkit Changelog
 
+### v2.1.0 (14/06/2022)
+##### Additions:
+- Added a dark flat theme and a light flat theme.
+
+##### Changes:
+- Standard releases now use executables to make the installation process easier for users (you can still clone the repositories if you prefer the older method).
+- For cloned repositories, `install_requirements.bat` now uses a more specific `requirements.txt` file (the product of `pip freeze > requirements.txt`).
+- The logic that handles configuration has been simplified a little.
+- Some logic has been moved to a seperate `dr_utilities.py` file.
+- `qetesh_db.db` is now included in the zipped release folder to improve Qetesh's loading time on first run.
+- Yet another rewrite of `README.md`, this time going back to Discord Raidkit's roots.
+- Images are now in a seperate image folder, the folder "widgets" has been renamed to "gui", and logs are now stored in a "logs" folder.
+- Some display dialogs have had their layouts altered.
+
+---
+
 ### v2.0.1 (13/06/2022)
 ##### Changes:
 - Max length of bot token field set to seventy to match new discord bot token lengths.

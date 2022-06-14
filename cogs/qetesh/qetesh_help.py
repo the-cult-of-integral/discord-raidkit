@@ -1,6 +1,14 @@
-import discord
+"""
+Discord Raidkit v2.1.0 by the-cult-of-integral
+"The legitimate raidkit"
+Last updated: 14/06/2022
+"""
+
 import json
+
+import discord
 from discord.ext import commands
+
 
 class QeteshHelp(commands.Cog, name='QeteshHelp module'):
     def __init__(self, bot):
@@ -43,5 +51,4 @@ class QeteshHelp(commands.Cog, name='QeteshHelp module'):
                 colour=discord.Colour.orange()
             )
             await ctx.message.channel.send(embed=embed)
-
 

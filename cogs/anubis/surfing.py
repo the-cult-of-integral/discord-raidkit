@@ -1,8 +1,15 @@
+"""
+Discord Raidkit v2.1.0 by the-cult-of-integral
+"The legitimate raidkit"
+Last updated: 14/06/2022
+"""
+
 import discord
 import re
 import requests
 from bs4 import BeautifulSoup
 from discord.ext import commands
+
 
 class Surfing(commands.Cog, name='Surfing module'):
     def __init__(self, bot):
@@ -52,5 +59,4 @@ AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
                 color=discord.Colour.orange()
                 )
             await ctx.send(embed=embed)
-
 

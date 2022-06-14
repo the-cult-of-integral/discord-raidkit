@@ -1,3 +1,9 @@
+"""
+Discord Raidkit v2.1.0 by the-cult-of-integral
+"The legitimate raidkit"
+Last updated: 14/06/2022
+"""
+
 import discord
 from discord.ext import commands
 
@@ -65,5 +71,4 @@ class BotErrAndConfig(commands.Cog):
             description=f"{extension} has been reloaded.",
             color=discord.Colour.green())
         await ctx.send(embed=embed)
-
 

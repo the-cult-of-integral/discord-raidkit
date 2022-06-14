@@ -1,15 +1,23 @@
-import discord
+"""
+Discord Raidkit v2.1.0 by the-cult-of-integral
+"The legitimate raidkit"
+Last updated: 14/06/2022
+"""
+
 import os
 import random
 import sqlite3
+
+import discord
 from discord.ext import commands
+
 
 class Images(commands.Cog, name='Images module'):
     def __init__(self, bot) -> None:
         self.bot = bot
         self.conn_string = "qetesh_db.db"
-        if not os.path.isfile("con_log.txt"):
-            open("con_log.txt", "w").close()
+        if not os.path.isfile("logs\con_log.txt"):
+            open("logs\con_log.txt", "w").close()
         self.start()
         self.conn = sqlite3.connect(self.conn_string)
         self.c = self.conn.cursor()
@@ -23,7 +31,7 @@ class Images(commands.Cog, name='Images module'):
                 c.execute(*args)
                 c.close()
         except Exception as e:
-            with open("con_log.txt", "a") as f:
+            with open("logs\con_log.txt", "a") as f:
                 f.writelines(f"execute() err: {e}\n")
     
     def create_links_table(self) -> None:
@@ -33,14 +41,14 @@ class Images(commands.Cog, name='Images module'):
                 link TEXT,
                 UNIQUE(category, link))""")
         except Exception as e:
-            with open("con_log.txt", "a") as f:
+            with open("logs\con_log.txt", "a") as f:
                 f.writelines(f"execute() err: {e}\n")
     
     def insert_link(self, link, category) -> None:
         try:
             self.execute("INSERT OR IGNORE INTO links VALUES (?, ?)", (category, link))
         except Exception as e:
-            with open("con_log.txt", "a") as f:
+            with open("logs\con_log.txt", "a") as f:
                 f.writelines(f"execute() err: {e}\n")
     
     def start(self) -> None:
@@ -48,7 +56,7 @@ class Images(commands.Cog, name='Images module'):
             if not os.path.isfile("qetesh_db.db"):
                 self.create_links_table()
         except Exception as e:
-            with open("con_log.txt", "a") as f:
+            with open("logs\con_log.txt", "a") as f:
                 f.writelines(f"create_links_table() err: {e}")
         
         with open("cogs/qetesh/vagl/vagl_links.txt", "r") as file: 
@@ -56,7 +64,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "vagl") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/bj/bj_links.txt", "r") as file: 
@@ -64,7 +72,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "bj") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}") 
 
         with open("cogs/qetesh/anal/anal_links.txt", "r") as file: 
@@ -72,7 +80,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "anal") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/lesbian/lesbian_links.txt", "r") as file: 
@@ -80,7 +88,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "lesbian") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/gay/gay_links.txt", "r") as file: 
@@ -88,7 +96,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "gay") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/tits/tits_links.txt", "r") as file: 
@@ -96,7 +104,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "tits") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/ass/ass_links.txt", "r") as file: 
@@ -104,7 +112,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "ass") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/pussy/pussy_links.txt", "r") as file: 
@@ -112,7 +120,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "pussy") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/cock/cock_links.txt", "r") as file: 
@@ -120,7 +128,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "cock") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/asian/asian_links.txt", "r") as file:
@@ -128,7 +136,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "asian") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/amateur/amateur_links.txt", "r") as file:
@@ -136,7 +144,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "amateur") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/hentai/hentai_links.txt", "r") as file:
@@ -144,7 +152,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "hentai") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/milf/milf_links.txt", "r") as file:
@@ -152,7 +160,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "milf") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/teen/teen_links.txt", "r") as file:
@@ -160,7 +168,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "teen") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/ebony/ebony_links.txt", "r") as file:
@@ -168,7 +176,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "ebony") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/threesome/threesome_links.txt", "r") as file:
@@ -176,7 +184,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "threesome") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/cartoon/cartoon_links.txt", "r") as file:
@@ -184,7 +192,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "cartoon") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/creampie/creampie_links.txt", "r") as file:
@@ -192,7 +200,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "creampie") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/bondage/bondage_links.txt", "r") as file:
@@ -200,7 +208,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "bondage") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/squirt/squirt_links.txt", "r") as file:
@@ -208,7 +216,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "squirt") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/yiff/yiff_links.txt", "r") as file:
@@ -216,7 +224,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "yiff") for link in links]
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
 
         with open("cogs/qetesh/neko/neko_links.txt", "r") as file: 
@@ -224,7 +232,7 @@ class Images(commands.Cog, name='Images module'):
                 links = file.read().split("\n")
                 [self.insert_link(link, "neko") for link in links]    
             except Exception as e:
-                with open("con_log.txt", "a") as f:
+                with open("logs\con_log.txt", "a") as f:
                     f.writelines(f"insert_links() err: {e}")
     
     def get_link(self, cat) -> None:
@@ -232,7 +240,7 @@ class Images(commands.Cog, name='Images module'):
             self.c.execute("SELECT * FROM links WHERE category = ?;", (cat,))
             self.link = random.choice(self.c.fetchall())[1]
         except Exception as e:
-            with open("con_log.txt", "a") as f:
+            with open("logs\con_log.txt", "a") as f:
                 f.writelines(f"insert_links() err: {e}")  
         try:        
             if self.link == self.previous_link:
@@ -240,7 +248,7 @@ class Images(commands.Cog, name='Images module'):
             else:
                 self.previous_link = self.link
         except Exception as e:
-            with open("con_log.txt", "a") as f:
+            with open("logs\con_log.txt", "a") as f:
                 f.writelines(f"get_link() err: {e}\n")
 
     @commands.command(name="vagl")
@@ -792,5 +800,4 @@ class Images(commands.Cog, name='Images module'):
         embed = discord.Embed()
         embed.set_image(url=self.link)
         await ctx.message.channel.send(embed=embed)
-
 

@@ -1,5 +1,12 @@
+"""
+Discord Raidkit v2.1.0 by the-cult-of-integral
+"The legitimate raidkit"
+Last updated: 14/06/2022
+"""
+
 import discord
 from discord.ext import commands
+
 
 class RaidPrevention(commands.Cog, name='RaidPrevention module'):
     def __init__(self, bot):
@@ -111,5 +118,4 @@ class RaidPrevention(commands.Cog, name='RaidPrevention module'):
                 color=discord.Color.blue()
                 )
             await ctx.send(embed=embed)
-
 

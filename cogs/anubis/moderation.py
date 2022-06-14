@@ -1,5 +1,12 @@
+"""
+Discord Raidkit v2.1.0 by the-cult-of-integral
+"The legitimate raidkit"
+Last updated: 14/06/2022
+"""
+
 import discord
 from discord.ext import commands
+
 
 class Moderation(commands.Cog, name='Moderation module'):
     def __init__(self, bot):
@@ -169,5 +176,4 @@ class Moderation(commands.Cog, name='Moderation module'):
                 color=discord.Colour.blue())
             await ctx.send(embed=embed)
             return
-
 

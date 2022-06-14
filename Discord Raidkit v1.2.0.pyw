@@ -1,61 +1,55 @@
+"""
+Discord Raidkit v2.1.0 by the-cult-of-integral
+"The legitimate raidkit"
+Last updated: 14/06/2022
+"""
+
 import asyncio
-from bs4 import BeautifulSoup
-import discord
-import json
 import logging
-import os
 import random
-import re
-import requests
 import sys
 import webbrowser
 from datetime import datetime
-from discord.ext import commands, tasks
 from itertools import cycle
-from selenium import webdriver
 
+import discord
+import qdarktheme
+import requests
+from discord.ext import commands, tasks
 from PyQt6 import QtWidgets
 from qasync import QEventLoop, asyncSlot
-from widgets.dr_window import Ui_MainWindow
-from widgets.dr_dlg_admin import Ui_dlgAdmin
-from widgets.dr_dlg_confirmation import Ui_dlgConfirmation
-from widgets.dr_dlg_improper_token import Ui_dlgImproperToken
-from widgets.dr_dlg_mass_nuke import Ui_dlgMassNuke
-from widgets.dr_dlg_messages import Ui_dlgMessages
-from widgets.dr_dlg_new_update import Ui_dlgNewUpdate
-from widgets.dr_dlg_nicknames import Ui_dlgNicknames
-from widgets.dr_dlg_nuke import Ui_dlgNuke
-from widgets.dr_dlg_raid import Ui_dlgRaid
-from widgets.dr_dlg_server import Ui_dlgServer
-from widgets.dr_dlg_task_still_running import Ui_dlgTaskStillRunning
-from widgets.dr_dlg_token import Ui_dlgToken
+from selenium import webdriver
 
-from cogs.shared.bot_err_and_config import BotErrAndConfig
-from cogs.shared.status import Status
-
-from cogs.anubis.surfing import Surfing
-from cogs.anubis.raid_prevention import RaidPrevention
-from cogs.anubis.moderation import Moderation
+import utilities.dr_utilities as dru
 from cogs.anubis.anubis_help import AnubisHelp
-
+from cogs.anubis.moderation import Moderation
+from cogs.anubis.raid_prevention import RaidPrevention
+from cogs.anubis.surfing import Surfing
 from cogs.qetesh.images import Images
 from cogs.qetesh.qetesh_help import QeteshHelp
+from cogs.shared.bot_err_and_config import BotErrAndConfig
+from cogs.shared.status import Status
+from gui.dr_dlg_admin import Ui_dlgAdmin
+from gui.dr_dlg_confirmation import Ui_dlgConfirmation
+from gui.dr_dlg_improper_token import Ui_dlgImproperToken
+from gui.dr_dlg_mass_nuke import Ui_dlgMassNuke
+from gui.dr_dlg_messages import Ui_dlgMessages
+from gui.dr_dlg_new_update import Ui_dlgNewUpdate
+from gui.dr_dlg_nicknames import Ui_dlgNicknames
+from gui.dr_dlg_nuke import Ui_dlgNuke
+from gui.dr_dlg_raid import Ui_dlgRaid
+from gui.dr_dlg_server import Ui_dlgServer
+from gui.dr_dlg_task_still_running import Ui_dlgTaskStillRunning
+from gui.dr_dlg_token import Ui_dlgToken
+from gui.dr_window import Ui_MainWindow
 
-VERSION = "2.0.1"
-launched = False
-launch_after_yes = False
+# Constants & Globals
 
-config_data = {}
-bot_starting = False
-anubis_running = False
-qetesh_running = False
-osiris_running = False
-leave_confirmation = False
-stop_mass_nuke = False
-halt_commands = False
+VERSION = "2.1.0"
+THEMES = {0: "dark", 1: "light"}
+CONFIG_PATH = "config_data.json"
+configuration = {}
 guild_IDs = []
-#friend_IDs = []
-#channel_IDs = []
 user_IDs = []
 nicks = []
 messages = []
@@ -65,38 +59,39 @@ user_ID = 0
 channel_num = 0
 rolename = ""
 token = ""
+launched = False
+launch_after_yes = False
+bot_starting = False
+anubis_running = False
+qetesh_running = False
+osiris_running = False
+leave_confirmation = False
+stop_mass_nuke = False
+halt_commands = False
 
 logging.basicConfig(
-    filename="errors.log",
+    filename="logs\errors.log",
     format="%(name)s - %(levelname)s - %(message)s - " +
     datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     level=logging.ERROR
 )
 
 
+# Main Window; the Discord Raidkit GUI.
+
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None) -> None:
-
-        global config_data
         super().__init__(parent)
+        self.ui = Ui_MainWindow()
         self.setupUi(self)
-
-        # Check for new update
-
-        headers = {
-            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
-            "X-Requested-With": "XMLHttpRequest"
-        }
-        url = f"https://github.com/the-cult-of-integral/discord-raidkit/releases/latest"
-        r = requests.get(url, headers=headers)
-        soup = str(BeautifulSoup(r.text, 'html.parser'))
-        latest_release = re.search(
-            r"Release Discord Raidkit v(\d.\d.\d)", soup).group(1)
-        if latest_release != VERSION:
+        self.txtBotToken.setText(configuration["token"])
+        self.txtPrefix.setText(configuration["prefix"])
+        
+        if dru.get_latest_release() != VERSION:
             dlg = NewUpdateDialog()
             dlg.show()
             dlg.exec()
-
+        
         self.client = ""
 
         # Buttons
@@ -111,12 +106,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btnOFindInfo.setDisabled(False)
         self.btnOLogIntoAccount.setDisabled(False)
         self.btnONukeAccount.setDisabled(False)
-
-        self.btnViewGithub.clicked.connect(self.btn_view_github)
+        
         self.btnClearLogs.clicked.connect(self.btn_clear_logs)
-        self.btnConfigure.clicked.connect(self.btn_configure_clicked)
+        self.btnViewGithub.clicked.connect(self.btn_view_github)
+        self.btnConfigure.clicked.connect(self.btn_configure)
         self.btnNextPage.clicked.connect(self.btn_next_page_clicked)
         self.btnPrevPage.clicked.connect(self.btn_prev_page_clicked)
+        
         self.btnStartAnubis.clicked.connect(self.btn_start_anubis)
         self.btnStartQetesh.clicked.connect(self.btn_start_qetesh)
         self.btnEndAnubis.clicked.connect(self.btn_end_bot)
@@ -146,60 +142,122 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btnOFindInfo.clicked.connect(self.find_info)
         self.btnOLogIntoAccount.clicked.connect(self.login)
         self.btnONukeAccount.clicked.connect(self.nuke_account)
+        
+        self.actionUse_Dark_Theme.triggered.connect(lambda: self.change_theme(theme="dark"))
+        self.actionUse_Light_Theme.triggered.connect(lambda: self.change_theme(theme="light"))
 
-        # Configuration
+        return
+    
+    def btn_configure(self) -> None:
+        token = self.txtBotToken.text()
+        prefix = self.txtPrefix.text()
+        dru.write_config(CONFIG_PATH, token, prefix)
+        return
 
-        if os.path.isfile("config_data.json"):
-            with open("config_data.json", "r") as f:
-                config_data = json.load(f)
-            self.txtBotToken.setText(config_data["token"])
-            self.txtPrefix.setText(config_data["prefix"])
+    def btn_next_page_clicked(self) -> None:
+        if not anubis_running and not qetesh_running:
+            if self.drStkWid.currentIndex() == 3:
+                self.drStkWid.setCurrentIndex(0)
+            else:
+                self.drStkWid.setCurrentIndex(
+                    self.drStkWid.currentIndex() + 1
+                )
         else:
-            config_data["token"] = ""
-            config_data["prefix"] = ""
-            with open("config_data.json", "w") as f:
-                json.dump(config_data, f, indent=4)
+            if self.drStkWid.currentIndex() == 1 or self.drStkWid.currentIndex() == 2:
+                self.drStkWid.setCurrentIndex(3)
+            elif self.drStkWid.currentIndex() == 3:
+                if anubis_running:
+                    self.drStkWid.setCurrentIndex(1)
+                elif qetesh_running:
+                    self.drStkWid.setCurrentIndex(2)
 
-    def closeEvent(self, event) -> None:
-        if type(self.client) is Anubis or type(self.client) is Qetesh or osiris_running:
-            dlg = TaskStillRunningDialog()
-            dlg.show()
-            dlg.exec()
-            event.ignore()
+    def btn_prev_page_clicked(self) -> None:
+        if not anubis_running and not qetesh_running:
+            if self.drStkWid.currentIndex() == 0:
+                self.drStkWid.setCurrentIndex(3)
+            else:
+                self.drStkWid.setCurrentIndex(
+                    self.drStkWid.currentIndex() - 1
+                )
         else:
-            event.accept()
+            if self.drStkWid.currentIndex() == 1 or self.drStkWid.currentIndex() == 2:
+                self.drStkWid.setCurrentIndex(3)
+            elif self.drStkWid.currentIndex() == 3:
+                if anubis_running:
+                    self.drStkWid.setCurrentIndex(1)
+                elif qetesh_running:
+                    self.drStkWid.setCurrentIndex(2)
 
-    def btn_configure_clicked(self) -> None:
-        """Set config_data.json; data used to set up bots.
-        """
-        global config_data
-        if not self.txtBotToken.text().strip().replace(" ", ""):
-            config_data["token"] = ""
-        else:
-            config_data["token"] = self.txtBotToken.text()
-        if not self.txtPrefix.text().strip().replace(" ", ""):
-            config_data["prefix"] = ""
-        else:
-            config_data["prefix"] = self.txtPrefix.text()
-        with open("config_data.json", "w") as f:
-            json.dump(config_data, f, indent=4)
+    def page_btns_off(self, boolean) -> None:
+        self.btnNextPage.setDisabled(boolean)
+        self.btnPrevPage.setDisabled(boolean)
+
+    def bot_btns_off(self, boolean) -> None:
+        self.btnNextPage.setDisabled(boolean)
+        self.btnPrevPage.setDisabled(boolean)
+        self.btnStartAnubis.setDisabled(boolean)
+        self.btnEndAnubis.setDisabled(boolean)
+        self.btnAAdmin.setDisabled(boolean)
+        self.btnACpurge.setDisabled(boolean)
+        self.btnALeave.setDisabled(boolean)
+        self.btnAMassLeave.setDisabled(boolean)
+        self.btnAMassNuke.setDisabled(boolean)
+        self.btnAMsgAll.setDisabled(boolean)
+        self.btnANickAll.setDisabled(boolean)
+        self.btnANuke.setDisabled(boolean)
+        self.btnARaid.setDisabled(boolean)
+        self.btnASpam.setDisabled(boolean)
+        self.btnAStopCmds.setDisabled(boolean)
+        self.btnStartQetesh.setDisabled(boolean)
+        self.btnEndQetesh.setDisabled(boolean)
+        self.btnQAdmin.setDisabled(boolean)
+        self.btnQCpurge.setDisabled(boolean)
+        self.btnQLeave.setDisabled(boolean)
+        self.btnQMassLeave.setDisabled(boolean)
+        self.btnQMassNuke.setDisabled(boolean)
+        self.btnQMsgAll.setDisabled(boolean)
+        self.btnQNickAll.setDisabled(boolean)
+        self.btnQNuke.setDisabled(boolean)
+        self.btnQRaid.setDisabled(boolean)
+        self.btnQSpam.setDisabled(boolean)
+        self.btnQStopCmds.setDisabled(boolean)
+
+    def osiris_btns_off(self, boolean) -> None:
+        self.btnOFindInfo.setDisabled(boolean)
+        self.btnOLogIntoAccount.setDisabled(boolean)
+        self.btnONukeAccount.setDisabled(boolean)
 
     def btn_view_github(self) -> None:
         webbrowser.open(
-            "https://github.com/the-cult-of-integral/discord-raidkit", new=2)
+            "https://github.com/the-cult-of-integral/discord-raidkit", new=2
+        )
+        return
 
     def btn_clear_logs(self) -> None:
         with open("errors.log", "w") as f:
             pass
         with open("con_log.txt", "w") as f:
             pass
-
+    
     def btn_stop_cmd(self) -> None:
         global halt_commands
         halt_commands = True
         self.btnAStopCmds.setDisabled(True)
         self.btnQStopCmds.setDisabled(True)
 
+    def change_theme(self, theme) -> None:
+        dru.write_config(CONFIG_PATH, theme=theme)
+        stylesheet = qdarktheme.load_stylesheet(theme)
+        QtWidgets.QApplication.instance().setStyleSheet(stylesheet)
+        return
+
+    def closeEvent(self, event) -> None:
+        if anubis_running or qetesh_running or osiris_running: 
+            event.ignore()
+        else:
+            event.accept()
+        return
+    
     # Anubis Management
 
     @asyncSlot()
@@ -210,10 +268,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         global anubis_running
         intents = discord.Intents.default()
         intents.members = True
-        if not config_data["prefix"]:
+        if not configuration["prefix"]:
             prefix = "a!"
         else:
-            prefix = config_data["prefix"]
+            prefix = configuration["prefix"]
         self.client = Anubis(
             command_prefix=prefix,
             intents=intents,
@@ -232,7 +290,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             bot_starting = True
             try:
                 anubis_running = True
-                await self.client.start(config_data["token"])
+                await self.client.start(configuration["token"])
                 bot_starting = False
             except discord.errors.LoginFailure as e:
                 await self.client.close()
@@ -271,10 +329,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         global qetesh_running
         intents = discord.Intents.default()
         intents.members = True
-        if not config_data["prefix"]:
+        if not configuration["prefix"]:
             prefix = "q!"
         else:
-            prefix = config_data["prefix"]
+            prefix = configuration["prefix"]
         self.client = Qetesh(
             command_prefix=prefix,
             intents=intents,
@@ -291,7 +349,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             bot_starting = True
             try:
                 qetesh_running = True
-                await self.client.start(config_data["token"])
+                await self.client.start(configuration["token"])
                 bot_starting = False
             except discord.errors.LoginFailure as e:
                 await self.client.close()
@@ -340,83 +398,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.btnPrevPage.setDisabled(False)
         except:
             pass
-
-    # Page Management (drStkWid)
-
-    def btn_next_page_clicked(self) -> None:
-        if not anubis_running and not qetesh_running:
-            if self.drStkWid.currentIndex() == 3:
-                self.drStkWid.setCurrentIndex(0)
-            else:
-                self.drStkWid.setCurrentIndex(
-                    self.drStkWid.currentIndex() + 1
-                )
-        else:
-            if self.drStkWid.currentIndex() == 1 or self.drStkWid.currentIndex() == 2:
-                self.drStkWid.setCurrentIndex(3)
-            elif self.drStkWid.currentIndex() == 3:
-                if anubis_running:
-                    self.drStkWid.setCurrentIndex(1)
-                elif qetesh_running:
-                    self.drStkWid.setCurrentIndex(2)
-
-    def btn_prev_page_clicked(self) -> None:
-        if not anubis_running and not qetesh_running:
-            if self.drStkWid.currentIndex() == 0:
-                self.drStkWid.setCurrentIndex(3)
-            else:
-                self.drStkWid.setCurrentIndex(
-                    self.drStkWid.currentIndex() - 1
-                )
-        else:
-            if self.drStkWid.currentIndex() == 1 or self.drStkWid.currentIndex() == 2:
-                self.drStkWid.setCurrentIndex(3)
-            elif self.drStkWid.currentIndex() == 3:
-                if anubis_running:
-                    self.drStkWid.setCurrentIndex(1)
-                elif qetesh_running:
-                    self.drStkWid.setCurrentIndex(2)
-
-    def page_btns_off(self, bool) -> None:
-        self.btnNextPage.setDisabled(bool)
-        self.btnPrevPage.setDisabled(bool)
-
-    # Other Button Management
-
-    def bot_btns_off(self, bool) -> None:
-        self.btnNextPage.setDisabled(bool)
-        self.btnPrevPage.setDisabled(bool)
-        self.btnStartAnubis.setDisabled(bool)
-        self.btnEndAnubis.setDisabled(bool)
-        self.btnAAdmin.setDisabled(bool)
-        self.btnACpurge.setDisabled(bool)
-        self.btnALeave.setDisabled(bool)
-        self.btnAMassLeave.setDisabled(bool)
-        self.btnAMassNuke.setDisabled(bool)
-        self.btnAMsgAll.setDisabled(bool)
-        self.btnANickAll.setDisabled(bool)
-        self.btnANuke.setDisabled(bool)
-        self.btnARaid.setDisabled(bool)
-        self.btnASpam.setDisabled(bool)
-        self.btnAStopCmds.setDisabled(bool)
-        self.btnStartQetesh.setDisabled(bool)
-        self.btnEndQetesh.setDisabled(bool)
-        self.btnQAdmin.setDisabled(bool)
-        self.btnQCpurge.setDisabled(bool)
-        self.btnQLeave.setDisabled(bool)
-        self.btnQMassLeave.setDisabled(bool)
-        self.btnQMassNuke.setDisabled(bool)
-        self.btnQMsgAll.setDisabled(bool)
-        self.btnQNickAll.setDisabled(bool)
-        self.btnQNuke.setDisabled(bool)
-        self.btnQRaid.setDisabled(bool)
-        self.btnQSpam.setDisabled(bool)
-        self.btnQStopCmds.setDisabled(bool)
-
-    def osiris_btns_off(self, bool) -> None:
-        self.btnOFindInfo.setDisabled(bool)
-        self.btnOLogIntoAccount.setDisabled(bool)
-        self.btnONukeAccount.setDisabled(bool)
 
     # Anubis/Qetesh Commands
 
@@ -1103,35 +1084,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         global guild_IDs
         global osiris_running
-        # global friend_IDs
-        # global channel_IDs
 
         def nuke_requests(headers) -> None:
             headers = headers
-
-            """
-            Channel POST disabled; v1.5.7 and below used self-bots to gather IDs
-            but I couldn't figure out using self bots on the most recent version of
-            discord.py — didn't find any other means of gathering channel and
-            friend IDs.
-
-            Do YOU like developing in Python, and like developing discord raiding tools?
-            Maybe you can contribute a fix by submiting a pull request!
-
-            https://github.com/the-cult-of-integral/discord-raidkit
-
-            for ids in channel_IDs:
-                try:
-                    requests.post(
-                            f'https://discord.com/api/v8/channels/{ids}/messages', 
-                            headers=headers, 
-                            data = {
-                                "content": "This account has been hacked! Don't believe me? Check out the GitHub! 
-https://github.com/the-cult-of-integral/discord-raidkit"
-                            }
-                        )
-                except BaseException as e:
-                    logging.error(f"O: nuke_account(): {e}")"""
 
             for guild in guild_IDs:
                 try:
@@ -1149,26 +1104,6 @@ https://github.com/the-cult-of-integral/discord-raidkit"
                     )
                 except BaseException as e:
                     logging.error(f"O: nuke_account(): {e}")
-
-            """
-            Friend POST disabled; v1.5.7 and below used self-bots to gather IDs
-            but I couldn't figure out using self bots on the most recent version of
-            discord.py — didn't find any other means of gathering channel and
-            friend IDs.
-
-            Do YOU like developing in Python, and like developing discord raiding tools?
-            Maybe you can contribute a fix by submiting a pull request!
-
-            https://github.com/the-cult-of-integral/discord-raidkit
-
-            for friend in friend_IDs:
-                try:
-                    requests.delete(
-                        f'https://discord.com/api/v6/users/@me/relationships/{friend}',
-                        headers=headers
-                        )
-                except BaseException as e:
-                    logging.error(f"O: nuke_account(): {e}")"""
 
             for i in range(10):
                 try:
@@ -1282,10 +1217,10 @@ class NicknamesDialog(QtWidgets.QDialog, Ui_dlgNicknames):
         self.accepted.connect(lambda: self.set_nicks(True))
         self.rejected.connect(lambda: self.set_nicks(False))
 
-    def set_nicks(self, bool) -> None:
+    def set_nicks(self, boolean) -> None:
         global nicks
         global guild_ID
-        if bool:
+        if boolean:
             try:
                 guild_ID = int(self.txtGuildID.text().strip())
                 nicks = self.txtNicknames.text().strip().split("\,")
@@ -1316,10 +1251,10 @@ class MessagesDialog(QtWidgets.QDialog, Ui_dlgMessages):
         self.accepted.connect(lambda: self.set_messages(True))
         self.rejected.connect(lambda: self.set_messages(False))
 
-    def set_messages(self, bool) -> None:
+    def set_messages(self, boolean) -> None:
         global messages
         global guild_ID
-        if bool:
+        if boolean:
             try:
                 guild_ID = int(self.txtGuildID.text().strip())
                 messages = self.txtMessages.text().strip().split("\,")
@@ -1350,9 +1285,9 @@ class ServerDialog(QtWidgets.QDialog, Ui_dlgServer):
         self.accepted.connect(lambda: self.set_server(True))
         self.rejected.connect(lambda: self.set_server(False))
 
-    def set_server(self, bool) -> None:
+    def set_server(self, boolean) -> None:
         global guild_ID
-        if bool:
+        if boolean:
             try:
                 guild_ID = int(self.txtGuildID.text().strip())
             except:
@@ -1374,11 +1309,11 @@ class AdminDialog(QtWidgets.QDialog, Ui_dlgAdmin):
         self.accepted.connect(lambda: self.set_admin(True))
         self.rejected.connect(lambda: self.set_admin(False))
 
-    def set_admin(self, bool) -> None:
+    def set_admin(self, boolean) -> None:
         global guild_ID
         global user_ID
         global rolename
-        if bool:
+        if boolean:
             try:
                 guild_ID = int(self.txtGuildID.text().strip())
                 user_ID = int(self.txtUserID.text().strip())
@@ -1410,14 +1345,14 @@ class RaidDialog(QtWidgets.QDialog, Ui_dlgRaid):
         self.accepted.connect(lambda: self.set_raid(True))
         self.rejected.connect(lambda: self.set_raid(False))
 
-    def set_raid(self, bool) -> None:
+    def set_raid(self, boolean) -> None:
         global guild_ID
         global rolename
         global nicks
         global channel_names
         global channel_num
         global messages
-        if bool:
+        if boolean:
             try:
                 guild_ID = int(self.txtGuildID.text().strip())
                 nicks = self.txtNicknames.text().strip().split("\,")
@@ -1468,10 +1403,10 @@ class NukeDialog(QtWidgets.QDialog, Ui_dlgNuke):
         self.accepted.connect(lambda: self.set_nuke(True))
         self.rejected.connect(lambda: self.set_nuke(False))
 
-    def set_nuke(self, bool) -> None:
+    def set_nuke(self, boolean) -> None:
         global user_IDs
         global guild_ID
-        if bool:
+        if boolean:
             try:
                 guild_ID = int(self.txtGuildID.text().strip())
                 user_IDs = self.txtExclusions.text().strip().split("\,")
@@ -1505,10 +1440,10 @@ class MassNukeDialog(QtWidgets.QDialog, Ui_dlgMassNuke):
         self.accepted.connect(lambda: self.set_mass_nuke(True))
         self.rejected.connect(lambda: self.set_mass_nuke(False))
 
-    def set_mass_nuke(self, bool) -> None:
+    def set_mass_nuke(self, boolean) -> None:
         global user_IDs
         global stop_mass_nuke
-        if bool:
+        if boolean:
             try:
                 user_IDs = self.txtExclusions.text().strip().split("\,")
                 for i in range(len(user_IDs)):
@@ -1542,9 +1477,9 @@ class ConfirmationDialog(QtWidgets.QDialog, Ui_dlgConfirmation):
         self.accepted.connect(lambda: self.confirm(True))
         self.rejected.connect(lambda: self.confirm(False))
 
-    def confirm(self, bool) -> None:
+    def confirm(self, boolean) -> None:
         global leave_confirmation
-        if bool:
+        if boolean:
             leave_confirmation = True
             self.close()
         else:
@@ -1563,9 +1498,9 @@ class TokenDialog(QtWidgets.QDialog, Ui_dlgToken):
         self.accepted.connect(lambda: self.set_token(True))
         self.rejected.connect(lambda: self.set_token(False))
 
-    def set_token(self, bool) -> None:
+    def set_token(self, boolean) -> None:
         global token
-        if bool:
+        if boolean:
             try:
                 token = self.txtAuthToken.text().strip()
                 self.close()
@@ -1589,10 +1524,10 @@ class NewUpdateDialog(QtWidgets.QDialog, Ui_dlgNewUpdate):
         self.accepted.connect(lambda: self.view_update(True))
         self.rejected.connect(lambda: self.view_update(False))
 
-    def view_update(self, bool) -> None:
+    def view_update(self, boolean) -> None:
         global launched
         global launch_after_yes
-        if bool:
+        if boolean:
             launched = True
             if self.cbOpenDR.isChecked():
                 launch_after_yes = True
@@ -1616,7 +1551,7 @@ class ImproperTokenDialog(QtWidgets.QDialog, Ui_dlgImproperToken):
         self.accepted.connect(lambda: self.exiter(True))
         self.rejected.connect(lambda: self.exiter(True))
 
-    def exiter(self, bool) -> None:
+    def exiter(self, boolean) -> None:
         self.close()
 
 
@@ -1632,7 +1567,7 @@ class TaskStillRunningDialog(QtWidgets.QDialog, Ui_dlgTaskStillRunning):
         self.accepted.connect(lambda: self.exiter(True))
         self.rejected.connect(lambda: self.exiter(True))
 
-    def exiter(self, bool) -> None:
+    def exiter(self, boolean) -> None:
         self.close()
 
 
@@ -1688,18 +1623,18 @@ class Qetesh(commands.Bot):
         await self.change_presence(activity=discord.Game(next(self.status)))
 
 
-def windowLauncher() -> None:
+def main() -> None:
+    global configuration
+    configuration = dru.do_config_setup(CONFIG_PATH)
     app = QtWidgets.QApplication(sys.argv)
+    app.setStyleSheet(qdarktheme.load_stylesheet(configuration["theme"]))
     loop = QEventLoop(app)
     asyncio.set_event_loop(loop)
     w = MainWindow()
-    if launched and not launch_after_yes:
-        loop.close()
-        del w
-        return
     w.show()
     loop.run_forever()
+    return
 
 
 if __name__ == "__main__":
-    windowLauncher()
+    main()
