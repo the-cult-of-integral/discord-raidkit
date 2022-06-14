@@ -24,11 +24,11 @@ What sets the Discord Raidkit apart from other similar tools is its heavy emphas
 
 ### How do I install Discord Raidkit?
 
-Installing Discord Raidkit is easier than ever! Simply head to the releases page, download a zipped release, extract the release and then run the `Discord Raidkit.exe` file.
+(To use this application, you must have Python installed on your machine — when installing, make sure to check the "ADD TO PATH" checkbox!)
 
-Alternatively, if you are paranoid of executables (or just can't be bothered hunting for the executable through a sea of dependency files), you can clone this repository, run the `install_requirements.bat` file and then run the `Discord Raidkit.pyw` file.  **Note that to use this method, you must have Python installed and configured correctly (select ADD TO PATH)**.
+Installing Discord Raidkit is easier than ever! Simply head to the releases page, download a zipped release, extract the release, run the `install_requirements.bat` file and then run the `Discord Raidkit v2.1.0.pyw` file.
 
-Remember, **to use Osiris you must include [this browser folder](https://drive.google.com/file/d/1tx4QnZdCEDfT9MLh3SXIVlqcm_SrQ3P8/view?usp=sharing) within the application's working directory!**
+Remember, **to use Osiris you must include [this browser folder](https://drive.google.com/file/d/1tx4QnZdCEDfT9MLh3SXIVlqcm_SrQ3P8/view?usp=sharing) within the application's working directory!** (i.e. place the browser folder inside the Discord Raidkit folder, not the sub-folders).
 
 ---
 
