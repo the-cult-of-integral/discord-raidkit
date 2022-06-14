@@ -5,8 +5,7 @@
 - Added a dark flat theme and a light flat theme.
 
 ##### Changes:
-- Standard releases now use executables to make the installation process easier for users (you can still clone the repositories if you prefer the older method).
-- For cloned repositories, `install_requirements.bat` now uses a more specific `requirements.txt` file (the product of `pip freeze > requirements.txt`).
+- `install_requirements.bat` now uses a more specific `requirements.txt` file (the product of `pip freeze > requirements.txt`).
 - The logic that handles configuration has been simplified a little.
 - Some logic has been moved to a seperate `dr_utilities.py` file.
 - `qetesh_db.db` is now included in the zipped release folder to improve Qetesh's loading time on first run.
