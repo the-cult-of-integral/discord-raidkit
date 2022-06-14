@@ -24,7 +24,7 @@ What sets the Discord Raidkit apart from other similar tools is its heavy emphas
 
 ### How do I install Discord Raidkit?
 
-(To use this application, you must have Python installed on your machine — when installing, make sure to check the "ADD TO PATH" checkbox!)
+(To use this application, [you must have Python installed on your machine](https://www.python.org) — when installing, make sure to check the "ADD TO PATH" checkbox!)
 
 Installing Discord Raidkit is easier than ever! Simply head to the releases page, download a zipped release, extract the release, run the `install_requirements.bat` file and then run the `Discord Raidkit v2.1.0.pyw` file.
 
