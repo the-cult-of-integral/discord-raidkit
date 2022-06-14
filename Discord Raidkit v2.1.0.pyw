@@ -6,6 +6,7 @@ Last updated: 14/06/2022
 
 import asyncio
 import logging
+import os
 import random
 import sys
 import webbrowser
@@ -68,6 +69,9 @@ osiris_running = False
 leave_confirmation = False
 stop_mass_nuke = False
 halt_commands = False
+
+if not os.path.isdir("logs"):
+    os.mkdir("logs")
 
 logging.basicConfig(
     filename="logs\errors.log",
