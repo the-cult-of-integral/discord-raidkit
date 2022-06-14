@@ -1,0 +1,1 @@
+This file can be deleted; GitHub Repositories do not allow empty folders, but this repository requires a "logs" folder in the working directory of the application.
