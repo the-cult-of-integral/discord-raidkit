@@ -47,15 +47,21 @@ To find out how to use Discord Raidkit, you can [view the Discord Raidkit Wiki h
   - **resolution**: **this issue can be fixed by restarting the application after onset**.
   - **conclusion**: this issue has been deemed severe enough to make parallel development with a new console based varient of Discord Raidkit considered. It is unlikely this issue will be fixed.
 
+- **2.1.0-aq-1 : moderate**
+  - **description**: for Anubis and Qetesh, setting the bot token and prefix via the configure button will not work due to a bug regarding to loading of config to the `configuration` variable.
+  - **resolution**: until the release of v2.2.0, please set the bot token and prefix directly in the configuration JSON file via a text editor e.g. notepad.
+  - **conclusion**: this issue has been fixed in v2.2.0, which is due for release in June 2022.
+
 Please report any issues to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues)!
 
 ---
 
 ### Upcoming Releases
 
-##### v.2.2.0 — estimated late June or July.
+##### v.2.2.0 — estimated June 2022.
 - Includes a significantly less buggy console application for Discord Raidkit.
 - Adds slash commands to Discord Raidkit.
+- Fix 2.1.0-aq-1.
 
 ---
 
