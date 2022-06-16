@@ -44,7 +44,7 @@ To find out how to use Discord Raidkit, you can [view the Discord Raidkit Wiki h
 - **Privelleged Intents?**
   - This is not an issue with this application, but is a common issue that is brought to me so I will address it here: **when creating a discord bot, you must enabled all of the privelleged intents options presented to you!**
 
-- **2.0.0-2.2.0-aq-gui-1 : moderate**
+- **2.0.0-2.2.1-aq-gui-1 : moderate**
   - **description**: for Anubis and Qetesh, the GUI application can be very buggy. It is not uncommon that, after a prolonged period of running, the malicious commands of Anubis and Qetesh will either stop working entirely, or produce unexpected results. The cause of this issue is unknown, but is suspected to be as a result of PyQt's inclusion, as both the GUI and the discord client use the same event loop - perhaps this is causing some issues with Discord?
   - **resolution**: **this issue can be fixed by restarting the GUI application after onset**.
   - **reach**: this issue affects all GUI variants of the Discord Raidkit. It does not affect any console variants.
