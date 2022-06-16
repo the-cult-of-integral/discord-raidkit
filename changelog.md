@@ -1,5 +1,24 @@
 # Discord Raidkit Changelog
 
+### v2.2.0 (16/06/2022)
+##### Additions:
+- Brought back the original console-based Discord Raidkit, now completely redesigned.
+- Added a new "cflood" command, allowing for a server to be flooded with up to one thousand text channels.
+
+##### Changes:
+- The `configuration` variable is now loaded and written as intended, fixing issue 2.1.0-aq-gui-1.
+- The Osiris GUI now includes a button to download the browser folder.
+- The dialog popups have all been updated to use Segoe UI rather than Arial and some layout changes have also been made to them.
+- Several changes and reformats have been made to the code.
+
+##### Reductions:
+- Removed depracted aspects of the account nuker.
+
+##### Additional Notices:
+- The v2.1.0 and v2.0.0 releases will have their download's updated to include the bug fix introduced in v2.2.0, as the bug is deemed severe.
+
+---
+
 ### v2.1.0 (14/06/2022)
 ##### Additions:
 - Added a dark flat theme and a light flat theme.

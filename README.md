@@ -1,12 +1,14 @@
 # Discord Raidkit
 #### The trojan horse of discord raiding. 
-![Discord Raidkit Screen v2 1 0](https://user-images.githubusercontent.com/98130822/173633836-730e1962-5db2-4982-83f3-aab81be107bc.png)
+![Discord Raidkit Screen v2 2 0](https://user-images.githubusercontent.com/98130822/173633836-730e1962-5db2-4982-83f3-aab81be107bc.png)
+
+![Discord Raidkit Console v2 2 0](https://user-images.githubusercontent.com/98130822/174049226-9d2d74a4-0190-4c9c-8e98-77007db7eec9.PNG)
 
 ---
 
 ### What is Discord Raidkit?
 
-Currently on release v2.1.0, "Discord Raidkit" is a collection of small tools designed for raiding aspects of discord, including servers and accounts. It began development in 2020 and had its latest release on the 14th June 2022.
+Currently on release v2.2.0, "Discord Raidkit" is a collection of small tools designed for raiding aspects of discord, including servers and accounts. The toolkit can be used both as GUI application and a console application. It began development in 2020 and had its latest release on the 16th June 2022.
 
 What sets the Discord Raidkit apart from other similar tools is its heavy emphasis on stealth and social engineering. **Unlike other tools, the bots included in this raidkit are fully functional bots**. This allows the raider to be more creative when convincing a server to add them.
 
@@ -18,17 +20,17 @@ What sets the Discord Raidkit apart from other similar tools is its heavy emphas
 
 - **Qetesh**, to other members, is a fully functional pornographic bot. It has over one thousand NSFW images (stored as links within a database) forming over ten unique categories. Furthermore, it restricts itself to NSFW channels only. However, to you, Qetesh is a malicious bot with seven main commands.
 
-- **Osiris** is an account hacker. Developed from the defunct JaJaJa with permission from its creator, Osiris you to view the private details of a discord account, perform a mini nuke on the account or log directly into the account in seconds via selenium. **To use Osiris, you must include [this browser folder](https://drive.google.com/file/d/1tx4QnZdCEDfT9MLh3SXIVlqcm_SrQ3P8/view?usp=sharing) within the application's working directory!**
+- **Osiris** is an account hacker. Developed from the defunct JaJaJa with permission from its creator, Osiris you to view the private details of a discord account, perform a mini nuke on the account or log directly into the account in seconds via selenium.
 
 ---
 
 ### How do I install Discord Raidkit?
 
-(To use this application, [you must have Python installed on your machine](https://www.python.org) — when installing, make sure to check the "ADD TO PATH" checkbox!)
+Installing Discord Raidkit is easier than ever! Simply head over to the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases) and download the latest version. 
 
-Installing Discord Raidkit is easier than ever! Simply head to the releases page, download a zipped release, extract the release, run the `install_requirements.bat` file and then run the `Discord Raidkit v2.1.0.pyw` file.
+After downloading, extract the zipped file, run `install_requirements.bat` for the application you want to use and then run the application.
 
-Remember, **to use Osiris you must include [this browser folder](https://drive.google.com/file/d/1tx4QnZdCEDfT9MLh3SXIVlqcm_SrQ3P8/view?usp=sharing) within the application's working directory!** (i.e. place the browser folder inside the Discord Raidkit folder, not the sub-folders).
+Note that to use Discord Raidkit, you will need [Python](https://www.python.org/downloads/release/python-3105/) installed. When installing Python, remember to check the "Add to PATH" checkbox.
 
 ---
 
@@ -42,15 +44,10 @@ To find out how to use Discord Raidkit, you can [view the Discord Raidkit Wiki h
 - **Privelleged Intents?**
   - This is not an issue with this application, but is a common issue that is brought to me so I will address it here: **when creating a discord bot, you must enabled all of the privelleged intents options presented to you!**
 
-- **2.0.0-aq-1 : severe**
-  - **description**: for Anubis and Qetesh, v2.0.0 onwards can be severely buggy. It is not uncommon that, after a prolonged period of running, the malicious commands of Anubis and Qetesh will either stop working entirely, or produce unexpected results. The cause of this issue is unknown, but is suspected to be as a result of PyQt's inclusion, as both the GUI and the discord client use the same event loop.
-  - **resolution**: **this issue can be fixed by restarting the application after onset**.
-  - **conclusion**: this issue has been deemed severe enough to make parallel development with a new console based varient of Discord Raidkit considered. It is unlikely this issue will be fixed.
-
-- **2.1.0-aq-1 : moderate**
-  - **description**: for Anubis and Qetesh, setting the bot token and prefix via the configure button will not work due to a bug regarding to loading of config to the `configuration` variable.
-  - **resolution**: until the release of v2.2.0, please set the bot token and prefix directly in the configuration JSON file via a text editor e.g. notepad.
-  - **conclusion**: this issue has been fixed in v2.2.0, which is due for release in June 2022.
+- **2.0.0-2.2.0-aq-gui-1 : moderate**
+  - **description**: for Anubis and Qetesh, the GUI application can be very buggy. It is not uncommon that, after a prolonged period of running, the malicious commands of Anubis and Qetesh will either stop working entirely, or produce unexpected results. The cause of this issue is unknown, but is suspected to be as a result of PyQt's inclusion, as both the GUI and the discord client use the same event loop - perhaps this is causing some issues with Discord?
+  - **resolution**: **this issue can be fixed by restarting the GUI application after onset**.
+  - **reach**: this issue affects all GUI variants of the Discord Raidkit. It does not affect any console variants.
 
 Please report any issues to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues)!
 
@@ -58,10 +55,8 @@ Please report any issues to the [Discord Raidkit issue page](https://github.com/
 
 ### Upcoming Releases
 
-##### v.2.2.0 — estimated June 2022.
-- Includes a significantly less buggy console application for Discord Raidkit.
+##### v.2.3.0 — estimated August.
 - Adds slash commands to Discord Raidkit.
-- Fix 2.1.0-aq-1.
 
 ---
 
