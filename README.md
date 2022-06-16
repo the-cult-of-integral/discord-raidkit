@@ -55,8 +55,9 @@ Please report any issues to the [Discord Raidkit issue page](https://github.com/
 
 ### Upcoming Releases
 
-##### v.2.3.0 — estimated August.
-- Adds slash commands to Discord Raidkit.
+##### v.2.3.0 — estimated 2022.
+- Adds a token grabber generator to Discord Raidkit for generating both `.py` and `.exe` payloads.
+- May add slash commands to Discord Raidkit (unlikely).
 
 ---
 
