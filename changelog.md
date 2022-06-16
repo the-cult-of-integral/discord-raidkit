@@ -1,25 +1,35 @@
 # Discord Raidkit Changelog
 
+### v2.2.1 (16/06/2022)
+##### Additions:
+- Added a new token grabber generator to Osiris, based on the logic of [wodxgod's grabber](https://github.com/wodxgod/Discord-Token-Grabber) with some additional improvements.
+  - Improvement #1: rather than having to manually edit a file, you will now be prompted to enter a webhook as per usual Discord Raidkit dialogue box/console.
+  - Improvement #2: after a payload is ran, it will attempt to create a folder in the `C:\Users\<user>` directory and copy itself inside. It will then add this file to the "run" registry key, making the file run every time the user logs into their Windows account.
+  - Improvement #3: the payload that is generated will be saved as a .pyw file, meaning it will run somewhat silently with no console popup.
+  
+---
+
 ### v2.2.0 (16/06/2022)
 ##### Additions:
 - Brought back the original console-based Discord Raidkit, now completely redesigned.
 - Added a new "cflood" command, allowing for a server to be flooded with up to one thousand text channels.
 
 ##### Changes:
-- The `configuration` variable is now loaded and written as intended, fixing issue 2.1.0-aq-gui-1.
+- The `configuration` variable is now loaded and written as intended, fixing issue 2.1.0-aq-1.
 - The Osiris GUI now includes a button to download the browser folder.
-- The dialog popups have all been updated to use Segoe UI rather than Arial and some layout changes have also been made to them.
 - Several changes and reformats have been made to the code.
 
 ##### Reductions:
 - Removed depracted aspects of the account nuker.
+
+##### Additional Notices:
+- The v2.1.0 and v2.0.0 releases will have their download's updated to include the bug fix introduced in v2.2.0, as the bug is deemed severe.
 
 ---
 
 ### v2.1.0 (14/06/2022)
 ##### Additions:
 - Added a dark flat theme and a light flat theme.
-- Added GUI application from v2.2.0 to solve major bug.
 
 ##### Changes:
 - `install_requirements.bat` now uses a more specific `requirements.txt` file (the product of `pip freeze > requirements.txt`).
@@ -30,18 +40,11 @@
 - Images are now in a seperate image folder, the folder "widgets" has been renamed to "gui", and logs are now stored in a "logs" folder.
 - Some display dialogs have had their layouts altered.
 
-##### Additional Notices:
-- **This version is out of date and has a major bug; please use v2.2.0+*
-
 ---
 
 ### v2.0.1 (13/06/2022)
 ##### Changes:
-
 - Max length of bot token field set to seventy to match new discord bot token lengths.
-
-##### Additional Notices:
-- **This version is out of date and has a major bug; please use v2.2.0+**
 
 ---
 
@@ -112,9 +115,6 @@ As you can see, this is a bit of a bummer. However, we won't be upset on this ma
 - **For Anubis, levelling has been removed.** No more reliance on PostgreSQL — updated README.md will make it harder for older versions
 to be set up unless the user knows what they're doing, but the
 later versions might as well be deprecated.
-
-##### Additional Notices:
-- **This version is out of date and has a major bug; please use v2.2.0+**
 
 ---
 

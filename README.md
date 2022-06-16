@@ -1,14 +1,14 @@
 # Discord Raidkit
 #### The trojan horse of discord raiding. 
-![Discord Raidkit Screen v2 2 0](https://user-images.githubusercontent.com/98130822/173633836-730e1962-5db2-4982-83f3-aab81be107bc.png)
+![Discord Raidkit Screen v2 2 1](https://user-images.githubusercontent.com/98130822/173633836-730e1962-5db2-4982-83f3-aab81be107bc.png)
 
-![Discord Raidkit Console v2 2 0](https://user-images.githubusercontent.com/98130822/174049226-9d2d74a4-0190-4c9c-8e98-77007db7eec9.PNG)
+![Discord Raidkit Console v2 2 1](https://user-images.githubusercontent.com/98130822/174049226-9d2d74a4-0190-4c9c-8e98-77007db7eec9.PNG)
 
 ---
 
 ### What is Discord Raidkit?
 
-Currently on release v2.2.0, "Discord Raidkit" is a collection of small tools designed for raiding aspects of discord, including servers and accounts. The toolkit can be used both as GUI application and a console application. It began development in 2020 and had its latest release on the 16th June 2022.
+Currently on release v2.2.1, "Discord Raidkit" is a collection of small tools designed for raiding aspects of discord, including servers and accounts. The toolkit can be used both as GUI application and a console application. It began development in 2020 and had its latest release on the 16th June 2022.
 
 What sets the Discord Raidkit apart from other similar tools is its heavy emphasis on stealth and social engineering. **Unlike other tools, the bots included in this raidkit are fully functional bots**. This allows the raider to be more creative when convincing a server to add them.
 
@@ -20,7 +20,7 @@ What sets the Discord Raidkit apart from other similar tools is its heavy emphas
 
 - **Qetesh**, to other members, is a fully functional pornographic bot. It has over one thousand NSFW images (stored as links within a database) forming over ten unique categories. Furthermore, it restricts itself to NSFW channels only. However, to you, Qetesh is a malicious bot with seven main commands.
 
-- **Osiris** is an account hacker. Developed from the defunct JaJaJa with permission from its creator, Osiris you to view the private details of a discord account, perform a mini nuke on the account or log directly into the account in seconds via selenium.
+- **Osiris** is an account hacker. Developed from the defunct JaJaJa with permission from its creator, Osiris you to view the private details of a discord account, perform a mini nuke on the account or log directly into the account in seconds via selenium. It also includes a token grabber generator based on the logic of [wodxgod's grabber](https://github.com/wodxgod/Discord-Token-Grabber) with some additional improvements, such as using a hidden payload and Windows Registry to grab tokens every time the target logs into their Windows machine (on their account).
 
 ---
 
@@ -55,9 +55,8 @@ Please report any issues to the [Discord Raidkit issue page](https://github.com/
 
 ### Upcoming Releases
 
-##### v.2.3.0 — estimated 2022.
-- Adds a token grabber generator to Discord Raidkit for generating both `.py` and `.exe` payloads.
-- May add slash commands to Discord Raidkit (unlikely).
+##### v.2.3.0 — estimated ???.
+- Add slash commands to Discord Raidkit.
 
 ---
 
