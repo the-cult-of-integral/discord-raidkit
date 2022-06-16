@@ -14,14 +14,12 @@
 ##### Reductions:
 - Removed depracted aspects of the account nuker.
 
-##### Additional Notices:
-- The v2.1.0 and v2.0.0 releases will have their download's updated to include the bug fix introduced in v2.2.0, as the bug is deemed severe.
-
 ---
 
 ### v2.1.0 (14/06/2022)
 ##### Additions:
 - Added a dark flat theme and a light flat theme.
+- Added GUI application from v2.2.0 to solve major bug.
 
 ##### Changes:
 - `install_requirements.bat` now uses a more specific `requirements.txt` file (the product of `pip freeze > requirements.txt`).
@@ -32,11 +30,18 @@
 - Images are now in a seperate image folder, the folder "widgets" has been renamed to "gui", and logs are now stored in a "logs" folder.
 - Some display dialogs have had their layouts altered.
 
+##### Additional Notices:
+- **This version is out of date and has a major bug; please use v2.2.0+*
+
 ---
 
 ### v2.0.1 (13/06/2022)
 ##### Changes:
+
 - Max length of bot token field set to seventy to match new discord bot token lengths.
+
+##### Additional Notices:
+- **This version is out of date and has a major bug; please use v2.2.0+**
 
 ---
 
@@ -107,6 +112,9 @@ As you can see, this is a bit of a bummer. However, we won't be upset on this ma
 - **For Anubis, levelling has been removed.** No more reliance on PostgreSQL — updated README.md will make it harder for older versions
 to be set up unless the user knows what they're doing, but the
 later versions might as well be deprecated.
+
+##### Additional Notices:
+- **This version is out of date and has a major bug; please use v2.2.0+**
 
 ---
 
