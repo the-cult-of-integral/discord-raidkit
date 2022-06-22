@@ -64,7 +64,7 @@ Please report any issues to the [Discord Raidkit issue page](https://github.com/
 - 10 stars. ✅
 - 50 stars. ✅
 - 100 stars. ✅
-- 250 stars. ❌
+- 250 stars. ✅
 - 500 stars. ❌
 - 1000 stars. ❌
 
