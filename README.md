@@ -1,5 +1,14 @@
 # Discord Raidkit
 #### The trojan horse of discord raiding; includes raiding tools, hacking tools, and a token grabber generator.
+
+---
+
+**Warning**
+
+Do not trust anyone on Discord claiming to be the creator of this project. The only way to contact the creator of this project now is through this email address: `discord-raidkit-12@proton.me`
+
+---
+
 ![Discord Raidkit Screen v2 2 1](https://user-images.githubusercontent.com/98130822/173633836-730e1962-5db2-4982-83f3-aab81be107bc.png)
 
 ![Discord Raidkit Console v2 2 1](https://user-images.githubusercontent.com/98130822/174049226-9d2d74a4-0190-4c9c-8e98-77007db7eec9.PNG)
