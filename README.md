@@ -5,7 +5,7 @@
 
 **Warning**
 
-Do not trust anyone on Discord claiming to be the creator of this project. The only way to contact the creator of this project now is through this email address: `discord-raidkit-12@proton.me`
+Do not trust anyone on Discord claiming to be the creator of this project. As of June 2022, the only way to contact the creator of this project now is through this email address: `discord-raidkit-12@proton.me`
 
 ---
 
