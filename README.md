@@ -74,7 +74,7 @@ Please report any issues to the [Discord Raidkit issue page](https://github.com/
 
 - [Discord Porn Bot Generator](https://github.com/the-cult-of-integral/discord-porn-bot-generator) is a tool used to create fully functional discord porn bots in seconds, including configuration settings that allow you to toggle each command and whether to only post to NSFW channels.
 
-- [Image to Discord link](https://github.com/the-cult-of-integral/discord-to-image-link) is a tool used to convert images to cdn discord links. It does this by uploading each image to discord, then copying all of the links to a local text file.
+- [Image to Discord link](https://github.com/the-cult-of-integral/image-to-discord-link) is a tool used to convert images to cdn discord links. It does this by uploading each image to discord, then copying all of the links to a local text file.
 
 ### Repository Milestones
 - 10 stars. ✅
