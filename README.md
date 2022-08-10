@@ -64,8 +64,9 @@ Please report any issues to the [Discord Raidkit issue page](https://github.com/
 
 ### Upcoming Releases
 
-##### v.2.3.0 — estimated ???.
-- Add slash commands to Discord Raidkit.
+##### v.2.3.0 — estimated mid August 2022.
+- Add slash commands to Discord Raidkit (half-complete).
+- Remove GUI and replace with new full console application (done).
 
 ---
 
