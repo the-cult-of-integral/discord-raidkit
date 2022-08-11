@@ -1,80 +1,76 @@
 # Discord Raidkit
-#### The trojan horse of discord raiding; includes raiding tools, hacking tools, and a token grabber generator.
+##### The trojan horse of Discord raiding...
+
+----
+
+**Notice**
+
+Do not trust anyone claiming to be the creator of this project. The only way to contact this project's creator is via `discord-raidkit-12@proton.me`.
 
 ---
 
-**Warning**
-
-Do not trust anyone on Discord claiming to be the creator of this project. As of June 2022, the only way to contact the creator of this project now is through this email address: `discord-raidkit-12@proton.me`
-
----
-
-![Discord Raidkit Screen v2 2 1](https://user-images.githubusercontent.com/98130822/173633836-730e1962-5db2-4982-83f3-aab81be107bc.png)
-
-![Discord Raidkit Console v2 2 1](https://user-images.githubusercontent.com/98130822/174049226-9d2d74a4-0190-4c9c-8e98-77007db7eec9.PNG)
+![Discord Raidkit v2.3.0 Image](https://user-images.githubusercontent.com/98130822/184191816-878ca68c-a974-4fad-8497-007de3c6bd8f.png)
 
 ---
 
 ### What is Discord Raidkit?
 
-Currently on release v2.2.1, "Discord Raidkit" is a collection of small tools designed for raiding aspects of discord, including servers and accounts. The toolkit can be used both as GUI application and a console application. It began development in 2020 and had its latest release on the 16th June 2022.
-
-What sets the Discord Raidkit apart from other similar tools is its heavy emphasis on stealth and social engineering. **Unlike other tools, the bots included in this raidkit are fully functional bots**. This allows the raider to be more creative when convincing a server to add them.
+Discord Raidkit is a compilation of useful tools to help you raid discord servers and hack discord accounts. What sets Discord Raidkit apart from other similar projects is its emphasis on social engineering — Discord Raidkit is *the* raidkit for anyone looking to convince servers to add bots. Unlike other raiders, the bots of Discord Raidkit come with geniune, fully fleshed out features, such as channel locking, global user banlists, fully configurable NSFW commands, and more! All with slash command support as of v2.3.0!
 
 ---
 
 ### Meet the tools!
 
-- **Anubis**, to other members, is a generic bot with generic commands. It does not have a lot of star features, but neither is it incompetent in the goals it sets out to achieve. However, to you, Anubis is a malicious bot with seven main commands.
+- **Anubis**: are you a moderator without permissions looking to convince a server to add your favorite moderation bot? Say no more! Ironically, Anubis plays into the idea of anti-raiding. Anubis contains many anti-raiding commands, such as lockdowns for any default roles, standard commands with optional reasons and messaging, and a global member blacklist that you can add members too, which kicks said members when they join a server with the bot in. You can also define words too, just as an added bonus. **Both Anubis and Qetesh contain nine hidden, malicious commands.**
 
-- **Qetesh**, to other members, is a fully functional pornographic bot. It has over one thousand NSFW images (stored as links within a database) forming over ten unique categories. Furthermore, it restricts itself to NSFW channels only. However, to you, Qetesh is a malicious bot with seven main commands.
+- **Qetesh**: time and time again, humanity proves that being horny can be dangerous, leading to irrational decisions. With that in mind, Qetesh is arguably the star raidkit. Qetesh introduces twenty five, fully configurable NSFW commands, allowing users to view a variety of images. Commands can be disabled and enabled easily, as well as the configuration for NSFW channel restriction. **Bot Anubis and Qetesh contain nine hidden, malicious commands.**
 
-- **Osiris** is an account hacker. Developed from the defunct JaJaJa with permission from its creator, Osiris you to view the private details of a discord account, perform a mini nuke on the account or log directly into the account in seconds via selenium. It also includes a token grabber generator based on the logic of [wodxgod's grabber](https://github.com/wodxgod/Discord-Token-Grabber) with some additional improvements, such as using a hidden payload and Windows Registry to grab tokens every time the target logs into their Windows machine (on their account).
-
----
-
-### How do I install Discord Raidkit?
-
-Installing Discord Raidkit is easier than ever! Simply head over to the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases) and download the latest version. 
-
-After downloading, extract the zipped file, run `install_requirements.bat` for the application you want to use and then run the application.
-
-Note that to use Discord Raidkit, you will need [Python](https://www.python.org/downloads/release/python-3105/) installed. When installing Python, remember to check the "Add to PATH" checkbox.
+- **Osiris**: this is the project's user authentication token handler. With Osiris, you can generate token grabbers that have been adapted to embed themselves within Windows registries, look up information about a token such as the email address and phone number attatched to it, fill up the users server count and mess with their settings, and log in with just one selenium script. **To use Osiris, you must include [this browser folder](https://drive.proton.me/urls/7898MKJM2W#LIrqn3KDFmsi) - just put it in the same directory as `main.py`**
 
 ---
 
-### How do I use Discord Raidkit?
+### Installation
+- Visit the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases) and download the latest version.
 
-To find out how to use Discord Raidkit, you can [view the Discord Raidkit Wiki here.](https://github.com/the-cult-of-integral/discord-raidkit/wiki)
+- Extract the zipped file and run `install_requirements.bat`, which contains a single pip installation. If you're familiar with Python's virtual environments, remember that you can run this inside a virtual environment to only install packages in said environment.
+
+- Run `main.py` to start the program.
+
+*/!\ This project requires Python — install at [python.org](https://www.python.org/downloads/)* 
+
+***/!| When installing Python, check "Add to PATH"!***
 
 ---
 
-### Common Issues
-- **Privelleged Intents?**
-  - This is not an issue with this application, but is a common issue that is brought to me so I will address it here: **when creating a discord bot, you must enabled all of the privelleged intents options presented to you!**
+### A/Q — Hidden Commands Summary
 
-- **2.0.0-2.2.1-aq-gui-1 : moderate**
-  - **description**: for Anubis and Qetesh, the GUI application can be very buggy. It is not uncommon that, after a prolonged period of running, the malicious commands of Anubis and Qetesh will either stop working entirely, or produce unexpected results. The cause of this issue is unknown, but is suspected to be as a result of PyQt's inclusion, as both the GUI and the discord client use the same event loop - perhaps this is causing some issues with Discord?
-  - **resolution**: **this issue can be fixed by restarting the GUI application after onset**.
-  - **reach**: this issue affects all GUI variants of the Discord Raidkit. It does not affect any console variants.
+|Command|Aliases|Parameters|Brief Description|
+|-|-|-|-|
+| nick_all | nick, nickall | *nickname* | nickname ever user in a server to *nickname* |
+| msg_all | msg, msgall | *message* | send *message* as a DM to every user in a server  |
+| spam | --- | *message* | send *message* to every text channel in a server, repeatedly |
+| cpurge | --- | --- | delete every channel in a server |
+| cflood | --- | *amount*, *name* | create *amount* number of text channels named *name* in a server|
+| raid | --- | *role name*, *nickname*, *amount*, *name*, *message* | create and give every user in a server a role named *role name*, nickname every user in a server to *nickname*, delete every channel in a server, create *amount* number of text channels named *name* in a server, and then send *message* to every text channel in a server, repeatedly — **not including message will disable spam, setting 0 as amount will disable floding**|
+| admin | --- | *member*, *role name* | grant *member* in a server an all-permissions role named *role name*|
+| nuke | --- | --- | ban all members from a server, delete every channel in a server, delete every role in a server, delete every emoji in a server, delete every sticker from a server, revoke every invite from a server, then edit a server's name, description, icons, community setting, notifications, verification level, content filter, premium bar and preferred locale |
+| mass_nuke | massnuke, nuke_all, nukeall | --- | perform the nuke command on every server the bot is in, one by one |
+| leave | --- | --- | leave a server |
+| mass_leave | massleave, leave_all, leaveall | --- | leave every server |
+---
 
-Please report any issues to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues)!
+### Known Issues (v2.3.0)
+- **None**
+
+Please report any issues you encounter to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues) to update this section and make me aware!
 
 ---
 
 ### Upcoming Releases
 
-##### v.2.3.0 — estimated mid August 2022.
-- Add slash commands to Discord Raidkit (half-complete).
-- Remove GUI and replace with new full console application (done).
+##### v.2.4.0 — Not yet planned. . .
 
 ---
-
-### More by the-cult-of-integral
-
-- [Discord Porn Bot Generator](https://github.com/the-cult-of-integral/discord-porn-bot-generator) is a tool used to create fully functional discord porn bots in seconds, including configuration settings that allow you to toggle each command and whether to only post to NSFW channels.
-
-- [Image to Discord link](https://github.com/the-cult-of-integral/image-to-discord-link) is a tool used to convert images to cdn discord links. It does this by uploading each image to discord, then copying all of the links to a local text file.
 
 ### Repository Milestones
 - 10 stars. ✅
@@ -86,3 +82,6 @@ Please report any issues to the [Discord Raidkit issue page](https://github.com/
 
 ---
 [Back To Top](#Discord-Raidkit)
+
+
+

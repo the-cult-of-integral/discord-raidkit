@@ -1,5 +1,42 @@
 # Discord Raidkit Changelog
 
+### v2.3.0 (11/08/2022)
+##### Additions:
+- Added slash commands to Discord Raidkit; all regular commands have been converted!
+- Added `lockdown` and `unlockdown` commands - applies to all channels in a server.
+- Added `toggle-cmds` to Qetesh to enable and disable different commands.
+- Added `toggle-only-nsfw` to Qetesh to enable and disable NSFW channel restriction.
+- Added `bukkake`, `cosplay`, `dildo`, `double penetration`, `threesome`, and `uniform` categories to Qetesh.
+- Added `default`, `fire`, `storm`, and `magic` themes to console UI configuration.
+
+#### Changes:
+- Redesign entire project structure and code.
+- Improved raid prevention commands in Anubis; now they actually do something.
+- Improved table structure for Qetesh database.
+- Redesigned the console UI for ease of use.
+- Malicious commands now have their own cog.
+- Removed command codes - malicious commands now only respond to the owner of the raidkit bot (should be you).
+- Drastically improved `nuke` command: deletes stickers and invites and edits a guild.
+  - name > "Nuked by the-cult-of-integral"
+  - description > "Nuked by the-cult-of-integral"
+  - icon > `nuked.jpg`
+  - banner > `nuked.jpg`
+  - splash > `nuked.jpg`
+  - discovery_splash > `nuked.jpg`
+  - community > `False`
+  - default_notifications > `discord.NotificationLevel.all_messages`,
+  - verification_level > `discord.VerificationLevel.highest`,
+  - explicit_content_filter > `discord.ContentFilter.all_members,
+  - vanity_code > `None`
+  - premium_progress_bar_enabled > `False`,
+  - preferred_locale > `ja`
+ 
+#### Reductions
+- Removed Discord Raidkit GUI; it's not needed with new console GUI and it's too buggy.
+- Removed `yiff` from Qetesh.
+  
+---
+
 ### v2.2.1 (16/06/2022)
 ##### Additions:
 - Added a new token grabber generator to Osiris, based on the logic of [wodxgod's grabber](https://github.com/wodxgod/Discord-Token-Grabber) with some additional improvements.
