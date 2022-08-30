@@ -60,9 +60,11 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 ---
 
 ### Known Issues (v2.3.0)
-- **None**
+- **Anubis:** For a few users, the continue button does not function correctly. Currently investigating to see if this is a one-off; it's working fine on my VM.
 
 Please report any issues you encounter to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues) to update this section and make me aware!
+
+**Update:** any issues that are similar to the statement, "the program just opens and closes, why?" will now be closed with a new "useless" tag — everyone knows you can find the error by directly running the program in the terminal rather than the python console; failing to provide this error message is useless to me and will no longer be investigated.
 
 ---
 
