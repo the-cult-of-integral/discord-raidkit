@@ -60,7 +60,7 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 ---
 
 ### Known Issues (v2.3.0)
-- **Anubis:** For a few users, the continue button does not function correctly. Currently investigating to see if this is a one-off; it's working fine on my VM.
+- **Intents & Continue button** If privilleged intents is not enabled, the continue button will not display an error. Instead it will send the user back to the main screen without any reason provided. This can confuse users and may lead to unneccessary issues raised. I will look into providing an intents error message in the next update.
 
 Please report any issues you encounter to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues) to update this section and make me aware!
 
