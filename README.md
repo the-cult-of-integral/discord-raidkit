@@ -59,7 +59,6 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 | mass_leave | massleave, leave_all, leaveall | --- | leave every server |
 ---
 
-<<<<<<< HEAD
 ### Known Issues (v2.3.1)
 - None.
 
