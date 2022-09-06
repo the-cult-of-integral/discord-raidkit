@@ -1,5 +1,15 @@
 # Discord Raidkit Changelog
 
+### v2.3.1 (06/09/2022)
+##### Additions:
+- Brought back the ability to remove every friend from a user account in Osiris, this time using Selenium.
+- Fully implemented statuses back into Discord Raidkit (finally!).
+
+##### Changes:
+- Minor refactoring of the codebase.
+- An incorrect privileged gateway intent setting will now display an error.
+- An incorrect application ID will now display an error.
+
 ### v2.3.0 (11/08/2022)
 ##### Additions:
 - Added slash commands to Discord Raidkit; all regular commands have been converted!
@@ -9,7 +19,7 @@
 - Added `bukkake`, `cosplay`, `dildo`, `double penetration`, `threesome`, and `uniform` categories to Qetesh.
 - Added `default`, `fire`, `storm`, and `magic` themes to console UI configuration.
 
-#### Changes:
+##### Changes:
 - Redesign entire project structure and code.
 - Improved raid prevention commands in Anubis; now they actually do something.
 - Improved table structure for Qetesh database.

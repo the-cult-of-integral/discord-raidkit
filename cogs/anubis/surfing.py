@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding" 
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,8 +8,8 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 surfing.py contains all surfing commands for the Anubis raidkit.
-surfing.py was last updated on 11/08/22 at 13:37.
-'''
+surfing.py was last updated on 04/09/22 at 18:32.
+"""
 
 import logging
 import re
@@ -41,7 +41,8 @@ class Surfing(commands.Cog):
             if word.strip().replace(" ", ""):
                 try:
                     header = {
-                        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
+                        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                                      "Chrome/50.0.2661.75 Safari/537.36",
                         "X-Requested-With": "XMLHttpRequest"}
                     url = f"https://www.dictionary.com/browse/{word}?s=t"
                     r = requests.get(url, headers=header)

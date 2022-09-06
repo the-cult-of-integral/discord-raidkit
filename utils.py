@@ -1,7 +1,7 @@
-'''
+"""
 utils.py contains useful utility functions.
-utils.py was last updated on 11/08/22 at 17:37.
-'''
+utils.py was last updated on 09/04/22 at 18:41.
+"""
 
 import logging
 import os
@@ -23,6 +23,7 @@ def mkfile(filepath: str, content: str = '') -> bool:
 
     Args:
         filepath (str): the path to the file to be created.
+        content (str, optional): the content to be written to the file. Defaults to "".
 
     Returns:
         bool: True if no errors were raised, False otherwise.
@@ -47,7 +48,8 @@ def clear() -> None:
 
 def check_update(version: str) -> None:
     headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 "
+                      "Safari/537.36",
         "X-Requested-With": "XMLHttpRequest"
     }
     url = f"https://github.com/the-cult-of-integral/discord-raidkit/releases/latest"

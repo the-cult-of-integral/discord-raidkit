@@ -9,7 +9,7 @@ Do not trust anyone claiming to be the creator of this project. The only way to 
 
 ---
 
-![Discord Raidkit v2.3.0 Image](https://user-images.githubusercontent.com/98130822/184191816-878ca68c-a974-4fad-8497-007de3c6bd8f.png)
+![Discord Raidkit v2.3.1 Image](https://user-images.githubusercontent.com/98128904/188700603-4b099b81-72c4-4dc2-9619-20ed36e29802.png)
 
 ---
 
@@ -59,12 +59,10 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 | mass_leave | massleave, leave_all, leaveall | --- | leave every server |
 ---
 
-### Known Issues (v2.3.0)
-- **Anubis:** For a few users, the continue button does not function correctly. Currently investigating to see if this is a one-off; it's working fine on my VM.
+### Known Issues (v2.3.1)
+- None.
 
 Please report any issues you encounter to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues) to update this section and make me aware!
-
-**Update:** any issues that are similar to the statement, "the program just opens and closes, why?" will now be closed with a new "useless" tag — everyone knows you can find the error by directly running the program in the terminal rather than the python console; failing to provide this error message is useless to me and will no longer be investigated.
 
 ---
 

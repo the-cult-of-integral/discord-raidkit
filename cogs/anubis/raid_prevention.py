@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding" 
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,8 +8,8 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 raid_prevention.py contains all raid prevention commands for the Anubis raidkit.
-raid_prevention.py was last updated on 11/08/22 at 13:38.
-'''
+raid_prevention.py was last updated on 04/09/22 at 18:32.
+"""
 
 import logging
 import os
@@ -61,7 +61,8 @@ class RaidPrevention(commands.Cog):
                         color=discord.Color.blue())
                     await interaction.followup.send(embed=embed)
 
-                elif channel.overwrites[interaction.guild.default_role].send_messages or channel.overwrites[interaction.guild.default_role] is None:
+                elif channel.overwrites[interaction.guild.default_role].send_messages or \
+                        channel.overwrites[interaction.guild.default_role] is None:
                     overwrites = channel.overwrites[interaction.guild.default_role]
                     overwrites.send_messages = False
                     await channel.set_permissions(interaction.guild.default_role, overwrite=overwrites)
@@ -112,7 +113,8 @@ class RaidPrevention(commands.Cog):
                         color=discord.Color.blue())
                     await interaction.followup.send(embed=embed)
 
-                elif channel.overwrites[interaction.guild.default_role].send_messages is None or channel.overwrites[interaction.guild.default_role].send_messages == False:
+                elif channel.overwrites[interaction.guild.default_role].send_messages is None or \
+                        not channel.overwrites[interaction.guild.default_role].send_messages:
                     overwrites = channel.overwrites[interaction.guild.default_role]
                     overwrites.send_messages = True
                     await channel.set_permissions(interaction.guild.default_role, overwrite=overwrites)
@@ -155,7 +157,8 @@ class RaidPrevention(commands.Cog):
                             send_messages=False)}
                         await channel.edit(overwrites=overwrites)
 
-                    elif channel.overwrites[interaction.guild.default_role].send_messages or channel.overwrites[interaction.guild.default_role] is None:
+                    elif channel.overwrites[interaction.guild.default_role].send_messages or \
+                            channel.overwrites[interaction.guild.default_role] is None:
                         overwrites = channel.overwrites[interaction.guild.default_role]
                         overwrites.send_messages = False
                         await channel.set_permissions(interaction.guild.default_role, overwrite=overwrites)
@@ -200,7 +203,8 @@ class RaidPrevention(commands.Cog):
                                 send_messages=True)}
                         await channel.edit(overwrites=overwrites)
 
-                    elif channel.overwrites[interaction.guild.default_role].send_messages is None or channel.overwrites[interaction.guild.default_role].send_messages == False:
+                    elif channel.overwrites[interaction.guild.default_role].send_messages is None or \
+                            not channel.overwrites[interaction.guild.default_role].send_messages:
                         overwrites = channel.overwrites[interaction.guild.default_role]
                         overwrites.send_messages = True
                         await channel.set_permissions(interaction.guild.default_role, overwrite=overwrites)
@@ -375,8 +379,8 @@ class RaidPrevention(commands.Cog):
     async def on_member_join(self, member: discord.Member) -> None:
         if self.check_guild_prevented(member.guild):
             if self.check_member_prevented(member):
-                member.kick()
-                if (channel_id := self.get_log_channel(member.guild)):
+                await member.kick()
+                if channel_id := self.get_log_channel(member.guild):
                     channel = self.bot.get_channel(channel_id)
                     if channel:
                         embed = discord.Embed(
@@ -405,12 +409,12 @@ class RaidPrevention(commands.Cog):
     def check_member_prevented(self, member: discord.Member) -> bool:
         sql = '''SELECT user_id FROM Users WHERE user_id = ?;'''
         self.__exec_select(sql, member.id)
-        return (self.c.fetchone() is not None)
+        return self.c.fetchone() is not None
 
     def check_guild_prevented(self, guild: discord.Guild) -> bool:
         sql = '''SELECT guild_id FROM RaidPrevention WHERE guild_id = ?;'''
         self.__exec_select(sql, guild.id)
-        return (self.c.fetchone() is not None)
+        return self.c.fetchone() is not None
 
     def get_log_channel(self, guild: discord.Guild) -> int:
         sql = '''SELECT log_channel FROM RaidPrevention WHERE guild_id = ?;'''

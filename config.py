@@ -1,5 +1,5 @@
-'''
-Discord Raidkit v2.3.0 — "The trojan horse of discord raiding" 
+"""
+Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,8 +8,8 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 config.py contains the DRConfig class, which handles the configuration aspect of Discord Raidkit.
-config.py was last updated on 11/08/22 at 13:36.
-'''
+config.py was last updated on 04/09/22 at 18:36.
+"""
 
 import json
 import logging
