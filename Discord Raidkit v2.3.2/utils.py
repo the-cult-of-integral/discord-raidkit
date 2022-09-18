@@ -1,6 +1,6 @@
 """
 utils.py contains useful utility functions.
-utils.py was last updated on 09/04/22 at 18:41.
+utils.py was last updated on 18/09/22 at 12:26.
 """
 
 import logging
@@ -78,5 +78,5 @@ def check_update(version: str) -> None:
 
 
 {Fore.RESET}Enter anything to continue: """.replace("█", f"{Fore.YELLOW}█{Fore.LIGHTGREEN_EX}"), end='')
-
+        input()
         return

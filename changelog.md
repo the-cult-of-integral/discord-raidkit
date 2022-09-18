@@ -1,5 +1,15 @@
 # Discord Raidkit Changelog
 
+### v2.3.2 (19/09/2022)
+##### Additions:
+- Split `install_requirements` into a seperate Windows and Linux script.
+- For the Windows script `install_requirements` is now a powershell script. Remember to change your execution policy before running so that it works.
+- For the Linux script `install_requirements` is now a shell script.
+- `install_requirements` will now install Git if not found (and chocolatey if Windows).
+
+##### Changes:
+- Fixed a mild issue that caused a blank screen after the update screen that required RETURN to be pressed.
+
 ### v2.3.1 (06/09/2022)
 ##### Additions:
 - Brought back the ability to remove every friend from a user account in Osiris, this time using Selenium.
