@@ -60,7 +60,7 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 ---
 
 ### Known Issues (v2.3.1)
-- None.
+- **Blank screen following update check**. Solution: press enter to continue to the main program — this input will be moved into the update routine in v2.3.2.
 
 Please report any issues you encounter to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues) to update this section and make me aware!
 
