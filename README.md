@@ -9,7 +9,7 @@ Do not trust anyone claiming to be the creator of this project. The only way to 
 
 ---
 
-![Discord Raidkit v2.3.1 Image](https://user-images.githubusercontent.com/98128904/188700603-4b099b81-72c4-4dc2-9619-20ed36e29802.png)
+![Discord Raidkit v2.3.1 and v2.3.2 Image](https://user-images.githubusercontent.com/98128904/188700603-4b099b81-72c4-4dc2-9619-20ed36e29802.png)
 
 ---
 
@@ -32,13 +32,15 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 ### Installation
 - Visit the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases) and download the latest version.
 
-- Extract the zipped file and run `install_requirements.bat`, which contains a single pip installation. If you're familiar with Python's virtual environments, remember that you can run this inside a virtual environment to only install packages in said environment.
+- Run the `install_requirements` script for your operating system.
+
+  - If using Windows, run `install_requirements.ps1`. This powershell script will install Git if not found using Chocolatey (and will install Chocolatey if not found), then install all Python modules needed. **If this script fails due to an execution policy issue, try running the following command in an administrator powershell process: `set-executionpolicy remotesigned`**.
+
+  - If using Linux, run `install_requirements.sh`. This shell will install Git if not found via `sudo apt-get install git` then install all Python modules needed. If this method of installing Git is not valid for your distro, edit the shell script as needed.
 
 - Run `main.py` to start the program.
 
-*/!\ This project requires Python — install at [python.org](https://www.python.org/downloads/)* 
-
-***/!| When installing Python, check "Add to PATH"!***
+*/!\ This project requires Python — install at [python.org](https://www.python.org/downloads/) — /!\ When installing Python, check "Add to PATH"!*
 
 ---
 
@@ -59,10 +61,8 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 | mass_leave | massleave, leave_all, leaveall | --- | leave every server |
 ---
 
-### Known Issues (v2.3.1)
-- **Blank screen following update check**. Solution: press enter to continue to the main program — this input will be moved into the update routine in v2.3.2.
-
-Please report any issues you encounter to the [Discord Raidkit issue page](https://github.com/the-cult-of-integral/discord-raidkit/issues) to update this section and make me aware!
+### Known Issues (v2.3.2)
+- None.
 
 ---
 
