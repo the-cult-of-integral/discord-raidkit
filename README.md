@@ -1,7 +1,7 @@
 # Discord Raidkit
 ##### The trojan horse of Discord raiding...
 
-----
+---
 
 **Notice**
 
@@ -81,7 +81,8 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 - 1000 stars. ❌
 
 ---
-[Back To Top](#Discord-Raidkit)
 
-
-
+<p align="left">
+  <strong>Views</strong> (as of 24/09/2022)<br><br>
+  <img src="https://profile-counter.glitch.me/discord-raidkit/count.svg" />
+</p>
