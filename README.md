@@ -9,7 +9,7 @@ Do not trust anyone claiming to be the creator of this project. The only way to 
 
 ---
 
-![Discord Raidkit v2.3.1 and v2.3.2 Image](https://user-images.githubusercontent.com/98128904/188700603-4b099b81-72c4-4dc2-9619-20ed36e29802.png)
+![Discord Raidkit v2.3.1, 2.3.2 and v2.3.3 Image](https://user-images.githubusercontent.com/98128904/188700603-4b099b81-72c4-4dc2-9619-20ed36e29802.png)
 
 ---
 
@@ -61,7 +61,7 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 | mass_leave | massleave, leave_all, leaveall | --- | leave every server |
 ---
 
-### Known Issues (v2.3.2)
+### Known Issues (v2.3.3)
 - None.
 
 ---
