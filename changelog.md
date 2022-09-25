@@ -1,5 +1,9 @@
 # Discord Raidkit Changelog
 
+### v2.3.3 (25/09/2022)
+##### Additions:
+- Added more information to Osiris' user information grabber e.g. billing address and card digits (last four).
+
 ### v2.3.2 (19/09/2022)
 ##### Additions:
 - Split `install_requirements` into a seperate Windows and Linux script.
