@@ -34,10 +34,6 @@ Discord Raidkit is a compilation of useful tools to help you raid discord server
 
 - Run the `install_requirements` script for your operating system.
 
-  - If using Windows, run `install_requirements.ps1`. This powershell script will install Git if not found using Chocolatey (and will install Chocolatey if not found), then install all Python modules needed. **If this script fails due to an execution policy issue, try running the following command in an administrator powershell process: `set-executionpolicy remotesigned`**.
-
-  - If using Linux, run `install_requirements.sh`. This shell will install Git if not found via `sudo apt-get install git` then install all Python modules needed. If this method of installing Git is not valid for your distro, edit the shell script as needed.
-
 - Run `main.py` to start the program.
 
 */!\ This project requires Python — install at [python.org](https://www.python.org/downloads/) — /!\ When installing Python, check "Add to PATH"!*
