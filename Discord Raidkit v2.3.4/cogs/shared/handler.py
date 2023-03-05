@@ -1,14 +1,14 @@
 """
-Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
-Copyright © 2022 the-cult-of-integral
+Discord Raidkit v2.3.4 — "The trojan horse of discord raiding"
+Copyright © 2023 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
 
 This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
-handler.py contains the on_command_error cog listener.
-handler.py was last updated on 04/09/22 at 18:51.
+handler.py stores the on_command_error event for Anubis and Qetesh.
+handler.py was last updated on 05/03/23 at 20:52 UTC.
 """
 
 import discord
@@ -62,4 +62,3 @@ class Handler(commands.Cog):
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Handler(bot))
-    return

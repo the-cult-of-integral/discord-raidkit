@@ -1,5 +1,22 @@
 # Discord Raidkit Changelog
 
+### v2.3.4 (05/03/2023)
+##### Changes:
+- Refactored conditional if statements to utilize the new match statement.
+- Refactored how option menus are implemented.
+- Refactored check_for_updates() to be simpler.
+- Moved some functions from utils.py to main.py.
+- Renamed raidkit.py to raider.py, as well as the Raidkit class to Raider.
+- Refactored all log initializations into init_logger, in utils.py.
+- Refactored surfing.py to improve regular expressions usage.
+- Included UTC indication in the docstrings of files.
+- Implemented `__slots__` in the Raider and Osiris class to reduce memory usage.
+- Refactored various awaits to implement asyncio.gather(*) pattern, significantly increasing command performance.
+
+##### Reductions:
+- Removed themes as they are redundant to the purpose of this application.
+- Removed config.py.
+
 ### v2.3.3 (25/09/2022)
 ##### Additions:
 - Added more information to Osiris' user information grabber e.g. billing address and card digits (last four).

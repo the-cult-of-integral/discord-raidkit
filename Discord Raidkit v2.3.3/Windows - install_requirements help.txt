@@ -1,4 +1,0 @@
-set-executionpolicy remotesigned
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Use this command in administrator powershell if install_requirements.ps1 is not running due to your execution policy.

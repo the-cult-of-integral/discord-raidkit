@@ -1,14 +1,14 @@
 """
-Discord Raidkit v2.3.1 — "The trojan horse of discord raiding"
-Copyright © 2022 the-cult-of-integral
+Discord Raidkit v2.3.4 — "The trojan horse of discord raiding"
+Copyright © 2023 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
 
 This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
-qhelp.py contains the dynamic help command for the Qetesh raidkit.
-qhelp.py was last updated on 04/09/22 at 18:35.
+qhelp.py stores the help command for Qetesh.
+qhelp.py was last updated on 05/03/23 at 20:51 UTC.
 """
 
 import logging
@@ -17,8 +17,9 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-logging.basicConfig(level=logging.INFO, format=' %(asctime)s - %(levelname)s - %(message)s',
-                    filename='raidkit.log', filemode='a+', datefmt='%d/%m/%Y %H:%M:%S')
+from utils import init_logger
+
+init_logger()
 
 
 class Help(commands.Cog):
@@ -62,4 +63,3 @@ class Help(commands.Cog):
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Help(bot))
-    return

