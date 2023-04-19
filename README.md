@@ -71,7 +71,7 @@ To install Discord Raidkit:
 
 #### Known Issues
 
-There are no known issues in Discord Raidkit v2.3.4.
+As of late, Discord has changed its API yet again. Unfortunately, this has broken how Discord Raidkit creates servers during Osiris' guild command. I am looking into a way to get it working again, but Discord non-existent documentation is not providing any help. Finally, I am aware that Osiris' account information string looks a bit wonky - this is an easy fix. I have seen the issues regarding the bots not loading properly, but I am unable to reproduce these issues on my environment.
 
 #### Repository Milestones
 
