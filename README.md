@@ -71,7 +71,11 @@ To install Discord Raidkit:
 
 #### Known Issues
 
-There are no known issues in Discord Raidkit v2.3.4.
+- Osiris' ability to create up to 200 servers during an account nuke is broken due to Discord API changes. Attempting to fix but Discord's API has barely any reliable documentation. If anyone has any *good* documentation, let me know!
+
+- Osiris' account information display looks a bit weird due to a missing new line character here are there. This is an easy fix.
+
+- *I have seen the three issues discussing bots being unable to load. However, I am unable to reproduce them myself.*
 
 #### Repository Milestones
 
