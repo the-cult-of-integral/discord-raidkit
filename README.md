@@ -49,7 +49,7 @@ To install Discord Raidkit:
 
 ---
 
-### Hidden Commands Summary
+### Commands
 
 |Command|Aliases|Parameters|Brief Description|
 |-|-|-|-|
