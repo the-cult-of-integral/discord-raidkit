@@ -6,9 +6,9 @@
 
 ## Contents
 
-- ![Introduction](#Introduction)
-- ![Installation](#Installation)
-- ![Commands](#Commands)
+- ![Introduction](###Introduction)
+- ![Installation](###Installation)
+- ![Commands](###Commands)
 - ![Repo](#Repo)
 
 ---
