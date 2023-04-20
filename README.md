@@ -6,10 +6,10 @@
 
 ## Contents
 
-- ![Introduction](###Introduction)
-- ![Installation](###Installation)
-- ![Commands](###Commands)
-- ![Repo](#Repo)
+- [Introduction](#Introduction)
+- [Installation](#Installation)
+- [Commands](#Commands)
+- [Repo](#Repo)
 
 ---
 
