@@ -1,5 +1,22 @@
 # Discord Raidkit Changelog
 
+### v2.3.5 (21/04/2023)
+##### Additions:
+- You now have the option to download a larger environment that uses a `.exe` rather than `.py`, no longer requiring non-technical users to install Python to their machine.
+
+##### Changes:
+- Reintroduced config.py.
+- Refactored code base structure, mostly to separate utilities.
+- Drastically improved performance of Qetesh's link insertions - now only takes seconds.
+- Fixed various conditional bugs in Qetesh.
+- Updated Anubis's define function to work as normal again.
+- Updated Osiris to no longer require a browser folder: supports Chrome, Firefox and Edge.
+- Various minor bug fixes.
+
+##### Reductions:
+- Removed the `on_guild_join` event from Anubis and Qetesh.
+- Removed guild creation from Osiris's nuke command: no longer functional.
+
 ### v2.3.4 (05/03/2023)
 ##### Changes:
 - Refactored conditional if statements to utilize the new match statement.

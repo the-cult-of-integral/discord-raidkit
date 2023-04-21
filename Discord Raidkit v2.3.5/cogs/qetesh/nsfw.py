@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.3.4 — "The trojan horse of discord raiding"
+Discord Raidkit v2.3.5 — "The trojan horse of discord raiding"
 Copyright © 2023 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,73 +8,70 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 nsfw.py stores the NSFW commands for Qetesh.
-nsfw.py was last updated on 05/03/23 at 20:50 UTC.
+nsfw.py was last updated on 20/04/23 at 21:52 UTC.
 """
 
-import logging
 import os
 import sqlite3
+from typing import Any, List, Tuple
 
 import discord
 from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 
-from utils import init_logger, mkfile
+import utils.log_utils as lu
+from utils.io_utils import mkfile
 
-init_logger()
+lu.init()
 
 DB_PATH = os.path.join('databases', 'qetesh.db')
 
 
 class Nsfw(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
         if not os.path.exists(DB_PATH):
-            logging.info(f'{DB_PATH} does not exist. Creating...')
+            lu.sinfo(lu.F_NSFW, 'Nsfw.__init__', f'{DB_PATH} does not exist. Creating...')
             mkfile(DB_PATH)
-
+        
         self.conn = sqlite3.connect(DB_PATH)
         self.c = self.conn.cursor()
 
-        self.__exec_select(
-            '''SELECT count(*) FROM sqlite_master WHERE type='table' AND name='Servers';''')
+        tables_exist = self.__exec_select('''SELECT count(*) FROM sqlite_master WHERE type='table' AND name='Servers';''')[0]
+        if tables_exist:
+            lu.sinfo(lu.F_NSFW, 'Nsfw.__init__', 'Tables already exist; database presumed ready.')
+            return
 
-        if not self.c.fetchone()[0]:
-            logging.info(
-                'One or more tables do not exist. Creating tables...')
-            if not self.__create_tables():
-                logging.error('Failed to create tables.')
-                return
-            logging.info('Tables created.')
+        lu.sinfo(lu.F_NSFW, 'Nsfw.__init__', 'One or more tables do not exist. Creating tables...')
+        if not self.__create_tables():
+            lu.serror(lu.F_NSFW, 'Nsfw.__init__', 'Failed to create tables.')
+            return
+        lu.sinfo(lu.F_NSFW, 'Nsfw.__init__', 'Tables created.')
 
-            logging.info('Inserting links...')
-            print(
-                '\nInserting NSFW links into the database; this may take a few minutes. . .')
-            with open(os.path.join('cogs', 'qetesh', 'all_links.txt'), 'r') as f:
-                for line in f:
-                    url, cat = line.strip().split(',')
-                    if not self.__insert_links(url, cat):
-                        logging.error(
-                            f'Failed to insert link|cat {url} | {cat}')
-                        return
-            logging.info('Inserted links.')
-
-        else:
-            logging.info('Tables already exist; database presumed ready.')
-
-        return
+        lu.sinfo(lu.F_NSFW, 'Nsfw.__init__', 'Inserting links...')
+        print('Inserting NSFW links into the database. . .')
+        with open(os.path.join('cogs', 'qetesh', 'all_links.txt'), 'r') as f:
+            links = []
+            for line in f:
+                url, cat = line.strip().split(',')
+                links.append((url, cat))
+            chunk_size = 1000
+            for i in range(0, len(links), chunk_size):
+                chunk = links[i:i+chunk_size]
+                if not self.__insert_links(chunk):
+                    lu.serror(lu.F_NSFW, 'Nsfw.__init__', f'Failed to insert links chunk starting at index {i}')
+                    return
+            lu.sinfo(lu.F_NSFW, 'Nsfw.__init__', 'Inserted links.')
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild) -> bool:
-        if not self.__check_guild(guild.id):
-            sql = 'INSERT INTO Servers(server_id) VALUES(?)'
-            if not self.__exec_nonselect(sql, guild.id):
-                logging.error(
-                    'Error in nsfw.py - on_guild_join(): failed to insert server')
-                return False
-        return True
+        if self.__check_guild(guild.id):
+            return True
+        
+        return self.__insert_guild(guild.id)
 
     @app_commands.command(
         name='toggle-cmd',
@@ -119,20 +116,7 @@ class Nsfw(commands.Cog):
         try:
 
             if not self.__check_guild(interaction.guild.id):
-                sql = 'INSERT INTO Servers(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
-                    return False
-                sql = 'INSERT INTO Nsfw(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
-                    return False
-                sql = 'INSERT INTO PreviousLinks(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
+                if not self.__insert_guild(interaction.guild.id):
                     return False
 
             if interaction.user.guild_permissions.administrator:
@@ -161,8 +145,7 @@ class Nsfw(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in nsfw.py - set_only_nsfw(): {e}')
+            lu.serror(lu.F_NSFW, 'Nsfw.toggle_cmd', f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
         return True
@@ -180,22 +163,8 @@ class Nsfw(commands.Cog):
     async def toggle_only_nsfw(self, interaction: discord.Interaction, state: int) -> bool:
         await interaction.response.defer(ephemeral=True)
         try:
-
             if not self.__check_guild(interaction.guild.id):
-                sql = 'INSERT INTO Servers(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
-                    return False
-                sql = 'INSERT INTO Nsfw(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
-                    return False
-                sql = 'INSERT INTO PreviousLinks(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
+                if not self.__insert_guild(interaction.guild.id):
                     return False
 
             if interaction.user.guild_permissions.manage_channels or interaction.user.guild_permissions.administrator:
@@ -223,8 +192,8 @@ class Nsfw(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in nsfw.py - set_only_nsfw(): {e}')
+            lu.serror(lu.F_NSFW, 'Nsfw.toggle_only_nsfw',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
         return True
@@ -267,20 +236,7 @@ class Nsfw(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         try:
             if not self.__check_guild(interaction.guild.id):
-                sql = 'INSERT INTO Servers(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
-                    return False
-                sql = 'INSERT INTO Nsfw(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
-                    return False
-                sql = 'INSERT INTO PreviousLinks(server_id) VALUES(?)'
-                if not self.__exec_nonselect(sql, interaction.guild.id):
-                    logging.error(
-                        'Error in nsfw.py - on_guild_join(): failed to insert server')
+                if not self.__insert_guild(interaction.guild.id):
                     return False
 
             if self.__only_nsfw(interaction.guild.id) and not interaction.channel.is_nsfw():
@@ -300,14 +256,13 @@ class Nsfw(commands.Cog):
                 return True
 
             sql = 'SELECT link_url FROM Links WHERE link_category = ? ORDER BY RANDOM() LIMIT 1;'
-
-            if self.__exec_select(sql, category):
-                link = self.c.fetchone()[0]
+            if data := self.__exec_select(sql, category):
+                link = data[0]
 
                 while not self.__check_link(link, category, interaction.guild.id):
                     sql = 'SELECT link_url FROM Links WHERE link_category = (?) ORDER BY RANDOM() LIMIT 1;'
-                    if self.__exec_select(sql, category):
-                        link = self.c.fetchone()[0]
+                    if data := self.__exec_select(sql, category):
+                        link = data[0]
                     else:
                         return False
 
@@ -333,43 +288,46 @@ class Nsfw(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in nsfw.py - see(): {e}')
+            lu.serror(lu.F_NSFW, 'Nsfw.see',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
         return True
 
     def __do_cmd(self, command: str, guild_id: int) -> bool:
         sql = f'SELECT do{command.title()} FROM Nsfw WHERE server_id = (?);'
-        if not self.__exec_select(sql, guild_id):
-            return True
-        return bool(self.c.fetchone()[0])
+        data = self.__exec_select(sql, guild_id)
+        if not data:
+            return False
+        return bool(data[0])
 
     def __only_nsfw(self, guild_id: int) -> bool:
-        sql = 'SELECT onlyNsfwChannels FROM Servers WHERE server_id = (?);'
-        if not self.__exec_select(sql, guild_id):
+        sql = 'SELECT onlyNsfwChannels FROM Nsfw WHERE server_id = (?);'
+        data = self.__exec_select(sql, guild_id)
+        if not data:
             return True
-        return bool(self.c.fetchone()[0])
+        return bool(data[0])
 
     def __check_link(self, link: str, category: str, guild_id: int) -> bool:
         sql = f'SELECT prev{category.title()} FROM PreviousLinks WHERE server_id = (?);'
-        self.__exec_select(sql, guild_id)
-        prev_link = self.c.fetchone()[0]
+        data = self.__exec_select(sql, guild_id)
+        prev_link = data[0]
         return not (link == prev_link)
 
     def __check_guild(self, guild_id: int) -> bool:
         sql = 'SELECT count(*) FROM Servers WHERE server_id=?'
-        if not self.__exec_select(sql, guild_id):
+        data = self.__exec_select(sql, guild_id)
+        if not data:
             return False
-        return bool(self.c.fetchone()[0])
+        return bool(data[0])
 
     def __create_tables(self) -> bool:
         sql = '''CREATE TABLE IF NOT EXISTS Servers(
             server_id UNSIGNED BIG INT NOT NULL PRIMARY KEY
         );'''
         if not self.__exec_nonselect(sql):
-            logging.error(
-                'Error in nsfw.py - create_tables(): failed to create Servers table')
+            lu.serror(lu.F_NSFW, 'Nsfw.__create_tables',
+                'failed to create Servers table')
             return False
 
         sql = '''CREATE TABLE IF NOT EXISTS Nsfw(
@@ -404,8 +362,8 @@ class Nsfw(commands.Cog):
                 REFERENCES Servers(server_id)
         );'''
         if not self.__exec_nonselect(sql):
-            logging.error(
-                'Error in nsfw.py - create_tables(): failed to create Nsfw table')
+            lu.serror(lu.F_NSFW, 'Nsfw.__create_tables',
+                'failed to create Nsfw table')
             return False
 
         sql = '''CREATE TABLE IF NOT EXISTS Links(
@@ -414,8 +372,8 @@ class Nsfw(commands.Cog):
             link_category TEXT NOT NULL
         );'''
         if not self.__exec_nonselect(sql):
-            logging.error(
-                'Error in nsfw.py - create_tables(): failed to create Links table')
+            lu.serror(lu.F_NSFW, 'Nsfw.__create_tables',
+                'failed to create Links table')
             return False
 
         sql = '''CREATE TABLE IF NOT EXISTS PreviousLinks(
@@ -449,27 +407,33 @@ class Nsfw(commands.Cog):
                 REFERENCES Servers(server_id)
         );'''
         if not self.__exec_nonselect(sql):
-            logging.error(
-                'Error in nsfw.py - create_tables(): failed to create PreviousLinks table')
+            lu.serror(lu.F_NSFW, 'Nsfw.__create_tables',
+                'failed to create PreviousLinks table')
             return False
 
         return True
 
-    def __insert_links(self, link: str, cat: str) -> bool:
+    def __insert_links(self, links: List[Tuple[str, str]]) -> bool:
         sql = 'INSERT INTO Links(link_url, link_category) VALUES(?, ?)'
-        if not self.__exec_nonselect(sql, link, cat):
-            logging.error(
-                'Error in nsfw.py - insert_links(): failed to insert links')
+        try:
+            self.c.executemany(sql, links)
+            self.conn.commit()
+        except Exception as e:
+            lu.serror(lu.F_NSFW, 'Nsfw.__insert_links',f'Uncaught error: {e}')
             return False
         return True
 
-    def __exec_select(self, query: str, *args) -> bool:
+    def __exec_select(self, query: str, *args) -> Any | bool:
         try:
             self.c.execute(query, args)
-            return True
+            data = self.c.fetchone()
+            if data is None:
+                return False
+            else:
+                return data
         except Exception as e:
-            logging.error(
-                f'Error in nsfw.py - __exec_select(): {e}')
+            lu.serror(lu.F_NSFW, 'Nsfw.__exec_select',
+                f'Uncaught error: {e}')
             return False
 
     def __exec_nonselect(self, query: str, *args) -> bool:
@@ -478,9 +442,27 @@ class Nsfw(commands.Cog):
             self.conn.commit()
             return True
         except Exception as e:
-            logging.error(
-                f'Error in nsfw.py - __exec_nonselect(): {e}')
+            lu.serror(lu.F_NSFW, 'Nsfw.__exec_nonselect',
+                f'Uncaught error: {e}')
             return False
+    
+    def __insert_guild(self, guild_id: int) -> bool:
+        sql = 'INSERT INTO Servers(server_id) VALUES(?)'
+        if not self.__exec_nonselect(sql, guild_id):
+            lu.serror(lu.F_NSFW, 'Nsfw.__insert_guild'
+                'Failed to insert server to Servers')
+            return False
+        sql = 'INSERT INTO Nsfw(server_id) VALUES(?)'
+        if not self.__exec_nonselect(sql, guild_id):
+            lu.serror(lu.F_NSFW, 'Nsfw.__insert_guild'
+                'Failed to insert server to Nsfw')
+            return False
+        sql = 'INSERT INTO PreviousLinks(server_id) VALUES(?)'
+        if not self.__exec_nonselect(sql, guild_id):
+            lu.serror(lu.F_NSFW, 'Nsfw.__insert_guild'
+                'Failed to insert server to PreviousLinks')
+            return False
+        return True
 
 
 async def setup(bot: commands.Bot) -> None:

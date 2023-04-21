@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.3.4 — "The trojan horse of discord raiding"
+Discord Raidkit v2.3.5 — "The trojan horse of discord raiding"
 Copyright © 2023 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,10 +8,9 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 surfing.py stores the surfing commands for Anubis.
-surfing.py was last updated on 05/03/23 at 20:50 UTC.
+surfing.py was last updated on 20/04/23 at 22:04 UTC.
 """
 
-import logging
 import re
 
 import discord
@@ -20,9 +19,9 @@ from bs4 import BeautifulSoup
 from discord import app_commands
 from discord.ext import commands
 
-from utils import init_logger
+import utils.log_utils as lu
 
-init_logger()
+lu.init()
 
 
 class Surfing(commands.Cog):
@@ -49,7 +48,7 @@ class Surfing(commands.Cog):
                 url = f'https://www.dictionary.com/browse/{word}'
                 page = requests.get(url)
                 soup = BeautifulSoup(page.content, 'html.parser')
-                definition = soup.find('div', class_='css-1o58fj8 e1hk9ate4').find('span').text
+                definition = soup.find('span', class_='one-click-content css-nnyc96 e1q3nk1v1').text
                 definition = re.sub(r'\s+', ' ', definition).strip()
 
                 embed = discord.Embed(
@@ -73,8 +72,7 @@ class Surfing(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in surfing.py - define(): {e}')
+            lu.serror(lu.F_SURFING, 'Surfing.define', f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
         return
 

