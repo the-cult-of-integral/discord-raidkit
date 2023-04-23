@@ -39,7 +39,7 @@ There are several reasons to choose Discord raidkit over similar programs:
 As of v2.3.5, installation is as easy as ever!
 - Visit the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases) and download the latest version - for easy installation, download the `.exe`!
 
-- Run `Discord Raidkit v2.3.5.exe` - it would be wise to run this from the command line to catch any errors that the logger may miss!
+- Run `Discord Raidkit v2.4.0.exe` - it would be wise to run this from the command line to catch any errors that the logger may miss!
 
 *Technical users who wish to develop this repository may download the `.py` zip; run the `install_requirements` for your OS to get started.*
 
@@ -60,13 +60,14 @@ As of v2.3.5, installation is as easy as ever!
 | mass_nuke | massnuke, nuke_all, nukeall | --- | perform the nuke command on every server the bot is in, one by one |
 | leave | --- | --- | leave a server |
 | mass_leave | massleave, leave_all, leaveall | --- | leave every server |
+| close | --- | --- | close a bot and return to the main menu |
 ---
 
 ### Repo
 
-#### Known Issues (v2.3.5)
+#### Known Issues (v2.4.0)
 
-- None - *for anyone curious as to why the program exits if you exit Anubis or Qetesh with `CTRL+C`, then going back into either Anubis or Qetesh, this is because, as far as I can tell, Discord does not allow a connected bot to be terminated and opened again within the same process. If anyone more experienced knows how to deal with this, you contributions are appreciated!*
+- None.
 
 #### Repository Milestones
 
