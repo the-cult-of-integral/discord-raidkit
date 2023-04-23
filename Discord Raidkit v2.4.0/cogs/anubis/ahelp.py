@@ -1,159 +1,164 @@
-"""
-Discord Raidkit v2.3.5 — "The trojan horse of discord raiding"
-Copyright © 2023 the-cult-of-integral
-
-a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
-
-This program is under the GNU General Public License v2.0.
-https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
-
-ahelp.py stores the help command for Anubis.
-ahelp.py was last updated on 19/04/23 at 23:36 UTC.
-"""
-
 import discord
-from discord import app_commands
-from discord.ext import commands
+import discord.app_commands as app_commands
+import discord.ext.commands as commands
 
+import tools.raider as rd
 import utils.log_utils as lu
-
-lu.init()
 
 
 class Help(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
-        self.bot = bot
+    def __init__(self, bot: rd.Raider):
+        self.bot: rd.Raider = bot
         return
 
     @app_commands.command(
-        name='help',
-        description='Displays the help command.')
-    async def help(self, interaction: discord.Interaction) -> None:
+    name='help',
+    description='Displays the help command.')
+    async def help(self, interaction: discord.Interaction):
+        """Sends a help embedded message to the user
+
+        Args:
+            interaction (discord.Interaction): the interaction object
+        """
         try:
             await interaction.response.defer(ephemeral=True)
             missing_perms = False
             author = interaction.user
             embed = discord.Embed(color=discord.Color.gold())
             embed.set_author(name=f"Here's a list of my commands!")
-
+            
             if not author.guild_permissions.manage_messages and not author.guild_permissions.kick_members and not \
                     author.guild_permissions.ban_members and not author.guild_permissions.administrator and not \
                     author.guild_permissions.moderate_members:
                 embed.add_field(
-                    name="**No permissions for moderator commands!**",
+                    name=":no_entry_sign: **No permissions for moderator commands!**",
                     value="You lack every permission used by the moderator commands.",
                     inline=False)
                 missing_perms = True
             else:
-                embed.add_field(name="**Moderation:**",
-                                value="My moderation commands are:", inline=False)
+                embed.add_field(
+                    name=":tools: **Moderation:**",
+                    value="Use these commands to manage your server:",
+                    inline=False)
                 if author.guild_permissions.manage_messages:
                     embed.add_field(
-                        name="clear <number>",
+                        name="`clear <number>`",
                         value="Clears messages from a channel.",
                         inline=False)
                 else:
                     missing_perms = True
                 if author.guild_permissions.kick_members:
                     embed.add_field(
-                        name="kick <member> <reason>",
+                        name="`kick <member> <reason>`",
                         value="Kicks a member from the server.",
                         inline=False)
                 else:
                     missing_perms = True
                 if author.guild_permissions.ban_members:
                     embed.add_field(
-                        name="ban <member> <reason>",
+                        name="`ban <member> <reason>`",
                         value="Bans a member from the server.",
                         inline=False)
                 else:
                     missing_perms = True
                 if author.guild_permissions.administrator:
                     embed.add_field(
-                        name="unban <member>",
+                        name="`unban <member>`",
                         value="Unbans a member from the server.",
                         inline=False)
                 else:
                     missing_perms = True
                 if author.guild_permissions.mute_members:
                     embed.add_field(
-                        name="timeout <member> <reason>",
+                        name="`timeout <member> <reason>`",
                         value="Timeout a member on the server.",
                         inline=False)
                 else:
                     missing_perms = True
-
+                embed.add_field(
+                    name="\u200b",
+                    value="\u200b",
+                    inline=False)
+                
             if not author.guild_permissions.mute_members and not author.guild_permissions.administrator:
                 embed.add_field(
-                    name="**No permissions for anti-raid commands!**",
+                    name=":no_entry_sign: **No permissions for anti-raid commands!**",
                     value="You lack every permission used by the anti-raid commands.",
                     inline=False)
                 missing_perms = True
+            
             else:
-                embed.add_field(name="**Anti-Raid:**",
-                                value="My anti-raid commands are:", inline=False)
+                embed.add_field(
+                    name=":shield: **Anti-Raid:**",
+                    value="Use these commands to protect your server from raids:",
+                    inline=False)
                 if author.guild_permissions.administrator:
                     embed.add_field(
-                        name="prevent <member>",
+                        name="`prevent <member>`",
                         value="Adds a member to my raider database.",
                         inline=False)
                     embed.add_field(
-                        name="set-log-channel <channel>",
+                        name="`set-log-channel <channel>`",
                         value="Set my anti-raid log channel.",
                         inline=False)
                     embed.add_field(
-                        name="toggle <state>",
+                        name="`toggle <state>`",
                         value="Turn my anti-raid features on or off on your server.",
                         inline=False)
                 else:
                     missing_perms = True
                 if author.guild_permissions.mute_members:
                     embed.add_field(
-                        name="lock <channel>",
+                        name="`lock <channel>`",
                         value="Locks down a text channel during a raid.",
                         inline=False)
                     embed.add_field(
-                        name="unlock <channel>",
+                        name="`unlock <channel>`",
                         value="Unlocks a text channel after a raid.",
                         inline=False)
                     embed.add_field(
-                        name="lockdown",
+                        name="`lockdown`",
                         value="Locks all channels during a raid.",
                         inline=False)
                     embed.add_field(
-                        name="unlockdown",
+                        name="`unlockdown`",
                         value="Unlocks all text channel after a raid.",
                         inline=False)
                 else:
                     missing_perms = True
-
-            embed.add_field(name="**Surfing:**",
-                            value="My surfing commands are:", inline=False)
+                embed.add_field(
+                    name="\u200b",
+                    value="\u200b",
+                    inline=False)
+            
             embed.add_field(
-                name="define <word>",
+                name=":surfer: **Surfing:**",
+                value="Use this command to learn new words:",
+                inline=False)
+            
+            embed.add_field(
+                name="`define <word>`",
                 value="Shows you the definition of any word.",
                 inline=False)
-
+            
             if missing_perms:
                 embed.set_footer(
                     text="Notice: You are missing permissions to view certain commands.")
-
+            
             await interaction.user.send(embed=embed)
             await interaction.followup.send('Help message sent! Not seeing it? Check your settings.')
-
+            
         except discord.errors.Forbidden:
             embed = discord.Embed(
                 title='Action Forbidden',
                 description='I do not have the required permissions to send embeds to this channel.',
                 color=discord.Color.brand_red())
             await interaction.followup.send(embed=embed)
-
+            
         except Exception as e:
-            lu.serror(lu.F_AHELP, 'Help.help', f'Uncaught error: {e}')
+            lu.swarning(f'Error sending help message: {e}')
             await interaction.followup.send(f'Error: {e}')
+                
 
-        return
-
-
-async def setup(bot: commands.Bot) -> None:
+async def setup(bot: rd.Raider):
     await bot.add_cog(Help(bot))

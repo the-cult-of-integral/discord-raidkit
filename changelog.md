@@ -1,5 +1,63 @@
 # Discord Raidkit Changelog
 
+### v2.4.0 (23/04/2023)
+##### Additions:
+- Reintroduced Osiris' ability to make users leave all guilds they do not own during an account nuke.
+- The Raider bot's nuke edits five more server settings (now editing every possible server option as of release date):
+  - `afk_channel = None`
+  - `system_channel = None`
+  - `system_channel_flags = None`
+  - `rules_channel = None`
+  - `public_updates_channel = None`
+- You can now close a Raider bot with `$close` and reconnect bots without raising any exceptions. This is the standard way of closing bots now; **do not use `CTRL + C`**.
+- Reintroduced `config.py` and is now held in the `conf` folder.
+
+##### Changes:
+- Just as `config.py` is in a new `conf` folder, `drui.py` is now in a new `ui` folder. All python files except the main file are in subdirectories to keep things clean for non-technical users.
+- In `silence_event_loop_closed_exception`, the line `raise e` has been replaced with `raise`, now reraising instead of creating a new Exception object, avoiding the construction overhead and thus improving performance.
+- In `silence_event_loop_closed_exception`, the `error_msg` string has been moved from the wrapper function to the parent function to improve readability.
+- In `io_utils.py`, error message handling has been moved to a single `__print_error_and_delay` function, simplifying the code.
+- In `io_utils.py`, the `valid_input`, `type_input`, and `mkfile` functions now utilise generics for type annotation. These functions have also been modified to be more readable.
+- In `io_utils.py`, the value variable has been renamed to `values` for the `csv_input` function.
+- In `io_utils.py`, the `mkfile` function now explicitly catches `FileNotFoundError` and `PermissionError`.
+- The format of the logger has been changed to include the level of the message.
+- The `init` method of `log_utils.py` is now more readable.
+- When logging, the file path and method name is now gathered automatically.
+- The `is_latest_version` check now uses `requests.head` instead of `requests.get`, making the process quicker.
+- In the `is_lastest_version` check, `allow_redirects` is now True, just in case.
+- General readability improvements to `dr_repo_utils.py`.
+- Replaced the `match` statement in `check_for_updates` with an `if` statement to avoid repeated code.
+- `DRConfig` no longer uses the default file path constant for every `prompt_config` call.
+- `DRConfig.__init__` now takes `pathlib.Path` over `str`.
+- `DRConfig.load_config` now raises a `ValueError` if the `pathlib.Path.suffix` is not `json`.
+- `Raider.py` now utilises a strategy pattern to determine what extensions a bot will include, simplifying code and making it easier to add new bots in the future.
+- The `extensions` attribute has been removed thanks to this strategy, saving memory.
+- In `drui.py`, raider has been renamed to `raider_cmds` to avoid confusion and now takes the bot type strategy so that the commands screen informs the user what bot they are currently using.
+- For the Raider `nuke` command, guild attributes are now edited in one request, improving performance significantly.
+- For the Raider `nuke` command, the content filter is now set to `discord.ContentFilter.disabled` instead of `discord.ContentFilter.all_members` - let the anarchy begin!
+- The `cmds.py` file has been refactored significantly, once again.
+- Cogs now type `self.bot` as `Raider`, not `commands.Bot`.
+- Improved Anubis' `help` command.
+- Various optimisations made to Anubis' moderation commands.
+- Empty reasons are no longer included in Anubis' embeds.
+- For `raid_prevention.py`, table and column names are now constants.
+- The SQL for `raid_prevention.py` has been improved.
+- In `raid_prevention.py`, the __exec_select command is now `__exec_select_one` and returns `typing.Any`, not `bool` - this is the same for `nsfw.py` for Qetesh.
+- Errors in `raid_prevention.py` now log as warnings.
+- `lockdown` and `unlockdown` for Anubis now utilise the `asyncio.gather(*tasks)` implementation, improving performance.
+- `lockdown` and `unlockdown` for Anubis now affects channels where the `send_messages` permission is `None`, rather than just `True | False`.
+- Failures to create tables in `nsfw.py` raises `SystemExit` and logs as critical.
+- Renamed the `check` methods in `nsfw.py` for simplificty.
+- Qetesh commands have been refactored.
+- In `osiris.py`, auth has been renamed to `auth_token`.
+- In `osiris.py`, `auth_token` is no longer a class attribute, saving memory.
+- Renamed generate_grabber to `generate_discord_token_grabber` in `osiris.py`.
+- Fixed `do_reg_key` typo in `osiris.py`.
+- Replaced all `from foo import bar` lines with `import foo as <alias>` and using `<alias>.bar` (excluding Selenium modules).
+
+##### Reductions:
+- Removed redundant `lu.init()` calls throughout the codebase.
+
 ### v2.3.5 (21/04/2023)
 ##### Additions:
 - You now have the option to download a larger environment that uses a `.exe` rather than `.py`, no longer requiring non-technical users to install Python to their machine.

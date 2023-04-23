@@ -1,34 +1,19 @@
-"""
-Discord Raidkit v2.3.5 — "The trojan horse of discord raiding"
-Copyright © 2023 the-cult-of-integral
-
-a collection of raiding tools, hacking tools, and a token grabber generator for discord; written in Python 3
-
-This program is under the GNU General Public License v2.0.
-https://github.com/the-cult-of-integral/discord-raidkit/blob/master/LICENSE
-
-surfing.py stores the surfing commands for Anubis.
-surfing.py was last updated on 20/04/23 at 22:04 UTC.
-"""
-
 import re
 
+import bs4
 import discord
+import discord.app_commands as app_commands
+import discord.ext.commands as commands
 import requests
-from bs4 import BeautifulSoup
-from discord import app_commands
-from discord.ext import commands
 
+import tools.raider as rd
 import utils.log_utils as lu
-
-lu.init()
 
 
 class Surfing(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
-        self.bot = bot
-        return
-
+    def __init__(self, bot: rd.Raider):
+        self.bot: rd.Raider = bot
+    
     @app_commands.command(
         name='define',
         description='Defines a word.')
@@ -47,7 +32,7 @@ class Surfing(commands.Cog):
             try:
                 url = f'https://www.dictionary.com/browse/{word}'
                 page = requests.get(url)
-                soup = BeautifulSoup(page.content, 'html.parser')
+                soup = bs4.BeautifulSoup(page.content, 'html.parser')
                 definition = soup.find('span', class_='one-click-content css-nnyc96 e1q3nk1v1').text
                 definition = re.sub(r'\s+', ' ', definition).strip()
 
@@ -72,10 +57,9 @@ class Surfing(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            lu.serror(lu.F_SURFING, 'Surfing.define', f'Uncaught error: {e}')
+            lu.swarning(f'There was an error when defining the word "{word}": {e}')
             await interaction.followup.send(f'Error: {e}')
-        return
 
 
-async def setup(bot: commands.Bot) -> None:
+async def setup(bot: rd.Raider):
     await bot.add_cog(Surfing(bot))
