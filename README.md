@@ -1,82 +1,60 @@
 # Discord Raidkit
 
-⚠ Windows Defender now reports this program as malware - this is a false positive and can be [excluded](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26#:~:text=Go%20to%20Start%20%3E%20Settings%20%3E%20Update,%2C%20file%20types%2C%20or%20process.)! ⚠
+![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)
+![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)
 
-![Discord Raidkit v2.3.4 image](https://user-images.githubusercontent.com/98130822/222992322-ececffd1-ae6d-4d1e-bbc5-a4d6dead6f48.png)
+![GitHub contributors](https://img.shields.io/github/contributors/the-cult-of-integral/discord-raidkit)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields)](http://makeapullrequest.com)
+![GitHub issues](https://img.shields.io/github/issues/the-cult-of-integral/discord-raidkit)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/9P9/Discord-QR-Token-Logger)
+![Maintenance](https://img.shields.io/maintenance/yes/2023)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/the-cult-of-integral/discord-raidkit)
 
-## Contents
+Discord Raidkit is an open-source, forever free tool that allows you to raid and destroy Discord servers via Discord bots, compromise Discord accounts, and generate Discord token grabbers.
 
-- [Introduction](#Introduction)
-- [Installation](#Installation)
-- [Commands](#Commands)
-- [Repo](#Repo)
+![Discord Raidkit v2.4.0 Image](https://user-images.githubusercontent.com/98130822/234101922-2f979e92-3668-4939-9a8b-4cfeca84c925.png)
 
----
+## Why use Discord Raidkit over any other tool? Here's 5 reasons!
 
-### Introduction
+- **Developed for social engineering** - both bots have non-malicious slash commands, such as a moderation and NSFW suite (10000+ images!).
+- **Asynchronous optimisation** - many tools work synchronously, one request at a time — we don't do things like that here.
+- **Ease of use** - you can download this toolkit as a single executable, so there's no need to install Python or mess around with npm.
+- **Maintained** - the first commit to this repository was made August 3rd, 2020, nearly three years ago. We evolve with discord.py, and Python. 
+- **Professionally written** - this tool is written by a real software developer, and it's quite easy to tell!
 
-#### What is Discord Raidkit?
+## Installation
 
-Discord Raidkit is a compilation of useful tools to help you raid discord servers and hack discord accounts. What sets Discord Raidkit apart from other similar projects is its emphasis on social engineering — Discord Raidkit is *the* raidkit for anyone looking to convince servers to add bots. 
-
-#### Why choose Discord Raidkit over similar programs?
-There are several reasons to choose Discord raidkit over similar programs:
-- Unlike many raiders, Discord Raidkit is free and open-source.
-- Unlike many raiders, Discord Raidkit comes with fully functional, non-malicious commands to further aid in social engineering.
-- Unlike many raiders, Discord Raidkit is professionally written for performance, running far faster than some other programs.
-
-#### What tools are included in Discord Raidkit?
-
-- **Anubis** is a moderation bot that comes with genuine server management commands and some utility commands, like bans and timeouts. Keep note of this when attempting to convince a moderation team to add the bot. Hidden malicious commands can be accessed by the bot owner only (typically you) once added.
-
-- **Qetesh** is a fully functional porn bot with over 10,000 images, channel management, and 25 commands. Qetesh is an easy bot to add to most NSFW servers, as many will blindly add whatever porn bot is requested by their members. Like Anubis, hidden malicious commands can be accessed by the bot owner only once added.
-
-- **Osiris** is a user authentication token handler. With Osiris, you can generate token grabbers that have been adapted to embed themselves within Windows registries, look up information about a token such as the email address and phone number attatched to it, fill up the users server count and mess with their settings, as well as log into an account with just one selenium script.
+1. Head over to [the latest release](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest).
+2. Download the EXE zip.
+3. Extract and run `Discord Raidkit v2.4.0.exe` in its directory.
 
 ---
 
-### Installation
-As of v2.3.5, installation is as easy as ever!
-- Visit the [releases page](https://github.com/the-cult-of-integral/discord-raidkit/releases) and download the latest version - for easy installation, download the `.exe`!
-
-- Run `Discord Raidkit v2.4.0.exe` - it would be wise to run this from the command line to catch any errors that the logger may miss!
-
-*Technical users who wish to develop this repository may download the `.py` zip; run the `install_requirements` for your OS to get started.*
-
----
-
-### Commands
+## Bot commands (for Anubis/Qetesh)
 
 |Command|Aliases|Parameters|Brief Description|
 |-|-|-|-|
-| nick_all | nick, nickall | *nickname* | nickname ever user in a server to *nickname* |
-| msg_all | msg, msgall | *message* | send *message* as a DM to every user in a server  |
-| spam | --- | *message* | send *message* to every text channel in a server, repeatedly |
-| cpurge | --- | --- | delete every channel in a server |
-| cflood | --- | *amount*, *name* | create *amount* number of text channels named *name* in a server|
-| raid | --- | *role name*, *nickname*, *amount*, *name*, *message* | create and give every user in a server a role named *role name*, nickname every user in a server to *nickname*, delete every channel in a server, create *amount* number of text channels named *name* in a server, and then send *message* to every text channel in a server, repeatedly.
-| admin | --- | *member*, *role name* | grant *member* in a server an all-permissions role named *role name*|
-| nuke | --- | --- | ban all members from a server, delete every channel in a server, delete every role in a server, delete every emoji in a server, delete every sticker from a server, revoke every invite from a server, then edit a server's name, description, icons, community setting, notifications, verification level, content filter, premium bar and preferred locale |
-| mass_nuke | massnuke, nuke_all, nukeall | --- | perform the nuke command on every server the bot is in, one by one |
-| leave | --- | --- | leave a server |
-| mass_leave | massleave, leave_all, leaveall | --- | leave every server |
-| close | --- | --- | close a bot and return to the main menu |
----
+| nick_all | nick, nickall | *nickname* | Nickname every user in a server to *nickname*. |
+| msg_all | msg, msgall | *message* | Send a *message* as a DM to every user in a server.  |
+| spam | --- | *message* | Send a *message* to every text channel in a server, repeatedly. |
+| cpurge | --- | --- | Delete every channel in a server. |
+| cflood | --- | *amount*, *name* | Create an *amount* of text channels with a given *name* in a server. |
+| raid | --- | *role name*, *nickname*, *amount*, *name*, *message* | Create and give every user in a server a role named *role name*, nickname every user in a server to *nickname*, delete every channel in a server, create an *amount* of text channels named *name* in a server, and then send a *message* to every text channel in a server, repeatedly.
+| admin | --- | *member*, *role name* | Grant a *member* in a server an all-permissions role named *role name*. |
+| nuke | --- | --- | Ban all members from a server, delete every channel in a server, delete every role in a server, delete every emoji in a server, delete every sticker from a server, revoke every invite from a server, then edit a server's settings. |
+| mass_nuke | massnuke, nuke_all, nukeall | --- | Perform the nuke command on every server the bot is in, one by one. |
+| leave | --- | --- | Leave a server. |
+| mass_leave | massleave, leave_all, leaveall | --- | Leave every server. |
+| close | --- | --- | Close a bot and return to the main menu. |
 
-### Repo
+## Account actions (for Osiris)
 
-#### Known Issues (v2.4.0)
-
-- None.
-
-#### Repository Milestones
-
-- 10 stars. ✔
-- 50 stars. ✔
-- 100 stars. ✔
-- 250 stars. ✔
-- 500 stars. ❌
-- 1000 stars. ❌
+|Action|Brief Description|
+|-|-|
+| Generate Discord token grabber | Allows you to generate a Discord token grabber via a folder name, a seen payload name, and a hidden payload name. |
+| Get a Discord account's details | Allows you view information on a Discord account, such as its email, phone, and billing address. |
+| Log into a Discord account | Allows you to log into a Discord account using either Chrome, Firefox, or Microsoft Edge. |
+| Nuke a Discord account | Makes an account leave all servers and then edits the account's settings to inferior options. |
 
 ---
 
