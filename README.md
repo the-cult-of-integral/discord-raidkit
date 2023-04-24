@@ -30,7 +30,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 1. Head over to [the latest release](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest).
 2. Download the EXE zip.
-3. Extract and run `Discord Raidkit v2.4.0.exe` in its directory.
+3. Extract and run the executable in its directory.
 
 ---
 
