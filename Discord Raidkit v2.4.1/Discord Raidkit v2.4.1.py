@@ -1,3 +1,10 @@
+"""
+Discord Raidkit v2.4.1
+the-cult-of-integral
+
+Last modified: 2023-04-24 21:07
+"""
+
 import asyncio.proactor_events as ape
 import logging
 import os

@@ -1,3 +1,10 @@
+"""
+Discord Raidkit v2.4.1
+the-cult-of-integral
+
+Last modified: 2023-04-24 21:08
+"""
+
 import discord
 import discord.app_commands as app_commands
 import discord.ext.commands as commands
