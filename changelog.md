@@ -3,6 +3,7 @@
 ### v2.4.1 (24/04/2023)
 ##### Changes:
 - Immediate bug fix to Osiris' `get_account_details` — .json() now uses to convert bytes response to dictionary.
+- Reversed back to using .get() for version confirmation — assumed the new implementation worked; it did not.
 
 ##### Reductions:
 - Immediate bug fix to Osiris' `get_account_details` — stray `self.auth` removed.

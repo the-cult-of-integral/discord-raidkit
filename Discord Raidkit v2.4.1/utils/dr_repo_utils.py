@@ -2,7 +2,7 @@
 Discord Raidkit v2.4.1
 the-cult-of-integral
 
-Last modified: 2023-04-24 21:08
+Last modified: 2023-04-24 21:28
 """
 
 import webbrowser
@@ -12,7 +12,7 @@ import requests
 
 import utils.io_utils as iou
 
-MY_VERSION = 'v2.4.0'
+MY_VERSION = 'v2.4.1'
 
 RELEASES_URL = 'https://github.com/the-cult-of-integral/discord-raidkit/releases/latest'
 HEADERS = {
@@ -23,10 +23,9 @@ HEADERS = {
 
 def is_latest_version() -> bool:
     """Returns True if the latest version of Discord Raidkit matches MY_VERSION."""
-    resp = requests.head(RELEASES_URL, headers=HEADERS, allow_redirects=True)
-    latest_version_tag = resp.headers.get('Location', '').split('/')[-1]
-    return latest_version_tag == MY_VERSION
-
+    response = requests.get(RELEASES_URL, headers=HEADERS)
+    latest_version = response.url.split('/')[-1]
+    return latest_version == MY_VERSION
 
 def check_for_updates() -> None:
     """
