@@ -17,9 +17,13 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 ## Why use Discord Raidkit over any other tool? Here's 5 reasons!
 
 - **Developed for social engineering** - both bots have non-malicious slash commands, such as a moderation and NSFW suite (10000+ images!).
+
 - **Asynchronous optimisation** - many tools work synchronously, one request at a time — we don't do things like that here.
+
 - **Ease of use** - you can download this toolkit as a single executable, so there's no need to install Python or mess around with npm.
+
 - **Maintained** - the first commit to this repository was made August 3rd, 2020, nearly three years ago. We evolve with discord.py, and Python. 
+
 - **Professionally written** - this tool is written by a real software developer, and it's quite easy to tell!
 
 ## Installation
