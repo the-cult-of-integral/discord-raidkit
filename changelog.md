@@ -1,5 +1,12 @@
 # Discord Raidkit Changelog
 
+### v2.4.1 (24/04/2023)
+##### Changes:
+- Immediate bug fix to Osiris' `get_account_details` — .json() now uses to convert bytes response to dictionary.
+
+##### Reductions:
+- Immediate bug fix to Osiris' `get_account_details` — stray `self.auth` removed.
+
 ### v2.4.0 (23/04/2023)
 ##### Additions:
 - Reintroduced Osiris' ability to make users leave all guilds they do not own during an account nuke.
