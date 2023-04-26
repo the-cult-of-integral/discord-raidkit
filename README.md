@@ -34,6 +34,14 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 ---
 
+## Tools summary
+
+- **Anubis** is a Discord bot with several working moderation features, such as a raid prevention database that can be expanded by a server owner, and moderation slash commands. However, beneath the surface, lay several malicious commands only accessible by the bot owner.
+
+- **Qetesh** is a Discord bot with 25 NSFW commands, supporting over 10000+ NSFW images of the most popular porn-tags according to PornHub, plus some others. Like Anubis, there are also several hidden, malicious commands.
+
+- **Osiris** is a Discord account nuker that also allows you to login to an account and to view its information, such as billing addresses. There is also an inbuilt, improved token grabber that will allow itself to enter a Windows registry if ran.
+
 ## Bot commands (for Anubis/Qetesh)
 
 |Command|Aliases|Parameters|Brief Description|
