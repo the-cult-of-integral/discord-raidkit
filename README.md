@@ -22,6 +22,8 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 - **Osiris** is the account manager of Discord Raidkit. Using Osiris, you can save the information of an account, login to an account using either Chrome, Firefox, or Microsoft Edge, or you can fully nuke an account, deleting channels, guilds, friends, and connections, deauthorizing applications, removing hype squad, and PATCHing various account settings. You can also generate Discord token grabbers within Windows Registry support. As of v2.4.2, Osiris supports proxies (**proxies currently beta; awaiting feedback**).
  
+Remember, if you need help setting these tools, you can always visit the [Discord Raidkit Wiki](https://github.com/the-cult-of-integral/discord-raidkit/wiki)!
+ 
 ## Installation
 
 1. Head over to [the latest release](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest).
