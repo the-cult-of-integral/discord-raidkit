@@ -66,7 +66,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 | Generate Discord token grabber | Allows you to generate a Discord token grabber via a folder name, a seen payload name, and a hidden payload name. |
 | Get a Discord account's details | Allows you view information on a Discord account, such as its email, phone, and billing address. |
 | Log into a Discord account | Allows you to log into a Discord account using either Chrome, Firefox, or Microsoft Edge. |
-| Nuke a Discord account | Makes an account leave all servers and then edits the account's settings to inferior options. |
+| Nuke a Discord account | Deletes servers, friends, channels, and connections, deauthorizes apps, leaves hype squad and patches settings. |
 
 ---
 

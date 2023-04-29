@@ -1,5 +1,19 @@
 # Discord Raidkit Changelog
 
+### v2.4.2 (29/04/2023)
+##### Additions:
+- Added experimental proxy support. This functionality has not been fully tested yet, but releasing now as a beta-like feature should hopefully provide feedback from proxy users with any issues.
+- Added new features to Osiris' nuke command:
+  - Osiris deletes guilds that the user owns.
+  - Osiris deletes all friends (an old feature, brought back!)
+  - Osiris deletes all channels (an old feature, brought back!)
+  - Osiris deauthorizes all applications.
+  - Osiris removes all connections.
+  - Osiris makes an account leave the hype squad. 
+
+##### Changes:
+- There is now a new iou.NumberedMenu class that handles menus.
+
 ### v2.4.1 (24/04/2023)
 ##### Changes:
 - Immediate bug fix to Osiris' `get_account_details` — .json() now uses to convert bytes response to dictionary.

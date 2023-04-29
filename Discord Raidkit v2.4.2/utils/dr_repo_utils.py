@@ -1,8 +1,8 @@
 """
-Discord Raidkit v2.4.1
+Discord Raidkit v2.4.2
 the-cult-of-integral
 
-Last modified: 2023-04-24 21:28
+Last modified: 2023-04-27 05:03
 """
 
 import webbrowser
@@ -12,7 +12,7 @@ import requests
 
 import utils.io_utils as iou
 
-MY_VERSION = 'v2.4.1'
+MY_VERSION = 'v2.4.2'
 
 RELEASES_URL = 'https://github.com/the-cult-of-integral/discord-raidkit/releases/latest'
 HEADERS = {
@@ -21,11 +21,9 @@ HEADERS = {
 }
 
 
-def is_latest_version() -> bool:
-    """Returns True if the latest version of Discord Raidkit matches MY_VERSION."""
-    response = requests.get(RELEASES_URL, headers=HEADERS)
-    latest_version = response.url.split('/')[-1]
-    return latest_version == MY_VERSION
+def get_latest_version_tag() -> str:
+    """Returns the latest version tag from the GitHub API."""
+    return requests.get('https://api.github.com/repos/the-cult-of-integral/discord-raidkit/releases/latest', headers=HEADERS).json()['tag_name']
 
 def check_for_updates() -> None:
     """
@@ -34,18 +32,18 @@ def check_for_updates() -> None:
     """
     print(f'{cama.Fore.LIGHTWHITE_EX}Checking for updates...{cama.Fore.RESET}')
     
-    if is_latest_version():
+    if (tag := get_latest_version_tag()) == MY_VERSION:
         return
     
     choice =  iou.valid_input(
 f"""{cama.Fore.LIGHTGREEN_EX}New Version Available 
-{cama.Fore.LIGHTWHITE_EX}https://github.com/the-cult-of-integral/discord-raidkit/releases/latest/
+{cama.Fore.LIGHTWHITE_EX}https://github.com/the-cult-of-integral/discord-raidkit/releases/{tag}/
 
 {cama.Fore.LIGHTGREEN_EX}[1] Open in browser and continue
 [2] Open in browser and exit
 [3] Continue
 
->>> {cama.Fore.LIGHTWHITE_EX}""", [1, 2, 3], int, True)
+>>> {cama.Fore.LIGHTWHITE_EX}""", [1, 2, 3], int)
     
     if choice == 1 or choice == 2:
         webbrowser.open(RELEASES_URL)

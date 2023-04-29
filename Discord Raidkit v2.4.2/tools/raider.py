@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.4.1
+Discord Raidkit v2.4.2
 the-cult-of-integral
 
 Last modified: 2023-04-24 21:08

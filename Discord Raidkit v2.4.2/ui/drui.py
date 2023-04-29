@@ -1,40 +1,46 @@
 """
-Discord Raidkit v2.4.1
+Discord Raidkit v2.4.2
 the-cult-of-integral
 
-Last modified: 2023-04-24 21:08
+Last modified: 2023-04-28 00:47
 """
 
-import pathlib as pl
-
 import colorama as cama
-
-import conf.config as conf
 import shared.shared as shared
 import utils.dr_repo_utils as ru
-import utils.io_utils as iou
 
+DISCORD_RAIDKIT_ASCII = """
+            .#/                                                                                 
+    #########*#######                                                                           
+ ############## #####                         ##   #                    #                       
+%#######################                      # #      ## ### ### ### ###                       
+ ####################                         # #  #   #  #   # # #   # #                       
+  ############                                # #  ## ##  ### ### #   ###                       
+   ##########                                 ##                                                
+    &#######                                                                                    
+      *#####%                                 ##       #    # #    #   #                        
+        &####                                 # #  ##     ### # #     ###                       
+           ###                                ##  # #  #  # # ##   #   #                        
+             ###                              # # ###  ## ### # #  ##  ##                       
+                ##                            # #                                               
+                   #                                                                            
+                     #                                                                          
 
-def main_menu(config_file_path: pl.Path = pl.Path(conf.DEF_CONFIG_FILE_PATH)) -> int:
-    """Allows the user to select an option to use:
-    
-    Anubis: 1
-    Qetesh: 2
-    Osiris: 3
-    Edit bot config: 4
-    Exit: 5"""
-    menu_str = f"""{cama.Fore.LIGHTGREEN_EX}Discord Raidit {ru.MY_VERSION}
+"""
 
-{cama.Fore.LIGHTBLUE_EX}[1] Anubis
-{cama.Fore.LIGHTRED_EX}[2] Qetesh
-{cama.Fore.LIGHTYELLOW_EX}[3] Osiris"""
-    menu_str = menu_str + f"{cama.Fore.MAGENTA}" if config_file_path.exists() else menu_str + f"{cama.Fore.LIGHTBLACK_EX}"
-    menu_str = menu_str + f"""
-[4] Edit bot config
-{cama.Fore.RED}[5] Exit
+OSIRIS_ASCII = """
+:'#######:::'######::'####:'########::'####::'######::
+'##.... ##:'##... ##:. ##:: ##.... ##:. ##::'##... ##:
+ ##:::: ##: ##:::..::: ##:: ##:::: ##:: ##:: ##:::..::
+ ##:::: ##:. ######::: ##:: ########::: ##::. ######::
+ ##:::: ##::..... ##:: ##:: ##.. ##:::: ##:::..... ##:
+ ##:::: ##:'##::: ##:: ##:: ##::. ##::: ##::'##::: ##:
+. #######::. ######::'####: ##:::. ##:'####:. ######::
+:.......::::......:::....::..:::::..::....:::......:::
 
-{cama.Fore.LIGHTGREEN_EX}>>> {cama.Fore.LIGHTWHITE_EX}"""
-    return iou.valid_input(menu_str, [1, 2, 3, 4, 5], int, True)
+Using proxies: PROXIES_ENABLED
+
+"""
 
 
 def raider_cmds(prefix: str, bot_type: shared.BotType) -> str:

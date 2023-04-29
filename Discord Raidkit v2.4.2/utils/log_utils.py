@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.4.1
+Discord Raidkit v2.4.2
 the-cult-of-integral
 
 Last modified: 2023-04-24 21:08
@@ -16,8 +16,7 @@ def init():
         format='%(levelname)s - %(asctime)s :: %(message)s',
         filename='raidkit.log',
         filemode='a+',
-        datefmt='%d/%m/%Y %H:%M:%S'
-    )
+        datefmt='%d/%m/%Y %H:%M:%S')
 
 
 def _log_message(level: str, message: str):
