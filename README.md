@@ -12,6 +12,8 @@
 
 Discord Raidkit is an open-source, forever free tool that allows you to raid and destroy Discord servers via Discord bots, compromise Discord accounts, and generate Discord token grabbers.
 
+[Have a feature suggestion? Make one here!](https://github.com/the-cult-of-integral/discord-raidkit/discussions/categories/ideas)
+
 ![Discord Raidkit v2.4.2 Console](https://user-images.githubusercontent.com/98130822/235321378-f624a5ba-5ff6-4f80-b37e-8a1691724c53.png)
 
 ## Tools
