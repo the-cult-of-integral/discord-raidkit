@@ -13,6 +13,7 @@
 
 ##### Changes:
 - There is now a new iou.NumberedMenu class that handles menus.
+- Osiris now uses Discord API v10, not Discord API v9.
 
 ### v2.4.1 (24/04/2023)
 ##### Changes:
