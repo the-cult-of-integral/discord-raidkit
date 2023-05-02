@@ -62,6 +62,12 @@ Remember, if you need help setting these tools, you can always visit the [Discor
 
 ---
 
+## Known issues as of latest release
+
+- Anti-malware will often detect Osiris as malware, as Osiris gives you the ability to generate token grabbers. As a result, some people may have issues downloading the executable, as their browser and other anti-malware software may block it. This issue can be resolved by temporaily disabling these browser features, as well as temporarily adding the downloads folder to Windows Defender exclusions. Once you have the executable, set up some folder to be permanently excluded from Windows Defender, and place the executable in said folder. **Make sure to not place anything you do not trust in this folder** - be internet safe! *This issue is more prevelent on Windows.*
+
+---
+
 <p align="left">
   <strong>Views</strong> (as of 24/09/2022)<br><br>
   <img src="https://profile-counter.glitch.me/discord-raidkit/count.svg" />
