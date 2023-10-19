@@ -1,4 +1,11 @@
 # Discord Raidkit
+⚠️ **For educational purposes!** 📖
+
+This program has been created for educational purposes, highlighting the dangers of social engineering.
+
+**By using this program, you agree that I am in no way responsible for your usage of this program.**
+
+---
 
 ![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)
 ![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)
@@ -72,3 +79,11 @@ Remember, if you need help setting these tools, you can always visit the [Discor
   <strong>Views</strong> (as of 24/09/2022)<br><br>
   <img src="https://profile-counter.glitch.me/discord-raidkit/count.svg" />
 </p>
+
+---
+
+## v3.0.0 coming soon?
+
+If you're wondering where I have been the past few months, I've been learning more front-end development? Here's a little screenshot thing I'm working on. Due to the way discord.py works, I can't promise I'll be able to create a fully functional web version of Discord Raidkit, but you never know! No promises though!
+
+![preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/4911d58d-815e-4d38-925c-dd342bfe9070)
