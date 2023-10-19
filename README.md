@@ -84,6 +84,6 @@ Remember, if you need help setting these tools, you can always visit the [Discor
 
 ## v3.0.0 coming soon?
 
-If you're wondering where I have been the past few months, I've been learning more front-end development? Here's a little screenshot thing I'm working on. Due to the way discord.py works, I can't promise I'll be able to create a fully functional web version of Discord Raidkit, but you never know! No promises though!
+If you're wondering where I have been the past few months, I've been learning more front-end development. Here's a little screenshot of a secret, little thing I've been working on. Due to the way discord.py works, I can't promise I'll be able to create a fully functional web version of Discord Raidkit, but you never know! No promises though!
 
 ![preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/4911d58d-815e-4d38-925c-dd342bfe9070)
