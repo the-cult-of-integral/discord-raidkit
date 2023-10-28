@@ -1,13 +1,14 @@
 """
-Discord Raidkit v2.4.2
+Discord Raidkit v2.4.3
 the-cult-of-integral
 
-Last modified: 2023-04-29 20:11
+Last modified: 2023-10-28 17:35
 """
 
 import asyncio
 import os
 import typing
+import logging
 
 import aiohttp
 import colorama as cama
@@ -22,9 +23,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.proxy import Proxy, ProxyType
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
+from selenium.webdriver.remote.remote_connection import LOGGER
+LOGGER.setLevel(logging.WARNING)
 
 API_BASE = 'https://discord.com/api/v10'
 AUTH_FAIL = 'The user authentication token provided is invalid.'
@@ -187,25 +194,31 @@ class Osiris:
                 options = Options()
                 webdriver_instance = webdriver.Chrome
                 driver_manager = ChromeDriverManager
+                service = ChromeService(executable_path=driver_manager().install())
             elif browser == 2:
                 from selenium.webdriver.firefox.options import Options
                 options = Options()
-                options.set_preference('detach', True)
                 webdriver_instance = webdriver.Firefox
                 driver_manager = GeckoDriverManager
+                service = FirefoxService(executable_path=driver_manager().install())
             elif browser == 3:
                 from selenium.webdriver.edge.options import Options
                 options = Options()
                 webdriver_instance = webdriver.Edge
                 driver_manager = EdgeChromiumDriverManager
+                service = EdgeService(executable_path=driver_manager().install())
             elif browser == 4:
                 return None
 
-            options.add_experimental_option('detach', True)
-            options.add_argument('--log-level=3')
+            if browser == 1 or browser == 3:
+                options.add_experimental_option('detach', True)
+            elif browser == 2:
+                options.set_preference('detach', True)
+            
             if selenium_proxy is not None:
                 options.proxy = selenium_proxy
-            driver = webdriver_instance(executable_path=driver_manager().install(), options=options)
+            
+            driver = webdriver_instance(service=service, options=options)
 
             return driver
 
@@ -224,6 +237,9 @@ class Osiris:
 [2] Firefox
 [3] Edge
 [4] Cancel
+
+*After selecting a browser, a WebDriver will be installed if it does not exist for this browser version.
+*This may take some time, depending on your download speed.
 
 >>> ''', [1, 2, 3, 4], int)
 

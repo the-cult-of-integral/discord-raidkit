@@ -1,5 +1,9 @@
 # Discord Raidkit Changelog
 
+### v2.4.3 (28/10/2023)
+##### Changes:
+- Bug fix to Osiris's `launch_browser` method, within the login action. Now works with Selenium's 4.10.0 changes.
+
 ### v2.4.2 (29/04/2023)
 ##### Additions:
 - Added experimental proxy support. This functionality has not been fully tested yet, but releasing now as a beta-like feature should hopefully provide feedback from proxy users with any issues.
