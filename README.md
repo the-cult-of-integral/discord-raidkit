@@ -71,6 +71,8 @@ Remember, if you need help setting these tools, you can always visit the [Discor
 
 ## Known issues as of latest release
 
+- [**Osiris Login does not work.**](https://github.com/the-cult-of-integral/discord-raidkit/issues/79) Osiris' login functionality does not currently work due to change made to the `Selenium` module in v4.10.0. I am aware of this, and will be releasing v2.4.3 shortly.
+
 - Anti-malware will often detect Osiris as malware, as Osiris gives you the ability to generate token grabbers. As a result, some people may have issues downloading the executable, as their browser and other anti-malware software may block it. This issue can be resolved by temporaily disabling these browser features, as well as temporarily adding the downloads folder to Windows Defender exclusions. Once you have the executable, set up some folder to be permanently excluded from Windows Defender, and place the executable in said folder. **Make sure to not place anything you do not trust in this folder** - be internet safe! *This issue is more prevelent on Windows.*
 
 ---
