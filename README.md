@@ -93,3 +93,8 @@ If you're wondering where I have been the past few months, I've been learning mo
 #### Bots...
 
 ![bots-preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/beead659-79fd-471d-937b-f5c8151d366a)
+
+#### Accounts...
+
+![accounts-preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/6c64e36a-93f0-4ed0-851d-846084edd483)
+
