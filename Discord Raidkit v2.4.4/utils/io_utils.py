@@ -1,8 +1,8 @@
 """
-Discord Raidkit v2.4.3
+Discord Raidkit v2.4.4
 the-cult-of-integral
 
-Last modified: 2023-04-27 18:19
+Last modified: 2023-11-04 21:38
 """
 
 import os
@@ -20,9 +20,9 @@ EXIT = 'exit'
 
 class MenuOption:
     """A menu option. This is used to create numbered menus."""
-    __slots__ = ('name', 'description', 'func', 'args', 'kwargs')
+    __slots__ = ('name', 'description', 'func', 'args', 'kwargs', 'condition')
 
-    def __init__(self, name: str, description: str, func: typing.Callable[..., str], *args, **kwargs):
+    def __init__(self, name: str, description: str, func: typing.Callable[..., str], *args, condition: typing.Callable[[], bool] = None, **kwargs):
         """Create a menu option.
 
         Args:
@@ -30,14 +30,21 @@ class MenuOption:
             description (str): the description of the option to be displayed when the user selects it.
             func (typing.Callable[..., str]): the function to be called when the user selects the option.
             args: Additional arguments to pass to the function.
+            condition: a callable that returns a bool; determines if option is visible in a Menu object.
             kwargs: Additional keyword arguments to pass to the function.
         """
         self.name = name
         self.description = description
         self.func = func
         self.args = args
+        self.condition = condition
         self.kwargs = kwargs
 
+    def is_available(self) -> bool:
+        if callable(self.condition):
+            return self.condition()
+        return True
+    
     def call_func(self):
         """Call the function with the stored arguments and keyword arguments."""
         return self.func(*self.args, **self.kwargs)
@@ -45,7 +52,7 @@ class MenuOption:
 
 class NumberedMenu:
     """A numbered menu. This is used to create menus with MenuOption instances."""
-    __slots__ = ('name', 'options', 'do_name_and_desc', 'pcolor', 'scolor')
+    __slots__ = ('name', 'options', 'do_name_and_desc', 'pcolor', 'scolor', 'current_visible_options')
 
     def __init__(self, name: str, options: typing.List[MenuOption], 
                 do_name_and_desc: bool = True, pcolor: str = cama.Fore.WHITE, 
@@ -68,6 +75,7 @@ class NumberedMenu:
         self.do_name_and_desc = do_name_and_desc
         self.pcolor = pcolor
         self.scolor = scolor
+        self.current_visible_options = [opt for opt in self.options if opt.is_available()]
 
     def run(self) -> None:
         hint = ''
@@ -92,7 +100,9 @@ class NumberedMenu:
             padding = (columns - line_len) // 2
             print(f"{self.scolor}{' ' * padding}{line}{' ' * padding}{self.scolor}")
 
-        for i, option in enumerate(self.options, 1):
+        self.current_visible_options = [opt for opt in self.options if opt.is_available()]
+        
+        for i, option in enumerate(self.current_visible_options, 1):
             option_str = f"{self.pcolor}[{self.scolor}{i}{self.pcolor}] {option.name} {cama.Fore.LIGHTWHITE_EX}- {self.pcolor}{option.description}"
             option_len = len(option_str)
             if option_len > columns:
@@ -110,14 +120,14 @@ class NumberedMenu:
         except ValueError:
             return f'{cama.Fore.LIGHTRED_EX}Please enter an integer in the range of the menu options.'
         
-        if not 1 <= choice <= len(self.options):
+        if not 1 <= choice <= len(self.current_visible_options):
             return f'{cama.Fore.LIGHTRED_EX}Please enter an integer in the range of the menu options.'
         
-        option = self.options[choice - 1]
+        option = self.current_visible_options[choice - 1]
         os.system('cls' if os.name == 'nt' else 'clear')
         if self.do_name_and_desc:
             print(f'\n{self.pcolor}> {option.name}\n\n{self.scolor} * {option.description}\n\n')
-        return self.options[choice - 1].call_func()
+        return option.call_func()
 
 
 def _print_error_and_delay(msg: str) -> None:

@@ -1,5 +1,12 @@
 # Discord Raidkit Changelog
 
+### v2.4.4 (04/11/2023)
+##### Changes:
+- Bug fix to Anubis/Qetesh's `nuke` method; `random.choice` is implemented correctly again. 
+- Bug fix to Qetesh; executable release of Discord Raidkit should now be able to see `all_links.txt`, allowing the database insertions to complete.
+- Bug fix to the menu; condition to show edit configuration checked every time the main page is visited, not just on application start.
+- Unknown error is now shown to the console rather than to the channel as an embed; this may improve camouflage in certain situations.
+
 ### v2.4.3 (28/10/2023)
 ##### Changes:
 - Bug fix to Osiris's `launch_browser` method, within the login action. Now works with Selenium's 4.10.0 changes.

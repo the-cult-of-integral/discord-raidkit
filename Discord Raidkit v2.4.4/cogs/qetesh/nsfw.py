@@ -1,13 +1,14 @@
 """
-Discord Raidkit v2.4.3
+Discord Raidkit v2.4.4
 the-cult-of-integral
 
-Last modified: 2023-04-24 21:08
+Last modified: 2023-11-04 20:30
 """
 
 import os
 import pathlib
 import sqlite3
+import sys
 import typing
 
 import discord
@@ -17,9 +18,21 @@ import discord.ext.commands as commands
 import tools.raider as rd
 import utils.io_utils as iou
 import utils.log_utils as lu
+import utils.runtime_utils as rntu
 
 DB_PATH = pathlib.Path(os.path.join('databases', 'qetesh.db'))
-ALL_LINKS_PATH = pathlib.Path(os.path.join('cogs', 'qetesh', 'all_links.txt'))
+
+
+def all_links_path() -> pathlib.Path:
+    """Returns the path to all_links.txt
+
+    Returns:
+        pathlib.Path: the path to all_links.txt
+    """
+    if rntu.is_running_as_executable():
+        return pathlib.Path(os.path.join('_internal', 'cogs', 'qetesh', 'all_links.txt'))
+    else:
+        return pathlib.Path(os.path.join('cogs', 'qetesh', 'all_links.txt'))
 
 
 class Nsfw(commands.Cog):
@@ -48,7 +61,7 @@ class Nsfw(commands.Cog):
         
         lu.sinfo('Tables created successfully. Inserting links...')
         print('Inserting links into the database...')
-        with open(ALL_LINKS_PATH, 'r') as all_links:
+        with open(all_links_path(), 'r') as all_links:
             links = [(url, cat) for url, cat in (line.strip().split(',') for line in all_links)]
             chunk_size = 1000
             for i in range(0, len(links), chunk_size):

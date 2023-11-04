@@ -1,8 +1,8 @@
 """
-Discord Raidkit v2.4.3
+Discord Raidkit v2.4.4
 the-cult-of-integral
 
-Last modified: 2023-04-24 21:08
+Last modified: 2023-11-04 21:01
 """
 
 import discord
@@ -49,11 +49,7 @@ class Handler(dext.commands.Cog):
                 color=discord.Color.brand_red())
             await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(
-                title='Error',
-                description='**An unknown error has occurred.**',
-                color=discord.Color.brand_red())
-            await ctx.send(embed=embed)
+            print(f"Command Error:\n\n{error}\n")
 
 
 async def setup(bot: rd.Raider):
