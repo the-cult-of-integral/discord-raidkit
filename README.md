@@ -21,7 +21,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 [Have a feature suggestion? Make one here!](https://github.com/the-cult-of-integral/discord-raidkit/discussions/categories/ideas)
 
-![Discord Raidkit v2.4.2 Console](https://user-images.githubusercontent.com/98130822/235321378-f624a5ba-5ff6-4f80-b37e-8a1691724c53.png)
+![Discord Raidkit v2.4.4 Console](https://user-images.githubusercontent.com/98130822/235321378-f624a5ba-5ff6-4f80-b37e-8a1691724c53.png)
 
 ## Tools
 
@@ -29,7 +29,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 - **Qetesh** is a Discord bot with [nine malicious commands](#malicious-bot-commands). However, Qetesh also has 25 NSFW slash commands for the most popular pornographic kinks, at least according to PornHub. These commands should help take advantage of the degeneracy of Discord users.
 
-- **Osiris** is the account manager of Discord Raidkit. Using Osiris, you can save the information of an account, login to an account using either Chrome, Firefox, or Microsoft Edge, or you can fully nuke an account, deleting channels, guilds, friends, and connections, deauthorizing applications, removing hype squad, and PATCHing various account settings. You can also generate Discord token grabbers within Windows Registry support. As of v2.4.2, Osiris supports proxies (**proxies currently beta; awaiting feedback**).
+- **Osiris** is the account manager of Discord Raidkit. Using Osiris, you can save the information of an account, login to an account using either Chrome, Firefox, or Microsoft Edge, or you can fully nuke an account, deleting channels, guilds, friends, and connections, deauthorizing applications, removing hype squad, and PATCHing various account settings. You can also generate Discord token grabbers within Windows Registry support. As of v2.4.2, Osiris has beta support for proxies.
  
 Remember, if you need help setting these tools, you can always visit the [Discord Raidkit Wiki](https://github.com/the-cult-of-integral/discord-raidkit/wiki)!
  
@@ -38,6 +38,8 @@ Remember, if you need help setting these tools, you can always visit the [Discor
 1. Head over to [the latest release](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest).
 2. Download the EXE zip.
 3. Extract and run the executable in its directory.
+
+**Notice:** Some anti-malware may flag this project as harmful — especially any files that relate to Osiris, as this tool generates token stealers. If you are having issues with anti-malware constantly getting in the way of using this tool, you can create a folder, add that folder to the anti-malwares list of excluded search/scan locations, then place the Discord Raidkit files in said folder. This should allow Discord Raidkit to function correctly without interferance. **Do not randomly exclude every location on your computer!**
 
 ---
 
@@ -66,12 +68,6 @@ Remember, if you need help setting these tools, you can always visit the [Discor
 | Get a Discord account's details | Allows you view information on a Discord account, such as its email, phone, and billing address. |
 | Log into a Discord account | Allows you to log into a Discord account using either Chrome, Firefox, or Microsoft Edge. |
 | Nuke a Discord account | Deletes servers, friends, channels, and connections, deauthorizes apps, leaves hype squad and patches settings. |
-
----
-
-## Known issues as of latest release
-
-- Anti-malware will often detect Osiris as malware, as Osiris gives you the ability to generate token grabbers. As a result, some people may have issues downloading the executable, as their browser and other anti-malware software may block it. This issue can be resolved by temporaily disabling these browser features, as well as temporarily adding the downloads folder to Windows Defender exclusions. Once you have the executable, set up some folder to be permanently excluded from Windows Defender, and place the executable in said folder. **Make sure to not place anything you do not trust in this folder** - be internet safe! *This issue is more prevelent on Windows.*
 
 ---
 
