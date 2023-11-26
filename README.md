@@ -78,19 +78,11 @@ Remember, if you need help setting these tools, you can always visit the [Discor
 
 ---
 
-## v3.0.0 coming soon?
+## v3.0.0 - November Preview
 
-If you're wondering where I have been the past few months, I've been learning more front-end development. Here's a little screenshot of a secret, little thing I've been working on. Due to the way discord.py works, I can't promise I'll be able to create a fully functional web version of Discord Raidkit, but you never know! No promises though!
+For those of you keeping up, you will be aware that I was working on converting this application to React.JS front-end. At the time, I was working with create-react-app, and the intention would be for the user to download the files, install node.js and run it locally. However, it quickly came to me that this idea was stupid. So, I then looked at using Electron with React.JS to distribute a desktop application, with a React.JS front-end. However, I'm not sure you would all appreciate a 250MB executable for a program that was previously 24KB.
 
-#### Overview...
+So, I am now at plan three: a Tauri desktop application with a React.JS front-end. Now, the advantage of this is that the executable size shouldn't be ludicrous, and you'll all get prettier graphics that aren't a confusing terminal from the 90s. The disadvantage is that the backend is in Rust, and I've never used Rust. So, I suppose this will be an oppertunity for me to learn Rust. In the meantime, here's a screenshot of recent development. As you can see, as well as being a Desktop application now, there is also a dark mode! :)
 
-![overview-preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/4911d58d-815e-4d38-925c-dd342bfe9070)
-
-#### Bots...
-
-![bots-preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/beead659-79fd-471d-937b-f5c8151d366a)
-
-#### Accounts...
-
-![accounts-preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/6c64e36a-93f0-4ed0-851d-846084edd483)
+![DR Tauri Preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/efbfc892-8906-48cf-994d-03f21c3600c6)
 
