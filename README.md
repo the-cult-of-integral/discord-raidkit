@@ -78,11 +78,6 @@ Remember, if you need help setting these tools, you can always visit the [Discor
 
 ---
 
-## v3.0.0 - November Preview
 
-For those of you keeping up, you will be aware that I was working on converting this application to React.JS front-end. At the time, I was working with create-react-app, and the intention would be for the user to download the files, install node.js and run it locally. However, it quickly came to me that this idea was stupid. So, I then looked at using Electron with React.JS to distribute a desktop application, with a React.JS front-end. However, I'm not sure you would all appreciate a 250MB executable for a program that was previously 24KB.
-
-So, I am now at plan three: a Tauri desktop application with a React.JS front-end. Now, the advantage of this is that the executable size shouldn't be ludicrous, and you'll all get prettier graphics that aren't a confusing terminal from the 90s. The disadvantage is that the backend is in Rust, and I've never used Rust. So, I suppose this will be an oppertunity for me to learn Rust. In the meantime, here's a screenshot of recent development. As you can see, as well as being a Desktop application now, there is also a dark mode! :)
-
-![DR Tauri Preview](https://github.com/the-cult-of-integral/discord-raidkit/assets/98130822/efbfc892-8906-48cf-994d-03f21c3600c6)
+PS: Disk containing code for v3.0.0 got wiped — oops!
 
