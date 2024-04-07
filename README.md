@@ -21,7 +21,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 [Have a feature suggestion? Make one here!](https://github.com/the-cult-of-integral/discord-raidkit/discussions/categories/ideas)
 
-![Discord Raidkit v2.4.4 Console](https://user-images.githubusercontent.com/98130822/235321378-f624a5ba-5ff6-4f80-b37e-8a1691724c53.png)
+![Discord Raidkit v2.4.5 Console](https://user-images.githubusercontent.com/98130822/235321378-f624a5ba-5ff6-4f80-b37e-8a1691724c53.png)
 
 ## Tools
 

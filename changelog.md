@@ -1,5 +1,9 @@
 # Discord Raidkit Changelog
 
+### v2.4.5 (07/04/2024)
+##### Changes:
+- Bug fix to Osiris' payloads. They should now scrape the full authentication token, as per Discord's new length.
+
 ### v2.4.4 (04/11/2023)
 ##### Changes:
 - Bug fix to Anubis/Qetesh's `nuke` method; `random.choice` is implemented correctly again. 

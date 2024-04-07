@@ -1,8 +1,8 @@
 """
-Discord Raidkit v2.4.4
+Discord Raidkit v2.4.5
 the-cult-of-integral
 
-Last modified: 2023-10-28 18:13
+Last modified: 2024-04-07 05:19
 """
 
 import webbrowser
@@ -12,7 +12,7 @@ import requests
 
 import utils.io_utils as iou
 
-MY_VERSION = 'v2.4.4'
+MY_VERSION = 'v2.4.5'
 
 RELEASES_URL = 'https://github.com/the-cult-of-integral/discord-raidkit/releases/latest'
 HEADERS = {
