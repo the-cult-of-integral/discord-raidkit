@@ -93,3 +93,6 @@ if __name__ == '__main__':
         main()
     finally:
         cama.deinit()
+
+
+# have a lovely day :)
