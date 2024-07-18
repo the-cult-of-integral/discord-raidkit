@@ -112,6 +112,6 @@ if __name__ == "__main__":
     if do_reg_key:
         generated_code += r'''set_autostart_registry("Osiris", f"{path}\{file}")
     '''
-        generated_code += r'''main()
+    generated_code += r'''main()
 '''
     return generated_code
