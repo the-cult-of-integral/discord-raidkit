@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>640</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Discord Raidkit v2.5.0 by the-cult-of-integral</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/icons/main.ico</normaloff>:/icons/icons/main.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tbwTabs">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>600</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>80</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tbBotConfig">
+     <attribute name="title">
+      <string>Bot Configuration</string>
+     </attribute>
+     <widget class="QLabel" name="lblBotToken">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Bot Token</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leBotToken">
+      <property name="geometry">
+       <rect>
+        <x>114</x>
+        <y>17</y>
+        <width>471</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblApplicationID">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ApplicationID</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leApplicationID">
+      <property name="geometry">
+       <rect>
+        <x>114</x>
+        <y>47</y>
+        <width>471</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblBotPrefix">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Bot Prefix</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leBotPrefix">
+      <property name="geometry">
+       <rect>
+        <x>114</x>
+        <y>77</y>
+        <width>471</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblActivityName">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Activity Name</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leActivityName">
+      <property name="geometry">
+       <rect>
+        <x>114</x>
+        <y>137</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblActivityURL">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>170</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Activity URL</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leActivityURL">
+      <property name="geometry">
+       <rect>
+        <x>114</x>
+        <y>167</y>
+        <width>471</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblActivityType">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>120</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Activity Type</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cmbActivityType">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>136</y>
+        <width>160</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Playing</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Streaming</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Listening</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Watching</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="cmbPresenceStatus">
+      <property name="geometry">
+       <rect>
+        <x>425</x>
+        <y>136</y>
+        <width>160</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Online</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Idle</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DND</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Invisible</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="lblPresenceStatus">
+      <property name="geometry">
+       <rect>
+        <x>425</x>
+        <y>120</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Presence Status</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="lstwBotStatuses">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>235</y>
+        <width>565</width>
+        <height>60</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblBotStatuses">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>215</y>
+        <width>161</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Bot Statuses</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkBotInvisibleOnDestructiveActions">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>330</y>
+        <width>341</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Bot Invisible On Destructive Actions</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="tbtnAddStatus">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>215</y>
+        <width>21</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>+</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="tbtnDelStatus">
+      <property name="geometry">
+       <rect>
+        <x>564</x>
+        <y>215</y>
+        <width>21</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cmbRaiderType">
+      <property name="geometry">
+       <rect>
+        <x>425</x>
+        <y>327</y>
+        <width>160</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Anubis</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Qetesh</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="lblRaiderType">
+      <property name="geometry">
+       <rect>
+        <x>425</x>
+        <y>310</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Raider Type</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnSaveBotConfig">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>370</y>
+        <width>56</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Save</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tbHorus">
+     <attribute name="title">
+      <string>Horus</string>
+     </attribute>
+     <widget class="QPushButton" name="btnStartHorus">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start Horus</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnStopHorus">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>20</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop Horus</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeNickAll">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>150</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nick All</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnCancelHCmd">
+      <property name="geometry">
+       <rect>
+        <x>415</x>
+        <y>20</y>
+        <width>160</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Cancel Running Commands</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeMsgAll">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>150</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Msg All</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeSpam">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>150</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Spam</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeNewWebhook">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>150</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Webhook</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeCPurge">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>150</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>C-Purge</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeCFlood">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>150</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>C-Flood</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeAdmin">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>190</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Admin</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeRaid">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>190</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Raid</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeNuke">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>190</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nuke</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeMassNuke">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>190</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mass Nuke</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeLeave">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>190</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Leave</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeMassLeave">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>190</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mass Leave</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="pteHTerminal">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>260</y>
+        <width>251</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCommandTerminal">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>240</y>
+        <width>221</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Command Terminal</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="tbtnClearCommandTerminal">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>241</y>
+        <width>21</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>AC</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblGuildID">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>511</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Guild ID to use for g-specific commands </string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leGuildID">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>100</y>
+        <width>211</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="pteRunningCommandsView">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>260</y>
+        <width>251</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblRunningCommands">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>240</y>
+        <width>221</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Running Commands</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnChangeStatus">
+      <property name="geometry">
+       <rect>
+        <x>415</x>
+        <y>60</y>
+        <width>160</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Change Bot Status</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tbOsiris">
+     <attribute name="title">
+      <string>Osiris</string>
+     </attribute>
+     <widget class="QLabel" name="lblUserToken">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>User Token</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leUserToken">
+      <property name="geometry">
+       <rect>
+        <x>114</x>
+        <y>17</y>
+        <width>471</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnOGetAccountInfo">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>130</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Get Account Info</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnOLogin">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>170</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Log Into Account</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnONuke">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>210</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nuke Account</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnOGeneratePayload">
+      <property name="geometry">
+       <rect>
+        <x>444</x>
+        <y>40</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Generate Token Grabber</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="pteOTerminal">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>130</y>
+        <width>191</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCommandTerminal_2">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>221</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Command Terminal</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="tbtnOClearCommandTerminal">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>111</y>
+        <width>21</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>AC</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="pteORunningCommands">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>130</y>
+        <width>191</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblORunningCommands">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>110</y>
+        <width>211</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Running Commands</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="mbMenuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actWiki"/>
+   </widget>
+   <widget class="QMenu" name="menuGitHub">
+    <property name="title">
+     <string>GitHub</string>
+    </property>
+    <addaction name="actLatestVersion"/>
+    <addaction name="actREADME"/>
+    <addaction name="actReportIssue"/>
+   </widget>
+   <addaction name="menuHelp"/>
+   <addaction name="menuGitHub"/>
+  </widget>
+  <widget class="QStatusBar" name="stsbStatusBar"/>
+  <action name="actWiki">
+   <property name="text">
+    <string>View DR Wiki</string>
+   </property>
+  </action>
+  <action name="actLatestVersion">
+   <property name="text">
+    <string>Check Latest Version</string>
+   </property>
+  </action>
+  <action name="actREADME">
+   <property name="text">
+    <string>Go to README.md</string>
+   </property>
+  </action>
+  <action name="actReportIssue">
+   <property name="text">
+    <string>Report Issue</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>tbwTabs</tabstop>
+  <tabstop>leBotToken</tabstop>
+  <tabstop>leApplicationID</tabstop>
+  <tabstop>leBotPrefix</tabstop>
+  <tabstop>leActivityName</tabstop>
+  <tabstop>cmbActivityType</tabstop>
+  <tabstop>cmbPresenceStatus</tabstop>
+  <tabstop>leActivityURL</tabstop>
+  <tabstop>lstwBotStatuses</tabstop>
+  <tabstop>tbtnAddStatus</tabstop>
+  <tabstop>tbtnDelStatus</tabstop>
+  <tabstop>chkBotInvisibleOnDestructiveActions</tabstop>
+  <tabstop>cmbRaiderType</tabstop>
+  <tabstop>btnSaveBotConfig</tabstop>
+  <tabstop>btnStartHorus</tabstop>
+  <tabstop>leGuildID</tabstop>
+  <tabstop>btnInvokeNickAll</tabstop>
+  <tabstop>btnInvokeMsgAll</tabstop>
+  <tabstop>btnInvokeSpam</tabstop>
+  <tabstop>btnInvokeNewWebhook</tabstop>
+  <tabstop>btnInvokeCPurge</tabstop>
+  <tabstop>btnInvokeCFlood</tabstop>
+  <tabstop>btnInvokeAdmin</tabstop>
+  <tabstop>btnInvokeRaid</tabstop>
+  <tabstop>btnInvokeNuke</tabstop>
+  <tabstop>btnInvokeMassNuke</tabstop>
+  <tabstop>btnInvokeLeave</tabstop>
+  <tabstop>btnInvokeMassLeave</tabstop>
+  <tabstop>btnCancelHCmd</tabstop>
+  <tabstop>btnChangeStatus</tabstop>
+  <tabstop>tbtnClearCommandTerminal</tabstop>
+  <tabstop>btnStopHorus</tabstop>
+  <tabstop>pteHTerminal</tabstop>
+  <tabstop>pteRunningCommandsView</tabstop>
+  <tabstop>leUserToken</tabstop>
+  <tabstop>btnOGeneratePayload</tabstop>
+  <tabstop>btnOGetAccountInfo</tabstop>
+  <tabstop>btnOLogin</tabstop>
+  <tabstop>btnONuke</tabstop>
+  <tabstop>tbtnOClearCommandTerminal</tabstop>
+  <tabstop>pteOTerminal</tabstop>
+  <tabstop>pteORunningCommands</tabstop>
+ </tabstops>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

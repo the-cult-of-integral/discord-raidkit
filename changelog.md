@@ -1,5 +1,12 @@
 # Discord Raidkit Changelog
 
+### v2.5.0 (18/07/2024)
+##### Changes:
+- This project now uses a GUI again, instead of a console (hopefully, with less bugs than the first attempt!).
+
+##### Reductions:
+- Proxy configuration is no longer included within Discord Raidkit. To utilise proxies, you should configure all outgoing traffic from your device.
+
 ### v2.4.5 (07/04/2024)
 ##### Changes:
 - Bug fix to Osiris' payloads. They should now scrape the full authentication token, as per Discord's new length.

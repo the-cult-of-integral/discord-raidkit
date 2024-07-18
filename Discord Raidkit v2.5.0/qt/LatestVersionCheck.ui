@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dlgLatestVersionCheck</class>
+ <widget class="QDialog" name="dlgLatestVersionCheck">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>360</width>
+    <height>240</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>360</width>
+    <height>240</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>360</width>
+    <height>240</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Discord Raidkit - New Version Available</string>
+  </property>
+  <widget class="QDialogButtonBox" name="btnBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>200</y>
+     <width>301</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblNewVersionAvailable">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>321</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>New Version Available!</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblDesc">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>331</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>A new version of Discord Raidkit has been released.</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rdNothing">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>321</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Do nothing</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rdOpen">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>120</y>
+     <width>321</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Open latest version in browser</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rdOpenAndExit">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>321</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Open latest version in browser and exit application</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="chkDoNotShowThisMessageOnStartUpAgain">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>180</y>
+     <width>291</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Do not show this message on start-up again.</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btnBox</sender>
+   <signal>accepted()</signal>
+   <receiver>dlgLatestVersionCheck</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnBox</sender>
+   <signal>rejected()</signal>
+   <receiver>dlgLatestVersionCheck</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
