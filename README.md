@@ -38,6 +38,7 @@ Remember, if you need help setting these tools, you can always visit the [Discor
 1. Head over to [the latest release](https://github.com/the-cult-of-integral/discord-raidkit/releases/latest).
 2. Download the EXE zip.
 3. Extract and run the executable in its directory.
+4. Some users have reported an issue whereby the executable hangs. If this happens, run the executable via CMD rather than double clicking.
 
 **Notice:** Some anti-malware may flag this project as harmful — especially any files that relate to Osiris, as this tool generates token stealers. If you are having issues with anti-malware constantly getting in the way of using this tool, you can create a folder, add that folder to the anti-malwares list of excluded search/scan locations, then place the Discord Raidkit files in said folder. This should allow Discord Raidkit to function correctly without interferance. **Do not randomly exclude every location on your computer!**
 
