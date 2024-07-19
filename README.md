@@ -48,11 +48,7 @@ The installation of Discord Raidkit is incredibly simple:
 **Notice:** Some anti-malware may flag this project as harmful — especially any files that relate to Osiris, as this tool targets users. If you are having issues with anti-malware constantly getting in the way of using this tool, you can create a folder, add that folder to the anti-malwares list of excluded search/scan locations, then place the Discord Raidkit files in said folder. This should allow Discord Raidkit to function correctly without interferance. **Do not randomly exclude every location on your computer!**
 
 ## How to use Discord Raidkit
-[The Wiki page for Discord Raidkit](https://github.com/the-cult-of-integral/discord-raidkit/wiki/Home/) is currently under construction. For now, here is some basic information:
-
-1. If you wish to go after Discord users, [the Osiris screen Wiki is now complete!](https://github.com/the-cult-of-integral/discord-raidkit/wiki/Using-Discord-Raidkit-%E2%80%90-Osiris)
-
-2. If you wish to go after Discord servers, first enter a Discord bot's information in the Bot Configuration screen, save the information, then head to Horus to run the bot and use malicious commands. In the Bot Configuration screen, you can choose whether to use the *Anubis* or *Qetesh* raider type, which will provide either a moderation suite or NSFW suite of genuine slash commands respectively. 
+To learn more about how to use Discord Raidkit, feel free to [read the Wiki page!](https://github.com/the-cult-of-integral/discord-raidkit/wiki/Home/)
 
 ----
 
