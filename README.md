@@ -33,7 +33,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 ## Tools
 
-- **Horus** allows you to control a Discord bot, providing [nine malicious commands](#malicious-bot-commands). However, unlike other nuking tools, Horus also has several non-malicious slash commands, determined by which *Raider Type* you chose. 
+- **Horus** allows you to control a Discord bot, providing ten malicious commands. However, unlike other nuking tools, Horus also has several non-malicious slash commands, determined by which *Raider Type* you chose. 
   - *Anubis* - this type provides a moderation suite of slash commands, to help you convince administrators to add the bot.
   - *Qetesh* - this type provides an NSFW suite of slash commands for the top 25 sexual kink, to help you convince the typical Discord moderator to add the bot.
 
