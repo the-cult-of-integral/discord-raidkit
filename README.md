@@ -1,5 +1,6 @@
 ![Discord Raidkit Banner](https://user-images.githubusercontent.com/98130822/235323678-64a0ac47-b491-498f-98c0-1a113461336b.png)
 
+[![Made by the-cult-of-integral](https://github.com/user-attachments/assets/23db8e79-ad8f-48c4-87cf-f299444d513a)](https://github.com/the-cult-of-integral)
 ![Made With Python](https://forthebadge.com/images/badges/made-with-python.svg)
 ![Built With Love](http://forthebadge.com/images/badges/built-with-love.svg)
 
