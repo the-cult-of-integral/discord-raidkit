@@ -50,7 +50,7 @@ The installation of Discord Raidkit is incredibly simple:
 ## How to use Discord Raidkit
 [The Wiki page for Discord Raidkit](https://github.com/the-cult-of-integral/discord-raidkit/wiki/Home/) is currently under construction. For now, here is some basic information:
 
-1. If you wish to go after Discord users, just go straight to the Osiris screen, provide an authentication token, and play around with options.
+1. If you wish to go after Discord users, [the Osiris screen Wiki is now complete!](https://github.com/the-cult-of-integral/discord-raidkit/wiki/Using-Discord-Raidkit-%E2%80%90-Osiris)
 
 2. If you wish to go after Discord servers, first enter a Discord bot's information in the Bot Configuration screen, save the information, then head to Horus to run the bot and use malicious commands. In the Bot Configuration screen, you can choose whether to use the *Anubis* or *Qetesh* raider type, which will provide either a moderation suite or NSFW suite of genuine slash commands respectively. 
 
