@@ -10,7 +10,7 @@
 ![Maintencance](https://img.shields.io/maintenance/yes/2024)
 ![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/the-cult-of-integral/discord-raidkit)
 
-Discord Raidkit is an open-source, forever free tool that allows you to raid and destroy Discord servers via Discord bots, compromise Discord accounts, and generate Discord token grabbers.
+Discord Raidkit is an open-source, forever free tool that allows you to raid and destroy Discord servers via Discord bots, as well as compromise Discord accounts.
 
 ---
 
@@ -24,7 +24,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
 
 - **Attack Discord Servers** - this application can be used to perform a variety of attacks on Discord Servers, including nuking, raiding, and permissions escalation for given members.
 
-- **Attack Discord Users** - this application can also be used to target users. You can gather user information, including banking, log into accounts without a password, nuke accounts, and even generate rudementary, Python-based token grabbers.
+- **Attack Discord Users** - this application can also be used to target users. You can gather user information, including banking, log into accounts without a password, and nuke accounts.
  
 - **Adapted for social-engineering** - unlike other tools of this nature, that presume you have already smuggled your way into a server, Discord Raidkit provides many slash genuine commands, that may be used to convince server owners that a bot is legitimate.
 
@@ -36,7 +36,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
   - *Anubis* - this type provides a moderation suite of slash commands, to help you convince administrators to add the bot.
   - *Qetesh* - this type provides an NSFW suite of slash commands for the top 25 sexual kink, to help you convince the typical Discord moderator to add the bot.
 
-- **Osiris** is the account manager of Discord Raidkit. Using Osiris, you can save the information of an account, login to an account using either Chrome, Firefox, or Microsoft Edge, or you can fully nuke an account, deleting channels, guilds, friends, and connections, deauthorizing applications, removing hype squad, and PATCHing various account settings. You can also generate Discord token grabbers within Windows Registry support.
+- **Osiris** is the account manager of Discord Raidkit. Using Osiris, you can save the information of an account, login to an account using either Chrome, Firefox, or Microsoft Edge, or you can fully nuke an account, deleting channels, guilds, friends, and connections, deauthorizing applications, removing hype squad, and PATCHing various account settings.
 
 ## Installation
 The installation of Discord Raidkit is incredibly simple:
@@ -44,7 +44,7 @@ The installation of Discord Raidkit is incredibly simple:
 2. Download the executable zip.
 3. Extract and run the executable in its directory. Make sure to run the executable in the same directory as `_internal`.
 
-**Notice:** Some anti-malware may flag this project as harmful — especially any files that relate to Osiris, as this tool generates token stealers. If you are having issues with anti-malware constantly getting in the way of using this tool, you can create a folder, add that folder to the anti-malwares list of excluded search/scan locations, then place the Discord Raidkit files in said folder. This should allow Discord Raidkit to function correctly without interferance. **Do not randomly exclude every location on your computer!**
+**Notice:** Some anti-malware may flag this project as harmful — especially any files that relate to Osiris, as this tool targets users. If you are having issues with anti-malware constantly getting in the way of using this tool, you can create a folder, add that folder to the anti-malwares list of excluded search/scan locations, then place the Discord Raidkit files in said folder. This should allow Discord Raidkit to function correctly without interferance. **Do not randomly exclude every location on your computer!**
 
 ## How to use Discord Raidkit
 [The Wiki page for Discord Raidkit](https://github.com/the-cult-of-integral/discord-raidkit/wiki/Home/) is currently under construction. For now, here is some basic information:
