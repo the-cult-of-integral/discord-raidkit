@@ -14,7 +14,6 @@ call del MainWindow.py
 call del NewBotStatus.py
 call del NewBotPresenceStatus.py
 call del HorusClosedMsg.py
-call del GenerateTokenGrabber.py
 call del LatestVersionCheck.py
 
 call pyuic6 -x InvokeAdminArgs.ui -o InvokeAdminArgs.py
@@ -34,5 +33,4 @@ call pyuic6 -x NewBotStatus.ui -o NewBotStatus.py
 call pyuic6 -x NewBotPresenceStatus.ui -o NewBotPresenceStatus.py
 call pyuic6 -x LoginBrowser.ui -o LoginBrowser.py
 call pyuic6 -x HorusClosedMsg.ui -o HorusClosedMsg.py
-call pyuic6 -x GenerateTokenGrabber.ui -o GenerateTokenGrabber.py
 call pyuic6 -x LatestVersionCheck.ui -o LatestVersionCheck.py

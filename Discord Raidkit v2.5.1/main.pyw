@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.5.0 by the-cult-of-integral
+Discord Raidkit v2.5.1 by the-cult-of-integral
 
 An open-source, forever free tool that allows you to raid and destroy 
 Discord servers via Discord bots,  compromise Discord accounts, and 
@@ -40,7 +40,6 @@ from qt.InvokeLeave import Ui_dlgInvokeLeave
 from qt.InvokeMassLeave import Ui_dlgInvokeMassLeave
 from qt.LoginBrowser import Ui_DlgLoginBrowser
 from qt.HorusClosedMsg import Ui_dlgHorusClosedMsg
-from qt.GenerateTokenGrabber import Ui_dlgGenerateTokenGrabber
 from qt.LatestVersionCheck import Ui_dlgLatestVersionCheck
 
 from horus.horus_thread import HorusThread
@@ -77,13 +76,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.osiris_thread.signal_spy_running.connect(lambda: self.set_osiris_token())
         
         self.osiris_thread.signal_login_running.connect(self.btnOLogin.setDisabled)
+        self.osiris_thread.signal_login_running.connect(self.btnOLoginNoSelenium.setDisabled)
         self.osiris_thread.signal_login_running.connect(lambda: self.set_osiris_token())
 
         self.osiris_thread.signal_nuke_running.connect(self.btnONuke.setDisabled)
         self.osiris_thread.signal_nuke_running.connect(lambda: self.set_osiris_token())
         
-        self.osiris_thread.signal_generate_payload_running.connect(self.btnOGeneratePayload.setDisabled)
-
         self.btnSaveBotConfig.clicked.connect(self.save_bot_config)
 
         self.tbtnAddStatus.clicked.connect(self.add_bot_status)
@@ -111,8 +109,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.btnOGetAccountInfo.clicked.connect(lambda: self.osiris_thread.invoke_command(EO_Commands.SPY.value, thread=self.osiris_thread, auth_token=self.leUserToken.text()))
         self.btnOLogin.clicked.connect(self.osiris_invoke_login)
+        self.btnOLoginNoSelenium.clicked.connect(self.osiris_invoke_login_no_selenium)
         self.btnONuke.clicked.connect(self.osiris_invoke_nuke)
-        self.btnOGeneratePayload.clicked.connect(self.osiris_invoke_generate_payload)
         
         self.mbMenuBar.triggered.connect(self.menu_action_triggered)
 
@@ -187,43 +185,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Osiris Invokation Commands.
 
-    def osiris_invoke_generate_payload(self):
-
-        def validation_failed():
-            self.append_oterminal('Failed to generate payload since options given are invalid Windows paths.')
-
-        dialog = QtWidgets.QDialog()
-        dialog_ui = Ui_dlgGenerateTokenGrabber()
-        dialog_ui.setupUi(dialog)
-        if dialog.exec() == QtWidgets.QDialog.DialogCode.Accepted:
-            webhook = dialog_ui.leWebhookURL.text().strip()
-            folder = dialog_ui.leFolderName.text().strip()
-            rpayload = dialog_ui.leRegularPayloadName.text().strip()
-            hpayload = dialog_ui.leHiddenPayloadName.text().strip()
-            do_reg_key = dialog_ui.chkHavePayloadRunOnStartUp.isChecked()
-            if webhook and folder and rpayload and hpayload:
-                try:
-                    os.mkdir(folder)
-                    os.rmdir(folder)
-                    open(f'{rpayload}.txt', 'w').close()
-                    os.remove(f'{rpayload}.txt')
-                    open(f'{hpayload}.txt', 'w').close()
-                    os.remove(f'{hpayload}.txt')
-
-                    self.osiris_thread.invoke_command(
-                        EO_Commands.GENERATE_PAYLOAD.value, thread=self.osiris_thread,
-                        webhook=webhook, 
-                        folder=folder, 
-                        rpayload=rpayload, 
-                        hpayload=hpayload, 
-                        do_reg_key=do_reg_key
-                    )
-                    
-                except OSError:
-                    validation_failed()
-            else:
-                validation_failed()
-            
     def osiris_invoke_nuke(self):
         self.osiris_thread.invoke_command(EO_Commands.NUKE.value, thread=self.osiris_thread, auth_token=self.leUserToken.text())
 
@@ -243,6 +204,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 return
             
             self.osiris_thread.invoke_command(EO_Commands.LOGIN.value, thread=self.osiris_thread, browser=browser, auth_token=self.leUserToken.text())
+
+    def osiris_invoke_login_no_selenium(self):
+        self.osiris_thread.invoke_command(EO_Commands.LOGIN.value, thread=self.osiris_thread, browser=None, auth_token=self.leUserToken.text())
 
     # Osiris Signal Methods.
 

@@ -1,5 +1,15 @@
 # Discord Raidkit Changelog
 
+### v2.5.1 (19/07/2024)
+##### Additions:
+- The Osiris screen now has a button for those having trouble automatically logging in with Selenium. This button will put a login script in the Osiris terminal to be pasted into a developer console on the Discord login page.
+
+##### Changes:
+- A bug has been fixed whereby clicking the login buttons on Osiris with an improper token provided would disable them forever.
+
+##### Reductions:
+- This project no longer includes the Osiris token grabber generator, as it has been patched by Discord.
+
 ### v2.5.0 (18/07/2024)
 ##### Changes:
 - This project now uses a GUI again, instead of a console (hopefully, with less bugs than the first attempt!).

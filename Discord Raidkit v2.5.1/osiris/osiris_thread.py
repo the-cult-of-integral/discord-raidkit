@@ -24,8 +24,6 @@ class OsirisThread(QThread):
     signal_spy_running = pyqtSignal(bool)  # For updating the controls.
     signal_login_running = pyqtSignal(bool)  # For updating the controls.
     signal_nuke_running = pyqtSignal(bool)  # For updating the controls.
-    signal_generate_payload_running = pyqtSignal(bool)  # For updating the controls.
-
 
     def __init__(self, config: DRConfig):
         super().__init__()
@@ -43,8 +41,6 @@ class OsirisThread(QThread):
                 coroutine = oc.login(**kwargs)
             case EO_Commands.NUKE.value:
                 coroutine = oc.nuke(**kwargs)
-            case EO_Commands.GENERATE_PAYLOAD.value:
-                coroutine = oc.generate_payload(**kwargs)
         
         if coroutine:
             new_task = asyncio.run_coroutine_threadsafe(coroutine, self.osiris_loop)

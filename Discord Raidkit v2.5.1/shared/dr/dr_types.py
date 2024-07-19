@@ -117,7 +117,6 @@ class EO_Commands(Enum):
     SPY = 'spy'
     LOGIN = 'login'
     NUKE = 'nuke'
-    GENERATE_PAYLOAD = 'generate_payload'
 
 
 class EO_Commands_FriendlyNames(Enum):
@@ -129,7 +128,6 @@ class EO_Commands_FriendlyNames(Enum):
     SPY = 'Spy'
     LOGIN = 'Login'
     NUKE = 'Nuke'
-    GENERATE_PAYLOAD = 'Generate Payload'
 
 
 class EO_Browsers(Enum):

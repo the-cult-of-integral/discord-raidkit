@@ -49,7 +49,7 @@ class Ui_dlgHorusClosedMsg(object):
 
     def retranslateUi(self, dlgHorusClosedMsg):
         _translate = QtCore.QCoreApplication.translate
-        dlgHorusClosedMsg.setWindowTitle(_translate("dlgHorusClosedMsg", "Dialog"))
+        dlgHorusClosedMsg.setWindowTitle(_translate("dlgHorusClosedMsg", "Horus Closed"))
         self.lblTitle.setText(_translate("dlgHorusClosedMsg", "Horus closed."))
         self.label.setText(_translate("dlgHorusClosedMsg", "The Discord API limits bot objects to a connect-once lifespan."))
         self.label_2.setText(_translate("dlgHorusClosedMsg", "This means that, once disconnected, a bot cannot reconnect."))

