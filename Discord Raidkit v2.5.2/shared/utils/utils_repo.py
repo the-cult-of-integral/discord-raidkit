@@ -6,7 +6,7 @@ This namespace contains utility functions for operations regarding the Github re
 
 import requests
 
-MY_VERSION = 'v2.5.1'
+MY_VERSION = 'v2.5.2'
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 
     'X-Requested-With': 'XMLHttpRequest'

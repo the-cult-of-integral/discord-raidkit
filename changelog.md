@@ -1,5 +1,9 @@
 # Discord Raidkit Changelog
 
+### v2.5.2 (22/07/2024)
+##### Changes:
+- A bug has been fixed so that the admin command in Horus now works correctly. Previously, any member ID would be seen as invalid due to a typo.
+
 ### v2.5.1 (19/07/2024)
 ##### Additions:
 - The Osiris screen now has a button for those having trouble automatically logging in with Selenium. This button will put a login script in the Osiris terminal to be pasted into a developer console on the Discord login page.

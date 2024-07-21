@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.5.1 by the-cult-of-integral
+Discord Raidkit v2.5.2 by the-cult-of-integral
 
 An open-source, forever free tool that allows you to raid and destroy 
 Discord servers via Discord bots,  compromise Discord accounts, and 
@@ -323,7 +323,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             guild_id = self.__convert_to_int(self.leGuildID.text().strip(), 'Error: Invalid Guild ID Provided.')
             if not guild_id:
                 return
-            member_id = self.__convert_to_int(dialog_ui.lblMemberID.text().strip(), 'Error: Invalid Member ID Provided.')
+            member_id = self.__convert_to_int(dialog_ui.leMemberID.text().strip(), 'Error: Invalid Member ID Provided.')
             if not member_id:
                 return
             role_name = dialog_ui.leName.text().strip()
