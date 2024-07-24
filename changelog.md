@@ -1,5 +1,12 @@
 # Discord Raidkit Changelog
 
+### v2.5.3 (24/07/2024)
+##### Additions:
+- You can now select a new name/description and server image to be set when nuking a server.
+
+##### Changes:
+- A bug has been fixed which would cause nuking servers to hang if the default image could not be found.
+
 ### v2.5.2 (22/07/2024)
 ##### Changes:
 - A bug has been fixed so that the admin command in Horus now works correctly. Previously, any member ID would be seen as invalid due to a typo.

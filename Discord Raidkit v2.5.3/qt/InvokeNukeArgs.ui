@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dlgInvokeMassNukeArgs</class>
- <widget class="QDialog" name="dlgInvokeMassNukeArgs">
+ <class>dlgInvokeNukeArgs</class>
+ <widget class="QDialog" name="dlgInvokeNukeArgs">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>320</width>
-    <height>200</height>
+    <height>380</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>320</width>
-    <height>200</height>
+    <height>380</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>320</width>
-    <height>200</height>
+    <height>380</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>Mass Nuke Arguments</string>
+   <string>Nuke Arguments</string>
   </property>
   <widget class="QDialogButtonBox" name="btnBox">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>160</y>
+     <y>330</y>
      <width>301</width>
      <height>32</height>
     </rect>
@@ -45,7 +45,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>100</y>
+     <y>90</y>
      <width>280</width>
      <height>20</height>
     </rect>
@@ -81,25 +81,107 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>80</y>
+     <y>70</y>
      <width>271</width>
-     <height>16</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>(This field is not required)</string>
    </property>
   </widget>
+  <widget class="QLabel" name="lblGuildTitle">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Enter a name to rename the server to</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leGuildTitle">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>180</y>
+     <width>280</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblNotRequired_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>(This field is not required)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblAvatarPath">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Enter a full file path to a new server avatar</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leAvatarPath">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>270</y>
+     <width>251</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblNotRequired_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>250</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>(This field is not required)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnGetAvatar">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>270</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
  </widget>
- <tabstops>
-  <tabstop>leMemberID</tabstop>
- </tabstops>
  <resources/>
  <connections>
   <connection>
    <sender>btnBox</sender>
    <signal>accepted()</signal>
-   <receiver>dlgInvokeMassNukeArgs</receiver>
+   <receiver>dlgInvokeNukeArgs</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -115,7 +197,7 @@
   <connection>
    <sender>btnBox</sender>
    <signal>rejected()</signal>
-   <receiver>dlgInvokeMassNukeArgs</receiver>
+   <receiver>dlgInvokeNukeArgs</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

