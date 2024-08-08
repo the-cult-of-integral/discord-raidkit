@@ -232,6 +232,10 @@ class HorusThread(QThread):
                 coroutine = cog.cpurge(**kwargs)
             case EH_HiddenCommands.CFLOOD.value:
                 coroutine = cog.cflood(**kwargs)
+            case EH_HiddenCommands.RPURGE.value:
+                coroutine = cog.rpurge(**kwargs)
+            case EH_HiddenCommands.RFLOOD.value:
+                coroutine = cog.rflood(**kwargs)
             case EH_HiddenCommands.ADMIN.value:
                 coroutine = cog.admin(**kwargs)
             case EH_HiddenCommands.RAID.value:

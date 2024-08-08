@@ -1,5 +1,12 @@
 # Discord Raidkit Changelog
 
+### v2.5.4 (08/08/2024)
+##### Additions:
+- You can now purge a server of roles or flood a server with roles.
+
+##### Changes:
+- CPurge and CFlood now referred to as Chnl Purge and Chnl Flood respectively.
+
 ### v2.5.3 (24/07/2024)
 ##### Additions:
 - You can now select a new name/description and server image to be set when nuking a server.

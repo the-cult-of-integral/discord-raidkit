@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Discord Raidkit v2.5.3 by the-cult-of-integral</string>
+   <string>Discord Raidkit v2.5.4 by the-cult-of-integral</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -485,7 +485,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>C-Purge</string>
+       <string>Chnl Purge</string>
       </property>
      </widget>
      <widget class="QPushButton" name="btnInvokeCFlood">
@@ -498,14 +498,14 @@
        </rect>
       </property>
       <property name="text">
-       <string>C-Flood</string>
+       <string>Chnl Flood</string>
       </property>
      </widget>
      <widget class="QPushButton" name="btnInvokeAdmin">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>190</y>
+        <x>210</x>
+        <y>175</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -517,8 +517,8 @@
      <widget class="QPushButton" name="btnInvokeRaid">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>190</y>
+        <x>300</x>
+        <y>175</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -530,8 +530,8 @@
      <widget class="QPushButton" name="btnInvokeNuke">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>190</y>
+        <x>390</x>
+        <y>175</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -543,8 +543,8 @@
      <widget class="QPushButton" name="btnInvokeMassNuke">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>190</y>
+        <x>480</x>
+        <y>175</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -556,8 +556,8 @@
      <widget class="QPushButton" name="btnInvokeLeave">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>190</y>
+        <x>30</x>
+        <y>200</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -569,8 +569,8 @@
      <widget class="QPushButton" name="btnInvokeMassLeave">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>190</y>
+        <x>120</x>
+        <y>200</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -678,6 +678,32 @@
       </property>
       <property name="text">
        <string>Change Bot Status</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeRoleFlood">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>175</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Role Flood</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnInvokeRolePurge">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>175</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Role Purge</string>
       </property>
      </widget>
     </widget>
@@ -899,26 +925,28 @@
   <tabstop>btnInvokeNewWebhook</tabstop>
   <tabstop>btnInvokeCPurge</tabstop>
   <tabstop>btnInvokeCFlood</tabstop>
+  <tabstop>btnInvokeRolePurge</tabstop>
+  <tabstop>btnInvokeRoleFlood</tabstop>
   <tabstop>btnInvokeAdmin</tabstop>
   <tabstop>btnInvokeRaid</tabstop>
   <tabstop>btnInvokeNuke</tabstop>
   <tabstop>btnInvokeMassNuke</tabstop>
   <tabstop>btnInvokeLeave</tabstop>
   <tabstop>btnInvokeMassLeave</tabstop>
-  <tabstop>btnCancelHCmd</tabstop>
-  <tabstop>btnChangeStatus</tabstop>
   <tabstop>tbtnClearCommandTerminal</tabstop>
   <tabstop>btnStopHorus</tabstop>
+  <tabstop>btnCancelHCmd</tabstop>
+  <tabstop>btnChangeStatus</tabstop>
   <tabstop>pteHTerminal</tabstop>
   <tabstop>pteRunningCommandsView</tabstop>
-  <tabstop>leUserToken</tabstop>
-  <tabstop>btnOGetAccountInfo</tabstop>
   <tabstop>btnOLogin</tabstop>
   <tabstop>btnOLoginNoSelenium</tabstop>
   <tabstop>btnONuke</tabstop>
   <tabstop>tbtnOClearCommandTerminal</tabstop>
   <tabstop>pteOTerminal</tabstop>
   <tabstop>pteORunningCommands</tabstop>
+  <tabstop>btnOGetAccountInfo</tabstop>
+  <tabstop>leUserToken</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -1,6 +1,8 @@
 call del InvokeAdminArgs.py 
 call del InvokeCFloodArgs.py
 call del InvokeCPurge.py
+call del InvokeRFloodArgs.py
+call del InvokeRPurge.py
 call del InvokeLeave.py
 call del InvokeMassLeave.py
 call del InvokeMassNukeArgs.py
@@ -19,6 +21,8 @@ call del LatestVersionCheck.py
 call pyuic6 -x InvokeAdminArgs.ui -o InvokeAdminArgs.py
 call pyuic6 -x InvokeCFloodArgs.ui -o InvokeCFloodArgs.py
 call pyuic6 -x InvokeCPurge.ui -o InvokeCPurge.py
+call pyuic6 -x InvokeRFloodArgs.ui -o InvokeRFloodArgs.py
+call pyuic6 -x InvokeRPurge.ui -o InvokeRPurge.py
 call pyuic6 -x InvokeLeave.ui -o InvokeLeave.py
 call pyuic6 -x InvokeMassLeave.ui -o InvokeMassLeave.py
 call pyuic6 -x InvokeMassNukeArgs.ui -o InvokeMassNukeArgs.py

@@ -6,9 +6,9 @@ The latest version of this project is always the supported version, with all pre
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 2.5.0   | :white_check_mark: |
-| 2.4.4   | :x:                |
-| 2.4.3   | :x:                |
+| 2.5.4   | :white_check_mark: |
+| 2.5.3   | :x:                |
+| 2.5.2   | :x:                |
 |  ...    | :x:                |
 
 ## Reporting a Vulnerability

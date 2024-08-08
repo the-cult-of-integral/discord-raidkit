@@ -59,8 +59,6 @@ class Ui_dlgInvokeMassNukeArgs(object):
         self.btnBox.rejected.connect(dlgInvokeMassNukeArgs.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(dlgInvokeMassNukeArgs)
 
-        self.btnGetAvatar.clicked.connect(self.getAvatar)
-
     def retranslateUi(self, dlgInvokeMassNukeArgs):
         _translate = QtCore.QCoreApplication.translate
         dlgInvokeMassNukeArgs.setWindowTitle(_translate("dlgInvokeMassNukeArgs", "Mass Nuke Arguments"))
@@ -73,12 +71,6 @@ class Ui_dlgInvokeMassNukeArgs(object):
         self.lblNotRequired_3.setText(_translate("dlgInvokeMassNukeArgs", "(This field is not required)"))
         self.btnGetAvatar.setText(_translate("dlgInvokeMassNukeArgs", "..."))
 
-    def getAvatar(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName(
-            None, "Select Image", "", "Image Files (*.png *.jpg *.bmp)"
-        )
-        self.leAvatarPath.setText(filename[0])
-    
 
 if __name__ == "__main__":
     import sys

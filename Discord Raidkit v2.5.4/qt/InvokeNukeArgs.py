@@ -59,8 +59,6 @@ class Ui_dlgInvokeNukeArgs(object):
         self.btnBox.rejected.connect(dlgInvokeNukeArgs.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(dlgInvokeNukeArgs)
 
-        self.btnGetAvatar.clicked.connect(self.getAvatar)
-
     def retranslateUi(self, dlgInvokeNukeArgs):
         _translate = QtCore.QCoreApplication.translate
         dlgInvokeNukeArgs.setWindowTitle(_translate("dlgInvokeNukeArgs", "Nuke Arguments"))
@@ -72,12 +70,6 @@ class Ui_dlgInvokeNukeArgs(object):
         self.lblAvatarPath.setText(_translate("dlgInvokeNukeArgs", "Enter a full file path to a new server avatar"))
         self.lblNotRequired_3.setText(_translate("dlgInvokeNukeArgs", "(This field is not required)"))
         self.btnGetAvatar.setText(_translate("dlgInvokeNukeArgs", "..."))
-    
-    def getAvatar(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName(
-            None, "Select Image", "", "Image Files (*.png *.jpg *.bmp)"
-        )
-        self.leAvatarPath.setText(filename[0])
 
 
 if __name__ == "__main__":
