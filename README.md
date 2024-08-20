@@ -1,3 +1,11 @@
+**Advertisement**
+
+Do you want to join a chill Discord server* with nearly zero rules, a growing community, and free nitro giveaways? [Join us today!](https://discord.gg/zNVYXUvTeu)
+
+**This Discord server is not affiliated with the-cult-of-integral nor this project.*
+
+---
+
 ![celebrating-four-years](https://github.com/user-attachments/assets/651d365a-3ad4-4a80-93ea-ef68297b5467)
 
 ![Discord Raidkit Banner](https://user-images.githubusercontent.com/98130822/235323678-64a0ac47-b491-498f-98c0-1a113461336b.png)
