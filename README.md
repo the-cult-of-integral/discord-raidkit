@@ -1,4 +1,4 @@
-**Advertisement**
+**Advertisement / Help**
 
 Do you want a chill Discord server or need any help with this tool? [Join this server!](https://discord.gg/chillhome). If you need help with the bot, just send the israeli flag a few times `:flag_il:`.  Don't ask, it's a long story; just think of it as a calling card lol, nothing to do with the conflict.
 
