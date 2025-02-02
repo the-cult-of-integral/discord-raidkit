@@ -1,6 +1,6 @@
 **Need Any Help?**
 
-The old help server was wiped. Now, we have a more secure, fool-proof method.
+The old help server was wiped out by Discord. Now, we have a more secure, fool-proof method.
 
 1. [Join this server!](https://discord.gg/chillhome).
 2. Ping the moderators (Abdullah, Robert, etc) with the Israeli flag (`:flag_il:`). This is a secret code to let us know why you're really here. If you don't know who the moderators are, they have the higher roles.
@@ -8,7 +8,7 @@ The old help server was wiped. Now, we have a more secure, fool-proof method.
 4. To test your loyality, under no circumstances should you mention this project, lest you be immediately banned. This prevents us looking suspicious.
 5. As a further test of rule four some moderators may even feint annoyance and threaten punishment. To prove your oath of silence, just ignore them.
 
-This method keeps the server looking innocent, keeps me looking innocent, and keeps you looking innocent. I look forward to helping you all!
+This method keeps the server looking innocent, keeps me looking innocent, and keeps you looking innocent, thus avoiding a repeat wipeout. I look forward to helping you all!
 
 ---
 
