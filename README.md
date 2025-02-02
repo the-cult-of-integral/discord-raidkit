@@ -1,14 +1,12 @@
-**Need Any Help?**
+**I need your help!**
 
-The old help server was wiped out by Discord. Now, we have a more secure, fool-proof method.
+There is a twelve-year-old in the Discord server below. The server is ran by older members. The chat, including mods, frequently engage in nsfw/sexual topics/humour with said twelve-year-old, and other minors, despite knowing their age. Said twelve-year-old is also promised moderation ranks once reaching thirteen. To me, this seems suspicious.
 
-1. [Join this server!](https://discord.gg/chillhome).
-2. Ping the moderators (Abdullah, Robert, etc) with the Israeli flag (`:flag_il:`). This is a secret code to let us know why you're really here. If you don't know who the moderators are, they have the higher roles.
-3. The moderators will inform me of your presence and you'll receive a friend request soon. If you don't, try pinging them a few more times.
-4. To test your loyality, under no circumstances should you mention this project, lest you be immediately banned. This prevents us looking suspicious.
-5. As a further test of rule four some moderators may even feint annoyance and threaten punishment. To prove your oath of silence, just ignore them.
+Because of this, I am putting the invite link here for public viewing. Do whatever you want. Oh and, it's also an islamic server with a "No Israeli" rule, so if you are joining *just* to troll, Israeli properganda would probably annoy them the most.
 
-This method keeps the server looking innocent, keeps me looking innocent, and keeps you looking innocent, thus avoiding a repeat wipeout. I look forward to helping you all!
+[Join & Do Your Bit!](https://discord.gg/chillhome)
+
+![Justice For Sathona!](https://github.com/user-attachments/assets/7b24f729-0779-4a7a-a162-5b3bfea5a39b)
 
 ---
 
