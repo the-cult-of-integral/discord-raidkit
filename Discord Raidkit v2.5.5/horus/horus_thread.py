@@ -20,6 +20,10 @@ from shared.dr.dr_config import DRConfig
 from shared.utils import utils_log
 
 
+async def create_session():
+    return aiohttp.ClientSession()
+
+
 class HorusThread(QThread):
     """The QThread that Horus runs on.
     """
@@ -36,12 +40,11 @@ class HorusThread(QThread):
         self.config = config
         self.bot = commands.Bot(
             command_prefix=self.config.horus.prefix,
-            application_id=self.config.horus.application_id,
+            application_id=int(self.config.horus.application_id),
             intents=discord.Intents.all()
         )
         self.bot_loop = asyncio.new_event_loop()
-        self.session = aiohttp.ClientSession()
-
+        self.session = self.bot_loop.run_until_complete(create_session())
         self.bot.is_running = False
         self.bot.qthread = self
         self.raider_type = raider_type

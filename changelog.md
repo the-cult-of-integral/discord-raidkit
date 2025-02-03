@@ -1,5 +1,12 @@
 # Discord Raidkit Changelog
 
+### v2.5.5 (02/02/2025)
+##### Changes:
+- The Horus thread no longer starts on application start. **This fixes a major bug that causes Horus to require two runs to work if no config is found on the first run.**
+- A breaking change has been fixed regarding the `aiohttp` library.
+- The role flood/purge buttons are no longer enabled even without Horus starting.
+- The `Spy` command for Osiris once again includes the authentication token in the text dump.
+
 ### v2.5.4 (08/08/2024)
 ##### Additions:
 - You can now purge a server of roles or flood a server with roles.

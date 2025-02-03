@@ -306,7 +306,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Discord Raidkit v2.5.4 by the-cult-of-integral"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Discord Raidkit v2.5.5 by the-cult-of-integral"))
         self.lblBotToken.setText(_translate("MainWindow", "Bot Token"))
         self.lblApplicationID.setText(_translate("MainWindow", "ApplicationID"))
         self.lblBotPrefix.setText(_translate("MainWindow", "Bot Prefix"))
