@@ -74,7 +74,7 @@ This program has been created for educational purposes, highlighting the dangers
 
 ---
 
-<p align="left">
+<p align="left">@monstergod2022
   <strong>Views</strong> (as of 24/09/2022)<br><br>
-  <img src="https://profile-counter.glitch.me/discord-raidkit/count.svg" />
+  <img src="https://profile-counter.glitch.me/RecRoom-raidkit/count.svg" />
 </p>
